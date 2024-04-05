@@ -23,13 +23,17 @@ export const {
 		},
 	},
 	callbacks: {
-		// async signIn({ user }) {
-		// 	const existingUserById = await getUserById(user.id);
-		// 	if (!existingUserById || !existingUserById.emailVerified) {
-		// 		return false;
-		// 	}
-		// 	return true;
-		// },
+		async signIn({ user, account }) {
+			if (account?.provider !== 'credentials') return true;
+
+			const existingUser = await getUserById(user.id);
+
+			if (!existingUser?.emailVerified) return false;
+
+			// 2fa check
+
+			return true;
+		},
 		async jwt({ token }) {
 			if (!token.sub) {
 				return token;

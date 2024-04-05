@@ -47,7 +47,7 @@ export default function LoginForm() {
 			login(values).then((data) => {
 				setError(data?.error);
 				// for 2FA
-				// setSuccess(data?.success);
+				setSuccess(data?.success);
 			});
 		});
 	};
