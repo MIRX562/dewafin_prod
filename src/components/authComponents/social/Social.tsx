@@ -27,7 +27,7 @@ export default function Social() {
 				variant='outline'
 				onClick={() => onCLicks('github')}>
 				<FaGithub className='w-5 h-5' />
-				<span>Github</span>
+				<span className='ml-1'>Github</span>
 			</Button>
 		</div>
 	);
