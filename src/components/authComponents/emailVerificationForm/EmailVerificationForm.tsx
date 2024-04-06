@@ -17,11 +17,16 @@ export default function EmailVerificationForm() {
 
 	const onSubmit = useCallback(() => {
 		if (!token) {
+			setError('Missing Token');
 		}
-		emailVerification(token).then((data) => {
-			setSuccess(data.success);
-			setError(data.error);
-		});
+		emailVerification(token)
+			.then((data) => {
+				setSuccess(data.success);
+				setError(data.error);
+			})
+			.catch(() => {
+				setError('Something went wrong!');
+			});
 	}, [token]);
 
 	useEffect(() => {
