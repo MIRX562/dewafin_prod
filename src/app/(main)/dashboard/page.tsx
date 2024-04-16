@@ -11,8 +11,8 @@ import React from 'react';
 
 export default function DashboardPage() {
 	return (
-		<main className='grid w-full p-4 grid-cols-1 gap-4 transition-all gap-x-6 sm:grid-cols-2 xl:grid-cols-4'>
-			<Card>
+		<main className='grid w-full grid-cols-2 gap-4 transition-all gap-x-6 xl:grid-cols-4'>
+			<Card className='col-span-2'>
 				<CardContent>
 					<CardHeader>
 						<CardTitle>Card 1</CardTitle>
@@ -23,8 +23,8 @@ export default function DashboardPage() {
 					</CardFooter>
 				</CardContent>
 			</Card>
-			<Card>
-				<CardContent>
+			<Card className='p-1'>
+				<CardContent className='p-0'>
 					<CardHeader>
 						<CardTitle>Card 1</CardTitle>
 						<CardDescription></CardDescription>
@@ -35,7 +35,7 @@ export default function DashboardPage() {
 				</CardContent>
 			</Card>
 			<Card>
-				<CardContent>
+				<CardContent className='p-0'>
 					<CardHeader>
 						<CardTitle>Card 1</CardTitle>
 						<CardDescription></CardDescription>
@@ -45,7 +45,7 @@ export default function DashboardPage() {
 					</CardFooter>
 				</CardContent>
 			</Card>
-			<Card>
+			<Card className='p-1'>
 				<CardContent>
 					<CardHeader>
 						<CardTitle>Card 1</CardTitle>
