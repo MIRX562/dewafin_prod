@@ -29,41 +29,41 @@ export const menuItems: MenuItem[] = [
 	{
 		icon: Banknote, // Lucidity icon for bills/payments
 		text: 'Billing & Finance',
-		href: '/dashboard/billing-finance',
+		href: '/billings',
 	},
 	{
 		icon: Server, // Lucidity icon for server management
 		text: 'Server Management',
-		href: '/dashboard/server-management',
+		href: '/servers',
 	},
 	{
 		icon: Users, // Lucidity icon for users
 		text: 'Customers',
-		href: '/dashboard/customers',
+		href: '/customers',
 	},
 	{
 		icon: Settings, // Lucidity icon for settings
 		text: 'Administration',
-		href: '/dashboard/administration',
+		href: '/administration',
 	},
 	{
 		icon: User, // Lucidity icon for user management
 		text: 'User Management & Roles',
-		href: '/dashboard/users',
+		href: '/users',
 	},
 	{
 		icon: BarChart, // Lucidity icon for reports
 		text: 'Reporting & Analytics',
-		href: '/dashboard/reporting-analytics',
+		href: '/reports',
 	},
 	{
 		icon: FolderDot, // Lucidity icon for files
 		text: 'File Archive',
-		href: '/dashboard/file-archive',
+		href: '/files',
 	},
 	{
 		icon: Link2, // Lucidity icon for integration
 		text: 'Integrations',
-		href: '/dashboard/integrations',
+		href: '/integrations',
 	},
 ];

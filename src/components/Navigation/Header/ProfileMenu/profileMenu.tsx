@@ -23,10 +23,10 @@ export default function ProfileMenu() {
 			<DropdownMenuContent align='end'>
 				<DropdownMenuLabel>My Account</DropdownMenuLabel>
 				<DropdownMenuSeparator />
-				<Link href='/dashboard/setting'>
+				<Link href='/settings'>
 					<DropdownMenuItem> Setting</DropdownMenuItem>
 				</Link>
-				<Link href='/dashboard/support'>
+				<Link href='/support'>
 					<DropdownMenuItem> Support</DropdownMenuItem>
 				</Link>
 				<DropdownMenuSeparator />

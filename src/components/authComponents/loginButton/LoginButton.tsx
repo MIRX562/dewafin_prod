@@ -24,7 +24,7 @@ export default function LoginButton({
 		return (
 			<Dialog>
 				<DialogTrigger asChild={asChild}>{children}</DialogTrigger>
-				<DialogContent className='grid place-items-center p-1 bg-transparent border-none'>
+				<DialogContent className='lg:w-[400px] grid place-items-center p-1 bg-transparent border-none shadow-sm'>
 					<LoginForm />
 				</DialogContent>
 			</Dialog>
