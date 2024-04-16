@@ -19,7 +19,7 @@ export default function Header({ label }: Props) {
 				<h1
 					className={cn(
 						font.className,
-						'text-4xl font-semibold text-black drop-shadow-md'
+						'text-4xl font-semibold text-secondary-foreground drop-shadow-md'
 					)}>
 					Dewa<span className='text-primary'>Fin</span>
 				</h1>
