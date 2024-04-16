@@ -24,7 +24,13 @@ export default async function RootLayout({
 			<html lang='en'>
 				<body className={inter.className}>
 					<Toaster />
-					{children}
+					<ThemeProvider
+						attribute='class'
+						defaultTheme='system'
+						enableSystem
+						disableTransitionOnChange>
+						{children}
+					</ThemeProvider>
 				</body>
 			</html>
 		</SessionProvider>

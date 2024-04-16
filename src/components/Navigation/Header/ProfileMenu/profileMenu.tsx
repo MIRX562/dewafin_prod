@@ -1,3 +1,4 @@
+import LogoutButton from '@/components/authComponents/logoutButton/LogoutButton';
 import { Button } from '@/components/ui/button';
 import {
 	DropdownMenu,
@@ -29,9 +30,9 @@ export default function ProfileMenu() {
 					<DropdownMenuItem> Support</DropdownMenuItem>
 				</Link>
 				<DropdownMenuSeparator />
-				<Link href='/login'>
-					<DropdownMenuItem> Logout</DropdownMenuItem>
-				</Link>
+				<DropdownMenuItem>
+					<LogoutButton>Log Out</LogoutButton>
+				</DropdownMenuItem>
 			</DropdownMenuContent>
 		</DropdownMenu>
 	);

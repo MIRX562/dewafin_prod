@@ -18,6 +18,7 @@ export default function EmailVerificationForm() {
 	const onSubmit = useCallback(() => {
 		if (!token) {
 			setError('Missing Token');
+			return;
 		}
 		emailVerification(token)
 			.then((data) => {

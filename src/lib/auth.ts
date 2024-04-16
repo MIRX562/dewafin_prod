@@ -63,7 +63,7 @@ export const {
 			token.picture = existingUserById.image;
 			token.role = existingUserById.role;
 			token.isTwoFactorEnabled = existingUserById.isTwoFactorEnabled;
-			console.log({ token });
+			// console.log({ token });
 			return token;
 		},
 		async session({ token, session }) {
@@ -79,9 +79,9 @@ export const {
 			if (session.user) {
 				session.user.isOAuth = token.isOAuth as boolean;
 				session.user.name = token.name;
-				session.user.email = token.email;
+				session.user.email = token.email as string;
 			}
-			console.log({ sessionToken: token, session });
+			// console.log({ sessionToken: token, session });
 			return session;
 		},
 	},
