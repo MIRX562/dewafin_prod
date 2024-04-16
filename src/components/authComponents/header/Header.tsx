@@ -15,7 +15,13 @@ export default function Header({ label }: Props) {
 	return (
 		<div className='w-full flex flex-col items-center justify-center'>
 			<div className='flex items-center'>
-				<Image src='/icon_light.png' alt='logo' width={40} height={20} />
+				<Image
+					src='/icon_light.png'
+					alt='logo'
+					width={40}
+					height={20}
+					className='drop-shadow-md'
+				/>
 				<h1
 					className={cn(
 						font.className,

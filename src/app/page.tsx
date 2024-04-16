@@ -12,8 +12,14 @@ export default function Home() {
 	return (
 		<main className='flex h-full flex-col items-center justify-center bg-slate-300'>
 			<div className='space-y-6'>
-				<div className='flex'>
-					<Image src='/icon_light.png' alt='logo' width={62} height={32} />
+				<div className='flex w-full items-center justify-center'>
+					<Image
+						src='/icon_light.png'
+						alt='logo'
+						width={62}
+						height={32}
+						className='drop-shadow-md'
+					/>
 					<h1
 						className={cn(
 							font.className,
@@ -23,11 +29,11 @@ export default function Home() {
 					</h1>
 				</div>
 				<p className='text-primary text-lg text-center'>
-					Admin Dashboard For Dewabiz
+					Customizable Admin Dashboard For Admins Out There
 				</p>
 				<div className='flex flex-col items-center'>
 					<LoginButton mode='modal' asChild>
-						<Button variant={'secondary'} size={'lg'}>
+						<Button variant={'secondary'} size={'lg'} className='shadow-lg'>
 							Sign In
 						</Button>
 					</LoginButton>
