@@ -9,8 +9,8 @@ import { ThemeProvider } from '@/components/themeProvider/ThemeProvider';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-	title: 'NextAuthV5',
-	description: 'authentication starter pack',
+	title: 'Dewafin',
+	description: 'An Admin Dashboard for Dewabiz',
 };
 
 export default async function RootLayout({

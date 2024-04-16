@@ -1,6 +1,5 @@
 import { cn } from '@/lib/utils';
 import { Poppins } from 'next/font/google';
-import { useTheme } from 'next-themes';
 import Image from 'next/image';
 const font = Poppins({
 	subsets: ['latin'],
