@@ -49,8 +49,7 @@ export default function RegisterForm() {
 		<CardWrapper
 			headerLabel='Create an Accounnt'
 			backButtonLabel='Already have an account?'
-			backButtonHref='/auth/login'
-			showSocial>
+			backButtonHref='/auth/login'>
 			<Form {...form}>
 				<form onSubmit={form.handleSubmit(onSubmit)} className='space-y-6'>
 					<div className='space-y-4'>

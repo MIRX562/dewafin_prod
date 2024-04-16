@@ -1,8 +1,10 @@
 'use client';
+import * as z from 'zod';
+import Link from 'next/link';
+import { login } from '@/actions/login';
+import { LoginSchema } from '@/schemas';
 import { useForm } from 'react-hook-form';
 import CardWrapper from '../cardWrapper/CardWrapper';
-import * as z from 'zod';
-import { LoginSchema } from '@/schemas';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
 	Form,
@@ -14,16 +16,14 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import FormError from '@/components/formError/FormError';
-
-import { login } from '@/actions/login';
 import { useState, useTransition } from 'react';
-import FormSuccess from '@/components/formSucces/FormSuccess';
 import { useSearchParams } from 'next/navigation';
-import Link from 'next/link';
+import FormError from '@/components/formError/FormError';
+import FormSuccess from '@/components/formSucces/FormSuccess';
 
 export default function LoginForm() {
 	const searchParams = useSearchParams();
+	const callbackUrl = searchParams.get('callbackUrl');
 	const urlError =
 		searchParams.get('error') === 'OAuthAccountNotLinked'
 			? 'Email already used with other provider'
@@ -46,7 +46,7 @@ export default function LoginForm() {
 		setSuccess('');
 
 		startTransition(() => {
-			login(values)
+			login(values, callbackUrl)
 				.then((data) => {
 					if (data?.error) {
 						form.reset();
@@ -68,9 +68,8 @@ export default function LoginForm() {
 	return (
 		<CardWrapper
 			headerLabel='Welcome Back'
-			backButtonLabel="don't have an account?"
-			backButtonHref='/auth/register'
-			showSocial>
+			backButtonLabel='Have a Question?'
+			backButtonHref='/auth/register'>
 			<Form {...form}>
 				<form onSubmit={form.handleSubmit(onSubmit)} className='space-y-6'>
 					<div className='space-y-4'>
@@ -80,7 +79,7 @@ export default function LoginForm() {
 								name='code'
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>Email</FormLabel>
+										<FormLabel>Two Factor Code</FormLabel>
 										<FormControl>
 											<Input
 												disabled={isPending}
