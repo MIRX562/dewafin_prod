@@ -26,7 +26,7 @@ export default function ProfileMenu() {
 							alt='profile'
 							width={40}
 							height={20}
-							className='rounded-full'
+							className='rounded-full p-1'
 						/>
 					)) || <CircleUser className='h-5 w-5' />}
 					<span className='sr-only'>Toggle user menu</span>

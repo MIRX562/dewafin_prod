@@ -11,7 +11,7 @@ export default function layout({
 			<Sidebar />
 			<div className='flex flex-col'>
 				<NavHeader />
-				<main className='p-2'>{children}</main>
+				{children}
 			</div>
 		</div>
 	);
