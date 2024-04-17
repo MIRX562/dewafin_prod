@@ -34,6 +34,7 @@ export default function ProfileMenu() {
 			</DropdownMenuTrigger>
 			<DropdownMenuContent align='end'>
 				<DropdownMenuLabel>{user?.name}</DropdownMenuLabel>
+				<DropdownMenuLabel className='text-xs'>{user?.email}</DropdownMenuLabel>
 				<DropdownMenuSeparator />
 				<Link href='/settings'>
 					<DropdownMenuItem> Setting</DropdownMenuItem>
