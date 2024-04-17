@@ -1,8 +1,8 @@
 'use client';
 import React from 'react';
 import {
-	AreaChart,
-	Area,
+	LineChart,
+	Line,
 	XAxis,
 	YAxis,
 	Tooltip as RechartsTooltip,
@@ -11,13 +11,14 @@ import {
 } from 'recharts';
 
 // Define types
-type FinancialData = {
+type MonthData = {
 	month: string;
 	revenue: number;
 	expenses: number;
 };
 
-const data: FinancialData[] = [
+// Define productSales data
+const productSales: MonthData[] = [
 	{
 		month: 'January',
 		revenue: 3452,
@@ -81,37 +82,29 @@ const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
 };
 
 // Component that renders the area chart
-const FinancialPerformance = () => {
+const NetIncome = () => {
 	return (
 		<ResponsiveContainer width='100%' height='100%'>
-			<AreaChart
-				data={data}
+			<LineChart
+				data={productSales}
 				height={400}
 				width={500}
 				margin={{ right: 30, bottom: 30 }}>
-				{/* <CartesianGrid strokeDasharray='3 3' /> */}
+				<CartesianGrid strokeDasharray='3 3' />
 				<XAxis dataKey='month' />
 				<YAxis />
 				<RechartsTooltip
 					content={<CustomTooltip active={false} payload={[]} label={''} />}
 				/>
-				<Area
+				<Line
 					type='monotone'
 					dataKey='revenue'
 					stroke='#8884d8'
 					fill='#8884d8'
-					stackId='1'
 				/>
-				<Area
-					type='monotone'
-					dataKey='expenses'
-					stroke='#82ca9d'
-					fill='#82ca9d'
-					stackId='1'
-				/>
-			</AreaChart>
+			</LineChart>
 		</ResponsiveContainer>
 	);
 };
 
-export default FinancialPerformance;
+export default NetIncome;

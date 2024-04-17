@@ -1,4 +1,6 @@
 import FinancialPerformance from '@/components/dashboardComponents/FinancialPerformance/FinancialPerformance';
+import NetIncome from '@/components/dashboardComponents/FinancialPerformance/NetIncome';
+import { SupportForm } from '@/components/dashboardComponents/SupportForm/SupportForm';
 import { Button } from '@/components/ui/button';
 import {
 	Card,
@@ -15,18 +17,21 @@ import React from 'react';
 export default function DashboardPage() {
 	return (
 		<main className='grid p-2 w-full grid-cols-2 gap-4 transition-all gap-x-6 xl:grid-cols-4'>
-			<div className='col-span-2 flex flex-col items-center justify-center p-4 border border-slate-600 bg-slate-900/50 rounded-xl h-[400px] '>
-				<h3 className='text-2xl font-semibold text-white mb-4'>
-					Financial Performance
-				</h3>
+			<Card className='h-[400px] col-span-2 p-4'>
+				<CardTitle className='text-center text-primary mb-2'>
+					Pemasukan & Pengeluaran
+				</CardTitle>
 				<FinancialPerformance />
+			</Card>
+			<Card className='h-[400px] col-span-2 p-4'>
+				<CardTitle className='text-center text-primary mb-2'>
+					Keuntungan Bersih
+				</CardTitle>
+				<NetIncome />
+			</Card>
+			<div className='col-span-2'>
+				<SupportForm />
 			</div>
-			<Link href='/users' className='w-full'>
-				<Button size='lg' className='w-full'>
-					<User />
-					Users
-				</Button>
-			</Link>
 		</main>
 	);
 }

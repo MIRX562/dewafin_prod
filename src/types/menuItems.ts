@@ -27,24 +27,14 @@ export const menuItems: MenuItem[] = [
 		href: '/dashboard',
 	},
 	{
-		icon: Banknote, // Lucidity icon for bills/payments
-		text: 'Billing & Finance',
-		href: '/billings',
-	},
-	{
 		icon: Server, // Lucidity icon for server management
-		text: 'Server Management',
-		href: '/servers',
+		text: 'Manajemen Aset',
+		href: '/asets',
 	},
 	{
 		icon: Users, // Lucidity icon for users
-		text: 'Customers',
+		text: 'Pelanggan',
 		href: '/customers',
-	},
-	{
-		icon: Settings, // Lucidity icon for settings
-		text: 'Administration',
-		href: '/administration',
 	},
 	{
 		icon: User, // Lucidity icon for user management
@@ -62,8 +52,8 @@ export const menuItems: MenuItem[] = [
 		href: '/files',
 	},
 	{
-		icon: Link2, // Lucidity icon for integration
-		text: 'Integrations',
-		href: '/integrations',
+		icon: Settings, // Lucidity icon for settings
+		text: 'Setting',
+		href: '/settings',
 	},
 ];
