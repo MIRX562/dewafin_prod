@@ -15,9 +15,7 @@ import { ProfileImage } from './profileImage/ProfileImage';
 export default function ProfileMenu() {
 	return (
 		<DropdownMenu>
-			<DropdownMenuTrigger asChild>
-				<ProfileImage />
-			</DropdownMenuTrigger>
+			<ProfileImage />
 			<DropdownMenuContent align='end'>
 				<DropdownMenuLabel>My Account</DropdownMenuLabel>
 				<DropdownMenuSeparator />
