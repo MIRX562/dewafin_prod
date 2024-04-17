@@ -1,5 +1,5 @@
 'use client';
-import { Menu } from 'lucide-react';
+import { Menu, UserRoundCheck } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
@@ -24,10 +24,13 @@ export default function MobileMenu() {
 					<MobileMenuLinks />
 				</nav>
 				<Separator />
-				<div className='mt-auto'>
+				<div className='mt-auto p-4'>
 					<Card>
 						<CardHeader className='p-2 pt-2 md:p-4 text-center'>
-							<CardTitle>Sadewa</CardTitle>
+							<CardTitle className='flex justify-center gap-4'>
+								<UserRoundCheck />
+								Sadewa
+							</CardTitle>
 						</CardHeader>
 						<CardContent className='p-2 pt-0 md:p-4 md:pt-0'>
 							<Button size='sm' className='w-full'>
@@ -35,6 +38,9 @@ export default function MobileMenu() {
 							</Button>
 						</CardContent>
 					</Card>
+					<p className='text-xs font-light text-secondary-foreground mt-4 text-center'>
+						DewaFin © MIRXSolutions.com 2024
+					</p>
 				</div>
 			</SheetContent>
 		</Sheet>
