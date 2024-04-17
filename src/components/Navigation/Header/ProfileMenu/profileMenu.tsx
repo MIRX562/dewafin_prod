@@ -10,15 +10,13 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { CircleUser } from 'lucide-react';
 import Link from 'next/link';
+import { ProfileImage } from './profileImage/ProfileImage';
 
 export default function ProfileMenu() {
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
-				<Button variant='secondary' size='icon' className='rounded-full'>
-					<CircleUser className='h-5 w-5' />
-					<span className='sr-only'>Toggle user menu</span>
-				</Button>
+				<ProfileImage />
 			</DropdownMenuTrigger>
 			<DropdownMenuContent align='end'>
 				<DropdownMenuLabel>My Account</DropdownMenuLabel>
