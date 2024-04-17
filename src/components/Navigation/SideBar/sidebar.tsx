@@ -24,9 +24,11 @@ export default function Sidebar() {
 							</CardTitle>
 						</CardHeader>
 						<CardContent className='p-2 pt-0 md:p-4 md:pt-0'>
-							<Button size='sm' className='w-full'>
-								Login
-							</Button>
+							<Link href='#'>
+								<Button size='sm' className='w-full'>
+									Login
+								</Button>
+							</Link>
 						</CardContent>
 					</Card>
 					<p className='text-xs font-light text-secondary-foreground mt-4 text-center'>
