@@ -33,7 +33,10 @@ export default function Home() {
 				</p>
 				<div className='flex flex-col items-center'>
 					<LoginButton mode='modal' asChild>
-						<Button variant={'secondary'} size={'lg'} className='shadow-lg'>
+						<Button
+							variant={'secondary'}
+							size={'lg'}
+							className='shadow-lg font-medium'>
 							Sign In
 						</Button>
 					</LoginButton>
