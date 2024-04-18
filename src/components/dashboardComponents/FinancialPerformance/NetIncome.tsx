@@ -67,12 +67,8 @@ const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
 					{label}
 				</p>
 				<p className='text-sm text-blue-400'>
-					Pemasukan:
-					<span className='ml-2'>${payload[0]?.value}</span>
-				</p>
-				<p className='text-sm text-green-400'>
-					Pengeluaran:
-					<span className='ml-2'>${payload[1]?.value}</span>
+					Keuntungan:
+					<span className='ml-2'>Rp.{payload[0]?.value}</span>
 				</p>
 			</div>
 		);

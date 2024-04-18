@@ -60,3 +60,19 @@ export const RegisterSchema = z.object({
 	}),
 	password: z.string().min(8, { message: 'Minimun 8 Character is Required' }),
 });
+
+export const taskSchema = z.object({
+	id: z.string(),
+	title: z.string(),
+	status: z.string(),
+	label: z.string(),
+	priority: z.string(),
+});
+
+// Define type exports for each schema
+export type Settings = z.infer<typeof settingsSchema>;
+export type Login = z.infer<typeof LoginSchema>;
+export type NewPassword = z.infer<typeof NewPasswordSchema>;
+export type Reset = z.infer<typeof ResetSchema>;
+export type Register = z.infer<typeof RegisterSchema>;
+export type Task = z.infer<typeof taskSchema>;

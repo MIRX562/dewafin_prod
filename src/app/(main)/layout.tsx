@@ -1,5 +1,7 @@
 import NavHeader from '@/components/Navigation/Header/header';
+import PageHeader from '@/components/Navigation/PageHeader/PageHeader';
 import Sidebar from '@/components/Navigation/SideBar/sidebar';
+import { Separator } from '@/components/ui/separator';
 
 export default function layout({
 	children,
@@ -11,7 +13,11 @@ export default function layout({
 			<Sidebar />
 			<div className='flex flex-col'>
 				<NavHeader />
-				{children}
+				<main className='flex flex-col p-1 md:p-2'>
+					<PageHeader />
+					<Separator />
+					{children}
+				</main>
 			</div>
 		</div>
 	);

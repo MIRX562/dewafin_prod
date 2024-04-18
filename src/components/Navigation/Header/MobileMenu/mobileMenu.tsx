@@ -3,10 +3,9 @@ import { Menu, UserRoundCheck } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
-
 import { Separator } from '@/components/ui/separator';
-import MobileMenuLogo from './MobileMenuLogo/mobileMenuLogo';
 import MobileMenuLinks from './MobileMenuLinks/mobileMenuLinks';
+import NavLogo from '../../NavLogo/NavLogo';
 
 export default function MobileMenu() {
 	return (
@@ -19,7 +18,7 @@ export default function MobileMenu() {
 			</SheetTrigger>
 			<SheetContent side='left' className='flex flex-col'>
 				<nav className='grid gap-2 text-lg font-medium'>
-					<MobileMenuLogo />
+					<NavLogo />
 					<Separator />
 					<MobileMenuLinks />
 				</nav>

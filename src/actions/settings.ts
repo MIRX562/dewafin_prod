@@ -1,12 +1,11 @@
 'use server';
 
-import { getUserById } from '@/data/user';
-import { db } from '@/lib/db';
 import { currentUser } from '@/lib/sessionUser';
-import { settingsSchema } from '@/schemas';
-import { z } from 'zod';
+import { getUserById } from '@/data/user';
+import { Settings } from '@/schemas';
+import { db } from '@/lib/db';
 
-export const settings = async (values: z.infer<typeof settingsSchema>) => {
+export const settings = async (values: Settings) => {
 	const user = await currentUser();
 
 	if (!user) {

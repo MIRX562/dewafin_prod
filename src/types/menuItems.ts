@@ -28,7 +28,7 @@ export const menuItems: MenuItem[] = [
 	},
 	{
 		icon: Server, // Lucidity icon for server management
-		text: 'Manajemen Aset',
+		text: 'Assets Management',
 		href: '/asets',
 	},
 	{
@@ -38,12 +38,12 @@ export const menuItems: MenuItem[] = [
 	},
 	{
 		icon: User, // Lucidity icon for user management
-		text: 'User Management & Roles',
+		text: 'User Management',
 		href: '/users',
 	},
 	{
 		icon: BarChart, // Lucidity icon for reports
-		text: 'Reporting & Analytics',
+		text: 'Reports',
 		href: '/reports',
 	},
 	{
