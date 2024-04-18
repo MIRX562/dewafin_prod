@@ -20,16 +20,27 @@ export function DataTableToolbar<TData>({
 	const isFiltered = table.getState().columnFilters.length > 0;
 
 	return (
-		<div className='flex items-center sm:justify-between'>
-			<div className='flex flex-1 items-center space-x-2'>
+		<div className='flex flex-col md:flex-row space-y-2 items-center justify-between'>
+			<div className='flex flex-1 w-full items-center justify-start space-x-2 p-1'>
 				<Input
-					placeholder='Filter tasks...'
+					placeholder='Search User...'
 					value={(table.getColumn('title')?.getFilterValue() as string) ?? ''}
 					onChange={(event) =>
 						table.getColumn('title')?.setFilterValue(event.target.value)
 					}
-					className='h-8 w-[100px] md:w[200px] lg:w-[250px]'
+					className='h-8 w-full md:w[200px] lg:w-[250px]'
 				/>
+				{isFiltered && (
+					<Button
+						variant='ghost'
+						onClick={() => table.resetColumnFilters()}
+						className='h-8 px-2 lg:px-3'>
+						Reset
+						<Cross2Icon className='ml-2 h-4 w-4' />
+					</Button>
+				)}
+			</div>
+			<div className='w-full flex items-center justify-between'>
 				{table.getColumn('status') && (
 					<DataTableFacetedFilter
 						column={table.getColumn('status')}
@@ -44,17 +55,8 @@ export function DataTableToolbar<TData>({
 						options={priorities}
 					/>
 				)}
-				{isFiltered && (
-					<Button
-						variant='ghost'
-						onClick={() => table.resetColumnFilters()}
-						className='h-8 px-2 lg:px-3'>
-						Reset
-						<Cross2Icon className='ml-2 h-4 w-4' />
-					</Button>
-				)}
+				<DataTableViewOptions table={table} />
 			</div>
-			<DataTableViewOptions table={table} />
 		</div>
 	);
 }
