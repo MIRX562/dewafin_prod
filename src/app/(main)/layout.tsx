@@ -13,7 +13,7 @@ export default function layout({
 			<Sidebar />
 			<div className='flex flex-col'>
 				<NavHeader />
-				<main className='flex flex-col p-1 md:p-2'>
+				<main className='flex flex-col'>
 					<PageHeader />
 					<Separator />
 					{children}
