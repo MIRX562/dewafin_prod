@@ -20,7 +20,7 @@ export function DataTableToolbar<TData>({
 	const isFiltered = table.getState().columnFilters.length > 0;
 
 	return (
-		<div className='flex items-center justify-between'>
+		<div className='flex items-center sm:justify-between'>
 			<div className='flex flex-1 items-center space-x-2'>
 				<Input
 					placeholder='Filter tasks...'
@@ -28,7 +28,7 @@ export function DataTableToolbar<TData>({
 					onChange={(event) =>
 						table.getColumn('title')?.setFilterValue(event.target.value)
 					}
-					className='h-8 w-[150px] lg:w-[250px]'
+					className='h-8 w-[100px] md:w[200px] lg:w-[250px]'
 				/>
 				{table.getColumn('status') && (
 					<DataTableFacetedFilter

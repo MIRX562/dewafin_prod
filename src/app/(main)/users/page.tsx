@@ -33,7 +33,7 @@ export default async function TaskPage() {
 						</p>
 					</div>
 				</div>
-				<div className='flex-grow'>
+				<div className='overflow-x-auto'>
 					<DataTable data={tasks} columns={columns} />
 				</div>
 			</div>
