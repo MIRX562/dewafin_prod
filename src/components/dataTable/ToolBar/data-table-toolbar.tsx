@@ -20,7 +20,7 @@ export function DataTableToolbar<TData>({
 	const isFiltered = table.getState().columnFilters.length > 0;
 
 	return (
-		<div className='flex flex-col md:flex-row space-y-2 md:space-y-0  items-center justify-between'>
+		<div className='flex flex-col lg:flex-row space-y-2 lg:space-y-0  items-center justify-between'>
 			<div className='flex flex-1 w-full items-center space-x-2 md:mr-2'>
 				<Input
 					placeholder='Search User...'
