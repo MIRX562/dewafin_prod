@@ -5,6 +5,7 @@ import './globals.css';
 import { auth } from '@/lib/auth';
 import { Toaster } from '@/components/ui/sonner';
 import { ThemeProvider } from '@/components/themeProvider/ThemeProvider';
+import { cn } from '@/lib/utils';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -22,7 +23,7 @@ export default async function RootLayout({
 	return (
 		<SessionProvider session={session}>
 			<html lang='en'>
-				<body className={inter.className}>
+				<body className={cn(inter.className, 'w-[100vw]')}>
 					<ThemeProvider
 						attribute='class'
 						defaultTheme='system'
