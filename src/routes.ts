@@ -1,13 +1,13 @@
 /**
- * An array of public routes
- * this routes doesn't require authentication
+ * An array of routes that are publicly accessible.
+ * Users do not need to be authenticated to access these routes.
  * @type {string[]}
  */
 export const publicRoutes = ['/', '/auth/new-verification'];
 
 /**
- * An array of routes that used for authentication
- * these routes will redirect users to settingsPage
+ * An array of routes used for user authentication processes.
+ * Users attempting to access these routes will be redirected to the settings page upon successful authentication.
  * @type {string[]}
  */
 export const authRoutes = [
@@ -19,14 +19,15 @@ export const authRoutes = [
 ];
 
 /**
- * Prefix for the API authetication routes
- * routes with this prefix is used for authentication purposes
+ * Prefix for API authentication routes.
+ * Routes with this prefix are specifically used for authentication-related operations.
  * @type {string}
  */
 export const apiAuthPrefix = '/api/auth';
 
 /**
- * default redirect route after logging in
+ * The default route that users are redirected to after logging in.
+ * Typically, this is a landing page where the user can access main features of the application.
  * @type {string}
  */
 export const DEFAULT_LOGIN_REDIRECT = '/dashboard';

@@ -2,33 +2,64 @@ import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 const domain = process.env.NEXT_PUBLIC_APP_URL;
+const fromEmail = 'support@mirx.my.id';
+
+const sendEmail = async ({
+	email,
+	subject,
+	message,
+}: {
+	email: string;
+	subject: string;
+	message: string;
+}) => {
+	await resend.emails.send({
+		from: fromEmail,
+		to: email,
+		subject: subject,
+		html: message,
+	});
+};
 
 export const send2FAEmail = async (email: string, token: string) => {
-	await resend.emails.send({
-		from: 'onboarding@resend.dev',
-		to: email,
-		subject: 'Confirm Your Email',
-		html: `<p>Here is your 2FA code: ${token}</p>`,
-	});
+	const subject = 'Your DewaFin Two-Factor Authentication Code';
+	const message = `
+        <p>Dear User,</p>
+        <p>Your OTP code for two-factor authentication is: <strong>${token}</strong></p>
+        <p>For security reasons, please keep this code confidential and do not share it with anyone else.</p>
+        <p>Thank you,</p>
+        <p>The DewaFin Team</p>
+    `;
+
+	await sendEmail({ email, subject, message });
 };
 
 export const sendVerificationEmail = async (email: string, token: string) => {
-	const resetLink = `${domain}/auth/new-verification?token=${token}`;
+	const verificationLink = `${domain}/auth/verify-email?token=${token}`;
+	const subject = 'Confirm Your DewaFin Account';
+	const message = `
+        <p>Dear User,</p>
+        <p>Thank you for creating an account with DewaFin. To verify your email address, please click on the link below:</p>
+        <p><a href="${verificationLink}">Verify Email Address</a></p>
+        <p>If you did not create an account, please disregard this email.</p>
+        <p>Best,</p>
+        <p>The DewaFin Team</p>
+    `;
 
-	await resend.emails.send({
-		from: 'auth@mirx.my.id',
-		to: email,
-		subject: 'Confirm Your Email',
-		html: `<p>Click <a href=${resetLink}>here <a/>to verify your email</p>`,
-	});
+	await sendEmail({ email, subject, message });
 };
-export const sendPasswordResetEmail = async (email: string, token: string) => {
-	const resetLink = `http://localhost:3000/auth/new-password?token=${token}`;
 
-	await resend.emails.send({
-		from: 'auth@mirx.my.id',
-		to: email,
-		subject: 'Reset Password',
-		html: `<p>Click <a href=${resetLink}>here <a/>to reset your Password</p>`,
-	});
+export const sendPasswordResetEmail = async (email: string, token: string) => {
+	const resetLink = `${domain}/auth/reset-password?token=${token}`;
+	const subject = 'Reset Your DewaFin Password';
+	const message = `
+        <p>Dear User,</p>
+        <p>To reset your DewaFin account password, please click on the link below:</p>
+        <p><a href="${resetLink}">Reset Password</a></p>
+        <p>If you did not request a password reset, please ignore this email.</p>
+        <p>Best,</p>
+        <p>The DewaFin Team</p>
+    `;
+
+	await sendEmail({ email, subject, message });
 };

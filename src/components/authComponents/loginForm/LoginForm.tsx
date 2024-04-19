@@ -9,11 +9,17 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import {
 	Form,
 	FormControl,
+	FormDescription,
 	FormField,
 	FormItem,
 	FormLabel,
 	FormMessage,
 } from '@/components/ui/form';
+import {
+	InputOTP,
+	InputOTPGroup,
+	InputOTPSlot,
+} from '@/components/ui/input-otp';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useState, useTransition } from 'react';
@@ -80,14 +86,22 @@ export default function LoginForm() {
 								name='code'
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>Two Factor Code</FormLabel>
+										<FormLabel>One-Time Password</FormLabel>
 										<FormControl>
-											<Input
-												disabled={isPending}
-												{...field}
-												placeholder='123456'
-											/>
+											<InputOTP maxLength={6} {...field}>
+												<InputOTPGroup>
+													<InputOTPSlot index={0} />
+													<InputOTPSlot index={1} />
+													<InputOTPSlot index={2} />
+													<InputOTPSlot index={3} />
+													<InputOTPSlot index={4} />
+													<InputOTPSlot index={5} />
+												</InputOTPGroup>
+											</InputOTP>
 										</FormControl>
+										<FormDescription>
+											Please enter the OTP code sent to your Email.
+										</FormDescription>
 										<FormMessage />
 									</FormItem>
 								)}
