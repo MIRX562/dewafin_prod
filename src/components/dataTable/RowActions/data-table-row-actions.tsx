@@ -18,8 +18,8 @@ import {
 	DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 
-import { labels } from '@/types/data-table';
-import { taskSchema } from '@/schemas/index';
+import { userSchema } from '@/schemas';
+import { roles } from '@/types/data-table';
 
 interface DataTableRowActionsProps<TData> {
 	row: Row<TData>;
@@ -28,7 +28,7 @@ interface DataTableRowActionsProps<TData> {
 export function DataTableRowActions<TData>({
 	row,
 }: DataTableRowActionsProps<TData>) {
-	const task = taskSchema.parse(row.original);
+	const user = userSchema.parse(row.original);
 
 	return (
 		<DropdownMenu>
@@ -42,16 +42,14 @@ export function DataTableRowActions<TData>({
 			</DropdownMenuTrigger>
 			<DropdownMenuContent align='end' className='w-[160px]'>
 				<DropdownMenuItem>Edit</DropdownMenuItem>
-				<DropdownMenuItem>Make a copy</DropdownMenuItem>
-				<DropdownMenuItem>Favorite</DropdownMenuItem>
 				<DropdownMenuSeparator />
 				<DropdownMenuSub>
-					<DropdownMenuSubTrigger>Labels</DropdownMenuSubTrigger>
+					<DropdownMenuSubTrigger>Roles</DropdownMenuSubTrigger>
 					<DropdownMenuSubContent>
-						<DropdownMenuRadioGroup value={task.label}>
-							{labels.map((label) => (
-								<DropdownMenuRadioItem key={label.value} value={label.value}>
-									{label.label}
+						<DropdownMenuRadioGroup value={user.role}>
+							{roles.map((role) => (
+								<DropdownMenuRadioItem key={role.value} value={role.value}>
+									{role.label}
 								</DropdownMenuRadioItem>
 							))}
 						</DropdownMenuRadioGroup>
@@ -60,7 +58,7 @@ export function DataTableRowActions<TData>({
 				<DropdownMenuSeparator />
 				<DropdownMenuItem>
 					Delete
-					<DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
+					{/* <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut> */}
 				</DropdownMenuItem>
 			</DropdownMenuContent>
 		</DropdownMenu>

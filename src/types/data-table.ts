@@ -1,71 +1,43 @@
 import {
-	ArrowDownIcon,
-	ArrowRightIcon,
-	ArrowUpIcon,
-	CheckCircledIcon,
-	CircleIcon,
 	CrossCircledIcon,
-	QuestionMarkCircledIcon,
-	StopwatchIcon,
+	CheckCircledIcon,
+	GearIcon,
+	PersonIcon,
 } from '@radix-ui/react-icons';
 
-export const labels = [
+// export type UserTable = {
+// 	id: string;
+// 	name: string | null;
+// 	email: string | null;
+// 	emailVerified: Date | null;
+// 	image: string | null;
+// 	password: string | null;
+// 	role: 'ADMIN' | 'USER';
+// 	isTwoFactorEnabled: boolean;
+// };
+
+export const roles = [
 	{
-		value: 'bug',
-		label: 'Bug',
+		value: 'ADMIN',
+		label: 'Admin',
+		icon: GearIcon,
 	},
 	{
-		value: 'feature',
-		label: 'Feature',
-	},
-	{
-		value: 'documentation',
-		label: 'Documentation',
+		value: 'USER',
+		label: 'User',
+		icon: PersonIcon,
 	},
 ];
 
-export const statuses = [
+export const TwoFactor = [
 	{
-		value: 'backlog',
-		label: 'Backlog',
-		icon: QuestionMarkCircledIcon,
-	},
-	{
-		value: 'todo',
-		label: 'Todo',
-		icon: CircleIcon,
-	},
-	{
-		value: 'in progress',
-		label: 'In Progress',
-		icon: StopwatchIcon,
-	},
-	{
-		value: 'done',
-		label: 'Done',
+		value: true,
+		label: 'Enabled',
 		icon: CheckCircledIcon,
 	},
 	{
-		value: 'canceled',
-		label: 'Canceled',
+		value: false,
+		label: 'Disabled',
 		icon: CrossCircledIcon,
-	},
-];
-
-export const priorities = [
-	{
-		label: 'Low',
-		value: 'low',
-		icon: ArrowDownIcon,
-	},
-	{
-		label: 'Medium',
-		value: 'medium',
-		icon: ArrowRightIcon,
-	},
-	{
-		label: 'High',
-		value: 'high',
-		icon: ArrowUpIcon,
 	},
 ];

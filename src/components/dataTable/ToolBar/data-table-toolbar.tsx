@@ -7,8 +7,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { DataTableViewOptions } from '../data-table-view-options';
 
-import { priorities, statuses } from '@/types/data-table';
-import { DataTableFacetedFilter } from '../FacetedFilter/data-table-faceted-filter';
+// import { priorities, statuses } from '@/types/data-table';
+// import { DataTableFacetedFilter } from '../FacetedFilter/data-table-faceted-filter';
 
 interface DataTableToolbarProps<TData> {
 	table: Table<TData>;
@@ -23,10 +23,10 @@ export function DataTableToolbar<TData>({
 		<div className='flex flex-col lg:flex-row space-y-2 lg:space-y-0  items-center justify-between'>
 			<div className='flex flex-1 w-full items-center space-x-2 md:mr-2'>
 				<Input
-					placeholder='Search User...'
-					value={(table.getColumn('title')?.getFilterValue() as string) ?? ''}
+					placeholder='Search Email...'
+					value={(table.getColumn('email')?.getFilterValue() as string) ?? ''}
 					onChange={(event) =>
-						table.getColumn('title')?.setFilterValue(event.target.value)
+						table.getColumn('email')?.setFilterValue(event.target.value)
 					}
 					className='h-8 w-full md:w[200px] lg:w-[250px]'
 				/>
@@ -38,22 +38,6 @@ export function DataTableToolbar<TData>({
 						Reset
 						<Cross2Icon className='ml-2 h-4 w-4' />
 					</Button>
-				)}
-			</div>
-			<div className='w-full flex items-center justify-between'>
-				{table.getColumn('status') && (
-					<DataTableFacetedFilter
-						column={table.getColumn('status')}
-						title='Status'
-						options={statuses}
-					/>
-				)}
-				{table.getColumn('priority') && (
-					<DataTableFacetedFilter
-						column={table.getColumn('priority')}
-						title='Priority'
-						options={priorities}
-					/>
 				)}
 				<DataTableViewOptions table={table} />
 			</div>

@@ -10,8 +10,7 @@ const nextConfig = {
 			//google profile image
 			{
 				protocol: 'https',
-				hostname:
-					'https://lh3.googleusercontent.com/a/ACg8ocITzFvjoF6uxY_p8zeEShwA7JTt1miLkmbn729n_P8dQvbn7w=s96-c',
+				hostname: 'lh3.googleusercontent.com',
 			},
 		],
 	},

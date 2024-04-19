@@ -119,15 +119,18 @@ export const RegisterSchema = z.object({
 });
 
 /**
- * Schema for a task.
+ * Schema for a user.
  * This schema validates a task's ID, title, status, label, and priority.
  */
-export const taskSchema = z.object({
-	id: z.string(),
-	title: z.string(),
-	status: z.string(),
-	label: z.string(),
-	priority: z.string(),
+export const userSchema = z.object({
+	id: z.string().default(''),
+	name: z.string().nullable(),
+	email: z.optional(
+		z.string().email({ message: 'Invalid email address' }).nullable()
+	),
+	image: z.string().nullable(),
+	role: z.enum([UserRole.ADMIN, UserRole.USER]).default(UserRole.USER),
+	isTwoFactorEnabled: z.boolean().default(false),
 });
 
 // Define type exports for each schema
@@ -136,4 +139,4 @@ export type Login = z.infer<typeof LoginSchema>;
 export type NewPassword = z.infer<typeof NewPasswordSchema>;
 export type Reset = z.infer<typeof ResetSchema>;
 export type Register = z.infer<typeof RegisterSchema>;
-export type Task = z.infer<typeof taskSchema>;
+export type User = z.infer<typeof userSchema>;

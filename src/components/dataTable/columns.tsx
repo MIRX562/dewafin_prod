@@ -1,87 +1,111 @@
 'use client';
 
 import { ColumnDef } from '@tanstack/react-table';
-
-import { Badge } from '@/components/ui/badge';
-import { Checkbox } from '@/components/ui/checkbox';
-
-import { labels, priorities, statuses } from '@/types/data-table';
-import { Task } from '@/schemas/index';
-import { DataTableColumnHeader } from './ColumnHeader/data-table-column-header';
+// import { Checkbox } from '@/components/ui/checkbox';
+import { roles, TwoFactor } from '@/types/data-table';
 import { DataTableRowActions } from './RowActions/data-table-row-actions';
+import { DataTableColumnHeader } from './ColumnHeader/data-table-column-header';
+import { CircleUser } from 'lucide-react';
+import Image from 'next/image';
+import { User } from '@prisma/client';
 
-export const columns: ColumnDef<Task>[] = [
-	{
-		id: 'select',
-		header: ({ table }) => (
-			<Checkbox
-				checked={
-					table.getIsAllPageRowsSelected() ||
-					(table.getIsSomePageRowsSelected() && 'indeterminate')
-				}
-				onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-				aria-label='Select all'
-				className='translate-y-[2px]'
-			/>
-		),
-		cell: ({ row }) => (
-			<Checkbox
-				checked={row.getIsSelected()}
-				onCheckedChange={(value) => row.toggleSelected(!!value)}
-				aria-label='Select row'
-				className='translate-y-[2px]'
-			/>
-		),
-		enableSorting: false,
-		enableHiding: false,
-	},
+export const columns: ColumnDef<User, unknown>[] = [
+	// {
+	// 	id: 'select',
+	// 	header: ({ table }) => (
+	// 		<Checkbox
+	// 			checked={
+	// 				table.getIsAllPageRowsSelected() ||
+	// 				(table.getIsSomePageRowsSelected() && 'indeterminate')
+	// 			}
+	// 			onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+	// 			aria-label='Select all'
+	// 			className='translate-y-[2px]'
+	// 		/>
+	// 	),
+	// 	cell: ({ row }) => (
+	// 		<Checkbox
+	// 			checked={row.getIsSelected()}
+	// 			onCheckedChange={(value) => row.toggleSelected(!!value)}
+	// 			aria-label='Select row'
+	// 			className='translate-y-[2px]'
+	// 		/>
+	// 	),
+	// 	enableSorting: false,
+	// 	enableHiding: false,
+	// },
 	{
 		accessorKey: 'id',
 		header: ({ column }) => (
-			<DataTableColumnHeader column={column} title='Task' />
+			<DataTableColumnHeader column={column} title='Id' />
 		),
-		cell: ({ row }) => <div className='w-[80px]'>{row.getValue('id')}</div>,
-		enableSorting: true,
+		cell: ({ row }) => (
+			<div className='max-w-[50px] truncate'>{row.getValue('id')}</div>
+		),
+		enableSorting: false,
 		enableHiding: true,
 	},
 	{
-		accessorKey: 'title',
+		accessorKey: 'email',
 		header: ({ column }) => (
-			<DataTableColumnHeader column={column} title='Title' />
+			<DataTableColumnHeader column={column} title='Email' />
 		),
 		cell: ({ row }) => {
-			const label = labels.find((label) => label.value === row.original.label);
-
 			return (
 				<div className='flex space-x-2'>
-					{label && <Badge variant='outline'>{label.label}</Badge>}
 					<span className='max-w-[200px] truncate font-medium'>
-						{row.getValue('title')}
+						{row.getValue('email')}
 					</span>
 				</div>
 			);
 		},
 	},
 	{
-		accessorKey: 'status',
+		accessorKey: 'name',
 		header: ({ column }) => (
-			<DataTableColumnHeader column={column} title='Status' />
+			<DataTableColumnHeader column={column} title='Name' />
 		),
 		cell: ({ row }) => {
-			const status = statuses.find(
-				(status) => status.value === row.getValue('status')
-			);
+			const image = row.original.image;
 
-			if (!status) {
+			return (
+				<div className='flex items-center space-x-2'>
+					{image ? (
+						<Image
+							src={image}
+							alt='profile'
+							width={32}
+							height={32}
+							className='rounded-full border border-primary'
+						/>
+					) : (
+						<CircleUser className='h-8 w-8' />
+					)}
+					<span className='max-w-[100px] truncate font-medium'>
+						{row.getValue('name')}
+					</span>
+				</div>
+			);
+		},
+	},
+	{
+		accessorKey: 'role',
+		header: ({ column }) => (
+			<DataTableColumnHeader column={column} title='Role' />
+		),
+		cell: ({ row }) => {
+			const role = roles.find((role) => role.value === row.getValue('role'));
+
+			if (!role) {
 				return null;
 			}
 
 			return (
-				<div className='flex w-[100px] items-center'>
-					{status.icon && (
-						<status.icon className='mr-2 h-4 w-4 text-muted-foreground' />
+				<div className='flex items-center'>
+					{role.icon && (
+						<role.icon className='mr-2 h-4 w-4 text-muted-foreground' />
 					)}
-					<span>{status.label}</span>
+					<span>{role.label}</span>
 				</div>
 			);
 		},
@@ -89,26 +113,28 @@ export const columns: ColumnDef<Task>[] = [
 			return value.includes(row.getValue(id));
 		},
 	},
+
 	{
-		accessorKey: 'priority',
+		accessorKey: 'isTwoFactorEnabled',
 		header: ({ column }) => (
-			<DataTableColumnHeader column={column} title='Priority' />
+			<DataTableColumnHeader column={column} title='TwoFactor' />
 		),
 		cell: ({ row }) => {
-			const priority = priorities.find(
-				(priority) => priority.value === row.getValue('priority')
+			const istwofactor = TwoFactor.find(
+				(istwofactor) =>
+					istwofactor.value === row.getValue('isTwoFactorEnabled')
 			);
 
-			if (!priority) {
+			if (!istwofactor) {
 				return null;
 			}
 
 			return (
-				<div className='flex items-center'>
-					{priority.icon && (
-						<priority.icon className='mr-2 h-4 w-4 text-muted-foreground' />
+				<div className='flex w-[100px] items-center'>
+					{istwofactor.icon && (
+						<istwofactor.icon className='mr-2 h-4 w-4 text-muted-foreground' />
 					)}
-					<span>{priority.label}</span>
+					<span>{istwofactor.label}</span>
 				</div>
 			);
 		},
