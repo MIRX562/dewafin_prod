@@ -3,6 +3,8 @@ import { columns } from '@/components/dataTable/columns';
 import { userSchema } from '@/schemas/index';
 import { getUsers } from '@/data/user';
 import { z } from 'zod';
+import { User } from '@prisma/client';
+import { ColumnDef } from '@tanstack/react-table';
 
 async function getUserData() {
 	// Fetch the user data
@@ -21,7 +23,7 @@ async function getUserData() {
 	return formattedData;
 }
 
-export default async function TaskPage() {
+export default async function UserPage() {
 	const users = await getUserData();
 
 	return (
@@ -36,7 +38,7 @@ export default async function TaskPage() {
 					</div>
 				</div>
 				<div className='overflow-x-auto'>
-					<DataTable data={users} columns={columns} />
+					<DataTable data={users} columns={columns as any} />
 				</div>
 			</div>
 		</>

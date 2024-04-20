@@ -50,6 +50,7 @@ export const columns: ColumnDef<User, unknown>[] = [
 		header: ({ column }) => (
 			<DataTableColumnHeader column={column} title='Email' />
 		),
+		accessorFn: (user) => user.email,
 		cell: ({ row }) => {
 			return (
 				<div className='flex space-x-2'>
