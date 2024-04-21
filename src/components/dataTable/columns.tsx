@@ -1,15 +1,17 @@
 'use client';
 
-import { ColumnDef } from '@tanstack/react-table';
 // import { Checkbox } from '@/components/ui/checkbox';
-import { roles, TwoFactor } from '@/types/data-table';
-import { DataTableRowActions } from './RowActions/data-table-row-actions';
 import { DataTableColumnHeader } from './ColumnHeader/data-table-column-header';
+import { DataTableRowActions } from './RowActions/data-table-row-actions';
+import { roles, TwoFactor } from '@/types/data-table';
+import { ColumnDef } from '@tanstack/react-table';
 import { CircleUser } from 'lucide-react';
-import Image from 'next/image';
 import { User } from '@prisma/client';
+import Image from 'next/image';
+import { cn } from '@/lib/utils';
 
-export const columns: ColumnDef<User, unknown>[] = [
+export const columns: ColumnDef<User>[] = [
+	//todo Make batch actions
 	// {
 	// 	id: 'select',
 	// 	header: ({ table }) => (
@@ -50,7 +52,6 @@ export const columns: ColumnDef<User, unknown>[] = [
 		header: ({ column }) => (
 			<DataTableColumnHeader column={column} title='Email' />
 		),
-		accessorFn: (user) => user.email,
 		cell: ({ row }) => {
 			return (
 				<div className='flex space-x-2'>
@@ -104,7 +105,12 @@ export const columns: ColumnDef<User, unknown>[] = [
 			return (
 				<div className='flex items-center'>
 					{role.icon && (
-						<role.icon className='mr-2 h-4 w-4 text-muted-foreground' />
+						<role.icon
+							className={cn(
+								'mr-2 h-4 w-4 text-muted-foreground',
+								role.value === 'ADMIN' ? 'text-blue-300' : 'text-violet-300'
+							)}
+						/>
 					)}
 					<span>{role.label}</span>
 				</div>
@@ -133,7 +139,14 @@ export const columns: ColumnDef<User, unknown>[] = [
 			return (
 				<div className='flex w-[100px] items-center'>
 					{istwofactor.icon && (
-						<istwofactor.icon className='mr-2 h-4 w-4 text-muted-foreground' />
+						<istwofactor.icon
+							className={cn(
+								'mr-2 h-4 w-4 text-muted-foreground',
+								istwofactor.value === true
+									? 'text-emerald-300'
+									: 'text-rose-300'
+							)}
+						/>
 					)}
 					<span>{istwofactor.label}</span>
 				</div>
@@ -145,6 +158,9 @@ export const columns: ColumnDef<User, unknown>[] = [
 	},
 	{
 		id: 'actions',
+		header: ({ column }) => (
+			<DataTableColumnHeader column={column} title='Actions' />
+		),
 		cell: ({ row }) => <DataTableRowActions row={row} />,
 	},
 ];

@@ -1,10 +1,10 @@
 'use server';
 
-import { getTwoFactorConfirmationByUserId } from '@/data/twoFactorConfirmation';
 import {
 	generateVerificationToken,
 	generateTwoFactorToken,
 } from '@/lib/tokens';
+import { getTwoFactorConfirmationByUserId } from '@/data/twoFactorConfirmation';
 import { getTwoFactorTokenByEmail } from '@/data/twoFactorToken';
 import { sendVerificationEmail, send2FAEmail } from '@/lib/mail';
 import { DEFAULT_LOGIN_REDIRECT } from '@/routes';

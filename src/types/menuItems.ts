@@ -1,14 +1,13 @@
 // menuItems.ts
 import {
 	AreaChart,
-	Banknote,
 	Server,
 	Users,
 	Settings,
 	User,
 	BarChart,
 	FolderDot,
-	Link2,
+	ScrollText,
 } from 'lucide-react';
 
 // Define the interface for menu items
@@ -37,11 +36,6 @@ export const menuItems: MenuItem[] = [
 		href: '/customers',
 	},
 	{
-		icon: User, // Lucidity icon for user management
-		text: 'User Management',
-		href: '/users',
-	},
-	{
 		icon: BarChart, // Lucidity icon for reports
 		text: 'Reports',
 		href: '/reports',
@@ -50,6 +44,16 @@ export const menuItems: MenuItem[] = [
 		icon: FolderDot, // Lucidity icon for files
 		text: 'File Archive',
 		href: '/files',
+	},
+	{
+		icon: User, // Lucidity icon for user management
+		text: 'User Management',
+		href: '/users',
+	},
+	{
+		icon: ScrollText, // Lucidity icon for user management
+		text: 'Logs',
+		href: '/logs',
 	},
 	{
 		icon: Settings, // Lucidity icon for settings
