@@ -14,7 +14,7 @@ export default async function UserPage() {
 				</div>
 				<div className="overflow-x-auto">
 					<DataTable
-						data={customer}
+						data={customer as any}
 						columns={customerColumns}
 					/>
 				</div>

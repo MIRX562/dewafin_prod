@@ -14,7 +14,7 @@ export default async function EmployeesPage() {
 				</div>
 				<div className="overflow-x-auto">
 					<DataTable
-						data={employees}
+						data={employees as any}
 						columns={employeeColumns}
 					/>
 				</div>
