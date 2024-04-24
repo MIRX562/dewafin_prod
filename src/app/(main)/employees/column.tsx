@@ -1,16 +1,14 @@
 "use client";
 
 // import { Checkbox } from '@/components/ui/checkbox';
-import { DataTableColumnHeader } from "../../../components/dataTable/ColumnHeader/data-table-column-header";
-import { UserDataTableRowActions } from "./data-table-row-actions";
-import { userRoles, state } from "@/types/data-table";
+import { DataTableColumnHeader } from "@/components/dataTable/ColumnHeader/data-table-column-header";
+import { CustomerDataTableRowActions } from "./data-table-row-actions";
 import { ColumnDef } from "@tanstack/react-table";
-import { CircleUser } from "lucide-react";
-import { User } from "@prisma/client";
-import Image from "next/image";
+import { Employee } from "@prisma/client";
+import { state } from "@/types/data-table";
 import { cn } from "@/lib/utils";
 
-export const userColumns: ColumnDef<User>[] = [
+export const employeeColumns: ColumnDef<Employee>[] = [
 	//todo Make batch actions
 	// {
 	// 	id: 'select',
@@ -51,6 +49,42 @@ export const userColumns: ColumnDef<User>[] = [
 		enableHiding: true,
 	},
 	{
+		accessorKey: "firstName",
+		header: ({ column }) => (
+			<DataTableColumnHeader
+				column={column}
+				title="First Name"
+			/>
+		),
+		cell: ({ row }) => {
+			return (
+				<div className="flex space-x-2">
+					<span className="max-w-[200px] truncate font-medium">
+						{row.getValue("firstName")}
+					</span>
+				</div>
+			);
+		},
+	},
+	{
+		accessorKey: "lastName",
+		header: ({ column }) => (
+			<DataTableColumnHeader
+				column={column}
+				title="Last Name"
+			/>
+		),
+		cell: ({ row }) => {
+			return (
+				<div className="flex space-x-2">
+					<span className="max-w-[200px] truncate font-medium">
+						{row.getValue("lastName")}
+					</span>
+				</div>
+			);
+		},
+	},
+	{
 		accessorKey: "email",
 		header: ({ column }) => (
 			<DataTableColumnHeader
@@ -69,31 +103,18 @@ export const userColumns: ColumnDef<User>[] = [
 		},
 	},
 	{
-		accessorKey: "name",
+		accessorKey: "phoneNumber",
 		header: ({ column }) => (
 			<DataTableColumnHeader
 				column={column}
-				title="Name"
+				title="Phone No."
 			/>
 		),
 		cell: ({ row }) => {
-			const image = row.original.image;
-
 			return (
 				<div className="flex items-center space-x-2">
-					{image ? (
-						<Image
-							src={image}
-							alt="profile"
-							width={32}
-							height={32}
-							className="rounded-full border border-primary"
-						/>
-					) : (
-						<CircleUser className="h-8 w-8" />
-					)}
 					<span className="max-w-[100px] truncate font-medium">
-						{row.getValue("name")}
+						{row.getValue("phoneNumber")}
 					</span>
 				</div>
 			);
@@ -108,25 +129,57 @@ export const userColumns: ColumnDef<User>[] = [
 			/>
 		),
 		cell: ({ row }) => {
-			const role = userRoles.find(
-				(role) => role.value === row.getValue("role")
+			return (
+				<div className="flex items-center">
+					<span>{row.getValue("role")}</span>
+				</div>
+			);
+		},
+	},
+	{
+		accessorKey: "department",
+		header: ({ column }) => (
+			<DataTableColumnHeader
+				column={column}
+				title="Department"
+			/>
+		),
+		cell: ({ row }) => {
+			return (
+				<div className="flex items-center">
+					<span>{row.getValue("department")}</span>
+				</div>
+			);
+		},
+	},
+	{
+		accessorKey: "isActive",
+		header: ({ column }) => (
+			<DataTableColumnHeader
+				column={column}
+				title="Status"
+			/>
+		),
+		cell: ({ row }) => {
+			const isActive = state.find(
+				(isActive) => isActive.value === row.getValue("isActive")
 			);
 
-			if (!role) {
+			if (!isActive) {
 				return null;
 			}
 
 			return (
-				<div className="flex items-center">
-					{role.icon && (
-						<role.icon
+				<div className="flex w-[100px] items-center">
+					{isActive.icon && (
+						<isActive.icon
 							className={cn(
 								"mr-2 h-4 w-4 text-muted-foreground",
-								role.value === "ADMIN" ? "text-blue-300" : "text-violet-300"
+								isActive.value === true ? "text-emerald-300" : "text-rose-300"
 							)}
 						/>
 					)}
-					<span>{role.label}</span>
+					<span>{isActive.label}</span>
 				</div>
 			);
 		},
@@ -135,36 +188,17 @@ export const userColumns: ColumnDef<User>[] = [
 		},
 	},
 	{
-		accessorKey: "isTwoFactorEnabled",
+		accessorKey: "hireDate",
 		header: ({ column }) => (
 			<DataTableColumnHeader
 				column={column}
-				title="TwoFactor"
+				title="Joined At"
 			/>
 		),
 		cell: ({ row }) => {
-			const istwofactor = state.find(
-				(istwofactor) =>
-					istwofactor.value === row.getValue("isTwoFactorEnabled")
-			);
-
-			if (!istwofactor) {
-				return null;
-			}
-
 			return (
-				<div className="flex w-[100px] items-center">
-					{istwofactor.icon && (
-						<istwofactor.icon
-							className={cn(
-								"mr-2 h-4 w-4 text-muted-foreground",
-								istwofactor.value === true
-									? "text-emerald-300"
-									: "text-rose-300"
-							)}
-						/>
-					)}
-					<span>{istwofactor.label}</span>
+				<div className="flex items-center">
+					<span>{row.original.hireDate.toLocaleDateString()}</span>
 				</div>
 			);
 		},
@@ -180,6 +214,6 @@ export const userColumns: ColumnDef<User>[] = [
 				title="Actions"
 			/>
 		),
-		cell: ({ row }) => <UserDataTableRowActions row={row} />,
+		cell: ({ row }) => <CustomerDataTableRowActions row={row} />,
 	},
 ];

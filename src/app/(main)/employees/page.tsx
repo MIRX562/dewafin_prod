@@ -1,9 +1,9 @@
 import { DataTable } from "@/components/dataTable/DataTable";
-import { getCustomers } from "@/data/customer";
-import { customerColumns } from "./column";
+import { getEmployees } from "@/data/employee";
+import { employeeColumns } from "./column";
 
-export default async function UserPage() {
-	const customer = await getCustomers();
+export default async function EmployeesPage() {
+	const employees = await getEmployees();
 
 	return (
 		<>
@@ -14,8 +14,8 @@ export default async function UserPage() {
 				</div>
 				<div className="overflow-x-auto">
 					<DataTable
-						data={customer}
-						columns={customerColumns}
+						data={employees}
+						columns={employeeColumns}
 					/>
 				</div>
 			</div>

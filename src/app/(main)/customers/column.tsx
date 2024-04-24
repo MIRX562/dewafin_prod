@@ -2,7 +2,7 @@
 
 // import { Checkbox } from '@/components/ui/checkbox';
 import { DataTableColumnHeader } from "@/components/dataTable/ColumnHeader/data-table-column-header";
-import { DataTableRowActions } from "@/app/(main)/users/RowActions/data-table-row-actions";
+import { CustomerDataTableRowActions } from "./data-table-row-actions";
 import { ColumnDef } from "@tanstack/react-table";
 import { Customer } from "@prisma/client";
 
@@ -149,14 +149,14 @@ export const customerColumns: ColumnDef<Customer>[] = [
 			return value.includes(row.getValue(id));
 		},
 	},
-	// {
-	// 	id: "actions",
-	// 	header: ({ column }) => (
-	// 		<DataTableColumnHeader
-	// 			column={column}
-	// 			title="Actions"
-	// 		/>
-	// 	),
-	// 	cell: ({ row }) => <DataTableRowActions row={row} />,
-	// },
+	{
+		id: "actions",
+		header: ({ column }) => (
+			<DataTableColumnHeader
+				column={column}
+				title="Actions"
+			/>
+		),
+		cell: ({ row }) => <CustomerDataTableRowActions row={row} />,
+	},
 ];

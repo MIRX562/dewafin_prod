@@ -48,8 +48,8 @@ export const menuItems: MenuItem[] = [
 	},
 	{
 		icon: User, // Lucidity icon for user management
-		text: "Staff",
-		href: "/staff",
+		text: "Employees",
+		href: "/employees",
 	},
 	{
 		icon: UserCog, // Lucidity icon for user management

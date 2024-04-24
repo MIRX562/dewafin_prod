@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { DotsHorizontalIcon } from '@radix-ui/react-icons';
-import { Row } from '@tanstack/react-table';
+import { DotsHorizontalIcon } from "@radix-ui/react-icons";
+import { Row } from "@tanstack/react-table";
 
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -16,46 +16,51 @@ import {
 	DropdownMenuSubContent,
 	DropdownMenuSubTrigger,
 	DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+} from "@/components/ui/dropdown-menu";
 
-import { userSchema } from '@/schemas';
-import { roles } from '@/types/data-table';
+import { userSchema } from "@/schemas";
+import { userRoles } from "@/types/data-table";
 
 interface DataTableRowActionsProps<TData> {
 	row: Row<TData>;
 }
 
-export function DataTableRowActions<TData>({
+export function CustomerDataTableRowActions<TData>({
 	row,
 }: DataTableRowActionsProps<TData>) {
-	const user = userSchema.parse(row.original);
-
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
 				<Button
-					variant='ghost'
-					className='flex h-8 w-8 p-0 data-[state=open]:bg-muted'>
-					<DotsHorizontalIcon className='h-4 w-4' />
-					<span className='sr-only'>Open menu</span>
+					variant="ghost"
+					className="flex h-8 w-8 p-0 data-[state=open]:bg-muted"
+				>
+					<DotsHorizontalIcon className="h-4 w-4" />
+					<span className="sr-only">Open menu</span>
 				</Button>
 			</DropdownMenuTrigger>
-			<DropdownMenuContent align='end' className='w-[160px]'>
+			<DropdownMenuContent
+				align="end"
+				className="w-[160px]"
+			>
 				<DropdownMenuItem>Edit</DropdownMenuItem>
-				<DropdownMenuSeparator />
+				{/* <DropdownMenuSeparator />
 				<DropdownMenuSub>
 					<DropdownMenuSubTrigger>Roles</DropdownMenuSubTrigger>
 					<DropdownMenuSubContent>
 						<DropdownMenuRadioGroup value={user.role}>
-							{roles.map((role) => (
-								<DropdownMenuRadioItem key={role.value} value={role.value}>
+							{userRoles.map((role) => (
+								<DropdownMenuRadioItem
+									key={role.value}
+									value={role.value}
+								>
 									{role.label}
 								</DropdownMenuRadioItem>
 							))}
 						</DropdownMenuRadioGroup>
 					</DropdownMenuSubContent>
 				</DropdownMenuSub>
-				<DropdownMenuSeparator />
+				<DropdownMenuSeparator /> */}
 				<DropdownMenuItem>
 					Delete
 					{/* <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut> */}

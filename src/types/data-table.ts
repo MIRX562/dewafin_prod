@@ -3,7 +3,7 @@ import {
 	CheckCircledIcon,
 	GearIcon,
 	PersonIcon,
-} from '@radix-ui/react-icons';
+} from "@radix-ui/react-icons";
 
 // export type UserTable = {
 // 	id: string;
@@ -16,28 +16,28 @@ import {
 // 	isTwoFactorEnabled: boolean;
 // };
 
-export const roles = [
+export const userRoles = [
 	{
-		value: 'ADMIN',
-		label: 'Admin',
+		value: "ADMIN",
+		label: "Admin",
 		icon: GearIcon,
 	},
 	{
-		value: 'USER',
-		label: 'User',
+		value: "USER",
+		label: "User",
 		icon: PersonIcon,
 	},
 ];
 
-export const TwoFactor = [
+export const state = [
 	{
 		value: true,
-		label: 'Enabled',
+		label: "Active",
 		icon: CheckCircledIcon,
 	},
 	{
 		value: false,
-		label: 'Disabled',
+		label: "In Active",
 		icon: CrossCircledIcon,
 	},
 ];

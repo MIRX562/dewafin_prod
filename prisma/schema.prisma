@@ -176,3 +176,17 @@ model Plan {
   // Relationships (optional)
   subscriptions Subscription[]
 }
+
+model Employee {
+  id            String      @id @default(cuid())
+  firstName     String
+  lastName      String
+  email         String      @unique
+  phoneNumber   String?
+  role          String
+  department    String
+  isActive      Boolean     @default(true)
+  hireDate      DateTime
+  // Add more fields as needed
+}
+

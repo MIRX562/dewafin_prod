@@ -4,13 +4,18 @@ const nextConfig = {
 		remotePatterns: [
 			//github profile image
 			{
-				protocol: 'https',
-				hostname: 'avatars.githubusercontent.com',
+				protocol: "https",
+				hostname: "avatars.githubusercontent.com",
+			},
+			// github raw images
+			{
+				protocol: "https",
+				hostname: "raw.githubusercontent.com",
 			},
 			//google profile image
 			{
-				protocol: 'https',
-				hostname: 'lh3.googleusercontent.com',
+				protocol: "https",
+				hostname: "lh3.googleusercontent.com",
 			},
 		],
 	},
