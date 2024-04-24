@@ -1,7 +1,12 @@
-import React from 'react';
+import Loading from "@/app/loading";
+import { Suspense } from "react";
 
 function AsetsPage() {
-	return <div>AsetsPage</div>;
+	return (
+		<Suspense fallback={<Loading />}>
+			<div>AsetsPage</div>;
+		</Suspense>
+	);
 }
 
 export default AsetsPage;

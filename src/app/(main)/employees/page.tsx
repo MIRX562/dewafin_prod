@@ -1,10 +1,9 @@
-import { DataTable } from "@/components/dataTable/DataTable";
-import { getEmployees } from "@/data/employee";
-import { employeeColumns } from "./column";
+import { ScaleLoader } from "react-spinners";
+import EmployeesTable from "./employees-table";
+import { Suspense } from "react";
+import Loading from "@/app/loading";
 
 export default async function EmployeesPage() {
-	const employees = await getEmployees();
-
 	return (
 		<>
 			<div className="h-full max-w-full flex-1 flex-col space-y-8 p-4 flex ">
@@ -12,12 +11,9 @@ export default async function EmployeesPage() {
 					<h2 className="text-2xl font-bold tracking-tight">Implement tools</h2>
 					<p className="text-muted-foreground">User Management Functions</p>
 				</div>
-				<div className="overflow-x-auto">
-					<DataTable
-						data={employees as any}
-						columns={employeeColumns}
-					/>
-				</div>
+				<Suspense fallback={<Loading />}>
+					<EmployeesTable />
+				</Suspense>
 			</div>
 		</>
 	);

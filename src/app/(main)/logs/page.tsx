@@ -1,11 +1,13 @@
+import Loading from "@/app/loading";
 import AccessDenied from "@/components/accessDeniedPage/AccessDenied";
 import { currentRole } from "@/lib/sessionUser";
+import { Suspense } from "react";
 
 export default async function LogsPage() {
 	const role = await currentRole();
 
 	return (
-		<>
+		<Suspense fallback={<Loading />}>
 			{role === "ADMIN" ? (
 				<div className="h-full max-w-full flex-1 flex-col space-y-8 p-4 flex ">
 					<div className="flex items-center justify-between space-x-2">
@@ -18,6 +20,6 @@ export default async function LogsPage() {
 			) : (
 				<AccessDenied />
 			)}
-		</>
+		</Suspense>
 	);
 }

@@ -1,7 +1,12 @@
-import React from 'react';
+import Loading from "@/app/loading";
+import { Suspense } from "react";
 
 function FileArchivePage() {
-	return <div>FileArchivePage</div>;
+	return (
+		<Suspense fallback={<Loading />}>
+			<div>FileArchivePage</div>;
+		</Suspense>
+	);
 }
 
 export default FileArchivePage;

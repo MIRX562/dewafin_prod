@@ -1,10 +1,11 @@
+import RoleGate from "@/components/authComponents/roleGate/RoleGate";
 import { DataTable } from "@/components/dataTable/DataTable";
 import { userColumns } from "@/app/(main)/users/columns";
 import { userSchema } from "@/schemas/index";
 import { getUsers } from "@/data/user";
 import { z } from "zod";
-import RoleGate from "@/components/authComponents/roleGate/RoleGate";
 import { Suspense } from "react";
+import Loading from "@/app/loading";
 
 async function getUserData() {
 	// Fetch the user data
@@ -33,14 +34,14 @@ export default async function UserPage() {
 					<h2 className="text-2xl font-bold tracking-tight">Implement tools</h2>
 					<p className="text-muted-foreground">User Management Functions</p>
 				</div>
-				<div className="overflow-x-auto">
-					<Suspense fallback={<div>Loading...</div>}>
+				<Suspense fallback={<Loading />}>
+					<div className="overflow-x-auto">
 						<DataTable
 							data={users}
 							columns={userColumns as any}
 						/>
-					</Suspense>
-				</div>
+					</div>
+				</Suspense>
 			</div>
 		</RoleGate>
 	);
