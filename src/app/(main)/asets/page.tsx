@@ -4,7 +4,7 @@ import { Suspense } from "react";
 function AsetsPage() {
 	return (
 		<Suspense fallback={<Loading />}>
-			<div>AsetsPage</div>;
+			<div>AsetsPage</div>
 		</Suspense>
 	);
 }
