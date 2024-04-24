@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
 // import { Checkbox } from '@/components/ui/checkbox';
-import { DataTableColumnHeader } from './ColumnHeader/data-table-column-header';
-import { DataTableRowActions } from './RowActions/data-table-row-actions';
-import { roles, TwoFactor } from '@/types/data-table';
-import { ColumnDef } from '@tanstack/react-table';
-import { CircleUser } from 'lucide-react';
-import { User } from '@prisma/client';
-import Image from 'next/image';
-import { cn } from '@/lib/utils';
+import { DataTableColumnHeader } from "../../../components/dataTable/ColumnHeader/data-table-column-header";
+import { DataTableRowActions } from "./RowActions/data-table-row-actions";
+import { roles, TwoFactor } from "@/types/data-table";
+import { ColumnDef } from "@tanstack/react-table";
+import { CircleUser } from "lucide-react";
+import { User } from "@prisma/client";
+import Image from "next/image";
+import { cn } from "@/lib/utils";
 
-export const columns: ColumnDef<User>[] = [
+export const userColumns: ColumnDef<User>[] = [
 	//todo Make batch actions
 	// {
 	// 	id: 'select',
@@ -37,78 +37,90 @@ export const columns: ColumnDef<User>[] = [
 	// 	enableHiding: false,
 	// },
 	{
-		accessorKey: 'id',
+		accessorKey: "id",
 		header: ({ column }) => (
-			<DataTableColumnHeader column={column} title='Id' />
+			<DataTableColumnHeader
+				column={column}
+				title="Id"
+			/>
 		),
 		cell: ({ row }) => (
-			<div className='max-w-[50px] truncate'>{row.getValue('id')}</div>
+			<div className="max-w-[50px] truncate">{row.getValue("id")}</div>
 		),
 		enableSorting: false,
 		enableHiding: true,
 	},
 	{
-		accessorKey: 'email',
+		accessorKey: "email",
 		header: ({ column }) => (
-			<DataTableColumnHeader column={column} title='Email' />
+			<DataTableColumnHeader
+				column={column}
+				title="Email"
+			/>
 		),
 		cell: ({ row }) => {
 			return (
-				<div className='flex space-x-2'>
-					<span className='max-w-[200px] truncate font-medium'>
-						{row.getValue('email')}
+				<div className="flex space-x-2">
+					<span className="max-w-[200px] truncate font-medium">
+						{row.getValue("email")}
 					</span>
 				</div>
 			);
 		},
 	},
 	{
-		accessorKey: 'name',
+		accessorKey: "name",
 		header: ({ column }) => (
-			<DataTableColumnHeader column={column} title='Name' />
+			<DataTableColumnHeader
+				column={column}
+				title="Name"
+			/>
 		),
 		cell: ({ row }) => {
 			const image = row.original.image;
 
 			return (
-				<div className='flex items-center space-x-2'>
+				<div className="flex items-center space-x-2">
 					{image ? (
 						<Image
 							src={image}
-							alt='profile'
+							alt="profile"
 							width={32}
 							height={32}
-							className='rounded-full border border-primary'
+							className="rounded-full border border-primary"
 						/>
 					) : (
-						<CircleUser className='h-8 w-8' />
+						<CircleUser className="h-8 w-8" />
 					)}
-					<span className='max-w-[100px] truncate font-medium'>
-						{row.getValue('name')}
+					<span className="max-w-[100px] truncate font-medium">
+						{row.getValue("name")}
 					</span>
 				</div>
 			);
 		},
 	},
 	{
-		accessorKey: 'role',
+		accessorKey: "role",
 		header: ({ column }) => (
-			<DataTableColumnHeader column={column} title='Role' />
+			<DataTableColumnHeader
+				column={column}
+				title="Role"
+			/>
 		),
 		cell: ({ row }) => {
-			const role = roles.find((role) => role.value === row.getValue('role'));
+			const role = roles.find((role) => role.value === row.getValue("role"));
 
 			if (!role) {
 				return null;
 			}
 
 			return (
-				<div className='flex items-center'>
+				<div className="flex items-center">
 					{role.icon && (
 						<role.icon
 							className={cn(
-								'mr-2 h-4 w-4 text-muted-foreground',
-								role.value === 'ADMIN' ? 'text-blue-300' : 'text-violet-300'
+								"mr-2 h-4 w-4 text-muted-foreground",
+								role.value === "ADMIN" ? "text-blue-300" : "text-violet-300"
 							)}
 						/>
 					)}
@@ -122,14 +134,17 @@ export const columns: ColumnDef<User>[] = [
 	},
 
 	{
-		accessorKey: 'isTwoFactorEnabled',
+		accessorKey: "isTwoFactorEnabled",
 		header: ({ column }) => (
-			<DataTableColumnHeader column={column} title='TwoFactor' />
+			<DataTableColumnHeader
+				column={column}
+				title="TwoFactor"
+			/>
 		),
 		cell: ({ row }) => {
 			const istwofactor = TwoFactor.find(
 				(istwofactor) =>
-					istwofactor.value === row.getValue('isTwoFactorEnabled')
+					istwofactor.value === row.getValue("isTwoFactorEnabled")
 			);
 
 			if (!istwofactor) {
@@ -137,14 +152,14 @@ export const columns: ColumnDef<User>[] = [
 			}
 
 			return (
-				<div className='flex w-[100px] items-center'>
+				<div className="flex w-[100px] items-center">
 					{istwofactor.icon && (
 						<istwofactor.icon
 							className={cn(
-								'mr-2 h-4 w-4 text-muted-foreground',
+								"mr-2 h-4 w-4 text-muted-foreground",
 								istwofactor.value === true
-									? 'text-emerald-300'
-									: 'text-rose-300'
+									? "text-emerald-300"
+									: "text-rose-300"
 							)}
 						/>
 					)}
@@ -157,9 +172,12 @@ export const columns: ColumnDef<User>[] = [
 		},
 	},
 	{
-		id: 'actions',
+		id: "actions",
 		header: ({ column }) => (
-			<DataTableColumnHeader column={column} title='Actions' />
+			<DataTableColumnHeader
+				column={column}
+				title="Actions"
+			/>
 		),
 		cell: ({ row }) => <DataTableRowActions row={row} />,
 	},

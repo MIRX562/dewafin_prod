@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { Cross2Icon } from '@radix-ui/react-icons';
-import { Table } from '@tanstack/react-table';
+import { Cross2Icon } from "@radix-ui/react-icons";
+import { Table } from "@tanstack/react-table";
 
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { DataTableViewOptions } from '../data-table-view-options';
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { DataTableViewOptions } from "../VewOption/data-table-view-options";
 
 // import { priorities, statuses } from '@/types/data-table';
 // import { DataTableFacetedFilter } from '../FacetedFilter/data-table-faceted-filter';
@@ -20,27 +20,28 @@ export function DataTableToolbar<TData>({
 	const isFiltered = table.getState().columnFilters.length > 0;
 
 	return (
-		<div className='flex flex-col lg:flex-row space-y-2 lg:space-y-0  items-center justify-between'>
-			<div className='flex flex-1 w-full items-center space-x-2 md:mr-2'>
+		<div className="flex flex-row space-x-1 items-center justify-between">
+			<div className="flex flex-1 w-full items-center space-x-2 md:mr-2">
 				<Input
-					placeholder='Search Email...'
-					value={(table.getColumn('email')?.getFilterValue() as string) ?? ''}
+					placeholder="Search Email..."
+					value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
 					onChange={(event) =>
-						table.getColumn('email')?.setFilterValue(event.target.value)
+						table.getColumn("email")?.setFilterValue(event.target.value)
 					}
-					className='h-8 w-full md:w[200px] lg:w-[250px]'
+					className="h-8 w-full md:w[200px] lg:w-[250px]"
 				/>
 				{isFiltered && (
 					<Button
-						variant='ghost'
+						variant="ghost"
 						onClick={() => table.resetColumnFilters()}
-						className='h-8 px-2 lg:px-3'>
+						className="h-8 px-2 lg:px-3"
+					>
 						Reset
-						<Cross2Icon className='ml-2 h-4 w-4' />
+						<Cross2Icon className="ml-2 h-4 w-4" />
 					</Button>
 				)}
-				<DataTableViewOptions table={table} />
 			</div>
+			<DataTableViewOptions table={table} />
 		</div>
 	);
 }

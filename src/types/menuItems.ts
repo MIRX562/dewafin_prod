@@ -8,7 +8,8 @@ import {
 	BarChart,
 	FolderDot,
 	ScrollText,
-} from 'lucide-react';
+	UserCog,
+} from "lucide-react";
 
 // Define the interface for menu items
 export interface MenuItem {
@@ -22,42 +23,47 @@ export interface MenuItem {
 export const menuItems: MenuItem[] = [
 	{
 		icon: AreaChart, // Lucidity icon for dashboard
-		text: 'Dashboard',
-		href: '/dashboard',
+		text: "Dashboard",
+		href: "/dashboard",
 	},
 	{
 		icon: Server, // Lucidity icon for server management
-		text: 'Assets Management',
-		href: '/asets',
+		text: "Assets Management",
+		href: "/asets",
 	},
 	{
 		icon: Users, // Lucidity icon for users
-		text: 'Pelanggan',
-		href: '/customers',
+		text: "Customers",
+		href: "/customers",
 	},
 	{
 		icon: BarChart, // Lucidity icon for reports
-		text: 'Reports',
-		href: '/reports',
+		text: "Reports",
+		href: "/reports",
 	},
 	{
 		icon: FolderDot, // Lucidity icon for files
-		text: 'File Archive',
-		href: '/files',
+		text: "Files",
+		href: "/files",
 	},
 	{
 		icon: User, // Lucidity icon for user management
-		text: 'User Management',
-		href: '/users',
+		text: "Staff",
+		href: "/staff",
 	},
 	{
-		icon: ScrollText, // Lucidity icon for user management
-		text: 'Logs',
-		href: '/logs',
+		icon: UserCog, // Lucidity icon for user management
+		text: "Users",
+		href: "/users",
 	},
 	{
 		icon: Settings, // Lucidity icon for settings
-		text: 'Setting',
-		href: '/settings',
+		text: "Setting",
+		href: "/settings",
+	},
+	{
+		icon: ScrollText, // Lucidity icon for user management
+		text: "Logs",
+		href: "/logs",
 	},
 ];
