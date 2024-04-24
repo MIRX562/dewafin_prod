@@ -1,9 +1,8 @@
-'use client';
+"use client";
 
-import FormError from '@/components/formError/FormError';
-import { useCurrentRole } from '@/hooks/useCurrentRole';
-import { UserRole } from '@prisma/client';
-import React from 'react';
+import AccessDenied from "@/components/accessDeniedPage/AccessDenied";
+import { useCurrentRole } from "@/hooks/useCurrentRole";
+import { UserRole } from "@prisma/client";
 
 type Props = {
 	children: React.ReactNode;
@@ -13,7 +12,7 @@ type Props = {
 const RoleGate = ({ children, allowedRole }: Props) => {
 	const role = useCurrentRole();
 	if (role !== allowedRole) {
-		return <FormError message='You Do Not Have Access To View This Content' />;
+		return <AccessDenied />;
 	}
 	return <>{children}</>;
 };
