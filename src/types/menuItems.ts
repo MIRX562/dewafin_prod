@@ -66,4 +66,9 @@ export const menuItems: MenuItem[] = [
 		text: "Logs",
 		href: "/logs",
 	},
+	{
+		icon: ScrollText, // Lucidity icon for user management
+		text: "Plans",
+		href: "/plans",
+	},
 ];

@@ -11,11 +11,11 @@ export default function NavLogo() {
 			<Image
 				src="/icon.png"
 				alt=""
-				width={32}
-				height={32}
+				width={26}
+				height={26}
 			/>
 			<p className="text-2xl font-bold">
-				Dewa<span className="text-primary ">Fin</span>
+				Dewa<span className="text-primary ">Min</span>
 			</p>
 		</Link>
 	);

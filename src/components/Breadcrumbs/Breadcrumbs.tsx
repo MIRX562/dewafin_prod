@@ -1,4 +1,6 @@
-import Link from 'next/link';
+import { Home } from "lucide-react";
+import { Fragment } from "react";
+import Link from "next/link";
 import {
 	Breadcrumb,
 	BreadcrumbItem,
@@ -6,35 +8,39 @@ import {
 	BreadcrumbList,
 	BreadcrumbPage,
 	BreadcrumbSeparator,
-} from '../ui/breadcrumb';
-import { Fragment } from 'react';
+} from "../ui/breadcrumb";
 
 type BreadcrumbProps = {
 	path: string;
 };
 
 const Breadcrumbs = ({ path }: BreadcrumbProps) => {
-	const pathNames = path.split('/').filter((path) => path);
+	const pathNames = path.split("/").filter((path) => path);
 	return (
 		<Breadcrumb>
 			<BreadcrumbList>
 				<BreadcrumbItem>
 					<BreadcrumbLink asChild>
-						<Link href='/dashboard'>Home</Link>
+						<Link href="/dashboard">
+							<Home className="w-4 h-4" />
+						</Link>
 					</BreadcrumbLink>
 				</BreadcrumbItem>
 				{pathNames.length > 0 && (
-					<BreadcrumbSeparator className='text-primary font-bold' />
+					<BreadcrumbSeparator className="text-primary font-bold" />
 				)}
 				{pathNames.map((link, index) => {
-					const href = `/${pathNames.slice(0, index + 1).join('/')}`;
+					const href = `/${pathNames.slice(0, index + 1).join("/")}`;
 					const linkName = link[0].toUpperCase() + link.slice(1, link.length);
 					const isLastPath = pathNames.length === index + 1;
 					return (
 						<Fragment key={index}>
 							<BreadcrumbItem>
 								{isLastPath ? (
-									<BreadcrumbLink asChild>
+									<BreadcrumbLink
+										className="font-extrabold"
+										asChild
+									>
 										<Link href={href}>{linkName}</Link>
 									</BreadcrumbLink>
 								) : (
@@ -42,7 +48,7 @@ const Breadcrumbs = ({ path }: BreadcrumbProps) => {
 								)}
 							</BreadcrumbItem>
 							{pathNames.length !== index + 1 && (
-								<BreadcrumbSeparator className='text-primary font-bold' />
+								<BreadcrumbSeparator className="text-primary font-bold" />
 							)}
 						</Fragment>
 					);

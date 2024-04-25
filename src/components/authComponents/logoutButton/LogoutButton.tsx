@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { logOut } from '@/actions/logOut';
-import React from 'react';
+import { logOut } from "@/server-actions/logOut";
+import React from "react";
 
 type Props = {
 	children: React.ReactNode;
@@ -12,7 +12,10 @@ const LogoutButton = ({ children }: Props) => {
 		logOut();
 	};
 	return (
-		<span onClick={onClick} className='cursor-pointer'>
+		<span
+			onClick={onClick}
+			className="cursor-pointer"
+		>
 			{children}
 		</span>
 	);

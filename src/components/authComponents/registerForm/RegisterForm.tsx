@@ -1,9 +1,9 @@
-'use client';
-import { useForm } from 'react-hook-form';
-import CardWrapper from '../cardWrapper/CardWrapper';
-import * as z from 'zod';
-import { RegisterSchema } from '@/schemas';
-import { zodResolver } from '@hookform/resolvers/zod';
+"use client";
+import { useForm } from "react-hook-form";
+import CardWrapper from "../cardWrapper/CardWrapper";
+import * as z from "zod";
+import { RegisterSchema } from "@/schemas";
+import { zodResolver } from "@hookform/resolvers/zod";
 import {
 	Form,
 	FormControl,
@@ -11,31 +11,31 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import FormError from '@/components/formError/FormError';
-import { register } from '@/actions/register';
-import { useState, useTransition } from 'react';
-import FormSuccess from '@/components/formSucces/FormSuccess';
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import FormError from "@/components/formError/FormError";
+import { register } from "@/server-actions/register";
+import { useState, useTransition } from "react";
+import FormSuccess from "@/components/formSucces/FormSuccess";
 
 export default function RegisterForm() {
-	const [success, setSuccess] = useState<string | undefined>('');
-	const [error, setError] = useState<string | undefined>('');
+	const [success, setSuccess] = useState<string | undefined>("");
+	const [error, setError] = useState<string | undefined>("");
 	const [isPending, startTransition] = useTransition();
 
 	const form = useForm<z.infer<typeof RegisterSchema>>({
 		resolver: zodResolver(RegisterSchema),
 		defaultValues: {
-			email: '',
-			password: '',
-			name: '',
+			email: "",
+			password: "",
+			name: "",
 		},
 	});
 
 	const onSubmit = (values: z.infer<typeof RegisterSchema>) => {
-		setError('');
-		setSuccess('');
+		setError("");
+		setSuccess("");
 
 		startTransition(() => {
 			register(values).then((data) => {
@@ -47,16 +47,20 @@ export default function RegisterForm() {
 
 	return (
 		<CardWrapper
-			headerLabel='Create an Accounnt'
-			backButtonLabel='Already have an account?'
-			backButtonHref='/auth/login'
-			showSocial>
+			headerLabel="Create an Accounnt"
+			backButtonLabel="Already have an account?"
+			backButtonHref="/auth/login"
+			showSocial
+		>
 			<Form {...form}>
-				<form onSubmit={form.handleSubmit(onSubmit)} className='space-y-6'>
-					<div className='space-y-4'>
+				<form
+					onSubmit={form.handleSubmit(onSubmit)}
+					className="space-y-6"
+				>
+					<div className="space-y-4">
 						<FormField
 							control={form.control}
-							name='name'
+							name="name"
 							render={({ field }) => (
 								<FormItem>
 									<FormLabel>Name</FormLabel>
@@ -64,7 +68,7 @@ export default function RegisterForm() {
 										<Input
 											disabled={isPending}
 											{...field}
-											placeholder='John Doe'
+											placeholder="John Doe"
 										/>
 									</FormControl>
 									<FormMessage />
@@ -73,7 +77,7 @@ export default function RegisterForm() {
 						/>
 						<FormField
 							control={form.control}
-							name='email'
+							name="email"
 							render={({ field }) => (
 								<FormItem>
 									<FormLabel>Email</FormLabel>
@@ -81,8 +85,8 @@ export default function RegisterForm() {
 										<Input
 											disabled={isPending}
 											{...field}
-											placeholder='mail@example.com'
-											type='email'
+											placeholder="mail@example.com"
+											type="email"
 										/>
 									</FormControl>
 									<FormMessage />
@@ -91,7 +95,7 @@ export default function RegisterForm() {
 						/>
 						<FormField
 							control={form.control}
-							name='password'
+							name="password"
 							render={({ field }) => (
 								<FormItem>
 									<FormLabel>Password</FormLabel>
@@ -99,8 +103,8 @@ export default function RegisterForm() {
 										<Input
 											disabled={isPending}
 											{...field}
-											placeholder='********'
-											type='Password'
+											placeholder="********"
+											type="Password"
 										/>
 									</FormControl>
 									<FormMessage />
@@ -110,7 +114,11 @@ export default function RegisterForm() {
 					</div>
 					<FormError message={error} />
 					<FormSuccess message={success} />
-					<Button disabled={isPending} typeof='submit' className='w-full'>
+					<Button
+						disabled={isPending}
+						typeof="submit"
+						className="w-full"
+					>
 						Create Account
 					</Button>
 				</form>

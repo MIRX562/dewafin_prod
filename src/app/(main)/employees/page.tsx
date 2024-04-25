@@ -1,4 +1,3 @@
-import { ScaleLoader } from "react-spinners";
 import EmployeesTable from "./employees-table";
 import { Suspense } from "react";
 import Loading from "@/app/loading";

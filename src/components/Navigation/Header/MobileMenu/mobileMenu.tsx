@@ -1,13 +1,14 @@
 "use client";
-import { UserRoundCheck } from "lucide-react";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 import MobileMenuLinks from "./MobileMenuLinks/mobileMenuLinks";
+import { Separator } from "@/components/ui/separator";
+import CopyRights from "../../CopyRights/CopyRights";
+import { Button } from "@/components/ui/button";
+import { UserRoundCheck } from "lucide-react";
 import NavLogo from "../../NavLogo/NavLogo";
 import Image from "next/image";
-import CopyRights from "../../CopyRights/CopyRights";
 
 export default function MobileMenu() {
 	return (
@@ -37,7 +38,7 @@ export default function MobileMenu() {
 					<MobileMenuLinks />
 				</nav>
 				<Separator />
-				<div className="mt-auto p-4">
+				<div className="mt-auto p-4 space-y-2">
 					<Card>
 						<CardHeader className="p-2 pt-2 md:p-4 text-center">
 							<CardTitle className="flex justify-center gap-4">

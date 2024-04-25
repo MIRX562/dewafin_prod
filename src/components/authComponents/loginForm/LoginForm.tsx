@@ -1,11 +1,11 @@
-'use client';
-import * as z from 'zod';
-import Link from 'next/link';
-import { login } from '@/actions/login';
-import { LoginSchema } from '@/schemas';
-import { useForm } from 'react-hook-form';
-import CardWrapper from '../cardWrapper/CardWrapper';
-import { zodResolver } from '@hookform/resolvers/zod';
+"use client";
+import * as z from "zod";
+import Link from "next/link";
+import { login } from "@/server-actions/login";
+import { LoginSchema } from "@/schemas";
+import { useForm } from "react-hook-form";
+import CardWrapper from "../cardWrapper/CardWrapper";
+import { zodResolver } from "@hookform/resolvers/zod";
 import {
 	Form,
 	FormControl,
@@ -14,42 +14,42 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from '@/components/ui/form';
+} from "@/components/ui/form";
 import {
 	InputOTP,
 	InputOTPGroup,
 	InputOTPSlot,
-} from '@/components/ui/input-otp';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { useState, useTransition } from 'react';
-import { useSearchParams } from 'next/navigation';
-import FormError from '@/components/formError/FormError';
-import FormSuccess from '@/components/formSucces/FormSuccess';
+} from "@/components/ui/input-otp";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { useState, useTransition } from "react";
+import { useSearchParams } from "next/navigation";
+import FormError from "@/components/formError/FormError";
+import FormSuccess from "@/components/formSucces/FormSuccess";
 
 export default function LoginForm() {
 	const searchParams = useSearchParams();
-	const callbackUrl = searchParams.get('callbackUrl');
+	const callbackUrl = searchParams.get("callbackUrl");
 	const urlError =
-		searchParams.get('error') === 'OAuthAccountNotLinked'
-			? 'Email already used with other provider'
-			: '';
+		searchParams.get("error") === "OAuthAccountNotLinked"
+			? "Email already used with other provider"
+			: "";
 	const [showTwoFactor, setShowTwoFactor] = useState(false);
-	const [success, setSuccess] = useState<string | undefined>('');
-	const [error, setError] = useState<string | undefined>('');
+	const [success, setSuccess] = useState<string | undefined>("");
+	const [error, setError] = useState<string | undefined>("");
 	const [isPending, startTransition] = useTransition();
 
 	const form = useForm<z.infer<typeof LoginSchema>>({
 		resolver: zodResolver(LoginSchema),
 		defaultValues: {
-			email: '',
-			password: '',
+			email: "",
+			password: "",
 		},
 	});
 
 	const onSubmit = (values: z.infer<typeof LoginSchema>) => {
-		setError('');
-		setSuccess('');
+		setError("");
+		setSuccess("");
 
 		startTransition(() => {
 			login(values, callbackUrl)
@@ -67,28 +67,35 @@ export default function LoginForm() {
 						setShowTwoFactor(true);
 					}
 				})
-				.catch(() => setError('Something went wrong!'));
+				.catch(() => setError("Something went wrong!"));
 		});
 	};
 
 	return (
 		<CardWrapper
-			headerLabel='Welcome Back'
+			headerLabel="Welcome Back"
 			backButtonLabel="Don't have an account?"
-			backButtonHref='/auth/register'
-			showSocial>
+			backButtonHref="/auth/register"
+			showSocial
+		>
 			<Form {...form}>
-				<form onSubmit={form.handleSubmit(onSubmit)} className='space-y-6'>
-					<div className='space-y-4'>
+				<form
+					onSubmit={form.handleSubmit(onSubmit)}
+					className="space-y-6"
+				>
+					<div className="space-y-4">
 						{showTwoFactor && (
 							<FormField
 								control={form.control}
-								name='code'
+								name="code"
 								render={({ field }) => (
 									<FormItem>
 										<FormLabel>One-Time Password</FormLabel>
 										<FormControl>
-											<InputOTP maxLength={6} {...field}>
+											<InputOTP
+												maxLength={6}
+												{...field}
+											>
 												<InputOTPGroup>
 													<InputOTPSlot index={0} />
 													<InputOTPSlot index={1} />
@@ -111,7 +118,7 @@ export default function LoginForm() {
 							<>
 								<FormField
 									control={form.control}
-									name='email'
+									name="email"
 									render={({ field }) => (
 										<FormItem>
 											<FormLabel>Email</FormLabel>
@@ -119,8 +126,8 @@ export default function LoginForm() {
 												<Input
 													disabled={isPending}
 													{...field}
-													placeholder='mail@example.com'
-													type='email'
+													placeholder="mail@example.com"
+													type="email"
 												/>
 											</FormControl>
 											<FormMessage />
@@ -129,7 +136,7 @@ export default function LoginForm() {
 								/>
 								<FormField
 									control={form.control}
-									name='password'
+									name="password"
 									render={({ field }) => (
 										<FormItem>
 											<FormLabel>Password</FormLabel>
@@ -137,16 +144,17 @@ export default function LoginForm() {
 												<Input
 													disabled={isPending}
 													{...field}
-													placeholder='********'
-													type='Password'
+													placeholder="********"
+													type="Password"
 												/>
 											</FormControl>
 											<Button
-												variant={'link'}
-												size='sm'
+												variant={"link"}
+												size="sm"
 												asChild
-												className='px-0'>
-												<Link href='/auth/reset'> Forgot Password?</Link>
+												className="px-0"
+											>
+												<Link href="/auth/reset"> Forgot Password?</Link>
 											</Button>
 											<FormMessage />
 										</FormItem>
@@ -157,8 +165,12 @@ export default function LoginForm() {
 					</div>
 					<FormError message={error || urlError} />
 					<FormSuccess message={success} />
-					<Button disabled={isPending} typeof='submit' className='w-full'>
-						{showTwoFactor ? 'Confirim' : 'Login'}
+					<Button
+						disabled={isPending}
+						typeof="submit"
+						className="w-full"
+					>
+						{showTwoFactor ? "Confirim" : "Login"}
 					</Button>
 				</form>
 			</Form>
