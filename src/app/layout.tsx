@@ -1,17 +1,17 @@
-import { Inter } from 'next/font/google';
-import { SessionProvider } from 'next-auth/react';
-import type { Metadata } from 'next';
-import './globals.css';
-import { auth } from '@/lib/auth';
-import { Toaster } from '@/components/ui/sonner';
-import { ThemeProvider } from '@/components/themeProvider/ThemeProvider';
-import { cn } from '@/lib/utils';
+import { Inter } from "next/font/google";
+import { SessionProvider } from "next-auth/react";
+import type { Metadata } from "next";
+import "./globals.css";
+import { auth } from "@/lib/auth";
+import { Toaster } from "@/components/ui/sonner";
+import { ThemeProvider } from "@/components/themeProvider/ThemeProvider";
+import { cn } from "@/lib/utils";
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-	title: 'Dewafin',
-	description: 'An Admin Dashboard for Dewabiz',
+	title: "DewaMin",
+	description: "An Admin Dashboard",
 };
 
 export default async function RootLayout({
@@ -22,13 +22,14 @@ export default async function RootLayout({
 	const session = await auth();
 	return (
 		<SessionProvider session={session}>
-			<html lang='en'>
-				<body className={cn(inter.className, 'w-[100vw]')}>
+			<html lang="en">
+				<body className={cn(inter.className, "w-[100vw]")}>
 					<ThemeProvider
-						attribute='class'
-						defaultTheme='system'
+						attribute="class"
+						defaultTheme="system"
 						enableSystem
-						disableTransitionOnChange>
+						disableTransitionOnChange
+					>
 						<Toaster />
 						{children}
 					</ThemeProvider>

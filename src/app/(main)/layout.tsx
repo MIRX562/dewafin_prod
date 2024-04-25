@@ -1,9 +1,7 @@
-import NavHeader from "@/components/Navigation/Header/header";
 import PageHeader from "@/components/Navigation/PageHeader/PageHeader";
+import NavHeader from "@/components/Navigation/Header/header";
 import Sidebar from "@/components/Navigation/SideBar/sidebar";
 import { Separator } from "@/components/ui/separator";
-import { Suspense } from "react";
-import { ScaleLoader } from "react-spinners";
 
 export default function layout({
 	children,
