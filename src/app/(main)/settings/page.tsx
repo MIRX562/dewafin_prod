@@ -4,9 +4,9 @@ import React, { Suspense } from "react";
 type Props = {};
 
 export default function SettingsPage({}: Props) {
-	return (
-		<Suspense fallback={<Loading />}>
-			<div>Setting page</div>
-		</Suspense>
-	);
+  return (
+    <Suspense fallback={<Loading />}>
+      <div>Setting page</div>
+    </Suspense>
+  );
 }

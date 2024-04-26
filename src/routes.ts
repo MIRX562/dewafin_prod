@@ -3,7 +3,7 @@
  * Users do not need to be authenticated to access these routes.
  * @type {string[]}
  */
-export const publicRoutes = ['/', '/auth/verify-email'];
+export const publicRoutes = ["/", "/auth/verify-email"];
 
 /**
  * An array of routes used for user authentication processes.
@@ -11,11 +11,11 @@ export const publicRoutes = ['/', '/auth/verify-email'];
  * @type {string[]}
  */
 export const authRoutes = [
-	'/auth/login',
-	'/auth/register',
-	'/auth/error',
-	'/auth/reset',
-	'/auth/new-password',
+  "/auth/login",
+  "/auth/register",
+  "/auth/error",
+  "/auth/reset",
+  "/auth/new-password",
 ];
 
 /**
@@ -23,11 +23,11 @@ export const authRoutes = [
  * Routes with this prefix are specifically used for authentication-related operations.
  * @type {string}
  */
-export const apiAuthPrefix = '/api/auth';
+export const apiAuthPrefix = "/api/auth";
 
 /**
  * The default route that users are redirected to after logging in.
  * Typically, this is a landing page where the user can access main features of the application.
  * @type {string}
  */
-export const DEFAULT_LOGIN_REDIRECT = '/dashboard';
+export const DEFAULT_LOGIN_REDIRECT = "/dashboard";
