@@ -6,7 +6,7 @@ import { z } from "zod";
  * This schema validates the user's settings including name, role, email, password, and two-factor authentication.
  * It includes refinement checks to ensure password and new password requirements are met.
  */
-export const settingsSchema = z
+export const EditUserSchema = z
   .object({
     name: z.optional(
       z.string().max(50, { message: "Name cannot exceed 50 characters" }),
@@ -118,6 +118,28 @@ export const RegisterSchema = z.object({
     ),
 });
 
+export const AddUserSchema = z.object({
+  name: z
+    .string()
+    .min(1, { message: "Name is required" })
+    .max(50, { message: "Name cannot exceed 50 characters" }),
+  email: z.string().email({
+    message: "Invalid email address",
+  }),
+  password: z
+    .string()
+    .min(8, { message: "Minimum 8 characters required" })
+    .regex(/[a-zA-Z]/, "Password must contain at least one letter")
+    .regex(/[0-9]/, "Password must contain at least one number")
+    .regex(
+      /[!@#$%^&*]/,
+      "Password must contain at least one special character",
+    ),
+  image: z.string().optional(),
+  role: z.enum([UserRole.ADMIN, UserRole.USER]).default(UserRole.USER),
+  isTwoFactorEnabled: z.boolean().default(false),
+});
+
 /**
  * Schema for a user.
  * This schema validates a task's ID, title, status, label, and priority.
@@ -204,9 +226,10 @@ export const EmployeeSchema = z.object({
 });
 
 // Define type exports for each schema
-export type Settings = z.infer<typeof settingsSchema>;
 export type Login = z.infer<typeof LoginSchema>;
 export type NewPassword = z.infer<typeof NewPasswordSchema>;
 export type Reset = z.infer<typeof ResetSchema>;
 export type Register = z.infer<typeof RegisterSchema>;
 export type User = z.infer<typeof userSchema>;
+export type AddUser = z.infer<typeof AddUserSchema>;
+export type EditUser = z.infer<typeof EditUserSchema>;
