@@ -7,66 +7,66 @@ import { z } from "zod";
  * It includes refinement checks to ensure password and new password requirements are met.
  */
 export const EditUserProfileSchema = z
-	.object({
-		name: z.optional(
-			z.string().max(50, { message: "Name cannot exceed 50 characters" })
-		),
-		isTwoFactorEnabled: z.boolean().optional(),
-		role: z.enum([UserRole.ADMIN, UserRole.USER]),
-		email: z.string().email({ message: "Invalid email" }).optional(),
-		password: z.optional(
-			z
-				.string()
-				.min(8, {
-					message: "Password must be at least 8 characters long",
-				})
-				.regex(/[a-zA-Z]/, "Password must contain at least one letter")
-				.regex(/[0-9]/, "Password must contain at least one number")
-				.regex(
-					/[!@#$%^&*]/,
-					"Password must contain at least one special character"
-				)
-		),
-		newPassword: z
-			.string()
-			.min(8, {
-				message: "New password must be at least 8 characters long",
-			})
-			.regex(/[a-zA-Z]/, "Password must contain at least one letter")
-			.regex(/[0-9]/, "Password must contain at least one number")
-			.regex(
-				/[!@#$%^&*]/,
-				"Password must contain at least one special character"
-			)
-			.optional(),
-	})
-	.superRefine((data, ctx) => {
-		if (data.password && !data.newPassword) {
-			ctx.addIssue({
-				code: z.ZodIssueCode.custom,
-				message: "New Password is required if password is provided",
-				path: ["newPassword"],
-			});
-		}
-		if (data.newPassword && !data.password) {
-			ctx.addIssue({
-				code: z.ZodIssueCode.custom,
-				message: "Password is required if new password is provided",
-				path: ["password"],
-			});
-		}
-	});
+  .object({
+    name: z.optional(
+      z.string().max(50, { message: "Name cannot exceed 50 characters" }),
+    ),
+    isTwoFactorEnabled: z.boolean().optional(),
+    role: z.enum([UserRole.ADMIN, UserRole.USER]),
+    email: z.string().email({ message: "Invalid email" }).optional(),
+    password: z.optional(
+      z
+        .string()
+        .min(8, {
+          message: "Password must be at least 8 characters long",
+        })
+        .regex(/[a-zA-Z]/, "Password must contain at least one letter")
+        .regex(/[0-9]/, "Password must contain at least one number")
+        .regex(
+          /[!@#$%^&*]/,
+          "Password must contain at least one special character",
+        ),
+    ),
+    newPassword: z
+      .string()
+      .min(8, {
+        message: "New password must be at least 8 characters long",
+      })
+      .regex(/[a-zA-Z]/, "Password must contain at least one letter")
+      .regex(/[0-9]/, "Password must contain at least one number")
+      .regex(
+        /[!@#$%^&*]/,
+        "Password must contain at least one special character",
+      )
+      .optional(),
+  })
+  .superRefine((data, ctx) => {
+    if (data.password && !data.newPassword) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: "New Password is required if password is provided",
+        path: ["newPassword"],
+      });
+    }
+    if (data.newPassword && !data.password) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: "Password is required if new password is provided",
+        path: ["password"],
+      });
+    }
+  });
 
 /**
  * Schema for user login.
  * This schema validates the user's email and password during login.
  */
 export const LoginSchema = z.object({
-	email: z.string().email({
-		message: "Invalid email address",
-	}),
-	password: z.string().min(1, { message: "Password is required" }),
-	code: z.string().optional(),
+  email: z.string().email({
+    message: "Invalid email address",
+  }),
+  password: z.string().min(1, { message: "Password is required" }),
+  code: z.string().optional(),
 });
 
 /**
@@ -74,15 +74,15 @@ export const LoginSchema = z.object({
  * This schema validates the user's new password and ensures it meets the required complexity.
  */
 export const NewPasswordSchema = z.object({
-	password: z
-		.string()
-		.min(8, { message: "Minimum 8 characters required" })
-		.regex(/[a-zA-Z]/, "Password must contain at least one letter")
-		.regex(/[0-9]/, "Password must contain at least one number")
-		.regex(
-			/[!@#$%^&*]/,
-			"Password must contain at least one special character"
-		),
+  password: z
+    .string()
+    .min(8, { message: "Minimum 8 characters required" })
+    .regex(/[a-zA-Z]/, "Password must contain at least one letter")
+    .regex(/[0-9]/, "Password must contain at least one number")
+    .regex(
+      /[!@#$%^&*]/,
+      "Password must contain at least one special character",
+    ),
 });
 
 /**
@@ -90,9 +90,9 @@ export const NewPasswordSchema = z.object({
  * This schema validates the user's email address for password reset.
  */
 export const ResetSchema = z.object({
-	email: z.string().email({
-		message: "Invalid email address",
-	}),
+  email: z.string().email({
+    message: "Invalid email address",
+  }),
 });
 
 /**
@@ -100,56 +100,56 @@ export const ResetSchema = z.object({
  * This schema validates the user's name, email, and password during registration.
  */
 export const RegisterSchema = z.object({
-	name: z
-		.string()
-		.min(1, { message: "Name is required" })
-		.max(50, { message: "Name cannot exceed 50 characters" }),
-	email: z.string().email({
-		message: "Invalid email address",
-	}),
-	password: z
-		.string()
-		.min(8, { message: "Minimum 8 characters required" })
-		.regex(/[a-zA-Z]/, "Password must contain at least one letter")
-		.regex(/[0-9]/, "Password must contain at least one number")
-		.regex(
-			/[!@#$%^&*]/,
-			"Password must contain at least one special character"
-		),
+  name: z
+    .string()
+    .min(1, { message: "Name is required" })
+    .max(50, { message: "Name cannot exceed 50 characters" }),
+  email: z.string().email({
+    message: "Invalid email address",
+  }),
+  password: z
+    .string()
+    .min(8, { message: "Minimum 8 characters required" })
+    .regex(/[a-zA-Z]/, "Password must contain at least one letter")
+    .regex(/[0-9]/, "Password must contain at least one number")
+    .regex(
+      /[!@#$%^&*]/,
+      "Password must contain at least one special character",
+    ),
 });
 
 export const AddUserSchema = z.object({
-	name: z
-		.string()
-		.min(1, { message: "Name is required" })
-		.max(50, { message: "Name cannot exceed 50 characters" }),
-	email: z.string().email({
-		message: "Invalid email address",
-	}),
-	password: z
-		.string()
-		.min(8, { message: "Minimum 8 characters required" })
-		.regex(/[a-zA-Z]/, "Password must contain at least one letter")
-		.regex(/[0-9]/, "Password must contain at least one number")
-		.regex(
-			/[!@#$%^&*]/,
-			"Password must contain at least one special character"
-		),
-	image: z.string().optional(),
-	role: z.enum([UserRole.ADMIN, UserRole.USER]).default(UserRole.USER),
-	isTwoFactorEnabled: z.boolean().default(false),
+  name: z
+    .string()
+    .min(1, { message: "Name is required" })
+    .max(50, { message: "Name cannot exceed 50 characters" }),
+  email: z.string().email({
+    message: "Invalid email address",
+  }),
+  password: z
+    .string()
+    .min(8, { message: "Minimum 8 characters required" })
+    .regex(/[a-zA-Z]/, "Password must contain at least one letter")
+    .regex(/[0-9]/, "Password must contain at least one number")
+    .regex(
+      /[!@#$%^&*]/,
+      "Password must contain at least one special character",
+    ),
+  image: z.string().optional(),
+  role: z.enum([UserRole.ADMIN, UserRole.USER]).default(UserRole.USER),
+  isTwoFactorEnabled: z.boolean().default(false),
 });
 export const EditUserSchema = z.object({
-	name: z
-		.string()
-		.min(1, { message: "Name is required" })
-		.max(50, { message: "Name cannot exceed 50 characters" }),
-	email: z.string().email({
-		message: "Invalid email address",
-	}),
-	image: z.string().optional(),
-	role: z.enum([UserRole.ADMIN, UserRole.USER]).default(UserRole.USER),
-	isTwoFactorEnabled: z.boolean().default(false),
+  name: z
+    .string()
+    .min(1, { message: "Name is required" })
+    .max(50, { message: "Name cannot exceed 50 characters" }),
+  email: z.string().email({
+    message: "Invalid email address",
+  }),
+  image: z.string().optional(),
+  role: z.enum([UserRole.ADMIN, UserRole.USER]).default(UserRole.USER),
+  isTwoFactorEnabled: z.boolean().default(false),
 });
 
 /**
@@ -157,84 +157,84 @@ export const EditUserSchema = z.object({
  * This schema validates a task's ID, title, status, label, and priority.
  */
 export const userSchema = z.object({
-	id: z.string().default(""),
-	name: z.string().nullable(),
-	email: z.optional(
-		z.string().email({ message: "Invalid email address" }).nullable()
-	),
-	image: z.string().nullable(),
-	role: z.enum([UserRole.ADMIN, UserRole.USER]).default(UserRole.USER),
-	isTwoFactorEnabled: z.boolean().default(false),
+  id: z.string().default(""),
+  name: z.string().nullable(),
+  email: z.optional(
+    z.string().email({ message: "Invalid email address" }).nullable(),
+  ),
+  image: z.string().nullable(),
+  role: z.enum([UserRole.ADMIN, UserRole.USER]).default(UserRole.USER),
+  isTwoFactorEnabled: z.boolean().default(false),
 });
 
 // Define Zod schema for the Customer model
 export const CustomerSchema = z.object({
-	id: z.number(),
-	email: z.string(),
-	phone: z.string().nullable(),
-	address: z.string().nullable(),
-	companyId: z.number().nullable(),
-	company: z.object({ id: z.number() }).nullable(), // Assuming CompanySchema is defined elsewhere
-	website: z.string().nullable(),
-	taxId: z.string().nullable(),
-	notes: z.string().nullable(),
+  id: z.number(),
+  email: z.string(),
+  phone: z.string().nullable(),
+  address: z.string().nullable(),
+  companyId: z.number().nullable(),
+  company: z.object({ id: z.number() }).nullable(), // Assuming CompanySchema is defined elsewhere
+  website: z.string().nullable(),
+  taxId: z.string().nullable(),
+  notes: z.string().nullable(),
 });
 
 // Define Zod schema for the Subscription model
 export const SubscriptionSchema = z.object({
-	id: z.number(),
-	customerId: z.number(),
-	planId: z.number(),
-	startDate: z.date(),
-	endDate: z.date().nullable(),
-	isActive: z.boolean(),
-	customer: CustomerSchema,
-	plan: z.object({ id: z.number() }).nullable(), // Assuming PlanSchema is defined elsewhere
+  id: z.number(),
+  customerId: z.number(),
+  planId: z.number(),
+  startDate: z.date(),
+  endDate: z.date().nullable(),
+  isActive: z.boolean(),
+  customer: CustomerSchema,
+  plan: z.object({ id: z.number() }).nullable(), // Assuming PlanSchema is defined elsewhere
 });
 
 // Define Zod schema for the Company model
 export const CompanySchema = z.object({
-	id: z.number(),
-	name: z.string(),
-	address: z.string().nullable(),
-	website: z.string().nullable(),
-	taxId: z.string().nullable(),
-	customers: z.array(CustomerSchema), // Assuming CustomerSchema is defined elsewhere
+  id: z.number(),
+  name: z.string(),
+  address: z.string().nullable(),
+  website: z.string().nullable(),
+  taxId: z.string().nullable(),
+  customers: z.array(CustomerSchema), // Assuming CustomerSchema is defined elsewhere
 });
 
 // Define Zod schema for the Invoice model
 export const InvoiceSchema = z.object({
-	id: z.number(),
-	customerId: z.number(),
-	number: z.string(),
-	issueDate: z.date(),
-	dueDate: z.date().nullable(),
-	amount: z.number(),
-	status: z.string(),
-	customer: CustomerSchema,
+  id: z.number(),
+  customerId: z.number(),
+  number: z.string(),
+  issueDate: z.date(),
+  dueDate: z.date().nullable(),
+  amount: z.number(),
+  status: z.string(),
+  customer: CustomerSchema,
 });
 
 // Define Zod schema for the Plan model
 export const PlanSchema = z.object({
-	id: z.number(),
-	name: z.string(),
-	description: z.string(),
-	price: z.number(),
-	features: z.string().nullable(),
-	subscriptions: z.array(SubscriptionSchema), // Assuming SubscriptionSchema is defined elsewhere
+  id: z.number(),
+  name: z.string(),
+  description: z.string(),
+  price: z.number(),
+  features: z.string().nullable(),
+  subscriptions: z.array(SubscriptionSchema), // Assuming SubscriptionSchema is defined elsewhere
 });
 
 // Define Zod schema for the Employee model
 export const EmployeeSchema = z.object({
-	id: z.string(),
-	firstName: z.string(),
-	lastName: z.string(),
-	email: z.string(),
-	phoneNumber: z.string().nullable(),
-	role: z.string(),
-	department: z.string(),
-	isActive: z.boolean(),
-	hireDate: z.date(),
+  id: z.string(),
+  firstName: z.string(),
+  lastName: z.string(),
+  email: z.string(),
+  phoneNumber: z.string().nullable(),
+  role: z.string(),
+  department: z.string(),
+  isActive: z.boolean(),
+  hireDate: z.date(),
 });
 
 // Define type exports for each schema
