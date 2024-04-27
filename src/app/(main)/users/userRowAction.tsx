@@ -9,6 +9,7 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { deleteUserToast } from "@/lib/toasts";
 import { userSchema } from "@/schemas";
 import { User } from "@prisma/client";
 import { DotsHorizontalIcon } from "@radix-ui/react-icons";
@@ -41,7 +42,7 @@ export function UserDataTableRowActions<TData>({
 			>
 				<DropdownMenuItem asChild>
 					<Dialog>
-						<DialogTrigger className="relative w-full flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50">
+						<DialogTrigger className="relative w-full flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 hover:bg-accent">
 							Edit
 						</DialogTrigger>
 						<DialogContent className="lg:w-[400px] grid place-items-center p-1 bg-transparent border-none shadow-sm">
@@ -50,9 +51,12 @@ export function UserDataTableRowActions<TData>({
 					</Dialog>
 				</DropdownMenuItem>
 				<DropdownMenuSeparator />
-				<DropdownMenuItem>
+				<DropdownMenuItem
+					onClick={async () => {
+						await deleteUserToast(user.id);
+					}}
+				>
 					Delete
-					{/* <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut> */}
 				</DropdownMenuItem>
 			</DropdownMenuContent>
 		</DropdownMenu>
