@@ -1,36 +1,222 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# DewaMin
 
-## Getting Started
+"admin dashboard tailored for ...."
 
-First, run the development server:
+## CI/CD
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Developed using RAD method with vercel's deployment flow
+
+### Developtment Process Using RAD
+
+```mermaid
+sequenceDiagram
+    participant Client
+    participant RADTeam
+    participant Prototyping
+    participant Construction
+    participant Vercel
+    participant Production
+
+    Client->>RADTeam: Requirements gathering
+    RADTeam-->>Prototyping: Develop prototype
+    Prototyping-->>Client: Present prototype
+    Client-->>Prototyping: Feedback
+    Prototyping-->>RADTeam: Refined requirements
+
+    RADTeam-->>Construction: Develop application
+    Construction->>Construction: Unit testing
+    Construction-->>GitHub: git push
+    GitHub-->>Vercel: Triggers build
+    Vercel->>Vercel: Runs build
+    Vercel->>Vercel: Runs tests
+    opt If tests pass
+        Vercel->>Vercel: Creates deployment
+        Vercel-->>Production: Deploys to production
+    end
+
+    Production-->>Client: Live application
+    Client-->>RADTeam: Feedback
+    RADTeam-->>Construction: Refine application
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Deployment using Vercel
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```mermaid
+sequenceDiagram
+    participant Developer
+    participant GitHub
+    participant Vercel
+    participant Production
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+    Developer->>GitHub: git push
+    GitHub-->>Vercel: Triggers build
+    Vercel->>Vercel: Runs build
+    Vercel->>Vercel: Runs tests
+    opt If tests pass
+        Vercel->>Vercel: Creates deployment
+        Vercel-->>Production: Deploys to production
+    end
 
-## Learn More
+    Production-->>Developer: Live application
+```
 
-To learn more about Next.js, take a look at the following resources:
+### Dependencies
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#### Authentication and Database
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- `@auth/prisma-adapter`: Provides a Prisma adapter for NextAuth.js, enabling easy integration with Prisma for authentication.
+- `@prisma/client`: The Prisma client library for interacting with the database.
+- `next-auth`: Authentication library for Next.js applications.
+- `bcrypt`: A library for hashing passwords.
 
-## Deploy on Vercel
+#### React Libraries and UI Components
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `@tanstack/react-table`: A powerful and lightweight table library for React.
+- `@radix-ui/react-*`: A collection of accessible and customizable React UI components.
+- `clsx`: A utility for constructing `className` strings conditionally.
+- `cmdk`: A command menu/palette for React applications.
+- `lucide-react`: A collection of React icons based on the Lucide icon library.
+- `react-hook-form`: A library for building forms with React hooks.
+- `recharts`: A popular charting library for React.
+- `tailwind-merge`: A utility for merging Tailwind CSS classes with other classes.
+- `tailwindcss-animate`: Adds animation utilities to Tailwind CSS.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+#### Utility Libraries
+
+- `class-variance-authority`: A library for managing design tokens and generating utility classes.
+- `uuid`: A library for generating unique identifiers.
+- `zod`: A TypeScript-first schema validation library.
+
+#### Miscellaneous
+
+- `@hookform/resolvers`: Provides resolvers for react-hook-form to integrate with other libraries like Zod or Yup.
+- `input-otp`: A library for building OTP input fields.
+- `resend`: A library for resending verification codes.
+- `sonner`: A library for playing sounds and notifications.
+
+## System flow
+
+#### Authentification
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant Browser
+    participant Next.js
+    participant Middleware
+    participant AuthLibrary
+    participant ProtectedRoutes
+    participant PublicRoutes
+    participant AuthRoutes
+
+    User->>Browser: Visits website
+    Browser->>Next.js: Requests page
+    Next.js->>Middleware: Checks middleware rules
+    Middleware->>AuthLibrary: Checks authentication status
+    AuthLibrary-->>Middleware: Returns authentication status
+    alt Is API auth route
+        Middleware-->>Next.js: Allows access
+        Next.js-->>API: Handles API request
+    else Is auth route
+        alt User is authenticated
+            Middleware-->>Next.js: Redirects to default login redirect
+            Next.js-->>Browser: Redirects to default login redirect
+        else User is not authenticated
+            Middleware-->>Next.js: Allows access
+            Next.js-->>AuthRoutes: Renders authentication routes
+            AuthRoutes-->>Browser: Displays authentication pages
+        end
+    else Is public route
+        Middleware-->>Next.js: Allows access
+        Next.js-->>PublicRoutes: Renders public routes
+        PublicRoutes-->>Browser: Displays public content
+    else User is not authenticated
+        Middleware-->>Next.js: Redirects to login page
+        Next.js-->>Browser: Redirects to login page with callback URL
+    end
+```
+
+# Folder Structure
+
+```bash
+src
+├───app
+│   ├───(main)
+│   │   ├───asets
+│   │   ├───customers
+│   │   ├───dashboard
+│   │   ├───employees
+│   │   ├───files
+│   │   ├───logs
+│   │   ├───plans
+│   │   │   ├───domain
+│   │   │   ├───hosting
+│   │   │   ├───server
+│   │   │   └───vps
+│   │   ├───reports
+│   │   ├───settings
+│   │   ├───supports
+│   │   └───users
+│   ├───api
+│   │   ├───admin
+│   │   └───auth
+│   │       └───[...nextauth]
+│   └───auth
+│       ├───error
+│       ├───login
+│       ├───new-password
+│       ├───register
+│       ├───reset
+│       └───verify-email
+├───components
+│   ├───accessDeniedPage
+│   ├───authComponents
+│   │   ├───cardWrapper
+│   │   ├───emailVerificationForm
+│   │   ├───errorCard
+│   │   ├───header
+│   │   ├───loginBackButton
+│   │   ├───loginButton
+│   │   ├───loginForm
+│   │   ├───logoutButton
+│   │   ├───newPasswordForm
+│   │   ├───registerForm
+│   │   ├───resetForm
+│   │   ├───roleGate
+│   │   ├───social
+│   │   └───userButton
+│   ├───Breadcrumbs
+│   ├───dashboardComponents
+│   │   ├───FinancialPerformance
+│   │   ├───SupportForm
+│   │   └───UserData
+│   ├───dataTable
+│   │   ├───ColumnHeader
+│   │   ├───FacetedFilter
+│   │   ├───Pagination
+│   │   ├───ToolBar
+│   │   └───VewOption
+│   ├───formError
+│   ├───formSucces
+│   ├───loginCard
+│   ├───Navigation
+│   │   ├───CopyRights
+│   │   ├───Header
+│   │   │   ├───MobileMenu
+│   │   │   │   └───MobileMenuLinks
+│   │   │   ├───NavSearchBar
+│   │   │   └───ProfileMenu
+│   │   ├───NavLogo
+│   │   ├───PageHeader
+│   │   └───SideBar
+│   │       └───SideBarLinks
+│   ├───themeProvider
+│   ├───ThemeToggle
+│   └───ui
+├───data
+├───hooks
+├───lib
+├───schemas
+├───server-actions
+└───types
+```

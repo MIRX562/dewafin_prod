@@ -1,11 +1,11 @@
+import { userColumns } from "@/app/(main)/users/columns";
+import Loading from "@/app/loading";
 import RoleGate from "@/components/authComponents/roleGate/RoleGate";
 import { DataTable } from "@/components/dataTable/DataTable";
-import { userColumns } from "@/app/(main)/users/columns";
-import { userSchema } from "@/schemas/index";
 import { getUsers } from "@/data/user";
-import { z } from "zod";
+import { userSchema } from "@/schemas/index";
 import { Suspense } from "react";
-import Loading from "@/app/loading";
+import { z } from "zod";
 
 async function getUserData() {
   // Fetch the user data

@@ -1,9 +1,4 @@
-import {
-  CrossCircledIcon,
-  CheckCircledIcon,
-  GearIcon,
-  PersonIcon,
-} from "@radix-ui/react-icons";
+import { GearIcon, PersonIcon } from "@radix-ui/react-icons";
 
 export const userRoles = [
   {
@@ -21,12 +16,12 @@ export const userRoles = [
 export const state = [
   {
     value: true,
-    label: "Active",
-    icon: CheckCircledIcon,
+    label: "Enabled",
+    var: "success",
   },
   {
     value: false,
-    label: "In Active",
-    icon: CrossCircledIcon,
+    label: "Disabled",
+    var: "destructive",
   },
 ];

@@ -1,14 +1,15 @@
 "use client";
 
 // import { Checkbox } from '@/components/ui/checkbox';
-import { DataTableColumnHeader } from "../../../components/dataTable/ColumnHeader/data-table-column-header";
-import { UserDataTableRowActions } from "./data-table-row-actions";
-import { userRoles, state } from "@/types/data-table";
+import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
+import { state, userRoles } from "@/types/data-table";
+import { User } from "@prisma/client";
 import { ColumnDef } from "@tanstack/react-table";
 import { CircleUser } from "lucide-react";
-import { User } from "@prisma/client";
 import Image from "next/image";
-import { cn } from "@/lib/utils";
+import { DataTableColumnHeader } from "../../../components/dataTable/ColumnHeader/data-table-column-header";
+import { UserDataTableRowActions } from "./data-table-row-actions";
 
 export const userColumns: ColumnDef<User>[] = [
   //todo Make batch actions
@@ -138,18 +139,13 @@ export const userColumns: ColumnDef<User>[] = [
       }
 
       return (
-        <div className="flex w-[100px] items-center">
-          {istwofactor.icon && (
-            <istwofactor.icon
-              className={cn(
-                "mr-2 h-4 w-4 text-muted-foreground",
-                istwofactor.value === true
-                  ? "text-emerald-300"
-                  : "text-rose-300",
-              )}
-            />
-          )}
-          <span>{istwofactor.label}</span>
+        <div className="flex w-[100px]">
+          <Badge
+            variant={istwofactor.var as "success" | "destructive"}
+            className="flex"
+          >
+            {istwofactor.label}
+          </Badge>
         </div>
       );
     },
