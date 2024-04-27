@@ -1,17 +1,19 @@
 import { ModeToggle } from "../../ThemeToggle/theme-toggle";
-import ProfileMenu from "./ProfileMenu/profileMenu";
-import NavSearchBar from "./NavSearchBar/navSearchBar";
+import NavLogo from "../NavLogo/NavLogo";
 import MobileMenu from "./MobileMenu/mobileMenu";
+import ProfileMenu from "./ProfileMenu/profileMenu";
 
 export default function NavHeader() {
-  return (
-    <header className="flex h-14 items-center p-2 gap-4 border-b bg-muted/40 px-2 lg:px-4">
-      <MobileMenu />
-      <div className="w-full flex-1">
-        <NavSearchBar />
-      </div>
-      <ModeToggle />
-      <ProfileMenu />
-    </header>
-  );
+	return (
+		<header className="flex h-14 items-center p-2 gap-4 border-b bg-muted/40 px-2 lg:px-4">
+			<MobileMenu />
+			<div className="w-full justify-center flex-1">
+				<div className="md:hidden">
+					<NavLogo />
+				</div>
+			</div>
+			<ModeToggle />
+			<ProfileMenu />
+		</header>
+	);
 }
