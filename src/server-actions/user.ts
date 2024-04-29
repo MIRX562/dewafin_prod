@@ -3,7 +3,7 @@
 import { getUserByEmail, getUserById } from "@/data/user";
 import { db } from "@/lib/db";
 import { currentRole, currentUser } from "@/lib/sessionUser";
-import { AddUser, AddUserSchema, EditUser } from "@/schemas";
+import { AddUser, AddUserSchema, EditUser } from "@/schemas/user";
 import bcrypt from "bcryptjs";
 
 type RegisterResponse = {
