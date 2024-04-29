@@ -154,7 +154,7 @@ export const employeeColumns: ColumnDef<Employee>[] = [
 			}
 
 			return (
-				<div className="flex w-[100px] items-center">
+				<div className="flex w-[100px]">
 					<Badge
 						variant={isActive.var as "success" | "destructive"}
 						className="flex"

@@ -177,7 +177,7 @@ const AddEmployeeForm = () => {
 												selected={field.value}
 												onSelect={field.onChange}
 												disabled={(date) =>
-													date > new Date() || date < new Date("1900-01-01")
+													date > new Date() || date < new Date("2020-01-01")
 												}
 												initialFocus
 											/>
@@ -195,7 +195,7 @@ const AddEmployeeForm = () => {
 						typeof="submit"
 						className="w-full"
 					>
-						Create New User
+						Create New Employee
 					</Button>
 				</form>
 			</Form>
