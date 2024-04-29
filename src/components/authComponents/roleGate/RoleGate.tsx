@@ -11,6 +11,7 @@ type Props = {
 
 const RoleGate = ({ children, allowedRole }: Props) => {
   const role = useCurrentRole();
+
   if (role !== allowedRole) {
     return <AccessDenied />;
   }
