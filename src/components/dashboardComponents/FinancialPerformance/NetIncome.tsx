@@ -95,10 +95,10 @@ const NetIncome = () => {
 					}
 				/>
 				<Line
-					type="monotone"
+					type="linear"
 					dataKey="revenue"
-					stroke="#8884d8"
-					fill="#8884d8"
+					stroke="#2563eb"
+					fill="#2563eb"
 				/>
 			</LineChart>
 		</ResponsiveContainer>

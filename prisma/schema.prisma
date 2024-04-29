@@ -12,6 +12,15 @@ enum UserRole {
   USER
 }
 
+enum EmployeeRole {
+  CEO
+  COO
+  Technical_Support
+  Customer_Support
+  Sales_Marketing
+  Administration
+}
+
 model User {
   id                    String                 @id @default(cuid())
   name                  String?
@@ -91,8 +100,6 @@ model Customer {
 
   // Relationships
   invoices      Invoice[]
-  subscriptions Subscription[]
-  company       Company?       @relation(fields: [companyId], references: [id])
 
   // Additional fields (optional)
   website String?
@@ -100,36 +107,6 @@ model Customer {
   notes   String?
 }
 
-// Optional model for Customer Subscriptions (if applicable)
-model Subscription {
-  id         Int       @id @default(autoincrement())
-  customerId Int
-  planId     Int // Reference to a plan model (if applicable)
-  startDate  DateTime
-  endDate    DateTime?
-  isActive   Boolean   @default(true)
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  // Relationships
-  customer Customer @relation(fields: [customerId], references: [id])
-  plan     Plan?    @relation(fields: [planId], references: [id]) // Optional relation to a plan model
-}
-
-model Company {
-  id      Int     @id @default(autoincrement())
-  name    String  @unique
-  address String?
-  website String?
-  taxId   String?
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  // Relationships (optional)
-  customers Customer[] // One-to-many with Customer
-}
 
 model Invoice {
   id         Int       @id @default(autoincrement())
@@ -173,8 +150,6 @@ model Plan {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  // Relationships (optional)
-  subscriptions Subscription[]
 }
 
 model Employee {
@@ -184,7 +159,6 @@ model Employee {
   email         String      @unique
   phoneNumber   String?
   role          String
-  department    String
   isActive      Boolean     @default(true)
   hireDate      DateTime
   // Add more fields as needed

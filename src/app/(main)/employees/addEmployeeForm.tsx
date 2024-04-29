@@ -3,10 +3,10 @@ import DataFormWrapper from "@/components/dataForm/DataFormWrapper";
 import FormError from "@/components/formError/FormError";
 import FormSuccess from "@/components/formSucces/FormSuccess";
 import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
 import {
 	Form,
 	FormControl,
-	FormDescription,
 	FormField,
 	FormItem,
 	FormLabel,
@@ -14,42 +14,36 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import {
-	Select,
-	SelectContent,
-	SelectItem,
-	SelectTrigger,
-	SelectValue,
-} from "@/components/ui/select";
-import { Switch } from "@/components/ui/switch";
-import { AddUser, AddUserSchema } from "@/schemas/user";
-import { addUser } from "@/server-actions/user";
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from "@/components/ui/popover";
+import { cn } from "@/lib/utils";
+import { AddEmployee, AddEmployeeSchema } from "@/schemas/employee";
+import { addEmployee } from "@/server-actions/employee";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { UserRole } from "@prisma/client";
+import { format } from "date-fns";
+import { CalendarIcon } from "lucide-react";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 
-const AddUserForm = () => {
+const AddEmployeeForm = () => {
 	const [success, setSuccess] = useState<string | undefined>("");
 	const [error, setError] = useState<string | undefined>("");
 	const [isPending, startTransition] = useTransition();
 
-	const form = useForm<AddUser>({
-		resolver: zodResolver(AddUserSchema),
+	const form = useForm<AddEmployee>({
+		resolver: zodResolver(AddEmployeeSchema),
 		defaultValues: {
-			email: "",
-			password: "",
-			name: "",
-			image: undefined,
-			role: "USER",
-			isTwoFactorEnabled: false,
+			phoneNumber: "",
 		},
 	});
-	const onSubmit = (values: AddUser) => {
+	const onSubmit = (values: AddEmployee) => {
 		setError("");
 		setSuccess("");
 
 		startTransition(() => {
-			addUser(values).then((data) => {
+			addEmployee(values).then((data) => {
 				setError(data.error);
 				setSuccess(data.success);
 			});
@@ -65,15 +59,32 @@ const AddUserForm = () => {
 					<div className="space-y-4">
 						<FormField
 							control={form.control}
-							name="name"
+							name="firstName"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>Name</FormLabel>
+									<FormLabel>First Name</FormLabel>
 									<FormControl>
 										<Input
 											disabled={isPending}
 											{...field}
-											placeholder="John Doe"
+											placeholder="john"
+										/>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+						<FormField
+							control={form.control}
+							name="lastName"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>Last Name</FormLabel>
+									<FormControl>
+										<Input
+											disabled={isPending}
+											{...field}
+											placeholder="Doe"
 										/>
 									</FormControl>
 									<FormMessage />
@@ -100,33 +111,15 @@ const AddUserForm = () => {
 						/>
 						<FormField
 							control={form.control}
-							name="password"
+							name="phoneNumber"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>Password</FormLabel>
+									<FormLabel>Phone No.</FormLabel>
 									<FormControl>
 										<Input
-											disabled={isPending}
 											{...field}
-											placeholder="********"
-											type="Password"
-										/>
-									</FormControl>
-									<FormMessage />
-								</FormItem>
-							)}
-						/>
-						<FormField
-							control={form.control}
-							name="image"
-							render={({ field }) => (
-								<FormItem>
-									<FormLabel>Image</FormLabel>
-									<FormControl>
-										<Input
 											disabled={isPending}
-											{...field}
-											placeholder="Image Url"
+											placeholder="+62-8938-944-0498"
 										/>
 									</FormControl>
 									<FormMessage />
@@ -139,41 +132,57 @@ const AddUserForm = () => {
 							render={({ field }) => (
 								<FormItem>
 									<FormLabel>Role</FormLabel>
-									<Select
-										disabled={isPending}
-										onValueChange={field.onChange}
-									>
-										<FormControl>
-											<SelectTrigger>
-												<SelectValue placeholder="Select a role" />
-											</SelectTrigger>
-										</FormControl>
-										<SelectContent>
-											<SelectItem value={UserRole.ADMIN}>Admin</SelectItem>
-											<SelectItem value={UserRole.USER}>User</SelectItem>
-										</SelectContent>
-									</Select>
+									<FormControl>
+										<Input
+											disabled={isPending}
+											{...field}
+											placeholder="role"
+										/>
+									</FormControl>
 									<FormMessage />
 								</FormItem>
 							)}
 						/>
 						<FormField
 							control={form.control}
-							name="isTwoFactorEnabled"
+							name="hireDate"
 							render={({ field }) => (
-								<FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-md  ">
-									<div className="space-y-0.5">
-										<FormLabel>Two Factor Authentication</FormLabel>
-										<FormDescription>
-											Require OTP Code for each login
-										</FormDescription>
-									</div>
-									<FormControl>
-										<Switch
-											disabled={isPending}
-											onCheckedChange={field.onChange}
-										/>
-									</FormControl>
+								<FormItem className="flex flex-col">
+									<FormLabel>Joined At</FormLabel>
+									<Popover>
+										<PopoverTrigger asChild>
+											<FormControl>
+												<Button
+													variant={"outline"}
+													className={cn(
+														"w-full pl-3 text-left font-normal",
+														!field.value && "text-muted-foreground"
+													)}
+												>
+													{field.value ? (
+														format(field.value, "PPP")
+													) : (
+														<span>Pick a date</span>
+													)}
+													<CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+												</Button>
+											</FormControl>
+										</PopoverTrigger>
+										<PopoverContent
+											className="w-auto p-0"
+											align="start"
+										>
+											<Calendar
+												mode="single"
+												selected={field.value}
+												onSelect={field.onChange}
+												disabled={(date) =>
+													date > new Date() || date < new Date("1900-01-01")
+												}
+												initialFocus
+											/>
+										</PopoverContent>
+									</Popover>
 									<FormMessage />
 								</FormItem>
 							)}
@@ -194,4 +203,4 @@ const AddUserForm = () => {
 	);
 };
 
-export default AddUserForm;
+export default AddEmployeeForm;

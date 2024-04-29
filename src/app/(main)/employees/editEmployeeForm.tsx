@@ -21,42 +21,45 @@ import {
 	SelectValue,
 } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
-import { AddUser, AddUserSchema } from "@/schemas/user";
-import { addUser } from "@/server-actions/user";
+import { EditUser, EditUserSchema } from "@/schemas/user";
+import { editUser } from "@/server-actions/user";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { UserRole } from "@prisma/client";
+import { User, UserRole } from "@prisma/client";
+import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 
-const AddUserForm = () => {
+const EditEmployeeForm = ({ userData }: { userData: User }) => {
 	const [success, setSuccess] = useState<string | undefined>("");
 	const [error, setError] = useState<string | undefined>("");
 	const [isPending, startTransition] = useTransition();
+	const user = userData;
+	const route = useRouter();
 
-	const form = useForm<AddUser>({
-		resolver: zodResolver(AddUserSchema),
+	const form = useForm<EditUser>({
+		resolver: zodResolver(EditUserSchema),
 		defaultValues: {
-			email: "",
-			password: "",
-			name: "",
-			image: undefined,
-			role: "USER",
-			isTwoFactorEnabled: false,
+			email: user?.email || undefined,
+			name: user?.name || undefined,
+			image: user?.image || undefined,
+			role: user?.role,
+			isTwoFactorEnabled: user?.isTwoFactorEnabled,
 		},
 	});
-	const onSubmit = (values: AddUser) => {
+	const onSubmit = (values: EditUser) => {
 		setError("");
 		setSuccess("");
+		route.refresh();
 
 		startTransition(() => {
-			addUser(values).then((data) => {
+			editUser(values, user?.id).then((data) => {
 				setError(data.error);
 				setSuccess(data.success);
 			});
 		});
 	};
 	return (
-		<DataFormWrapper title="Create New User">
+		<DataFormWrapper title="Edit User">
 			<Form {...form}>
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}
@@ -74,6 +77,7 @@ const AddUserForm = () => {
 											disabled={isPending}
 											{...field}
 											placeholder="John Doe"
+											defaultValue={field.value}
 										/>
 									</FormControl>
 									<FormMessage />
@@ -92,24 +96,7 @@ const AddUserForm = () => {
 											{...field}
 											placeholder="mail@example.com"
 											type="email"
-										/>
-									</FormControl>
-									<FormMessage />
-								</FormItem>
-							)}
-						/>
-						<FormField
-							control={form.control}
-							name="password"
-							render={({ field }) => (
-								<FormItem>
-									<FormLabel>Password</FormLabel>
-									<FormControl>
-										<Input
-											disabled={isPending}
-											{...field}
-											placeholder="********"
-											type="Password"
+											defaultValue={field.value}
 										/>
 									</FormControl>
 									<FormMessage />
@@ -127,6 +114,7 @@ const AddUserForm = () => {
 											disabled={isPending}
 											{...field}
 											placeholder="Image Url"
+											defaultValue={field.value}
 										/>
 									</FormControl>
 									<FormMessage />
@@ -142,6 +130,7 @@ const AddUserForm = () => {
 									<Select
 										disabled={isPending}
 										onValueChange={field.onChange}
+										defaultValue={field.value}
 									>
 										<FormControl>
 											<SelectTrigger>
@@ -172,6 +161,7 @@ const AddUserForm = () => {
 										<Switch
 											disabled={isPending}
 											onCheckedChange={field.onChange}
+											checked={field.value}
 										/>
 									</FormControl>
 									<FormMessage />
@@ -186,7 +176,7 @@ const AddUserForm = () => {
 						typeof="submit"
 						className="w-full"
 					>
-						Create New User
+						Update User
 					</Button>
 				</form>
 			</Form>
@@ -194,4 +184,4 @@ const AddUserForm = () => {
 	);
 };
 
-export default AddUserForm;
+export default EditEmployeeForm;

@@ -10,25 +10,23 @@ import {
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { deleteUserToast } from "@/lib/toasts";
-import { UserSchema } from "@/schemas/user";
-import { User } from "@prisma/client";
+import { EmployeeSchema } from "@/schemas/employee";
 import { DotsHorizontalIcon } from "@radix-ui/react-icons";
 import { Row } from "@tanstack/react-table";
 import { useRouter } from "next/navigation";
-import EditUserForm from "./editUserForm";
 
 interface DataTableRowActionsProps<TData> {
 	row: Row<TData>;
 }
 
-export function UserDataTableRowActions<TData>({
+export function EmployeeDataTableRowActions<TData>({
 	row,
 }: DataTableRowActionsProps<TData>) {
-	const user = UserSchema.parse(row.original);
+	const employee = EmployeeSchema.parse(row.original);
 	const router = useRouter();
 
 	const handleDeleteUser = async () => {
-		await deleteUserToast(user.id, () => {
+		await deleteUserToast(employee.id, () => {
 			router.refresh();
 		});
 	};
@@ -54,7 +52,7 @@ export function UserDataTableRowActions<TData>({
 							Edit
 						</DialogTrigger>
 						<DialogContent className="lg:w-[400px] grid place-items-center p-1 bg-transparent border-none shadow-sm">
-							<EditUserForm userData={user as User} />
+							{/* <EditUserForm userData={user as User} /> */}
 						</DialogContent>
 					</Dialog>
 				</DropdownMenuItem>
