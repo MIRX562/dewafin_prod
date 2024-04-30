@@ -2,7 +2,7 @@ import Loading from "@/app/loading";
 import PageToolbar from "@/components/pageToolbar/PageToolbar";
 import { Suspense } from "react";
 import AddEmployeeButton from "./addEmployeeButton";
-import EmployeesTable from "./employees-table";
+import EmployeesTable from "./employeesTable";
 
 export default async function EmployeesPage() {
 	return (

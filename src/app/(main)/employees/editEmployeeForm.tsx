@@ -3,10 +3,10 @@ import DataFormWrapper from "@/components/dataForm/DataFormWrapper";
 import FormError from "@/components/formError/FormError";
 import FormSuccess from "@/components/formSucces/FormSuccess";
 import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
 import {
 	Form,
 	FormControl,
-	FormDescription,
 	FormField,
 	FormItem,
 	FormLabel,
@@ -14,52 +14,58 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import {
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from "@/components/ui/popover";
+import {
 	Select,
 	SelectContent,
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select";
-import { Switch } from "@/components/ui/switch";
-import { EditUser, EditUserSchema } from "@/schemas/user";
-import { editUser } from "@/server-actions/user";
+import { cn } from "@/lib/utils";
+import { EditEmployee, EditEmployeeSchema } from "@/schemas/employee";
+import { addEmployee } from "@/server-actions/employee";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { User, UserRole } from "@prisma/client";
-import { useRouter } from "next/navigation";
+import { Employee, Status } from "@prisma/client";
+import { format } from "date-fns";
+import { CalendarIcon } from "lucide-react";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 
-const EditEmployeeForm = ({ userData }: { userData: User }) => {
+const EditEmployeeForm = ({ employeeData }: { employeeData: Employee }) => {
 	const [success, setSuccess] = useState<string | undefined>("");
 	const [error, setError] = useState<string | undefined>("");
 	const [isPending, startTransition] = useTransition();
-	const user = userData;
-	const route = useRouter();
+	const employee = employeeData;
 
-	const form = useForm<EditUser>({
-		resolver: zodResolver(EditUserSchema),
+	const form = useForm<EditEmployee>({
+		resolver: zodResolver(EditEmployeeSchema),
 		defaultValues: {
-			email: user?.email || undefined,
-			name: user?.name || undefined,
-			image: user?.image || undefined,
-			role: user?.role,
-			isTwoFactorEnabled: user?.isTwoFactorEnabled,
+			firstName: employee?.firstName,
+			lastName: employee?.lastName,
+			email: employee?.email,
+			phoneNumber: employee?.phoneNumber || undefined,
+			role: employee?.role,
+			isActive: employee?.isActive,
+			hireDate: employee?.hireDate,
 		},
 	});
-	const onSubmit = (values: EditUser) => {
+	const onSubmit = (values: EditEmployee) => {
 		setError("");
 		setSuccess("");
-		route.refresh();
 
 		startTransition(() => {
-			editUser(values, user?.id).then((data) => {
+			addEmployee(values).then((data) => {
 				setError(data.error);
 				setSuccess(data.success);
 			});
 		});
 	};
 	return (
-		<DataFormWrapper title="Edit User">
+		<DataFormWrapper title="Edit Employee Data">
 			<Form {...form}>
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}
@@ -68,16 +74,32 @@ const EditEmployeeForm = ({ userData }: { userData: User }) => {
 					<div className="space-y-4">
 						<FormField
 							control={form.control}
-							name="name"
+							name="firstName"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>Name</FormLabel>
+									<FormLabel>First Name</FormLabel>
 									<FormControl>
 										<Input
 											disabled={isPending}
 											{...field}
-											placeholder="John Doe"
-											defaultValue={field.value}
+											placeholder="john"
+										/>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+						<FormField
+							control={form.control}
+							name="lastName"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>Last Name</FormLabel>
+									<FormControl>
+										<Input
+											disabled={isPending}
+											{...field}
+											placeholder="Doe"
 										/>
 									</FormControl>
 									<FormMessage />
@@ -96,7 +118,6 @@ const EditEmployeeForm = ({ userData }: { userData: User }) => {
 											{...field}
 											placeholder="mail@example.com"
 											type="email"
-											defaultValue={field.value}
 										/>
 									</FormControl>
 									<FormMessage />
@@ -105,16 +126,15 @@ const EditEmployeeForm = ({ userData }: { userData: User }) => {
 						/>
 						<FormField
 							control={form.control}
-							name="image"
+							name="phoneNumber"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>Image</FormLabel>
+									<FormLabel>Phone No.</FormLabel>
 									<FormControl>
 										<Input
-											disabled={isPending}
 											{...field}
-											placeholder="Image Url"
-											defaultValue={field.value}
+											disabled={isPending}
+											placeholder="+62xxxxxxx"
 										/>
 									</FormControl>
 									<FormMessage />
@@ -127,19 +147,37 @@ const EditEmployeeForm = ({ userData }: { userData: User }) => {
 							render={({ field }) => (
 								<FormItem>
 									<FormLabel>Role</FormLabel>
+									<FormControl>
+										<Input
+											disabled={isPending}
+											{...field}
+											placeholder="role"
+										/>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+						<FormField
+							control={form.control}
+							name="isActive"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>Status</FormLabel>
 									<Select
 										disabled={isPending}
 										onValueChange={field.onChange}
-										defaultValue={field.value}
 									>
 										<FormControl>
 											<SelectTrigger>
-												<SelectValue placeholder="Select a role" />
+												<SelectValue placeholder="Current Status" />
 											</SelectTrigger>
 										</FormControl>
 										<SelectContent>
-											<SelectItem value={UserRole.ADMIN}>Admin</SelectItem>
-											<SelectItem value={UserRole.USER}>User</SelectItem>
+											<SelectItem value={Status.Active}>Active</SelectItem>
+											<SelectItem value={Status.Not_Active}>
+												Not Active
+											</SelectItem>
 										</SelectContent>
 									</Select>
 									<FormMessage />
@@ -148,22 +186,44 @@ const EditEmployeeForm = ({ userData }: { userData: User }) => {
 						/>
 						<FormField
 							control={form.control}
-							name="isTwoFactorEnabled"
+							name="hireDate"
 							render={({ field }) => (
-								<FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-md  ">
-									<div className="space-y-0.5">
-										<FormLabel>Two Factor Authentication</FormLabel>
-										<FormDescription>
-											Require OTP Code for each login
-										</FormDescription>
-									</div>
-									<FormControl>
-										<Switch
-											disabled={isPending}
-											onCheckedChange={field.onChange}
-											checked={field.value}
-										/>
-									</FormControl>
+								<FormItem className="flex flex-col">
+									<FormLabel>Hired At</FormLabel>
+									<Popover>
+										<PopoverTrigger asChild>
+											<FormControl>
+												<Button
+													variant={"outline"}
+													className={cn(
+														"w-full pl-3 text-left font-normal",
+														!field.value && "text-muted-foreground"
+													)}
+												>
+													{field.value ? (
+														format(field.value, "PPP")
+													) : (
+														<span>Pick a date</span>
+													)}
+													<CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+												</Button>
+											</FormControl>
+										</PopoverTrigger>
+										<PopoverContent
+											className="w-auto p-0"
+											align="start"
+										>
+											<Calendar
+												mode="single"
+												selected={field.value}
+												onSelect={field.onChange}
+												disabled={(date) =>
+													date > new Date() || date < new Date("2020-01-01")
+												}
+												initialFocus
+											/>
+										</PopoverContent>
+									</Popover>
 									<FormMessage />
 								</FormItem>
 							)}
@@ -176,7 +236,7 @@ const EditEmployeeForm = ({ userData }: { userData: User }) => {
 						typeof="submit"
 						className="w-full"
 					>
-						Update User
+						Update Employee Data
 					</Button>
 				</form>
 			</Form>

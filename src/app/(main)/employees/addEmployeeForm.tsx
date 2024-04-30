@@ -18,10 +18,18 @@ import {
 	PopoverContent,
 	PopoverTrigger,
 } from "@/components/ui/popover";
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 import { AddEmployee, AddEmployeeSchema } from "@/schemas/employee";
 import { addEmployee } from "@/server-actions/employee";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { EmployeeRole } from "@prisma/client";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { useState, useTransition } from "react";
@@ -126,19 +134,43 @@ const AddEmployeeForm = () => {
 								</FormItem>
 							)}
 						/>
+
 						<FormField
 							control={form.control}
 							name="role"
 							render={({ field }) => (
 								<FormItem>
 									<FormLabel>Role</FormLabel>
-									<FormControl>
-										<Input
-											disabled={isPending}
-											{...field}
-											placeholder="role"
-										/>
-									</FormControl>
+									<Select
+										disabled={isPending}
+										onValueChange={field.onChange}
+									>
+										<FormControl>
+											<SelectTrigger>
+												<SelectValue placeholder="Select a role" />
+											</SelectTrigger>
+										</FormControl>
+										<SelectContent>
+											<SelectItem value={EmployeeRole.CEO}>
+												Chief Executive Officer (CEO)
+											</SelectItem>
+											<SelectItem value={EmployeeRole.COO}>
+												Chief Operational Officer (COO)
+											</SelectItem>
+											<SelectItem value={EmployeeRole.Administration}>
+												Administration
+											</SelectItem>
+											<SelectItem value={EmployeeRole.Customer_Support}>
+												Customer Support
+											</SelectItem>
+											<SelectItem value={EmployeeRole.Sales_Marketing}>
+												Sales & Marketing
+											</SelectItem>
+											<SelectItem value={EmployeeRole.Technical_Support}>
+												Technical Support
+											</SelectItem>
+										</SelectContent>
+									</Select>
 									<FormMessage />
 								</FormItem>
 							)}
@@ -148,7 +180,7 @@ const AddEmployeeForm = () => {
 							name="hireDate"
 							render={({ field }) => (
 								<FormItem className="flex flex-col">
-									<FormLabel>Joined At</FormLabel>
+									<FormLabel>Hired At</FormLabel>
 									<Popover>
 										<PopoverTrigger asChild>
 											<FormControl>

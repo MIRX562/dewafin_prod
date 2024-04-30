@@ -12,15 +12,6 @@ enum UserRole {
   USER
 }
 
-enum EmployeeRole {
-  CEO
-  COO
-  Technical_Support
-  Customer_Support
-  Sales_Marketing
-  Administration
-}
-
 model User {
   id                    String                 @id @default(cuid())
   name                  String?
@@ -89,78 +80,42 @@ model TwoFactorConfirmation {
 }
 
 model Customer {
-  id         Int     @id @default(autoincrement())
-  email      String  @unique
-  phone      String?
-  address    String?
-  companyId  Int?
+  id        Int     @id @default(autoincrement())
+  email     String  @unique
+  phone     String?
+  address   String?
+  companyId Int?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  // Relationships
-  invoices      Invoice[]
-
-  // Additional fields (optional)
   website String?
   taxId   String?
   notes   String?
 }
 
-
-model Invoice {
-  id         Int       @id @default(autoincrement())
-  customerId Int
-  number     String    @unique
-  issueDate  DateTime
-  dueDate    DateTime?
-  amount     Float
-  status     String // Draft, Sent, Paid, Overdue, etc.
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  // Relationships
-  customer  Customer      @relation(fields: [customerId], references: [id])
-  lineItems InvoiceItem[]
+enum Status {
+  Active
+  Not_Active
 }
 
-model InvoiceItem {
-  id          Int    @id @default(autoincrement())
-  invoiceId   Int
-  description String
-  quantity    Int
-  unitPrice   Float
-  amount      Float // Calculated field
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  // Relationships
-  invoice Invoice @relation(fields: [invoiceId], references: [id])
-}
-
-model Plan {
-  id          Int     @id @default(autoincrement())
-  name        String  @unique
-  description String
-  price       Float
-  features    String? // Comma-separated list or JSON object
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
+enum EmployeeRole {
+  CEO
+  COO
+  Technical_Support
+  Customer_Support
+  Sales_Marketing
+  Administration
 }
 
 model Employee {
-  id            String      @id @default(cuid())
-  firstName     String
-  lastName      String
-  email         String      @unique
-  phoneNumber   String?
-  role          String
-  isActive      Boolean     @default(true)
-  hireDate      DateTime
+  id          String       @id @default(cuid())
+  firstName   String
+  lastName    String
+  email       String       @unique
+  phoneNumber String
+  role        EmployeeRole
+  isActive    Status       @default(Active)
+  hireDate    DateTime
   // Add more fields as needed
 }
-

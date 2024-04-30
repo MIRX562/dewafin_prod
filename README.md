@@ -60,7 +60,7 @@ sequenceDiagram
     Production-->>Developer: Live application
 ```
 
-### Dependencies
+## Dependencies
 
 #### Authentication and Database
 
@@ -139,84 +139,40 @@ sequenceDiagram
 # Folder Structure
 
 ```bash
-src
-├───app
-│   ├───(main)
-│   │   ├───asets
-│   │   ├───customers
-│   │   ├───dashboard
-│   │   ├───employees
-│   │   ├───files
-│   │   ├───logs
-│   │   ├───plans
-│   │   │   ├───domain
-│   │   │   ├───hosting
-│   │   │   ├───server
-│   │   │   └───vps
-│   │   ├───reports
-│   │   ├───settings
-│   │   ├───supports
-│   │   └───users
-│   ├───api
-│   │   ├───admin
-│   │   └───auth
-│   │       └───[...nextauth]
-│   └───auth
-│       ├───error
-│       ├───login
-│       ├───new-password
-│       ├───register
-│       ├───reset
-│       └───verify-email
-├───components
-│   ├───accessDeniedPage
-│   ├───authComponents
-│   │   ├───cardWrapper
-│   │   ├───emailVerificationForm
-│   │   ├───errorCard
-│   │   ├───header
-│   │   ├───loginBackButton
-│   │   ├───loginButton
-│   │   ├───loginForm
-│   │   ├───logoutButton
-│   │   ├───newPasswordForm
-│   │   ├───registerForm
-│   │   ├───resetForm
-│   │   ├───roleGate
-│   │   ├───social
-│   │   └───userButton
-│   ├───Breadcrumbs
-│   ├───dashboardComponents
-│   │   ├───FinancialPerformance
-│   │   ├───SupportForm
-│   │   └───UserData
-│   ├───dataTable
-│   │   ├───ColumnHeader
-│   │   ├───FacetedFilter
-│   │   ├───Pagination
-│   │   ├───ToolBar
-│   │   └───VewOption
-│   ├───formError
-│   ├───formSucces
-│   ├───loginCard
-│   ├───Navigation
-│   │   ├───CopyRights
-│   │   ├───Header
-│   │   │   ├───MobileMenu
-│   │   │   │   └───MobileMenuLinks
-│   │   │   ├───NavSearchBar
-│   │   │   └───ProfileMenu
-│   │   ├───NavLogo
-│   │   ├───PageHeader
-│   │   └───SideBar
-│   │       └───SideBarLinks
-│   ├───themeProvider
-│   ├───ThemeToggle
-│   └───ui
-├───data
-├───hooks
-├───lib
-├───schemas
-├───server-actions
-└───types
+dewamin(root)
+│   .env
+│   .eslintrc.json
+│   .gitignore
+│   components.json
+│   next-auth.d.ts
+│   next-env.d.ts
+│   next.config.mjs
+│   package-lock.json
+│   package.json
+│   postcss.config.js
+│   README.md
+│   tailwind.config.ts
+│   tsconfig.json
+├───prisma
+├───public
+└───src
+    │   middleware.ts
+    │   routes.ts
+    ├───app
+    │   │   favicon.ico
+    │   │   globals.css
+    │   │   layout.tsx
+    │   │   loading.tsx
+    │   │   not-found.tsx
+    │   │   page.tsx
+    │   ├───(main)
+    │   ├───api
+    │   └───auth
+    ├───components
+    ├───data
+    ├───hooks
+    ├───lib
+    ├───schemas
+    ├───server-actions
+    └───types
 ```

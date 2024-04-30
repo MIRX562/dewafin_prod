@@ -1,3 +1,4 @@
+import { deleteEmployee } from "@/server-actions/employee";
 import { deleteUser } from "@/server-actions/user";
 import { toast } from "sonner";
 
@@ -28,7 +29,7 @@ export const deleteUserToast = async (
 };
 
 export const deleteEmployeeToast = async (
-	userId: string,
+	employeeId: string,
 	onSuccess?: () => void
 ) => {
 	toast.warning("Confirm delete", {
@@ -36,13 +37,13 @@ export const deleteEmployeeToast = async (
 		action: {
 			label: "Delete",
 			onClick: async () => {
-				toast.promise(deleteUser(userId), {
-					loading: "Deleting user...",
+				toast.promise(deleteEmployee(employeeId), {
+					loading: "Deleting employee...",
 					success: () => {
 						onSuccess?.(); // Call the provided callback function
-						return "User is successfully deleted!";
+						return "Emlployee is successfully deleted!";
 					},
-					error: "Failed to delete user",
+					error: "Failed to delete employee",
 				});
 			},
 		},

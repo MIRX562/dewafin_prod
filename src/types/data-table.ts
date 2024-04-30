@@ -28,12 +28,12 @@ export const state = [
 
 export const status = [
 	{
-		value: true,
+		value: "Active",
 		label: "Active",
 		var: "success",
 	},
 	{
-		value: false,
+		value: "Not_Active",
 		label: "Not Active",
 		var: "destructive",
 	},

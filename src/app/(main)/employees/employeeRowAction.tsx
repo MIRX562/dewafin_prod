@@ -9,11 +9,13 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { deleteUserToast } from "@/lib/toasts";
+import { deleteEmployeeToast } from "@/lib/toasts";
 import { EmployeeSchema } from "@/schemas/employee";
+import { Employee } from "@prisma/client";
 import { DotsHorizontalIcon } from "@radix-ui/react-icons";
 import { Row } from "@tanstack/react-table";
 import { useRouter } from "next/navigation";
+import EditEmployeeForm from "./editEmployeeForm";
 
 interface DataTableRowActionsProps<TData> {
 	row: Row<TData>;
@@ -25,8 +27,8 @@ export function EmployeeDataTableRowActions<TData>({
 	const employee = EmployeeSchema.parse(row.original);
 	const router = useRouter();
 
-	const handleDeleteUser = async () => {
-		await deleteUserToast(employee.id, () => {
+	const handleDeleteEmployee = async () => {
+		await deleteEmployeeToast(employee.id, () => {
 			router.refresh();
 		});
 	};
@@ -52,12 +54,14 @@ export function EmployeeDataTableRowActions<TData>({
 							Edit
 						</DialogTrigger>
 						<DialogContent className="lg:w-[400px] grid place-items-center p-1 bg-transparent border-none shadow-sm">
-							{/* <EditUserForm userData={user as User} /> */}
+							<EditEmployeeForm employeeData={employee as Employee} />
 						</DialogContent>
 					</Dialog>
 				</DropdownMenuItem>
 				<DropdownMenuSeparator />
-				<DropdownMenuItem onClick={handleDeleteUser}>Delete</DropdownMenuItem>
+				<DropdownMenuItem onClick={handleDeleteEmployee}>
+					Delete
+				</DropdownMenuItem>
 			</DropdownMenuContent>
 		</DropdownMenu>
 	);
