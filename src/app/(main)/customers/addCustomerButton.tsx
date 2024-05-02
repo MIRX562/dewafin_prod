@@ -1,5 +1,5 @@
-const addCustomerButton = () => {
-  return <div>addCustomerButton</div>;
+const AddCustomerButton = () => {
+	return <div>addCustomerButton</div>;
 };
 
-export default addCustomerButton;
+export default AddCustomerButton;
