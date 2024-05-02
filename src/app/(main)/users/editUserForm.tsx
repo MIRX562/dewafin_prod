@@ -42,7 +42,7 @@ const EditUserForm = ({ userData }: { userData: User }) => {
       email: user?.email || undefined,
       name: user?.name || undefined,
       image: user?.image || undefined,
-      role: user?.role,
+      role: user?.role || undefined,
       isTwoFactorEnabled: user?.isTwoFactorEnabled,
     },
   });

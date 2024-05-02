@@ -46,7 +46,7 @@ export const EditUserSchema = z.object({
     message: "Invalid email address",
   }),
   image: z.string().optional(),
-  role: z.enum([UserRole.ADMIN, UserRole.USER]).default(UserRole.USER),
+  role: z.nativeEnum(UserRole).default(UserRole.USER),
   isTwoFactorEnabled: z.boolean().default(false),
 });
 

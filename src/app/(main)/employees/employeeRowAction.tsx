@@ -11,7 +11,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { deleteEmployeeToast } from "@/lib/toasts";
 import { EmployeeSchema } from "@/schemas/employee";
-import { Employee } from "@prisma/client";
 import { DotsHorizontalIcon } from "@radix-ui/react-icons";
 import { Row } from "@tanstack/react-table";
 import { useRouter } from "next/navigation";
@@ -51,7 +50,7 @@ export function EmployeeDataTableRowActions<TData>({
               Edit
             </DialogTrigger>
             <DialogContent className="lg:w-[400px] grid place-items-center p-1 bg-transparent border-none shadow-sm">
-              <EditEmployeeForm employeeData={employee as Employee} />
+              <EditEmployeeForm employeeData={employee} />
             </DialogContent>
           </Dialog>
         </DropdownMenuItem>

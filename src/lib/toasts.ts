@@ -1,3 +1,4 @@
+import { deleteCustomer } from "@/server-actions/customer";
 import { deleteEmployee } from "@/server-actions/employee";
 import { deleteUser } from "@/server-actions/user";
 import { toast } from "sonner";
@@ -44,6 +45,32 @@ export const deleteEmployeeToast = async (
             return "Emlployee is successfully deleted!";
           },
           error: "Failed to delete employee",
+        });
+      },
+    },
+    cancel: {
+      label: "Cancel",
+      onClick: () => {},
+    },
+  });
+};
+
+export const deleteCustomerToast = async (
+  customerId: number,
+  onSuccess?: () => void,
+) => {
+  toast.warning("Confirm delete", {
+    description: "This action cannot be undone!",
+    action: {
+      label: "Delete",
+      onClick: async () => {
+        toast.promise(deleteCustomer(customerId), {
+          loading: "Deleting customer...",
+          success: () => {
+            onSuccess?.(); // Call the provided callback function
+            return "Customer is successfully deleted!";
+          },
+          error: "Failed to delete customer",
         });
       },
     },

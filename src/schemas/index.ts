@@ -118,63 +118,6 @@ export const RegisterSchema = z.object({
     ),
 });
 
-// Define Zod schema for the Customer model
-export const CustomerSchema = z.object({
-  id: z.number(),
-  email: z.string(),
-  phone: z.string().nullable(),
-  address: z.string().nullable(),
-  companyId: z.number().nullable(),
-  company: z.object({ id: z.number() }).nullable(), // Assuming CompanySchema is defined elsewhere
-  website: z.string().nullable(),
-  taxId: z.string().nullable(),
-  notes: z.string().nullable(),
-});
-
-// Define Zod schema for the Subscription model
-export const SubscriptionSchema = z.object({
-  id: z.number(),
-  customerId: z.number(),
-  planId: z.number(),
-  startDate: z.date(),
-  endDate: z.date().nullable(),
-  isActive: z.boolean(),
-  customer: CustomerSchema,
-  plan: z.object({ id: z.number() }).nullable(), // Assuming PlanSchema is defined elsewhere
-});
-
-// Define Zod schema for the Company model
-export const CompanySchema = z.object({
-  id: z.number(),
-  name: z.string(),
-  address: z.string().nullable(),
-  website: z.string().nullable(),
-  taxId: z.string().nullable(),
-  customers: z.array(CustomerSchema), // Assuming CustomerSchema is defined elsewhere
-});
-
-// Define Zod schema for the Invoice model
-export const InvoiceSchema = z.object({
-  id: z.number(),
-  customerId: z.number(),
-  number: z.string(),
-  issueDate: z.date(),
-  dueDate: z.date().nullable(),
-  amount: z.number(),
-  status: z.string(),
-  customer: CustomerSchema,
-});
-
-// Define Zod schema for the Plan model
-export const PlanSchema = z.object({
-  id: z.number(),
-  name: z.string(),
-  description: z.string(),
-  price: z.number(),
-  features: z.string().nullable(),
-  subscriptions: z.array(SubscriptionSchema), // Assuming SubscriptionSchema is defined elsewhere
-});
-
 // Define type exports for each schema
 export type Login = z.infer<typeof LoginSchema>;
 export type NewPassword = z.infer<typeof NewPasswordSchema>;
