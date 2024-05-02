@@ -9,14 +9,14 @@ import {
 	EditEmployee,
 } from "@/schemas/employee";
 
-type RegisterResponse = {
+type Response = {
 	error?: string;
 	success?: string;
 };
 
 export const addEmployee = async (
 	values: AddEmployee
-): Promise<RegisterResponse> => {
+): Promise<Response> => {
 	// Checks employee auth
 	const user = await currentUser();
 	if (!user) {
@@ -56,7 +56,7 @@ export const addEmployee = async (
 
 export const deleteEmployee = async (
 	employeeId: string
-): Promise<RegisterResponse> => {
+): Promise<Response> => {
 	const role = await currentRole();
 
 	if (role !== "ADMIN") {

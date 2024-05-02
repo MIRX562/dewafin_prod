@@ -27,7 +27,7 @@ import {
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 import { EditEmployee, EditEmployeeSchema } from "@/schemas/employee";
-import { addEmployee } from "@/server-actions/employee";
+import { editEmployee } from "@/server-actions/employee";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Employee, Status } from "@prisma/client";
 import { format } from "date-fns";
@@ -58,7 +58,7 @@ const EditEmployeeForm = ({ employeeData }: { employeeData: Employee }) => {
 		setSuccess("");
 
 		startTransition(() => {
-			addEmployee(values).then((data) => {
+			editEmployee(values, employeeData.id).then((data) => {
 				setError(data.error);
 				setSuccess(data.success);
 			});

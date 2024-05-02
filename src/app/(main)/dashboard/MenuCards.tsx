@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const MenuCards = () => {
 	return (
-		<div className="grid grid-cols-2 gap-6 md:grid-cols-4 col-span-2 lg:col-span-4">
+		<div className="grid grid-cols-2 gap-2 lg:gap-6 md:grid-cols-4 col-span-2 lg:col-span-4">
 			<Link
 				className="group flex flex-col items-start justify-between rounded-lg border-2 border-orange-500 bg-orange-100 p-4 shadow-sm transition-colors hover:bg-orange-200"
 				href="#"

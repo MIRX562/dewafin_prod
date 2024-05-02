@@ -5,6 +5,7 @@ import { db } from "@/lib/db";
 import { currentRole, currentUser } from "@/lib/sessionUser";
 import { AddUser, AddUserSchema, EditUser } from "@/schemas/user";
 import bcrypt from "bcryptjs";
+import { revalidatePath } from "next/cache";
 
 type RegisterResponse = {
 	error?: string;
@@ -109,6 +110,7 @@ export const editUser = async (
 			where: { id: dbUser.id },
 			data: userData,
 		});
+		revalidatePath("/employees");
 
 		return { success: "User data successfully updated" };
 	} catch (error) {
