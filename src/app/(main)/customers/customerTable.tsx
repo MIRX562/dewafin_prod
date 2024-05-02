@@ -1,6 +1,6 @@
 import { DataTable } from "@/components/dataTable/DataTable";
 import { getCustomers } from "@/data/customer";
-import { customerColumns } from "./column";
+import { customerColumns } from "./customerColumn";
 
 const CustomerTable = async () => {
 	const customer = await getCustomers();

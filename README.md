@@ -140,6 +140,28 @@ sequenceDiagram
 
 ```bash
 dewamin(root)
+├───prisma
+├───public
+├───src
+│   ├───app
+│   │   │   favicon.ico
+│   │   │   globals.css
+│   │   │   layout.tsx
+│   │   │   loading.tsx
+│   │   │   not-found.tsx
+│   │   │   page.tsx
+│   │   ├───(main)
+│   │   ├───api
+│   │   └───auth
+│   ├───components
+│   ├───data
+│   ├───hooks
+│   ├───lib
+│   ├───schemas
+│   ├───server-actions
+│   ├───types
+│   │   middleware.ts
+│   │   routes.ts
 │   .env
 │   .eslintrc.json
 │   .gitignore
@@ -153,26 +175,4 @@ dewamin(root)
 │   README.md
 │   tailwind.config.ts
 │   tsconfig.json
-├───prisma
-├───public
-└───src
-    │   middleware.ts
-    │   routes.ts
-    ├───app
-    │   │   favicon.ico
-    │   │   globals.css
-    │   │   layout.tsx
-    │   │   loading.tsx
-    │   │   not-found.tsx
-    │   │   page.tsx
-    │   ├───(main)
-    │   ├───api
-    │   └───auth
-    ├───components
-    ├───data
-    ├───hooks
-    ├───lib
-    ├───schemas
-    ├───server-actions
-    └───types
 ```
