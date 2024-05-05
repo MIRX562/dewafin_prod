@@ -7,16 +7,16 @@ import AddCustomerButton from "./addCustomerButton";
 import CustomerTable from "./customerTable";
 
 export default async function UserPage() {
-  return (
-    <div className="h-full max-w-full flex-1 flex-col space-y-8 p-4 flex ">
-      <PageToolbar title="Customer Management">
-        <TableImportButton />
-        <TableExportButton table="customer" />
-        <AddCustomerButton />
-      </PageToolbar>
-      <Suspense fallback={<Loading />}>
-        <CustomerTable />
-      </Suspense>
-    </div>
-  );
+	return (
+		<div className="h-full max-w-full flex-1 flex-col space-y-3 p-4 flex ">
+			<PageToolbar title="Customer Management">
+				<TableImportButton />
+				<TableExportButton table="customer" />
+				<AddCustomerButton />
+			</PageToolbar>
+			<Suspense fallback={<Loading />}>
+				<CustomerTable />
+			</Suspense>
+		</div>
+	);
 }

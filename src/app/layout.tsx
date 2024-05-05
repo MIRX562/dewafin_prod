@@ -10,31 +10,34 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "DewaMin",
-  description: "An Admin Dashboard",
+	title: "DewaMin",
+	description: "An Admin Dashboard",
 };
 
 export default async function RootLayout({
-  children,
+	children,
 }: Readonly<{
-  children: React.ReactNode;
+	children: React.ReactNode;
 }>) {
-  const session = await auth();
-  return (
-    <SessionProvider session={session}>
-      <html lang="en">
-        <body className={cn(inter.className, "w-[100vw]")}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <Toaster richColors position="top-center" />
-            {children}
-          </ThemeProvider>
-        </body>
-      </html>
-    </SessionProvider>
-  );
+	const session = await auth();
+	return (
+		<SessionProvider session={session}>
+			<html lang="en">
+				<body className={cn(inter.className, "max-w-screen")}>
+					<ThemeProvider
+						attribute="class"
+						defaultTheme="system"
+						enableSystem
+						disableTransitionOnChange
+					>
+						<Toaster
+							richColors
+							position="top-center"
+						/>
+						{children}
+					</ThemeProvider>
+				</body>
+			</html>
+		</SessionProvider>
+	);
 }
