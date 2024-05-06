@@ -10,12 +10,7 @@ export default function TbButton({ children, asChild, title }: Props) {
 	return (
 		<Dialog>
 			<DialogTrigger asChild={asChild}>
-				<Button
-					size="sm"
-					className="text-secondary-foreground"
-				>
-					{title}
-				</Button>
+				<Button size="sm">{title}</Button>
 			</DialogTrigger>
 			<DialogContent className="w-full lg:w-[400px] grid place-items-center p-1 bg-transparent border-none shadow-sm">
 				{children}

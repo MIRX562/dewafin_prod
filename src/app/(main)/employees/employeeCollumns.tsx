@@ -4,7 +4,7 @@
 import { DataTableColumnHeader } from "@/components/dataTable/ColumnHeader/data-table-column-header";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
-import { status } from "@/types/data-table";
+import { status } from "@/types/tableoption";
 import { Employee } from "@prisma/client";
 import { ColumnDef } from "@tanstack/react-table";
 import { EmployeeDataTableRowActions } from "./employeeRowAction";
