@@ -23,7 +23,7 @@ export default async function RootLayout({
 	return (
 		<SessionProvider session={session}>
 			<html lang="en">
-				<body className={cn(inter.className)}>
+				<body className={cn(inter.className, "max-h-screen")}>
 					<ThemeProvider
 						attribute="class"
 						defaultTheme="system"
