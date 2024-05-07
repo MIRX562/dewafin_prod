@@ -1,4 +1,9 @@
-export const assetMenu: { value: string; label: string }[] = [
+export type Tabs = {
+	value: string;
+	label: string;
+};
+
+export const assetTabs: Tabs[] = [
 	{ value: "all", label: "All" },
 	{ value: "server", label: "Servers" },
 	{ value: "domain", label: "Domains" },

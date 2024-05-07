@@ -1,5 +1,5 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { assetMenu } from "@/types/assets";
+import { assetTabs } from "@/types/tabs";
 import AllTab from "./AllTab";
 import BandwitdhTab from "./BandwitdhTab";
 import DomainTab from "./DomainTab";
@@ -14,7 +14,7 @@ const AssetsPage = () => {
 				className="w-full space-y-2 lg:space-y-6"
 			>
 				<TabsList>
-					{assetMenu.map((item) => (
+					{assetTabs.map((item) => (
 						<TabsTrigger
 							key={item.value}
 							value={item.value}

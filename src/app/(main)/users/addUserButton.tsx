@@ -1,12 +1,12 @@
-import TbButton from "@/components/pageToolbar/tbButton/TbButton";
+import TbButton from "@/components/pageToolbar/tbButton/DialogButton";
 import AddUserForm from "./addUserForm";
 
 const AddUserButton = () => {
-  return (
-    <TbButton title="+ Add User">
-      <AddUserForm />
-    </TbButton>
-  );
+	return (
+		<TbButton title="+ Add User">
+			<AddUserForm />
+		</TbButton>
+	);
 };
 
 export default AddUserButton;

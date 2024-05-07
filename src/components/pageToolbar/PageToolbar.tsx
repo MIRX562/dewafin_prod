@@ -1,14 +1,11 @@
 type ToolProps = {
-	title: String;
 	children: React.ReactNode;
 };
 
-const PageToolbar = ({ title, children }: ToolProps) => {
+const PageToolbar = ({ children }: ToolProps) => {
 	return (
-		<div className="w-full flex flex-col md:flex-row items-center justify-between md:space-x-2 space-y-2 p-2">
-			<div className="w-full flex items-center justify-between md:justify-end space-x-2">
-				{children}
-			</div>
+		<div className="w-full flex flex-col md:flex-row items-center justify-between md:justify-end md:space-x-2 p-2">
+			{children}
 		</div>
 	);
 };

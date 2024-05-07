@@ -66,10 +66,10 @@ export function DataTable<TData, TValue>({
 	});
 
 	return (
-		<div className="flex flex-col justify-center space-y-2 md:space-y-4 p-2">
+		<div className="flex flex-col justify-center space-y-2 md:space-y-4 p-2 overflow-hidden">
 			<DataTableToolbar table={table} />
-			<div className="rounded-md border ">
-				<Table className="">
+			<div className="rounded-md border overflow-y-auto md:max-h-[70svh]">
+				<Table>
 					<TableHeader>
 						{table.getHeaderGroups().map((headerGroup) => (
 							<TableRow key={headerGroup.id}>
