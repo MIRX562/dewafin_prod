@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/card";
 import { CheckIcon, PlusIcon } from "lucide-react";
 
-export default function Component() {
+export default function PlansPage() {
 	return (
 		<>
 			<div className="flex flex-col h-full">
