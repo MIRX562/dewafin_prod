@@ -11,12 +11,12 @@ export const getEmployees = async () => {
 
 export const getEmployeeByEmail = async (email: string) => {
   try {
-    const user = await db.employee.findUnique({
+    const employee = await db.employee.findUnique({
       where: {
         email,
       },
     });
-    return user;
+    return employee;
   } catch (error) {
     return null;
   }
@@ -24,12 +24,12 @@ export const getEmployeeByEmail = async (email: string) => {
 
 export const getEmployeeById = async (id: string) => {
   try {
-    const user = await db.employee.findUnique({
+    const employee = await db.employee.findUnique({
       where: {
         id,
       },
     });
-    return user;
+    return employee;
   } catch (error) {
     return null;
   }

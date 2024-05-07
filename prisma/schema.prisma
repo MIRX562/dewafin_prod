@@ -24,6 +24,7 @@ model User {
   accounts              Account[]
   isTwoFactorEnabled    Boolean                @default(false)
   twoFactorConfirmation TwoFactorConfirmation?
+  files                 File[]
 }
 
 model Account {
@@ -81,10 +82,10 @@ model TwoFactorConfirmation {
 }
 
 model Customer {
-  id        Int     @id @default(autoincrement())
-  email     String  @unique
-  phone     String?
-  address   String?
+  id      Int     @id @default(autoincrement())
+  email   String  @unique
+  phone   String?
+  address String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -117,5 +118,17 @@ model Employee {
   role        EmployeeRole
   isActive    Status       @default(Active)
   hireDate    DateTime
-  // Add more fields as needed
+}
+
+// Define the File model to store file information
+model File {
+  id        Int      @id @default(autoincrement())
+  fileName  String
+  mimeType  String
+  size      Int
+  location  String // Assuming the file location as a string (e.g., file path or URL)
+  createdAt DateTime @default(now())
+
+  User   User?   @relation(fields: [userId], references: [id])
+  userId String?
 }

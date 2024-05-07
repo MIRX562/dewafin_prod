@@ -9,7 +9,7 @@ import UsersTable from "./usersTable";
 export default async function UserPage() {
 	return (
 		<RoleGate allowedRole="ADMIN">
-			<div className="h-full max-w-full flex-1 flex-col space-y-2 lg:space-y-3 p-2 lg:p-4 flex ">
+			<div className="h-full max-w-full flex-1 flex-col space-y-2 lg:space-y-3 flex ">
 				<PageToolbar>
 					<TableExportButton table="user" />
 					<AddUserButton />
