@@ -23,7 +23,8 @@ export default function FileView({ files }: { files: File[] }) {
 		setItemsPerPage(isSmall ? 8 : 16);
 	}, [isSmall, itemsPerPage]);
 
-	const totalPages = Math.ceil(files.length / itemsPerPage);
+	const totalPages =
+		files.length === 0 ? 1 : Math.ceil(files.length / itemsPerPage);
 
 	const handlePageChange = (pageNumber: number) => {
 		setCurrentPage(pageNumber);
