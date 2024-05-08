@@ -13,6 +13,19 @@ enum UserRole {
   MANAGER
 }
 
+enum Status {
+  Active
+  Not_Active
+}
+
+enum Department {
+  Management
+  Technical_Support
+  Customer_Support
+  Sales_Marketing
+  Administration
+}
+
 model User {
   id                    String                 @id @default(cuid())
   name                  String?
@@ -21,13 +34,14 @@ model User {
   image                 String?
   password              String?
   role                  UserRole               @default(USER)
-  accounts              Account[]
   isTwoFactorEnabled    Boolean                @default(false)
   twoFactorConfirmation TwoFactorConfirmation?
+  
+  accounts              Account[]
   files                 File[]
 
-  employee   Employee? @relation(fields:[employeeId], references: [id])
-  employeeId String? @unique
+  employee   Employee? @relation(fields: [employeeId], references: [id])
+  employeeId String?   @unique
 }
 
 model Account {
@@ -45,7 +59,6 @@ model Account {
   session_state     String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
 
   @@unique([provider, providerAccountId])
 }
@@ -85,33 +98,23 @@ model TwoFactorConfirmation {
   @@unique([userId])
 }
 
-enum Status {
-  Active
-  Not_Active
-}
-
-enum EmployeeRole {
-  CEO
-  COO
-  Technical_Support
-  Customer_Support
-  Sales_Marketing
-  Administration
-}
-
 model Employee {
-  id          String       @id @default(cuid())
+  id          String     @id @default(cuid())
   firstName   String
   lastName    String
-  email       String       @unique
+  email       String     @unique
   phoneNumber String
-  role        EmployeeRole
-  isActive    Status       @default(Active)
+  role        Department
+  isActive    Status     @default(Active)
   hireDate    DateTime
-  createdAt   DateTime @default(now())
+  createdAt   DateTime   @default(now())
 
-  user User? 
+  user   User?
   userId String
+
+  report Report[]
+
+  @@unique([id, role])
 }
 
 model File {
@@ -119,9 +122,51 @@ model File {
   fileName  String
   mimeType  String
   size      Int
-  location  String 
+  location  String
   createdAt DateTime @default(now())
 
   User   User?   @relation(fields: [userId], references: [id])
   userId String?
+}
+
+model Category {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+
+  products Product[] 
+}
+
+model Product {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
+  description String?
+  categoryId  Int
+  category    Category @relation(fields: [categoryId], references: [id])
+
+  plans Plan[] 
+}
+
+model Plan {
+  id          Int     @id @default(autoincrement())
+  name        String  @unique
+  price       Decimal @default(0.00)
+  description String?
+  specification Json?
+  mainFeature Json?
+  additionalFeature Json?
+
+  product     Product @relation(fields: [productId], references: [id])
+  productId   Int
+}
+
+model Report {
+  id          Int        @id @default(autoincrement())
+  title       String     @unique
+  description String
+  filePath    String
+  department  Department
+  createdAt   DateTime   @default(now())
+
+  employee   Employee @relation(fields: [employeeId], references: [id])
+  employeeId String
 }

@@ -1,17 +1,15 @@
-// menuItems.ts
 import {
-	AreaChart,
-	BarChart,
-	FolderDot,
-	ScrollText,
-	Server,
-	Settings,
-	Tag,
-	User,
-	UserCog,
+	AreaChartIcon,
+	BoxesIcon,
+	FolderDotIcon,
+	ScrollTextIcon,
+	ServerIcon,
+	SettingsIcon,
+	SquareGanttChart,
+	UserCogIcon,
+	UserIcon,
 } from "lucide-react";
 
-// Define the interface for menu items
 export interface NavItem {
 	icon: React.ElementType;
 	text: string;
@@ -19,50 +17,49 @@ export interface NavItem {
 	badge?: number;
 }
 
-// Define the array of menu items
 export const navItems: NavItem[] = [
 	{
-		icon: AreaChart, // Lucidity icon for dashboard
+		icon: AreaChartIcon,
 		text: "Dashboard",
 		href: "/dashboard",
 	},
 	{
-		icon: Server, // Lucidity icon for server management
+		icon: ServerIcon,
 		text: "Assets",
 		href: "/asets",
 	},
 	{
-		icon: BarChart, // Lucidity icon for reports
+		icon: SquareGanttChart,
 		text: "Reports",
 		href: "/reports",
 	},
 	{
-		icon: Tag, // Lucidity icon for user management
-		text: "Plans",
-		href: "/plans",
+		icon: BoxesIcon,
+		text: "Products",
+		href: "/products",
 	},
 	{
-		icon: FolderDot, // Lucidity icon for files
+		icon: FolderDotIcon,
 		text: "Files",
 		href: "/files",
 	},
 	{
-		icon: User, // Lucidity icon for user management
+		icon: UserIcon,
 		text: "Employees",
 		href: "/employees",
 	},
 	{
-		icon: UserCog, // Lucidity icon for user management
+		icon: UserCogIcon,
 		text: "Users",
 		href: "/users",
 	},
 	{
-		icon: Settings, // Lucidity icon for settings
+		icon: SettingsIcon,
 		text: "Setting",
 		href: "/settings",
 	},
 	{
-		icon: ScrollText, // Lucidity icon for user management
+		icon: ScrollTextIcon,
 		text: "Logs",
 		href: "/logs",
 	},
