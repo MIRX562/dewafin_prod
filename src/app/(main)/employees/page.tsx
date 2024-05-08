@@ -8,17 +8,17 @@ import EmployeesTable from "./employeesTable";
 
 export default async function EmployeesPage() {
   return (
-    <div className="h-full flex flex-col">
-      <div className="h-full w-full flex-1 flex-col space-y-3 flex overflow-y-auto">
-        <PageToolbar>
-          <TableImportButton />
-          <TableExportButton table="employee" />
-          <AddEmployeeButton />
-        </PageToolbar>
-        <Suspense fallback={<Loading />}>
-          <EmployeesTable />
-        </Suspense>
-      </div>
-    </div>
-  );
+		<div className="h-full flex flex-col">
+			<div className="h-full max-w-full flex-1 flex-col space-y-3 flex ">
+				<PageToolbar>
+					<TableImportButton />
+					<TableExportButton table="employee" />
+					<AddEmployeeButton />
+				</PageToolbar>
+				<Suspense fallback={<Loading />}>
+					<EmployeesTable />
+				</Suspense>
+			</div>
+		</div>
+	);
 }
