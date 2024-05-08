@@ -22,7 +22,7 @@ export const getFileByUseId = async (userId: string) => {
 	}
 };
 
-export const getFileById = async (id: string) => {
+export const getFileById = async (id: number) => {
 	try {
 		const file = await db.file.findUnique({
 			where: {

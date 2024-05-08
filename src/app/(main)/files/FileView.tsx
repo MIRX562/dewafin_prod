@@ -16,7 +16,7 @@ import UploadButton from "./FileUploadButton";
 export default function FileView({ files }: { files: File[] }) {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [itemsPerPage, setItemsPerPage] = useState(8);
-	const isSmall = useMediaQuery(768);
+	const isSmall = useMediaQuery(600);
 
 	useEffect(() => {
 		// Update items per page based on screen size

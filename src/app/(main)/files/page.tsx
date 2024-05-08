@@ -6,7 +6,7 @@ export default async function FileArchivePage() {
 
 	return (
 		<div className="flex flex-col w-full h-full overscroll-">
-			<FileView files={files} />
+			<FileView files={files as any} />
 		</div>
 	);
 }
