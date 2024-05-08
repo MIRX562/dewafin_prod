@@ -13,7 +13,7 @@
 CREATE TYPE "Status" AS ENUM ('Active', 'Not_Active');
 
 -- CreateEnum
-CREATE TYPE "EmployeeRole" AS ENUM ('CEO', 'COO', 'Technical_Support', 'Customer_Support', 'Sales_Marketing', 'Administration');
+CREATE TYPE "Department" AS ENUM ('CEO', 'COO', 'Technical_Support', 'Customer_Support', 'Sales_Marketing', 'Administration');
 
 -- AlterEnum
 ALTER TYPE "UserRole" ADD VALUE 'MANAGER';
@@ -58,7 +58,7 @@ CREATE TABLE "Employee" (
     "lastName" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "phoneNumber" TEXT NOT NULL,
-    "role" "EmployeeRole" NOT NULL,
+    "role" "Department" NOT NULL,
     "isActive" "Status" NOT NULL DEFAULT 'Active',
     "hireDate" TIMESTAMP(3) NOT NULL,
 

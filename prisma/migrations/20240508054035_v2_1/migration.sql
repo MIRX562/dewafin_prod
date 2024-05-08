@@ -13,7 +13,7 @@ ALTER TABLE "Employee" DROP COLUMN "role",
 ADD COLUMN     "role" "Department" NOT NULL;
 
 -- DropEnum
-DROP TYPE "EmployeeRole";
+DROP TYPE "Department";
 
 -- CreateTable
 CREATE TABLE "Category" (

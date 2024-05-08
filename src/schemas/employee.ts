@@ -1,33 +1,35 @@
-import { EmployeeRole, Status } from "@prisma/client";
+import { Department, Status } from "@prisma/client";
 import { z } from "zod";
 
-// Define Zod schema for the Employee model
 export const EmployeeSchema = z.object({
-  id: z.string(),
-  firstName: z.string(),
-  lastName: z.string(),
-  email: z.string(),
-  phoneNumber: z.string(),
-  role: z.nativeEnum(EmployeeRole),
-  isActive: z.nativeEnum(Status),
-  hireDate: z.date(),
+	id: z.string(),
+	firstName: z.string(),
+	lastName: z.string(),
+	email: z.string(),
+	phoneNumber: z.string(),
+	role: z.nativeEnum(Department),
+	isActive: z.nativeEnum(Status),
+	hireDate: z.date(),
+	userId: z.string(),
 });
 export const AddEmployeeSchema = z.object({
-  firstName: z.string(),
-  lastName: z.string(),
-  email: z.string(),
-  phoneNumber: z.string(),
-  role: z.nativeEnum(EmployeeRole),
-  hireDate: z.date(),
+	firstName: z.string(),
+	lastName: z.string(),
+	email: z.string(),
+	phoneNumber: z.string(),
+	role: z.nativeEnum(Department),
+	hireDate: z.date(),
+	userId: z.string(),
 });
 export const EditEmployeeSchema = z.object({
-  firstName: z.string(),
-  lastName: z.string(),
-  email: z.string(),
-  phoneNumber: z.string(),
-  role: z.nativeEnum(EmployeeRole),
-  isActive: z.nativeEnum(Status),
-  hireDate: z.date(),
+	firstName: z.string(),
+	lastName: z.string(),
+	email: z.string(),
+	phoneNumber: z.string(),
+	role: z.nativeEnum(Department),
+	isActive: z.nativeEnum(Status),
+	hireDate: z.date(),
+	userId: z.string(),
 });
 
 export type Employee = z.infer<typeof EmployeeSchema>;

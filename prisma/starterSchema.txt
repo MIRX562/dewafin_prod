@@ -86,7 +86,7 @@ enum Status {
   Not_Active
 }
 
-enum EmployeeRole {
+enum Department {
   CEO
   COO
   Technical_Support
@@ -101,7 +101,7 @@ model Employee {
   lastName    String
   email       String       @unique
   phoneNumber String
-  role        EmployeeRole
+  role        Department
   isActive    Status       @default(Active)
   hireDate    DateTime
   createdAt   DateTime @default(now())
