@@ -25,9 +25,6 @@ model User {
   isTwoFactorEnabled    Boolean                @default(false)
   twoFactorConfirmation TwoFactorConfirmation?
   files                 File[]
-
-  employee   Employee? @relation(fields:[employeeId], references: [id])
-  employeeId String? @unique
 }
 
 model Account {
@@ -45,7 +42,6 @@ model Account {
   session_state     String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
 
   @@unique([provider, providerAccountId])
 }
@@ -109,11 +105,9 @@ model Employee {
   isActive    Status       @default(Active)
   hireDate    DateTime
   createdAt   DateTime @default(now())
-
-  user User? 
-  userId String
 }
 
+// Define the File model to store file information
 model File {
   id        Int      @id @default(autoincrement())
   fileName  String
