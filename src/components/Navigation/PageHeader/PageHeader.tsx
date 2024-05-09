@@ -4,14 +4,14 @@ import { Separator } from "@/components/ui/separator";
 import { usePathname } from "next/navigation";
 
 const PageHeader = () => {
-  const path = usePathname();
+	const path = usePathname();
 
-  return (
-    <div className="flex flex-col">
-      <Breadcrumbs path={path} />
-      <Separator />
-    </div>
-  );
+	return (
+		<div className="flex flex-col">
+			<Breadcrumbs path={path} />
+			<Separator />
+		</div>
+	);
 };
 
 export default PageHeader;

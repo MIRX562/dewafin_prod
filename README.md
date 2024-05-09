@@ -1,4 +1,4 @@
-# DewaMin
+# DewaPedia
 
 "admin dashboard tailored for ...."
 
@@ -139,7 +139,7 @@ sequenceDiagram
 # Folder Structure
 
 ```bash
-dewamin(root)
+DewaPedia(root)
 ├───prisma
 ├───public
 ├───src

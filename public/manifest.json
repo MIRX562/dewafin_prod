@@ -1,6 +1,5 @@
 {
-	"id": 1.1,
-	"name": "DewaMin",
+	"name": "DewaPedia",
 	"short_name": "DM",
 	"icons": [
 		{
@@ -20,9 +19,9 @@
 			"type": "image/png"
 		}
 	],
-	"theme_color": "#007be3",
-	"background_color": "#007be3",
+	"theme_color": "#fefbec",
+	"background_color": "#112838",
 	"start_url": "/dashboard",
 	"display": "standalone",
-	"orientation": "any"
+	"orientation": "natural"
 }

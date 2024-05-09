@@ -12,11 +12,11 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
 	manifest: "/manifest.json",
 
-	title: "DewaMin",
+	title: "Dewa Pedia",
 	description: "An Admin Dashboard",
 };
 export const viewport: Viewport = {
-	themeColor: "#007be3",
+	themeColor: "#fefbec",
 };
 
 export default async function RootLayout({
