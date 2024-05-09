@@ -1,4 +1,5 @@
 {
+	"id": 1.1,
 	"name": "DewaMin",
 	"short_name": "DM",
 	"icons": [
@@ -21,7 +22,7 @@
 	],
 	"theme_color": "#007be3",
 	"background_color": "#007be3",
-	"start_url": "/",
+	"start_url": "/dashboard",
 	"display": "standalone",
-	"orientation": "portrait"
+	"orientation": "any"
 }

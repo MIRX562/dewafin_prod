@@ -2,7 +2,7 @@ import { ThemeProvider } from "@/components/themeProvider/ThemeProvider";
 import { Toaster } from "@/components/ui/sonner";
 import { auth } from "@/lib/auth";
 import { cn } from "@/lib/utils";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { SessionProvider } from "next-auth/react";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -14,6 +14,9 @@ export const metadata: Metadata = {
 
 	title: "DewaMin",
 	description: "An Admin Dashboard",
+};
+export const viewport: Viewport = {
+	themeColor: "#007be3",
 };
 
 export default async function RootLayout({
