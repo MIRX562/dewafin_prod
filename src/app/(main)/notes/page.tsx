@@ -54,7 +54,7 @@ export default function NotePage() {
 	}
 
 	return (
-		<div className="pt-2 md:pt-4">
+		<div className="pt-2 md:pt-4 px-2">
 			<header className="flex h-14 items-center justify-center">
 				<div className="relative w-full max-w-md">
 					<SearchIcon className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500 dark:text-gray-400" />
@@ -67,8 +67,8 @@ export default function NotePage() {
 					/>
 				</div>
 			</header>
-			<main className="container px-4 md:px-6 py-2 space-y-2 md:space-y-4">
-				<div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+			<main className="py-2 space-y-2 md:space-y-4">
+				<div className="grid gap-2 md:gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
 					{currentItems.map((note, index) => (
 						<NoteCard
 							key={index}

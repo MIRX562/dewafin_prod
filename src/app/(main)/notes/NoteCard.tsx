@@ -7,7 +7,7 @@ export type NoteCardProps = {
 	content: string;
 	updatedAt: string;
 	updatedTime: string;
-}
+};
 
 export const NoteCard: React.FC<NoteCardProps> = ({
 	title,
