@@ -1,72 +1,72 @@
 import {
-	AreaChartIcon,
-	BoxesIcon,
-	FolderDotIcon,
-	NotebookTextIcon,
-	ScrollTextIcon,
-	ServerIcon,
-	SettingsIcon,
-	SquareGanttChart,
-	UserCogIcon,
-	UserIcon,
+  AreaChartIcon,
+  BoxesIcon,
+  FolderDotIcon,
+  NotebookTextIcon,
+  ScrollTextIcon,
+  ServerIcon,
+  SettingsIcon,
+  SquareGanttChart,
+  UserCogIcon,
+  UserIcon,
 } from "lucide-react";
 
 export interface NavItem {
-	icon: React.ElementType;
-	text: string;
-	href: string;
-	badge?: number;
+  icon: React.ElementType;
+  text: string;
+  href: string;
+  badge?: number;
 }
 
 export const navItems: NavItem[] = [
-	{
-		icon: AreaChartIcon,
-		text: "Dashboard",
-		href: "/dashboard",
-	},
-	{
-		icon: ServerIcon,
-		text: "Assets",
-		href: "/asets",
-	},
-	{
-		icon: SquareGanttChart,
-		text: "Reports",
-		href: "/reports",
-	},
-	{
-		icon: BoxesIcon,
-		text: "Products",
-		href: "/products",
-	},
-	{
-		icon: NotebookTextIcon,
-		text: "Notes",
-		href: "/notes",
-	},
-	{
-		icon: FolderDotIcon,
-		text: "Files",
-		href: "/files",
-	},
-	{
-		icon: UserIcon,
-		text: "Employees",
-		href: "/employees",
-	},
-	{
-		icon: UserCogIcon,
-		text: "Users",
-		href: "/users",
-	},
-	{
-		icon: SettingsIcon,
-		text: "Setting",
-		href: "/settings",
-	},
-	{
-		icon: ScrollTextIcon,
-		text: "Logs",
-		href: "/logs",
-	},
+  {
+    icon: AreaChartIcon,
+    text: "Dashboard",
+    href: "/dashboard",
+  },
+  {
+    icon: ServerIcon,
+    text: "Assets",
+    href: "/asets",
+  },
+  {
+    icon: SquareGanttChart,
+    text: "Reports",
+    href: "/reports",
+  },
+  {
+    icon: BoxesIcon,
+    text: "Products",
+    href: "/products",
+  },
+  {
+    icon: NotebookTextIcon,
+    text: "Notes",
+    href: "/notes",
+  },
+  {
+    icon: FolderDotIcon,
+    text: "Files",
+    href: "/files",
+  },
+  {
+    icon: UserIcon,
+    text: "Employees",
+    href: "/employees",
+  },
+  {
+    icon: UserCogIcon,
+    text: "Users",
+    href: "/users",
+  },
+  {
+    icon: SettingsIcon,
+    text: "Setting",
+    href: "/settings",
+  },
+  {
+    icon: ScrollTextIcon,
+    text: "Logs",
+    href: "/logs",
+  },
 ];

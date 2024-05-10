@@ -1,7 +1,7 @@
 export default function PerCategoryPage({
-	params,
+  params,
 }: {
-	params: { category: string };
+  params: { category: string };
 }) {
-	return <div>PerCategoryPage</div>;
+  return <div>PerCategoryPage</div>;
 }
