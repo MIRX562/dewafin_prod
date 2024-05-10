@@ -2,6 +2,7 @@ import {
 	AreaChartIcon,
 	BoxesIcon,
 	FolderDotIcon,
+	NotebookTextIcon,
 	ScrollTextIcon,
 	ServerIcon,
 	SettingsIcon,
@@ -37,6 +38,11 @@ export const navItems: NavItem[] = [
 		icon: BoxesIcon,
 		text: "Products",
 		href: "/products",
+	},
+	{
+		icon: NotebookTextIcon,
+		text: "Notes",
+		href: "/notes",
 	},
 	{
 		icon: FolderDotIcon,
