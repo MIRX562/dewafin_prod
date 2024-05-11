@@ -36,9 +36,11 @@ model User {
   role                  UserRole               @default(USER)
   isTwoFactorEnabled    Boolean                @default(false)
   twoFactorConfirmation TwoFactorConfirmation?
-  
-  accounts              Account[]
-  files                 File[]
+
+  accounts Account[]
+  files    File[]
+  notes    Note[]
+  reports  Report[]
 
   employee   Employee? @relation(fields: [employeeId], references: [id])
   employeeId String?   @unique
@@ -132,8 +134,9 @@ model File {
 model Category {
   id   Int    @id @default(autoincrement())
   name String @unique
+  createdAt DateTime @default(now())
 
-  products Product[] 
+  products Product[]
 }
 
 model Product {
@@ -141,32 +144,48 @@ model Product {
   name        String   @unique
   description String?
   categoryId  Int
+  createdAt DateTime @default(now())
+
   category    Category @relation(fields: [categoryId], references: [id])
 
-  plans Plan[] 
+  plans Plan[]
 }
 
 model Plan {
-  id          Int     @id @default(autoincrement())
-  name        String  @unique
-  price       Decimal @default(0.00)
-  description String?
-  specification Json?
-  mainFeature Json?
+  id                Int     @id @default(autoincrement())
+  name              String  @unique
+  price             Decimal @default(0.00)
+  description       String?
+  specification     Json?
+  mainFeature       Json?
   additionalFeature Json?
+  createdAt DateTime @default(now())
 
-  product     Product @relation(fields: [productId], references: [id])
-  productId   Int
+  product   Product @relation(fields: [productId], references: [id])
+  productId Int
 }
 
 model Report {
   id          Int        @id @default(autoincrement())
+  userId      String
   title       String     @unique
   description String
   filePath    String
   department  Department
   createdAt   DateTime   @default(now())
 
-  employee   Employee @relation(fields: [employeeId], references: [id])
-  employeeId String
+  user       User      @relation(fields: [userId], references: [id])
+  Employee   Employee? @relation(fields: [employeeId], references: [id])
+  employeeId String?
+}
+
+model Note {
+  id        String   @id @default(cuid())
+  title     String
+  userId    String
+  content   String?
+  createdAt DateTime @default(now())
+  lastEdit  DateTime
+
+  user User @relation(fields: [userId], references: [id])
 }
