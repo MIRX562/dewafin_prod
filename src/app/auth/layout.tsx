@@ -1,13 +1,13 @@
 import React from "react";
 
 export default function AuthLayout({
-	children,
+  children,
 }: {
-	children: React.ReactNode;
+  children: React.ReactNode;
 }) {
-	return (
-		<div className="h-full flex items-center justify-center bg-background">
-			{children}
-		</div>
-	);
+  return (
+    <div className="h-full flex items-center justify-center bg-background">
+      {children}
+    </div>
+  );
 }

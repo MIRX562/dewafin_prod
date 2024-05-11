@@ -13,8 +13,8 @@ import usePagination from "@/hooks/usePagination";
 import { PlusCircleIcon, SearchIcon } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { NoteCard } from "./_components/NoteCard";
 import { mockNoteData } from "./mock";
-import { NoteCard } from "./NoteCard";
 
 export default function NotePage() {
 	const [searchTerm, setSearchTerm] = useState("");

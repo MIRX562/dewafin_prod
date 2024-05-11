@@ -1,4 +1,4 @@
-import { ThemeProvider } from "@/components/themeProvider/ThemeProvider";
+import { ThemeProvider } from "@/components/common/tool/ThemeProvider";
 import { Toaster } from "@/components/ui/sonner";
 import { auth } from "@/lib/auth";
 import { cn } from "@/lib/utils";
@@ -10,36 +10,39 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  manifest: "/manifest.json",
+	manifest: "/manifest.json",
 
-  title: "Dewa Pedia",
-  description: "An Admin Dashboard",
+	title: "Dewa Pedia",
+	description: "An Admin Dashboard",
 };
 export const viewport: Viewport = {
-  themeColor: "#fefbec",
+	themeColor: "#fefbec",
 };
 
 export default async function RootLayout({
-  children,
+	children,
 }: Readonly<{
-  children: React.ReactNode;
+	children: React.ReactNode;
 }>) {
-  const session = await auth();
-  return (
-    <SessionProvider session={session}>
-      <html lang="en">
-        <body className={cn(inter.className)}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <Toaster richColors position="top-center" />
-            {children}
-          </ThemeProvider>
-        </body>
-      </html>
-    </SessionProvider>
-  );
+	const session = await auth();
+	return (
+		<SessionProvider session={session}>
+			<html lang="en">
+				<body className={cn(inter.className)}>
+					<ThemeProvider
+						attribute="class"
+						defaultTheme="system"
+						enableSystem
+						disableTransitionOnChange
+					>
+						<Toaster
+							richColors
+							position="top-center"
+						/>
+						{children}
+					</ThemeProvider>
+				</body>
+			</html>
+		</SessionProvider>
+	);
 }

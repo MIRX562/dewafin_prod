@@ -1,6 +1,5 @@
-import EmailVerificationForm from "@/components/authComponents/emailVerificationForm/EmailVerificationForm";
-import React from "react";
+import EmailVerificationForm from "@/components/auth/form/EmailVerificationForm";
 
 export default function newVerificationPage() {
-  return <EmailVerificationForm />;
+	return <EmailVerificationForm />;
 }

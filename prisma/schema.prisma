@@ -18,6 +18,12 @@ enum Status {
   Not_Active
 }
 
+enum TaskStatus {
+  TODO
+  IN_PROGRESS
+  FINISHED
+}
+
 enum Department {
   Management
   Technical_Support
@@ -27,23 +33,25 @@ enum Department {
 }
 
 model User {
-  id                    String                 @id @default(cuid())
-  name                  String?
-  email                 String?                @unique
-  emailVerified         DateTime?
-  image                 String?
-  password              String?
-  role                  UserRole               @default(USER)
-  isTwoFactorEnabled    Boolean                @default(false)
+  id                 String    @id @default(cuid())
+  name               String?
+  email              String?   @unique
+  emailVerified      DateTime?
+  image              String?
+  password           String?
+  role               UserRole  @default(USER)
+  isTwoFactorEnabled Boolean   @default(false)
+
   twoFactorConfirmation TwoFactorConfirmation?
+  employee              Employee?
+  accounts              Account[]
+  reports               Report[]
+  files                 File[]
+  notes                 Note[]
+  tasks                 Task[]
 
-  accounts Account[]
-  files    File[]
-  notes    Note[]
-  reports  Report[]
-
-  employee   Employee? @relation(fields: [employeeId], references: [id])
-  employeeId String?   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Account {
@@ -62,9 +70,134 @@ model Account {
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
   @@unique([provider, providerAccountId])
 }
 
+model Employee {
+  id          String     @id @default(cuid())
+  userId      String     @unique
+  firstName   String
+  lastName    String
+  email       String     @unique
+  phoneNumber String
+  role        Department
+  isActive    Status     @default(Active)
+  hireDate    DateTime
+
+  report Report[]
+  task   Task[]
+
+  user User? @relation(fields: [userId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([id, role])
+}
+
+model File {
+  id       Int     @id @default(autoincrement())
+  userId   String?
+  fileName String
+  mimeType String
+  size     Int
+  location String
+
+  User User? @relation(fields: [userId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Category {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+
+  products Product[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Product {
+  id          Int     @id @default(autoincrement())
+  name        String  @unique
+  description String?
+  categoryId  Int
+
+  plans Plan[]
+
+  category Category @relation(fields: [categoryId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Plan {
+  id                Int     @id @default(autoincrement())
+  name              String  @unique
+  price             Decimal @default(0.00)
+  description       String?
+  specification     Json?
+  mainFeature       Json?
+  additionalFeature Json?
+  productId         Int
+
+  product Product @relation(fields: [productId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Report {
+  id          Int        @id @default(autoincrement())
+  userId      String
+  employeeId  String?
+  title       String     @unique
+  description String?
+  filePath    String
+  department  Department
+
+  user     User      @relation(fields: [userId], references: [id])
+  Employee Employee? @relation(fields: [employeeId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Note {
+  id      String  @id @default(cuid())
+  userId  String
+  title   String
+  content String?
+
+  user User @relation(fields: [userId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Task {
+  id          Int        @id @default(autoincrement())
+  userId      String
+  title       String
+  description String?
+  startDate   DateTime
+  endDate     DateTime
+  status      TaskStatus
+  employeeId  String
+
+  user     User?    @relation(fields: [userId], references: [id])
+  employee Employee @relation(fields: [employeeId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ? For Auth Purposes
 model VerificationToken {
   id      String   @id @default(cuid())
   email   String
@@ -98,94 +231,4 @@ model TwoFactorConfirmation {
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId])
-}
-
-model Employee {
-  id          String     @id @default(cuid())
-  firstName   String
-  lastName    String
-  email       String     @unique
-  phoneNumber String
-  role        Department
-  isActive    Status     @default(Active)
-  hireDate    DateTime
-  createdAt   DateTime   @default(now())
-
-  user   User?
-  userId String
-
-  report Report[]
-
-  @@unique([id, role])
-}
-
-model File {
-  id        Int      @id @default(autoincrement())
-  fileName  String
-  mimeType  String
-  size      Int
-  location  String
-  createdAt DateTime @default(now())
-
-  User   User?   @relation(fields: [userId], references: [id])
-  userId String?
-}
-
-model Category {
-  id   Int    @id @default(autoincrement())
-  name String @unique
-  createdAt DateTime @default(now())
-
-  products Product[]
-}
-
-model Product {
-  id          Int      @id @default(autoincrement())
-  name        String   @unique
-  description String?
-  categoryId  Int
-  createdAt DateTime @default(now())
-
-  category    Category @relation(fields: [categoryId], references: [id])
-
-  plans Plan[]
-}
-
-model Plan {
-  id                Int     @id @default(autoincrement())
-  name              String  @unique
-  price             Decimal @default(0.00)
-  description       String?
-  specification     Json?
-  mainFeature       Json?
-  additionalFeature Json?
-  createdAt DateTime @default(now())
-
-  product   Product @relation(fields: [productId], references: [id])
-  productId Int
-}
-
-model Report {
-  id          Int        @id @default(autoincrement())
-  userId      String
-  title       String     @unique
-  description String
-  filePath    String
-  department  Department
-  createdAt   DateTime   @default(now())
-
-  user       User      @relation(fields: [userId], references: [id])
-  Employee   Employee? @relation(fields: [employeeId], references: [id])
-  employeeId String?
-}
-
-model Note {
-  id        String   @id @default(cuid())
-  title     String
-  userId    String
-  content   String?
-  createdAt DateTime @default(now())
-  lastEdit  DateTime
-
-  user User @relation(fields: [userId], references: [id])
 }
