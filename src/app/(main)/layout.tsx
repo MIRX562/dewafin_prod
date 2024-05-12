@@ -14,7 +14,7 @@ export default function layout({
 				<NavHeader />
 				<PageHeader />
 				<main className="flex-grow overflow-y-auto">
-					<div className="h-full flex flex-col p-1 md:p-3 lg:p-6">
+					<div className="h-full flex-1 flex-col p-1 md:p-4 lg:p-6 flex">
 						{children}
 					</div>
 				</main>

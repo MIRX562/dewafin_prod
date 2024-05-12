@@ -8,8 +8,8 @@ import EmployeesTable from "./_components/employeesTable";
 
 export default async function EmployeesPage() {
 	return (
-		<div className="h-full flex flex-col">
-			<div className="h-full max-w-full flex-1 flex-col space-y-3 flex ">
+		<div className="h-full flex-1 flex-col p-1 flex">
+			<div className="flex items-center justify-between space-y-2">
 				<PageToolbar>
 					<TableImportButton />
 					<TableExportButton table="employee" />

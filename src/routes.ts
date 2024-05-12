@@ -7,15 +7,14 @@ export const publicRoutes = ["/", "/auth/verify-email"];
 
 /**
  * An array of routes used for user authentication processes.
- * Users attempting to access these routes will be redirected to the settings page upon successful authentication.
  * @type {string[]}
  */
 export const authRoutes = [
-  "/auth/login",
-  "/auth/register",
-  "/auth/error",
-  "/auth/reset",
-  "/auth/new-password",
+	"/auth/login",
+	"/auth/register",
+	"/auth/error",
+	"/auth/reset",
+	"/auth/new-password",
 ];
 
 /**
