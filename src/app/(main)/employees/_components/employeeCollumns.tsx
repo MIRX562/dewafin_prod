@@ -4,13 +4,13 @@
 import { DataTableColumnHeader } from "@/components/common/table/data-table-column-header";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
-import { status } from "@/types/tableOption";
 import { Employee } from "@prisma/client";
 import { ColumnDef } from "@tanstack/react-table";
 import { EmployeeDataTableRowActions } from "./employeeRowAction";
+import { status } from "./employeeTableOption";
 
 export const employeeColumns: ColumnDef<Employee>[] = [
-	// todo Make batch actions
+	// todo Make batch actions!!
 	{
 		id: "select",
 		header: ({ table }) => (
