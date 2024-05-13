@@ -3,13 +3,13 @@
 // import { Checkbox } from '@/components/ui/checkbox';
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
-import { state, userRoles } from "@/types/tableOption";
 import { User } from "@prisma/client";
 import { ColumnDef } from "@tanstack/react-table";
 import { CircleUser } from "lucide-react";
 import Image from "next/image";
 import { DataTableColumnHeader } from "../../../../components/common/table/data-table-column-header";
 import { UserDataTableRowActions } from "./userRowAction";
+import { state, userRoles } from "./userTableOption";
 
 export const userColumns: ColumnDef<User>[] = [
 	//todo Make batch actions
