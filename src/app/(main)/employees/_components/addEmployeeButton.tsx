@@ -1,5 +1,5 @@
 import TbButton from "@/components/common/buttons/DialogButton";
-import AddEmployeeForm from "./addEmployeeForm";
+import AddEmployeeForm from "./form/addEmployeeForm";
 
 const AddEmployeeButton = () => {
 	return (

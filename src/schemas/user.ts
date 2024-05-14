@@ -14,6 +14,7 @@ export const UserSchema = z.object({
 	image: z.string().nullable(),
 	role: z.nativeEnum(UserRole).default(UserRole.USER),
 	isTwoFactorEnabled: z.boolean().default(false),
+	employeeId: z.optional(z.string().nullable()),
 });
 
 export const AddUserSchema = z.object({
@@ -36,6 +37,7 @@ export const AddUserSchema = z.object({
 	image: z.string().optional(),
 	role: z.nativeEnum(UserRole).default(UserRole.USER),
 	isTwoFactorEnabled: z.boolean().default(false),
+	employeeId: z.optional(z.string()),
 });
 export const EditUserSchema = z.object({
 	name: z
@@ -48,6 +50,7 @@ export const EditUserSchema = z.object({
 	image: z.string().optional(),
 	role: z.nativeEnum(UserRole).default(UserRole.USER),
 	isTwoFactorEnabled: z.boolean().default(false),
+	employeeId: z.optional(z.string()),
 });
 
 export type User = z.infer<typeof UserSchema>;

@@ -1,7 +1,6 @@
 import DialogButton from "@/components/common/buttons/DialogButton";
-import { getDateRangeString } from "@/lib/utils";
 import { Task } from "@prisma/client";
-import { CalendarDaysIcon } from "lucide-react";
+import TaskCard from "./TaskCard";
 
 type Props = {
 	title: string;
@@ -16,20 +15,11 @@ const TodoList = ({ title, tasks }: Props) => {
 				<DialogButton title="+">l</DialogButton>
 			</div>
 			<div className="p-4 space-y-2 overflow-auto max-h-[400px]">
-				{tasks.map((rask, index: number) => (
-					<div
+				{tasks.map((task, index: number) => (
+					<TaskCard
 						key={index}
-						className="cursor-pointer rounded-md bg-gray-100 p-3 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700"
-					>
-						<h4 className="font-semibold">{rask.title}</h4>
-						<p className="text-sm text-gray-500 dark:text-gray-400">
-							{rask.description}
-						</p>
-						<div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-							<CalendarDaysIcon className="h-4 w-4" />
-							<span>{getDateRangeString(rask.startDate, rask.endDate)}</span>
-						</div>
-					</div>
+						task={task}
+					/>
 				))}
 			</div>
 		</div>

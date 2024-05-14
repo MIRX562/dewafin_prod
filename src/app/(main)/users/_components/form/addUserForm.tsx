@@ -24,14 +24,15 @@ import { Switch } from "@/components/ui/switch";
 import { AddUser, AddUserSchema } from "@/schemas/user";
 import { addUser } from "@/server-actions/user";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { UserRole } from "@prisma/client";
-import { useState, useTransition } from "react";
+import { Employee, UserRole } from "@prisma/client";
+import { useEffect, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 
 const AddUserForm = () => {
 	const [success, setSuccess] = useState<string | undefined>("");
 	const [error, setError] = useState<string | undefined>("");
 	const [isPending, startTransition] = useTransition();
+	const [employees, setEmployees] = useState([]);
 
 	const form = useForm<AddUser>({
 		resolver: zodResolver(AddUserSchema),
@@ -55,6 +56,22 @@ const AddUserForm = () => {
 			});
 		});
 	};
+
+	// Fetch employees
+	useEffect(() => {
+		const fetchEmployees = async () => {
+			try {
+				const response = await fetch("/api/data/employee/lonely");
+				const data = await response.json();
+				setEmployees(data);
+			} catch (error) {
+				console.error("Error fetching employees:", error);
+			}
+		};
+
+		fetchEmployees();
+	}, []);
+
 	return (
 		<DataFormWrapper title="Create New User">
 			<Form {...form}>
@@ -152,6 +169,36 @@ const AddUserForm = () => {
 											<SelectItem value={UserRole.ADMIN}>Admin</SelectItem>
 											<SelectItem value={UserRole.USER}>User</SelectItem>
 											<SelectItem value={UserRole.MANAGER}>Manager</SelectItem>
+										</SelectContent>
+									</Select>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+						<FormField
+							control={form.control}
+							name="employeeId"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>Employee Data</FormLabel>
+									<Select
+										disabled={isPending}
+										onValueChange={field.onChange}
+									>
+										<FormControl>
+											<SelectTrigger>
+												<SelectValue placeholder="Select related employee" />
+											</SelectTrigger>
+										</FormControl>
+										<SelectContent>
+											{employees.map((employee: Employee) => (
+												<SelectItem
+													key={employee.id}
+													value={employee.id}
+												>
+													{`${employee.firstName} ${employee.lastName}`}
+												</SelectItem>
+											))}
 										</SelectContent>
 									</Select>
 									<FormMessage />

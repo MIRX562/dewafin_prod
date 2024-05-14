@@ -14,7 +14,7 @@ const TaskNavBar = () => {
 	const role = useCurrentRole();
 
 	return (
-		<NavigationMenu className={role === "USER" ? "hidden" : ""}>
+		<NavigationMenu className={role !== "MANAGER" ? "hidden" : ""}>
 			<NavigationMenuList>
 				{task.map((menu) => (
 					<NavigationMenuItem key={menu.label}>

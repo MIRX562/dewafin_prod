@@ -38,28 +38,6 @@ enum Department {
   Administration
 }
 
-model User {
-  id                 String    @id @default(cuid())
-  name               String
-  email              String   @unique
-  emailVerified      DateTime?
-  image              String?
-  password           String
-  role               UserRole  @default(USER)
-  isTwoFactorEnabled Boolean   @default(false)
-
-  twoFactorConfirmation TwoFactorConfirmation?
-  employee              Employee?
-  accounts              Account[]
-  reports               Report[]
-  files                 File[]
-  notes                 Note[]
-  tasks                 Task[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
 model Account {
   id                String  @id @default(cuid())
   userId            String
@@ -82,13 +60,36 @@ model Account {
   @@unique([provider, providerAccountId])
 }
 
+model User {
+  id                 String    @id @default(cuid())
+  employeeId         String?    @unique
+  name               String
+  email              String    @unique
+  emailVerified      DateTime?
+  image              String?
+  password           String
+  role               UserRole  @default(USER)
+  isTwoFactorEnabled Boolean   @default(false)
+
+  twoFactorConfirmation TwoFactorConfirmation?
+  employee              Employee?
+  accounts              Account[]
+  reports               Report[]
+  files                 File[]
+  notes                 Note[]
+  tasks                 Task[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 model Employee {
   id          String     @id @default(cuid())
-  userId      String     @unique
+  userId      String?    @unique
   firstName   String
   lastName    String
   email       String     @unique
-  phoneNumber String
+  phoneNumber String?
   role        Department
   isActive    Status     @default(Active)
   hireDate    DateTime
@@ -105,7 +106,7 @@ model Employee {
 }
 
 model File {
-  id       String     @id @default(cuid())
+  id       String @id @default(cuid())
   userId   String
   fileName String
   mimeType String
@@ -119,7 +120,7 @@ model File {
 }
 
 model Category {
-  id   String     @id @default(cuid())
+  id   String @id @default(cuid())
   name String @unique
 
   products Product[]
@@ -143,7 +144,7 @@ model Product {
 }
 
 model Plan {
-  id                String     @id @default(cuid())
+  id                String  @id @default(cuid())
   name              String  @unique
   price             Decimal @default(0.00)
   description       String?
@@ -166,9 +167,9 @@ model Report {
   description String?
   filePath    String
   department  Department
-  taskId  String @unique
+  taskId      String     @unique
 
-  task  Task?  @relation(fields: [taskId],references: [id]) 
+  task     Task?     @relation(fields: [taskId], references: [id])
   user     User      @relation(fields: [userId], references: [id])
   Employee Employee? @relation(fields: [employeeId], references: [id])
 
@@ -196,11 +197,12 @@ model Task {
   startDate   DateTime
   endDate     DateTime
   status      TaskStatus
-  priority  Priority
-  
-  report  Report?
-  user     User?    @relation(fields: [userId], references: [id])
-  employee Employee[] 
+  priority    Priority
+  employeeId  String?
+
+  report   Report?
+  user     User      @relation(fields: [userId], references: [id])
+  employee Employee? @relation(fields: [employeeId], references: [id])
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

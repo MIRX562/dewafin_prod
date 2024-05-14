@@ -15,7 +15,7 @@ import { User } from "@prisma/client";
 import { DotsHorizontalIcon } from "@radix-ui/react-icons";
 import { Row } from "@tanstack/react-table";
 import { useRouter } from "next/navigation";
-import EditUserForm from "./editUserForm";
+import EditUserForm from "./form/editUserForm";
 
 interface DataTableRowActionsProps<TData> {
 	row: Row<TData>;

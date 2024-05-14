@@ -29,16 +29,17 @@ import { cn } from "@/lib/utils";
 import { AddEmployee, AddEmployeeSchema } from "@/schemas/employee";
 import { addEmployee } from "@/server-actions/employee";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Department } from "@prisma/client";
+import { Department, User } from "@prisma/client";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
-import { useState, useTransition } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 
 const AddEmployeeForm = () => {
 	const [success, setSuccess] = useState<string | undefined>("");
 	const [error, setError] = useState<string | undefined>("");
 	const [isPending, startTransition] = useTransition();
+	const [users, setUsers] = useState<User[]>([]);
 
 	const form = useForm<AddEmployee>({
 		resolver: zodResolver(AddEmployeeSchema),
@@ -52,12 +53,26 @@ const AddEmployeeForm = () => {
 		setSuccess("");
 
 		startTransition(() => {
-			addEmployee(values).then((data) => {
+			addEmployee(values).then((data: any) => {
 				setError(data.error);
 				setSuccess(data.success);
 			});
 		});
 	};
+
+	useEffect(() => {
+		const fetchEmployees = async () => {
+			try {
+				const response = await fetch("/api/data/user/lonely");
+				const data = await response.json();
+				setUsers(data);
+			} catch (error) {
+				console.error("Error fetching users:", error);
+			}
+		};
+
+		fetchEmployees();
+	}, []);
 	return (
 		<DataFormWrapper title="Create New User">
 			<Form {...form}>
@@ -141,7 +156,7 @@ const AddEmployeeForm = () => {
 							name="role"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>Role</FormLabel>
+									<FormLabel>Department</FormLabel>
 									<Select
 										disabled={isPending}
 										onValueChange={field.onChange}
@@ -167,6 +182,36 @@ const AddEmployeeForm = () => {
 											<SelectItem value={Department.Technical_Support}>
 												Technical Support
 											</SelectItem>
+										</SelectContent>
+									</Select>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+						<FormField
+							control={form.control}
+							name="userId"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>Employee Data</FormLabel>
+									<Select
+										disabled={isPending}
+										onValueChange={field.onChange}
+									>
+										<FormControl>
+											<SelectTrigger>
+												<SelectValue placeholder="Select related User" />
+											</SelectTrigger>
+										</FormControl>
+										<SelectContent>
+											{users.map((User: User) => (
+												<SelectItem
+													key={User.id}
+													value={User.id}
+												>
+													{`${User.name}`}
+												</SelectItem>
+											))}
 										</SelectContent>
 									</Select>
 									<FormMessage />

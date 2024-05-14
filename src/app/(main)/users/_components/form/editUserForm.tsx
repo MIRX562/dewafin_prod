@@ -24,15 +24,16 @@ import { Switch } from "@/components/ui/switch";
 import { EditUser, EditUserSchema } from "@/schemas/user";
 import { editUser } from "@/server-actions/user";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { User, UserRole } from "@prisma/client";
+import { Employee, User, UserRole } from "@prisma/client";
 import { useRouter } from "next/navigation";
-import { useState, useTransition } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 
 const EditUserForm = ({ userData }: { userData: User }) => {
 	const [success, setSuccess] = useState<string | undefined>("");
 	const [error, setError] = useState<string | undefined>("");
 	const [isPending, startTransition] = useTransition();
+	const [employees, setEmployees] = useState([]);
 	const user = userData;
 	const route = useRouter();
 
@@ -44,6 +45,7 @@ const EditUserForm = ({ userData }: { userData: User }) => {
 			image: user?.image || undefined,
 			role: user?.role || undefined,
 			isTwoFactorEnabled: user?.isTwoFactorEnabled,
+			employeeId: user?.employeeId || undefined,
 		},
 	});
 	const onSubmit = (values: EditUser) => {
@@ -58,6 +60,21 @@ const EditUserForm = ({ userData }: { userData: User }) => {
 			});
 		});
 	};
+
+	// Fetch employees
+	useEffect(() => {
+		const fetchEmployees = async () => {
+			try {
+				const response = await fetch("/api/data/employee");
+				const data = await response.json();
+				setEmployees(data);
+			} catch (error) {
+				console.error("Error fetching employees:", error);
+			}
+		};
+
+		fetchEmployees();
+	}, []);
 	return (
 		<DataFormWrapper title="Edit User">
 			<Form {...form}>
@@ -141,6 +158,37 @@ const EditUserForm = ({ userData }: { userData: User }) => {
 											<SelectItem value={UserRole.ADMIN}>Admin</SelectItem>
 											<SelectItem value={UserRole.USER}>User</SelectItem>
 											<SelectItem value={UserRole.MANAGER}>Manager</SelectItem>
+										</SelectContent>
+									</Select>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+						<FormField
+							control={form.control}
+							name="employeeId"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>Employee Data</FormLabel>
+									<Select
+										disabled={isPending}
+										onValueChange={field.onChange}
+										defaultValue={field.value}
+									>
+										<FormControl>
+											<SelectTrigger>
+												<SelectValue placeholder="Select related employee" />
+											</SelectTrigger>
+										</FormControl>
+										<SelectContent>
+											{employees.map((employee: Employee) => (
+												<SelectItem
+													key={employee.id}
+													value={employee.id}
+												>
+													{`${employee.firstName} ${employee.lastName}`}
+												</SelectItem>
+											))}
 										</SelectContent>
 									</Select>
 									<FormMessage />
