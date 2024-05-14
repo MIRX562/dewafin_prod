@@ -1,3 +1,4 @@
+"use client";
 import {
 	NavigationMenu,
 	NavigationMenuItem,
@@ -5,12 +6,15 @@ import {
 	NavigationMenuList,
 	navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import { useCurrentRole } from "@/hooks/useCurrentRole";
 import { task } from "@/types/menu/taskMenu";
 import Link from "next/link";
 
 const TaskNavBar = () => {
+	const role = useCurrentRole();
+
 	return (
-		<NavigationMenu>
+		<NavigationMenu className={role === "USER" ? "hidden" : ""}>
 			<NavigationMenuList>
 				{task.map((menu) => (
 					<NavigationMenuItem key={menu.label}>

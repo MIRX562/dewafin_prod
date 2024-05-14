@@ -1,4 +1,5 @@
 import { GearIcon, PersonIcon } from "@radix-ui/react-icons";
+import { ShieldIcon } from "lucide-react";
 
 export const userRoles = [
 	{
@@ -10,6 +11,11 @@ export const userRoles = [
 		value: "USER",
 		label: "User",
 		icon: PersonIcon,
+	},
+	{
+		value: "MANAGER",
+		label: "Manager",
+		icon: ShieldIcon,
 	},
 ];
 

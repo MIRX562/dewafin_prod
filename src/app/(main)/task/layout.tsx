@@ -8,7 +8,7 @@ export default function TaskManagerLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<div className="flex items-start justify-start flex-col gap-4">
+		<div className="flex flex-col space-y-2">
 			<TaskNavBar />
 			{children}
 		</div>

@@ -9,16 +9,14 @@ import EmployeesTable from "./_components/employeesTable";
 export default async function EmployeesPage() {
 	return (
 		<div className="h-full flex-1 flex-col p-1 flex">
-			<div className="flex items-center justify-between space-y-2">
-				<PageToolbar>
-					<TableImportButton />
-					<TableExportButton table="employee" />
-					<AddEmployeeButton />
-				</PageToolbar>
-				<Suspense fallback={<Loading />}>
-					<EmployeesTable />
-				</Suspense>
-			</div>
+			<PageToolbar>
+				<TableImportButton />
+				<TableExportButton table="employee" />
+				<AddEmployeeButton />
+			</PageToolbar>
+			<Suspense fallback={<Loading />}>
+				<EmployeesTable />
+			</Suspense>
 		</div>
 	);
 }

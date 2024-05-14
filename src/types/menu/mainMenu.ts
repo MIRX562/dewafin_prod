@@ -5,7 +5,6 @@ import {
 	FolderDotIcon,
 	NotebookTextIcon,
 	ScrollTextIcon,
-	ServerIcon,
 	SettingsIcon,
 	SquareGanttChart,
 	UserCogIcon,
@@ -23,11 +22,6 @@ export const navItems: Menu[] = [
 		icon: CheckCheckIcon,
 		label: "Task Manager",
 		path: "/task",
-	},
-	{
-		icon: ServerIcon,
-		label: "Assets",
-		path: "/asets",
 	},
 	{
 		icon: SquareGanttChart,

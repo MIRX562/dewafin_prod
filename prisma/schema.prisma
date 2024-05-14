@@ -18,6 +18,12 @@ enum Status {
   Not_Active
 }
 
+enum Priority {
+  HIGH
+  MEDIUM
+  LOW
+}
+
 enum TaskStatus {
   TODO
   IN_PROGRESS
@@ -34,11 +40,11 @@ enum Department {
 
 model User {
   id                 String    @id @default(cuid())
-  name               String?
-  email              String?   @unique
+  name               String
+  email              String   @unique
   emailVerified      DateTime?
   image              String?
-  password           String?
+  password           String
   role               UserRole  @default(USER)
   isTwoFactorEnabled Boolean   @default(false)
 
@@ -190,11 +196,11 @@ model Task {
   startDate   DateTime
   endDate     DateTime
   status      TaskStatus
-  employeeId  String
+  priority  Priority
   
   report  Report?
   user     User?    @relation(fields: [userId], references: [id])
-  employee Employee  @relation(fields: [employeeId], references: [id])
+  employee Employee[] 
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
