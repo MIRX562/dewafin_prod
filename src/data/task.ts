@@ -1,0 +1,71 @@
+import { db } from "@/lib/db";
+
+export const getTaskByTitle = async (title: string) => {
+	try {
+		const task = await db.task.findFirst({
+			where: {
+				title,
+			},
+		});
+		return task;
+	} catch (error) {
+		return null;
+	}
+};
+export const getTaskById = async (id: string | undefined) => {
+	try {
+		const task = await db.task.findUnique({
+			where: {
+				id,
+			},
+		});
+		return task;
+	} catch (error) {
+		return null;
+	}
+};
+
+export const getTasks = async () => {
+	try {
+		const task = await db.task.findMany({
+			include: {
+				employee: {
+					select: {
+						role: true,
+						firstName: true,
+						lastName: true,
+					},
+				},
+				report: {
+					select: {
+						title: true,
+						filePath: true,
+					},
+				},
+				user: {
+					select: {
+						name: true,
+					},
+				},
+			},
+		});
+		return task;
+	} catch (error) {
+		return null;
+	}
+};
+
+export const getLonelyTask = async () => {
+	try {
+		const task = await db.task.findMany({
+			where: {
+				employeeId: {
+					equals: null,
+				},
+			},
+		});
+		return task;
+	} catch (error) {
+		return null;
+	}
+};

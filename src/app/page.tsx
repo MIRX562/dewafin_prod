@@ -10,26 +10,26 @@ const font = Poppins({
 
 export default function Home() {
 	return (
-		<main className="flex h-full flex-col items-center justify-center bg-background space-y-6">
+		<main className="flex h-full flex-col items-center justify-center bg-background space-y-4">
 			<Image
 				src="/icon.png"
 				alt="logo"
-				width={64}
-				height={64}
+				width={100}
+				height={100}
 				className="drop-shadow-md"
 			/>
 			<div className="flex w-full items-center justify-center space-x-2">
 				<h1
 					className={cn(
 						font.className,
-						"text-6xl font-semibold text-accent drop-shadow-md"
+						"text-6xl font-semibold drop-shadow-md"
 					)}
 				>
-					Dewa<span className="text-destructive">Pedia</span>
+					Dewa<span className="text-primary">Pedia</span>
 				</h1>
 			</div>
 			<p className="text-lg text-center">
-				Internal Knowledge Management System For Dewabiz
+				Integrated Task and Information Management System For Dewabiz
 			</p>
 			<div className="flex flex-col items-center">
 				<LoginButton
@@ -37,9 +37,8 @@ export default function Home() {
 					asChild
 				>
 					<Button
-						variant={"outline"}
 						size={"lg"}
-						className="shadow-lg font-medium"
+						className="shadow-lg font-extrabold"
 					>
 						Sign In
 					</Button>

@@ -10,7 +10,6 @@ datasource db {
 enum UserRole {
   ADMIN
   USER
-  MANAGER
 }
 
 model User {
@@ -81,41 +80,3 @@ model TwoFactorConfirmation {
   @@unique([userId])
 }
 
-enum Status {
-  Active
-  Not_Active
-}
-
-enum Department {
-  CEO
-  COO
-  Technical_Support
-  Customer_Support
-  Sales_Marketing
-  Administration
-}
-
-model Employee {
-  id          String       @id @default(cuid())
-  firstName   String
-  lastName    String
-  email       String       @unique
-  phoneNumber String
-  role        Department
-  isActive    Status       @default(Active)
-  hireDate    DateTime
-  createdAt   DateTime @default(now())
-}
-
-// Define the File model to store file information
-model File {
-  id        Int      @id @default(autoincrement())
-  fileName  String
-  mimeType  String
-  size      Int
-  location  String 
-  createdAt DateTime @default(now())
-
-  User   User?   @relation(fields: [userId], references: [id])
-  userId String?
-}
