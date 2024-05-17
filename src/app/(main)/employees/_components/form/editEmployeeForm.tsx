@@ -49,7 +49,7 @@ const EditEmployeeForm = ({ employeeData }: { employeeData: Employee }) => {
 			lastName: employee?.lastName,
 			email: employee?.email,
 			phoneNumber: employee?.phoneNumber || undefined,
-			role: employee?.role,
+			department: employee?.department,
 			isActive: employee?.isActive,
 			hireDate: employee?.hireDate,
 			userId: employee?.userId || undefined,
@@ -159,7 +159,7 @@ const EditEmployeeForm = ({ employeeData }: { employeeData: Employee }) => {
 						/>
 						<FormField
 							control={form.control}
-							name="role"
+							name="department"
 							render={({ field }) => (
 								<FormItem>
 									<FormLabel>Role</FormLabel>
@@ -170,7 +170,7 @@ const EditEmployeeForm = ({ employeeData }: { employeeData: Employee }) => {
 									>
 										<FormControl>
 											<SelectTrigger>
-												<SelectValue placeholder="Select a role" />
+												<SelectValue placeholder="Select a department" />
 											</SelectTrigger>
 										</FormControl>
 										<SelectContent>

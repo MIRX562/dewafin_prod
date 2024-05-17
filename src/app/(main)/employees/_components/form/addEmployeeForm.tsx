@@ -153,7 +153,7 @@ const AddEmployeeForm = () => {
 
 						<FormField
 							control={form.control}
-							name="role"
+							name="department"
 							render={({ field }) => (
 								<FormItem>
 									<FormLabel>Department</FormLabel>
