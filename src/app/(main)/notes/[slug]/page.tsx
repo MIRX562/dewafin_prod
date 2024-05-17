@@ -88,7 +88,7 @@ const NoteView: React.FC = () => {
 	return (
 		<div className="flex h-full w-full">
 			<div className="flex flex-1 flex-col">
-				<header className="flex pt-3 items-center border-b overflow-hidden justify-between gap-2">
+				<header className="flex pt-1 items-center border-b overflow-hidden justify-between gap-2">
 					<TextAreaAutoSize
 						className="w-full resize-none appearance-none overflow-hidden bg-transparent text-3xl md:text-4xl md:pl-12 font-bold"
 						value={title}
@@ -104,7 +104,7 @@ const NoteView: React.FC = () => {
 						</Button>
 						<Button
 							onClick={handleTogglePublic}
-							variant={isPublic ? "outline" : "default"}
+							variant={isPublic ? "default" : "outline"}
 						>
 							{isPublic ? "Set Private" : "Set Public"}
 						</Button>
