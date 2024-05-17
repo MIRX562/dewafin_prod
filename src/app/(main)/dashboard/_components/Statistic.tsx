@@ -4,12 +4,12 @@ type StatisticItemProps = { value: string; label: string };
 
 const Statistics = () => {
 	return (
-		<Card>
+		<Card className="flex-1">
 			<CardHeader>
 				<CardTitle>Statistics</CardTitle>
 			</CardHeader>
 			<CardContent>
-				<div className="grid grid-cols-2 gap-4">
+				<div className="flex flex-wrap gap-4">
 					<StatisticItem
 						value="42"
 						label="Total Notes"
@@ -33,7 +33,7 @@ const Statistics = () => {
 };
 
 const StatisticItem = ({ value, label }: StatisticItemProps) => (
-	<div className="flex flex-col items-start gap-2">
+	<div className="flex flex-col items-start gap-2 min-w-[calc(50%-1rem)]">
 		<div className="text-2xl font-bold">{value}</div>
 		<div className="text-sm text-gray-500">{label}</div>
 	</div>

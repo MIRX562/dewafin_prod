@@ -5,11 +5,13 @@ import ToDoList from "./_components/Todos";
 
 export default function DashboardPage() {
 	return (
-		<main className="flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+		<main className="flex-1 flex-col p-1 flex gap-6">
 			<NavItems />
-			<LatestNotes />
-			<ToDoList />
-			<Statistics />
+			<div className="flex flex-wrap gap-6">
+				<LatestNotes />
+				<ToDoList />
+				<Statistics />
+			</div>
 		</main>
 	);
 }

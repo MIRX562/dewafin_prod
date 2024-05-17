@@ -10,8 +10,8 @@ type NoteItemProps = {
 
 const LatestNotes = () => {
 	return (
-		<Card>
-			<CardHeader>
+		<Card className="flex-1">
+			<CardHeader className="flex justify-between items-center">
 				<CardTitle>Latest Notes</CardTitle>
 				<Link
 					className="text-sm text-gray-500 hover:underline"

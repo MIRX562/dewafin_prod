@@ -7,8 +7,8 @@ type TodoItemProps = { id: string; label: string; completed?: boolean };
 
 const ToDoList = () => {
 	return (
-		<Card>
-			<CardHeader>
+		<Card className="flex-1">
+			<CardHeader className="flex justify-between items-center">
 				<CardTitle>To-Do List</CardTitle>
 				<Button
 					size="icon"
