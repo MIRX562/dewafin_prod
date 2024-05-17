@@ -10,7 +10,7 @@ import Link from "next/link";
 import { Suspense } from "react";
 import RecentReports from "./_components/RecentReports";
 
-export default async function Component() {
+export default async function ReportPage() {
 	return (
 		<main className="space-y-2 md:space-y-6 p-1">
 			<h2 className="text-2xl font-semibold text-center md:mb-6 md:hidden">

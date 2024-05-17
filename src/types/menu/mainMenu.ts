@@ -64,3 +64,37 @@ export const navItems: Menu[] = [
 		path: "/logs",
 	},
 ];
+
+export const favNavItems: Menu[] = [
+	{
+		icon: CheckCheckIcon,
+		label: "Task Manager",
+		path: "/task",
+	},
+	{
+		icon: SquareGanttChart,
+		label: "Reports",
+		path: "/reports",
+	},
+	{
+		icon: BoxesIcon,
+		label: "Products",
+		path: "/products",
+	},
+	{
+		icon: NotebookTextIcon,
+		label: "Notes",
+		path: "/notes",
+	},
+	{
+		icon: FolderDotIcon,
+		label: "Files",
+		path: "/files",
+	},
+
+	{
+		icon: SettingsIcon,
+		label: "Setting",
+		path: "/settings",
+	},
+];
