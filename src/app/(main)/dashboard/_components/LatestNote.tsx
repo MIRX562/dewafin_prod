@@ -10,7 +10,7 @@ type NoteItemProps = {
 
 const LatestNotes = () => {
 	return (
-		<Card className="flex-1">
+		<Card className="flex-1 min-w-[300px]">
 			<CardHeader className="flex justify-between items-center">
 				<CardTitle>Latest Notes</CardTitle>
 				<Link
@@ -32,6 +32,41 @@ const LatestNotes = () => {
 						by="Outline of the upcoming milestones for the project."
 						time="5 days ago"
 					/>
+					<NoteItem
+						title="Project Roadmap"
+						by="Outline of the upcoming milestones for the project."
+						time="5 days ago"
+					/>
+					<NoteItem
+						title="Project Roadmap"
+						by="Outline of the upcoming milestones for the project."
+						time="5 days ago"
+					/>
+					<NoteItem
+						title="Project Roadmap"
+						by="Outline of the upcoming milestones for the project."
+						time="5 days ago"
+					/>
+					<NoteItem
+						title="Project Roadmap"
+						by="Outline of the upcoming milestones for the project."
+						time="5 days ago"
+					/>
+					<NoteItem
+						title="Project Roadmap"
+						by="Outline of the upcoming milestones for the project."
+						time="5 days ago"
+					/>
+					<NoteItem
+						title="Project Roadmap"
+						by="Outline of the upcoming milestones for the project."
+						time="5 days ago"
+					/>
+					<NoteItem
+						title="Project Roadmap"
+						by="Outline of the upcoming milestones for the project."
+						time="5 days ago"
+					/>
 				</div>
 			</CardContent>
 		</Card>
@@ -39,7 +74,7 @@ const LatestNotes = () => {
 };
 
 const NoteItem = ({ title, by, time }: NoteItemProps) => (
-	<div className="flex items-start gap-4">
+	<div className="flex items-start gap-4 ">
 		<div className="flex-shrink-0">
 			<NotebookIcon className="w-6 h-6 text-gray-500" />
 		</div>

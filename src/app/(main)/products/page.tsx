@@ -8,8 +8,6 @@ import { Input } from "@/components/ui/input";
 import { PlusIcon, SearchIcon } from "lucide-react";
 import Category from "./_components/Category";
 
-
-
 export default function ProductPage() {
 	return (
 		<div className="container mx-auto px-4 py-8">
@@ -28,6 +26,18 @@ export default function ProductPage() {
 				</Button>
 			</div>
 			<div className="grid gap-6">
+				<Category />
+				<Category />
+				<Category />
+				<Category />
+				<Category />
+				<Category />
+				<Category />
+				<Category />
+				<Category />
+				<Category />
+				<Category />
+				<Category />
 				<Category />
 				<Category />
 				<Category />

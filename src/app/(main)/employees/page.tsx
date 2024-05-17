@@ -7,16 +7,16 @@ import AddEmployeeButton from "./_components/addEmployeeButton";
 import EmployeesTable from "./_components/employeesTable";
 
 export default async function EmployeesPage() {
-	return (
-		<div className="h-full flex-1 flex-col p-1 flex">
-			<PageToolbar>
-				<TableImportButton />
-				<TableExportButton table="employee" />
-				<AddEmployeeButton />
-			</PageToolbar>
-			<Suspense fallback={<Loading />}>
-				<EmployeesTable />
-			</Suspense>
-		</div>
-	);
+  return (
+    <div className="h-full flex-1 flex-col p-1 flex">
+      <PageToolbar>
+        <TableImportButton />
+        <TableExportButton table="employee" />
+        <AddEmployeeButton />
+      </PageToolbar>
+      <Suspense fallback={<Loading />}>
+        <EmployeesTable />
+      </Suspense>
+    </div>
+  );
 }

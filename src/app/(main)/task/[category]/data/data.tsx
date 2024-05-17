@@ -4,9 +4,8 @@ import {
   ArrowUpIcon,
   CheckCircledIcon,
   CircleIcon,
-  StopwatchIcon
-} from "@radix-ui/react-icons"
-
+  StopwatchIcon,
+} from "@radix-ui/react-icons";
 
 export const statuses = [
   {
@@ -24,7 +23,7 @@ export const statuses = [
     label: "Done",
     icon: CheckCircledIcon,
   },
-]
+];
 
 export const priorities = [
   {
@@ -42,4 +41,4 @@ export const priorities = [
     value: "high",
     icon: ArrowUpIcon,
   },
-]
+];

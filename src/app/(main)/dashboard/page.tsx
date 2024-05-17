@@ -5,7 +5,7 @@ import ToDoList from "./_components/Todos";
 
 export default function DashboardPage() {
 	return (
-		<main className="flex-1 flex-col p-1 flex gap-6">
+		<main className="flex-1 flex-col p-1 flex gap-6 overscroll-none">
 			<NavItems />
 			<div className="flex flex-wrap gap-6">
 				<LatestNotes />

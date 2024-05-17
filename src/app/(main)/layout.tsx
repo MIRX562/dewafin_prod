@@ -8,13 +8,13 @@ export default async function layout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<div className="grid min-h-screen grid-cols-1 md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
+		<div className="flex max-h-screen">
 			<Sidebar />
-			<div className="flex flex-col h-screen">
+			<div className="flex flex-col flex-grow">
 				<NavHeader />
 				<PageHeader />
 				<main className="flex-grow overflow-y-auto">
-					<div className="h-full flex-1 flex-col p-1 md:p-4 lg:p-6 flex">
+					<div className="h-full flex-1 flex flex-col p-1 md:p-4 lg:p-6">
 						{children}
 					</div>
 				</main>
