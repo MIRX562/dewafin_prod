@@ -4,7 +4,7 @@ type StatisticItemProps = { value: string; label: string };
 
 const Statistics = () => {
 	return (
-		<Card className="flex-1 min-w-[300px]">
+		<Card className="flex-1 min-w-[350px]">
 			<CardHeader>
 				<CardTitle>Statistics</CardTitle>
 			</CardHeader>

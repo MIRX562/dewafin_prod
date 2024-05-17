@@ -14,7 +14,7 @@ export default async function layout({
 				<NavHeader />
 				<PageHeader />
 				<main className="flex-grow overflow-y-auto">
-					<div className="h-full flex-1 flex flex-col p-1 md:p-4 lg:p-6">
+					<div className="h-full flex-1 flex p-2 flex-col md:p-4 lg:p-6">
 						{children}
 					</div>
 				</main>

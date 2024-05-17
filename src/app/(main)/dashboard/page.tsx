@@ -7,7 +7,7 @@ export default function DashboardPage() {
 	return (
 		<main className="flex-1 flex-col p-1 flex gap-6 overscroll-none">
 			<NavItems />
-			<div className="flex flex-wrap gap-6">
+			<div className="flex flex-wrap gap-2 md:gap-4 lg:gap-6">
 				<LatestNotes />
 				<ToDoList />
 				<Statistics />

@@ -7,7 +7,7 @@ import { twMerge } from "tailwind-merge";
  * @returns Combined class string.
  */
 export function cn(...inputs: ClassValue[]): string {
-  return twMerge(clsx(inputs));
+	return twMerge(clsx(inputs));
 }
 
 /**
@@ -16,18 +16,18 @@ export function cn(...inputs: ClassValue[]): string {
  * @returns Formatted file size string (e.g., "1.5 MB").
  */
 export function formatFileSize(bytes: number): string {
-  if (typeof bytes !== "number" || bytes < 0) return "Invalid file size";
+	if (typeof bytes !== "number" || bytes < 0) return "Invalid file size";
 
-  const units = ["B", "KB", "MB", "GB", "TB"];
-  let threshold = 1024;
-  let i = 0;
+	const units = ["B", "KB", "MB", "GB", "TB"];
+	let threshold = 1024;
+	let i = 0;
 
-  while (bytes >= threshold && i < units.length - 1) {
-    bytes /= threshold;
-    i++;
-  }
+	while (bytes >= threshold && i < units.length - 1) {
+		bytes /= threshold;
+		i++;
+	}
 
-  return `${bytes.toFixed(1)} ${units[i]}`;
+	return `${bytes.toFixed(1)} ${units[i]}`;
 }
 
 /**
@@ -36,9 +36,9 @@ export function formatFileSize(bytes: number): string {
  * @returns Initials extracted from the name (e.g., "JD" for "John Doe").
  */
 export function getNameInitials(name: string): string {
-  const words = name.split(" ");
-  const initials = words.map((word) => word.charAt(0).toUpperCase()).join("");
-  return initials;
+	const words = name.split(" ");
+	const initials = words.map((word) => word.charAt(0).toUpperCase()).join("");
+	return initials;
 }
 
 /**
@@ -48,62 +48,46 @@ export function getNameInitials(name: string): string {
  * @returns Object containing counts for each unique property value.
  */
 interface CountMap {
-  [key: string]: number;
+	[key: string]: number;
 }
 
 export function countObjectsByProperty<T extends Record<string, any>>(
-  arr: T[],
-  property: keyof T,
+	arr: T[],
+	property: keyof T
 ): CountMap {
-  const counts: CountMap = {};
+	const counts: CountMap = {};
 
-  arr.forEach((obj) => {
-    const value = obj[property] as string;
-    counts[value] = counts[value] ? counts[value] + 1 : 1;
-  });
+	arr.forEach((obj) => {
+		const value = obj[property] as string;
+		counts[value] = counts[value] ? counts[value] + 1 : 1;
+	});
 
-  return counts;
+	return counts;
 }
 
 /**
- * Parses a title string into a specified format.
- * @param input The input title string.
- * @param format The desired output format ('snake', 'kebab', 'camel', 'pascal').
- * @returns Parsed title string in the specified format.
- * @throws Error if an unsupported format is provided.
+ * Converts a string with any naming convention (snake_case, kebab-case, camelCase, PascalCase, URL encoded) into a readable title format.
+ * @param input The input string to convert.
+ * @returns A formatted title string.
  */
-export function parseTitle(
-  input: string,
-  format: "snake" | "kebab" | "camel" | "pascal" = "snake",
-): string {
-  let pattern: RegExp;
+export function parseTitle(input: string): string {
+	// Replace URL-encoded characters (e.g., %20) with spaces
+	const decodedInput = decodeURIComponent(input);
 
-  switch (format) {
-    case "snake":
-      pattern = /_/;
-      break;
-    case "kebab":
-      pattern = /-/;
-      break;
-    case "camel":
-      pattern = /(?=[A-Z])/;
-      break;
-    case "pascal":
-      pattern = /(?=[A-Z][a-z])/;
-      break;
-    default:
-      throw new Error(`Unsupported format: ${format}`);
-  }
+	// Create a regular expression pattern to match various delimiters and case transitions
+	const pattern = /[_\-\s]+|(?=[A-Z])|%20/;
 
-  const words = input.split(pattern);
-  const capitalizedWords = words.map((word) => {
-    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-  });
+	// Split the input string based on the pattern
+	const words = decodedInput.split(pattern);
 
-  return capitalizedWords.join(" ");
+	// Capitalize the first letter of each word and lowercase the rest
+	const capitalizedWords = words.map((word) => {
+		return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+	});
+
+	// Join the words with spaces to form the final title
+	return capitalizedWords.join(" ");
 }
-
-// utils/dateUtils.ts
 
 /**
  * Convert the input date into relative human readable date
@@ -113,32 +97,32 @@ export function parseTitle(
 type RelativeTimeUnit = "second" | "minute" | "hour" | "day" | "month" | "year";
 
 export function formatRelativeDate(date: Date): string {
-  const currentDate = new Date();
+	const currentDate = new Date();
 
-  const seconds = Math.floor((currentDate.getTime() - date.getTime()) / 1000);
-  const minutes = Math.floor(seconds / 60);
-  const hours = Math.floor(minutes / 60);
-  const days = Math.floor(hours / 24);
-  const months = Math.floor(days / 30);
-  const years = Math.floor(days / 365);
+	const seconds = Math.floor((currentDate.getTime() - date.getTime()) / 1000);
+	const minutes = Math.floor(seconds / 60);
+	const hours = Math.floor(minutes / 60);
+	const days = Math.floor(hours / 24);
+	const months = Math.floor(days / 30);
+	const years = Math.floor(days / 365);
 
-  const getTimeAgoString = (value: number, unit: RelativeTimeUnit): string => {
-    return `${value} ${unit}${value !== 1 ? "s" : ""} ago`;
-  };
+	const getTimeAgoString = (value: number, unit: RelativeTimeUnit): string => {
+		return `${value} ${unit}${value !== 1 ? "s" : ""} ago`;
+	};
 
-  if (seconds < 60) {
-    return "Just now";
-  } else if (minutes < 60) {
-    return getTimeAgoString(minutes, "minute");
-  } else if (hours < 24) {
-    return getTimeAgoString(hours, "hour");
-  } else if (days < 30) {
-    return getTimeAgoString(days, "day");
-  } else if (months < 12) {
-    return getTimeAgoString(months, "month");
-  } else {
-    return getTimeAgoString(years, "year");
-  }
+	if (seconds < 60) {
+		return "Just now";
+	} else if (minutes < 60) {
+		return getTimeAgoString(minutes, "minute");
+	} else if (hours < 24) {
+		return getTimeAgoString(hours, "hour");
+	} else if (days < 30) {
+		return getTimeAgoString(days, "day");
+	} else if (months < 12) {
+		return getTimeAgoString(months, "month");
+	} else {
+		return getTimeAgoString(years, "year");
+	}
 }
 
 /**
@@ -153,17 +137,17 @@ export type DateRangeString = string;
  * @returns A formatted date range string.
  */
 export function getDateRangeString(
-  startDate: Date,
-  endDate: Date,
+	startDate: Date,
+	endDate: Date
 ): DateRangeString {
-  // Format start date and end date into readable strings
-  const startDateString = formatDate(startDate);
-  const endDateString = formatDate(endDate);
+	// Format start date and end date into readable strings
+	const startDateString = formatDate(startDate);
+	const endDateString = formatDate(endDate);
 
-  // Construct the date range string
-  const dateRangeString = `${startDateString} - ${endDateString}`;
+	// Construct the date range string
+	const dateRangeString = `${startDateString} - ${endDateString}`;
 
-  return dateRangeString;
+	return dateRangeString;
 }
 
 /**
@@ -172,13 +156,13 @@ export function getDateRangeString(
  * @returns A formatted date string.
  */
 export function formatDate(date: Date): string {
-  const options: Intl.DateTimeFormatOptions = {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  };
+	const options: Intl.DateTimeFormatOptions = {
+		year: "numeric",
+		month: "long",
+		day: "numeric",
+	};
 
-  return date.toLocaleDateString("id", options);
+	return date.toLocaleDateString("id", options);
 }
 
 /**
@@ -187,13 +171,13 @@ export function formatDate(date: Date): string {
  * @returns A formatted time string.
  */
 export function formatTime(date: Date): string {
-  const options: Intl.DateTimeFormatOptions = {
-    hour: "numeric",
-    minute: "numeric",
-    hour12: true,
-  };
+	const options: Intl.DateTimeFormatOptions = {
+		hour: "numeric",
+		minute: "numeric",
+		hour12: true,
+	};
 
-  return date.toLocaleTimeString("en-US", options);
+	return date.toLocaleTimeString("en-US", options);
 }
 
 /**
@@ -203,17 +187,17 @@ export function formatTime(date: Date): string {
  * @returns A formatted string representing the time or the date.
  */
 export function parseDate(date: Date): string {
-  const now = new Date();
-  const timeDifference = now.getTime() - date.getTime();
-  const oneDayInMilliseconds = 24 * 60 * 60 * 1000;
+	const now = new Date();
+	const timeDifference = now.getTime() - date.getTime();
+	const oneDayInMilliseconds = 24 * 60 * 60 * 1000;
 
-  if (timeDifference < oneDayInMilliseconds) {
-    // Return the time if the date is within the past 24 hours
-    return formatTime(date);
-  } else {
-    // Return the date if it is more than 24 hours ago
-    return formatDate(date);
-  }
+	if (timeDifference < oneDayInMilliseconds) {
+		// Return the time if the date is within the past 24 hours
+		return formatTime(date);
+	} else {
+		// Return the date if it is more than 24 hours ago
+		return formatDate(date);
+	}
 }
 
 /**
@@ -228,25 +212,25 @@ export type DurationString = string;
  * @returns A formatted string representing the duration between the two dates.
  */
 export function calculateDuration(
-  startDate: Date,
-  endDate: Date,
+	startDate: Date,
+	endDate: Date
 ): DurationString {
-  const durationMilliseconds = Math.abs(
-    endDate.getTime() - startDate.getTime(),
-  );
+	const durationMilliseconds = Math.abs(
+		endDate.getTime() - startDate.getTime()
+	);
 
-  const seconds = Math.floor(durationMilliseconds / 1000);
-  const minutes = Math.floor(seconds / 60);
-  const hours = Math.floor(minutes / 60);
-  const days = Math.floor(hours / 24);
+	const seconds = Math.floor(durationMilliseconds / 1000);
+	const minutes = Math.floor(seconds / 60);
+	const hours = Math.floor(minutes / 60);
+	const days = Math.floor(hours / 24);
 
-  if (days > 0) {
-    return `${days} day${days !== 1 ? "s" : ""}`;
-  } else if (hours > 0) {
-    return `${hours} hour${hours !== 1 ? "s" : ""}`;
-  } else if (minutes > 0) {
-    return `${minutes} minute${minutes !== 1 ? "s" : ""}`;
-  } else {
-    return `${seconds} second${seconds !== 1 ? "s" : ""}`;
-  }
+	if (days > 0) {
+		return `${days} day${days !== 1 ? "s" : ""}`;
+	} else if (hours > 0) {
+		return `${hours} hour${hours !== 1 ? "s" : ""}`;
+	} else if (minutes > 0) {
+		return `${minutes} minute${minutes !== 1 ? "s" : ""}`;
+	} else {
+		return `${seconds} second${seconds !== 1 ? "s" : ""}`;
+	}
 }

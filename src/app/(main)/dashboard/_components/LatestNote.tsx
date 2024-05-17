@@ -1,6 +1,5 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { NotebookIcon } from "lucide-react";
-import Link from "next/link";
+import DashboardCardWrapper from "./DashboardCardWrapper";
 
 type NoteItemProps = {
 	title: string;
@@ -10,73 +9,63 @@ type NoteItemProps = {
 
 const LatestNotes = () => {
 	return (
-		<Card className="flex-1 min-w-[300px]">
-			<CardHeader className="flex justify-between items-center">
-				<CardTitle>Latest Notes</CardTitle>
-				<Link
-					className="text-sm text-gray-500 hover:underline"
-					href="#"
-				>
-					View all
-				</Link>
-			</CardHeader>
-			<CardContent>
-				<div className="space-y-4">
-					<NoteItem
-						title="Meeting Notes"
-						by="Summary of the team meeting held on 2023-05-17."
-						time="2 days ago"
-					/>
-					<NoteItem
-						title="Project Roadmap"
-						by="Outline of the upcoming milestones for the project."
-						time="5 days ago"
-					/>
-					<NoteItem
-						title="Project Roadmap"
-						by="Outline of the upcoming milestones for the project."
-						time="5 days ago"
-					/>
-					<NoteItem
-						title="Project Roadmap"
-						by="Outline of the upcoming milestones for the project."
-						time="5 days ago"
-					/>
-					<NoteItem
-						title="Project Roadmap"
-						by="Outline of the upcoming milestones for the project."
-						time="5 days ago"
-					/>
-					<NoteItem
-						title="Project Roadmap"
-						by="Outline of the upcoming milestones for the project."
-						time="5 days ago"
-					/>
-					<NoteItem
-						title="Project Roadmap"
-						by="Outline of the upcoming milestones for the project."
-						time="5 days ago"
-					/>
-					<NoteItem
-						title="Project Roadmap"
-						by="Outline of the upcoming milestones for the project."
-						time="5 days ago"
-					/>
-					<NoteItem
-						title="Project Roadmap"
-						by="Outline of the upcoming milestones for the project."
-						time="5 days ago"
-					/>
-				</div>
-			</CardContent>
-		</Card>
+		<DashboardCardWrapper
+			title="Lates Notes"
+			href="/notes"
+		>
+			<NoteItem
+				title="Meeting Notes"
+				by="Summary of the ."
+				time="2 days ago"
+			/>
+			<NoteItem
+				title="Project Roadmap"
+				by="Outline ."
+				time="5 days ago"
+			/>
+			<NoteItem
+				title="Project Roadmap"
+				by="Outline ."
+				time="5 days ago"
+			/>
+			<NoteItem
+				title="Project Roadmap"
+				by="Outline ."
+				time="5 days ago"
+			/>
+			<NoteItem
+				title="Project Roadmap"
+				by="Outline ."
+				time="5 days ago"
+			/>
+			<NoteItem
+				title="Project Roadmap"
+				by="Outline ."
+				time="5 days ago"
+			/>
+			<NoteItem
+				title="Project Roadmap"
+				by="Outline ."
+				time="5 days ago"
+			/>
+			<NoteItem
+				title="Project Roadmap"
+				by="Outline ."
+				time="5 days ago"
+			/>
+			<NoteItem
+				title="Project Roadmap"
+				by="Outline ."
+				time="5 days ago"
+			/>
+		</DashboardCardWrapper>
 	);
 };
 
 const NoteItem = ({ title, by, time }: NoteItemProps) => (
 	<div className="flex items-start gap-4 ">
 		<div className="flex-shrink-0">
-			<NotebookIcon className="w-6 h-6 text-gray-500" />
+			<NotebookIcon className="w-6 h-6 text-primary" />
 		</div>
 		<div>
 			<h3 className="text-lg font-medium">{title}</h3>
