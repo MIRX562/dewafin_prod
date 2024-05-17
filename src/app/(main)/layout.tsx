@@ -2,7 +2,7 @@ import NavHeader from "@/components/Navigation/Header/header";
 import PageHeader from "@/components/Navigation/Header/PageHeader";
 import Sidebar from "@/components/Navigation/SideBar/sidebar";
 
-export default function layout({
+export default async function layout({
 	children,
 }: Readonly<{
 	children: React.ReactNode;

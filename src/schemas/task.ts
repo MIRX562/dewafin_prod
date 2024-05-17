@@ -14,9 +14,7 @@ export const taskSchema = z.object({
 });
 
 export const addTaskSchema = z.object({
-	id: z.string(),
 	title: z.string(),
-	userId: z.string(),
 	employeeId: z.string(),
 	description: z.optional(z.string()),
 	startDate: z.date(),
@@ -29,8 +27,6 @@ export const addTaskSchema = z.object({
 export const editTaskSchema = z.object({
 	id: z.string(),
 	title: z.string(),
-
-	userId: z.string(),
 	employeeId: z.optional(z.string().nullable()),
 	description: z.optional(z.string().nullable()),
 	startDate: z.date(),

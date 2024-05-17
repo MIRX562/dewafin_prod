@@ -18,6 +18,8 @@ export const addTask = async (values: AddTask): Promise<RegisterResponse> => {
 		return { error: "Unauthorized" };
 	}
 
+	const userId = user.id || "";
+
 	const validatedFields = addTaskSchema.safeParse(values);
 	if (!validatedFields.success) {
 		console.log("Invalid inputs:", values);
@@ -35,7 +37,7 @@ export const addTask = async (values: AddTask): Promise<RegisterResponse> => {
 		const newTask = await db.task.create({
 			data: {
 				...data,
-				userId: user.id,
+				userId,
 			},
 		});
 
@@ -47,11 +49,12 @@ export const addTask = async (values: AddTask): Promise<RegisterResponse> => {
 		if (data.reportUrl)
 			await db.report.create({
 				data: {
-					userId: user.id,
+					userId,
+					employeeId: employee.id,
 					title: data.title,
 					filePath: data.reportUrl,
 					taskId: newTask.id,
-					department: employee?.role,
+					department: employee?.department,
 				},
 			});
 

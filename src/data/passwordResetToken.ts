@@ -1,24 +1,26 @@
+"use server";
+
 import { db } from "@/lib/db";
 
 export const getResetPasswordTokenByToken = async (token: string) => {
-  try {
-    const passwordResetToken = await db.passwordResetToken.findUnique({
-      where: { token },
-    });
+	try {
+		const passwordResetToken = await db.passwordResetToken.findUnique({
+			where: { token },
+		});
 
-    return passwordResetToken;
-  } catch (error) {
-    return null;
-  }
+		return passwordResetToken;
+	} catch (error) {
+		return null;
+	}
 };
 export const getResetPasswordTokenByEmail = async (email: string) => {
-  try {
-    const passwordResetToken = await db.passwordResetToken.findFirst({
-      where: { email },
-    });
+	try {
+		const passwordResetToken = await db.passwordResetToken.findFirst({
+			where: { email },
+		});
 
-    return passwordResetToken;
-  } catch (error) {
-    return null;
-  }
+		return passwordResetToken;
+	} catch (error) {
+		return null;
+	}
 };

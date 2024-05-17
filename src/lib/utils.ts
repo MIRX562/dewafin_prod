@@ -112,8 +112,7 @@ export function parseTitle(
  */
 type RelativeTimeUnit = "second" | "minute" | "hour" | "day" | "month" | "year";
 
-export function formatRelativeDate(inputDate: string): string {
-	const date = new Date(inputDate);
+export function formatRelativeDate(date: Date): string {
 	const currentDate = new Date();
 
 	const seconds = Math.floor((currentDate.getTime() - date.getTime()) / 1000);
@@ -180,4 +179,74 @@ export function formatDate(date: Date): string {
 	};
 
 	return date.toLocaleDateString("id", options);
+}
+
+/**
+ * Formats a date object into a time string in the format "HH:MM AM/PM".
+ * @param date The date object to format.
+ * @returns A formatted time string.
+ */
+export function formatTime(date: Date): string {
+	const options: Intl.DateTimeFormatOptions = {
+		hour: "numeric",
+		minute: "numeric",
+		hour12: true,
+	};
+
+	return date.toLocaleTimeString("en-US", options);
+}
+
+/**
+ * Parses a date and returns a string representing the time if the date is within the past 24 hours,
+ * or the date in "Month Day, Year" format if it is more than 24 hours ago.
+ * @param date The date to parse.
+ * @returns A formatted string representing the time or the date.
+ */
+export function parseDate(date: Date): string {
+	const now = new Date();
+	const timeDifference = now.getTime() - date.getTime();
+	const oneDayInMilliseconds = 24 * 60 * 60 * 1000;
+
+	if (timeDifference < oneDayInMilliseconds) {
+		// Return the time if the date is within the past 24 hours
+		return formatTime(date);
+	} else {
+		// Return the date if it is more than 24 hours ago
+		return formatDate(date);
+	}
+}
+
+/**
+ * Represents a duration string.
+ */
+export type DurationString = string;
+
+/**
+ * Calculates the duration between two dates and returns a formatted string representing the difference in time.
+ * @param startDate The start date of the duration.
+ * @param endDate The end date of the duration.
+ * @returns A formatted string representing the duration between the two dates.
+ */
+export function calculateDuration(
+	startDate: Date,
+	endDate: Date
+): DurationString {
+	const durationMilliseconds = Math.abs(
+		endDate.getTime() - startDate.getTime()
+	);
+
+	const seconds = Math.floor(durationMilliseconds / 1000);
+	const minutes = Math.floor(seconds / 60);
+	const hours = Math.floor(minutes / 60);
+	const days = Math.floor(hours / 24);
+
+	if (days > 0) {
+		return `${days} day${days !== 1 ? "s" : ""}`;
+	} else if (hours > 0) {
+		return `${hours} hour${hours !== 1 ? "s" : ""}`;
+	} else if (minutes > 0) {
+		return `${minutes} minute${minutes !== 1 ? "s" : ""}`;
+	} else {
+		return `${seconds} second${seconds !== 1 ? "s" : ""}`;
+	}
 }

@@ -8,8 +8,8 @@ import authConfig from "./auth.config";
 import { db } from "./db";
 
 export const {
-	handlers: { GET, POST },
 	auth,
+	handlers: { GET, POST },
 	signIn,
 	signOut,
 } = NextAuth({
@@ -33,7 +33,6 @@ export const {
 
 			if (!existingUser?.emailVerified) return false;
 
-			// 2fa check
 			if (existingUser.isTwoFactorEnabled) {
 				const twoFactorConfirmation = await getTwoFactorConfirmationByUserId(
 					existingUser.id

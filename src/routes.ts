@@ -3,7 +3,7 @@
  * Users do not need to be authenticated to access these routes.
  * @type {string[]}
  */
-export const publicRoutes = ["/", "/auth/verify-email"];
+export const publicRoutes = ["/", "/auth/verify-email", "/api/uploadthing"];
 
 /**
  * An array of routes used for user authentication processes.

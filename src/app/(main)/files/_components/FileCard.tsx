@@ -3,32 +3,39 @@ import { Card } from "@/components/ui/card";
 import { formatFileSize } from "@/lib/utils";
 import { MimeType, mimeTypes } from "@/types/fileType";
 import { File } from "@prisma/client";
-import { DeleteIcon, DownloadIcon, TrashIcon } from "lucide-react";
+import {
+	DeleteIcon,
+	DownloadIcon,
+	FileDigitIcon,
+	TrashIcon,
+} from "lucide-react";
 import Link from "next/link";
-//@ts-ignore
+import { useState } from "react";
 
-export const FileCard = async ({ file }: { file: File }) => {
+interface FileCardProps {
+	file: File;
+}
+
+export const FileCard: React.FC<FileCardProps> = ({ file }) => {
+	const [downloadError, setDownloadError] = useState<string | null>(null);
 	const mtype: MimeType | undefined = mimeTypes.find(
 		(entry) => entry.mime === file.mimeType
 	);
 
-	if (!mtype) {
-		// Handle case where MIME mtype is not recognized
-		return null;
-	}
 	const handleDownload = async (fileId: string) => {
 		try {
 			const response = await fetch(`/api/download?fileId=${fileId}`);
 
-			// Handle the response from the API
 			if (response.ok) {
-				return { success: true };
+				// Optionally handle success response
+				console.log("File downloaded successfully");
 			} else {
-				// Handle error cases
 				const error = await response.json();
+				setDownloadError("Failed to download file");
 				console.error("Error:", error);
 			}
 		} catch (error) {
+			setDownloadError("An error occurred while downloading the file");
 			console.error("Error:", error);
 		}
 	};
@@ -41,17 +48,21 @@ export const FileCard = async ({ file }: { file: File }) => {
 			>
 				<div className="p-4">
 					<div className="flex items-center gap-3 mb-2">
-						<mtype.icon className="w-6 h-6 text-primary" />
+						{mtype ? (
+							<mtype.icon className="w-6 h-6 text-primary" />
+						) : (
+							<FileDigitIcon className="w-6 h-6 text-primary" /> // Fallback icon for unknown types
+						)}
 						<span className="font-medium truncate">{file.fileName}</span>
 					</div>
 					<div className="text-sm text-gray-500 dark:text-gray-400 truncate">
-						{mtype.type}
+						{mtype ? mtype.type : "Unknown File"}
 					</div>
 					<div className="text-sm text-gray-500 dark:text-gray-400">
 						{formatFileSize(file.size)}
 					</div>
 					<div className="text-sm text-gray-500 dark:text-gray-400">
-						{file.createdAt.toLocaleDateString("id")}
+						{new Date(file.createdAt).toLocaleDateString("id")}
 					</div>
 				</div>
 			</Link>
@@ -59,9 +70,7 @@ export const FileCard = async ({ file }: { file: File }) => {
 				<Button
 					size="icon"
 					variant="ghost"
-					onClick={() => {
-						handleDownload(file.id);
-					}}
+					onClick={() => handleDownload(file.id)}
 				>
 					<DownloadIcon className="w-5 h-5 text-primary" />
 					<span className="sr-only">Download</span>
@@ -81,6 +90,9 @@ export const FileCard = async ({ file }: { file: File }) => {
 					<span className="sr-only">Delete</span>
 				</Button>
 			</div>
+			{downloadError && (
+				<div className="text-red-500 text-sm mt-2">{downloadError}</div>
+			)}
 		</Card>
 	);
 };

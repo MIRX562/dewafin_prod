@@ -25,8 +25,6 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
-import { useCurrentUser } from "@/hooks/useCurrentUser";
 import { cn } from "@/lib/utils";
 import { AddTask, addTaskSchema } from "@/schemas/task";
 import { addTask } from "@/server-actions/task";
@@ -42,21 +40,17 @@ const AddTaskForm = () => {
 	const [error, setError] = useState<string | undefined>("");
 	const [isPending, startTransition] = useTransition();
 	const [employees, setEmployees] = useState([]);
-	const user = useCurrentUser();
 
 	const form = useForm<AddTask>({
 		resolver: zodResolver(addTaskSchema),
 		defaultValues: {
-			title: "",
-			description: "",
 			startDate: new Date(),
 			endDate: new Date(),
 			status: TaskStatus.TODO,
 			priority: Priority.LOW,
-			employeeId: "",
-			userId: user?.id || "",
 		},
 	});
+
 	const onSubmit = (values: AddTask) => {
 		setError("");
 		setSuccess("");
@@ -117,18 +111,17 @@ const AddTaskForm = () => {
 								<FormItem>
 									<FormLabel>Description</FormLabel>
 									<FormControl>
-										<Textarea
+										<Input
 											disabled={isPending}
-											placeholder="describe the task here..."
-											className="h-[100px]"
-											defaultValue={field.value as any}
+											{...field}
+											placeholder="description.."
+											defaultValue={field.value}
 										/>
 									</FormControl>
 									<FormMessage />
 								</FormItem>
 							)}
 						/>
-
 						<FormField
 							control={form.control}
 							name="status"
@@ -309,9 +302,7 @@ const AddTaskForm = () => {
 												mode="single"
 												selected={field.value}
 												onSelect={field.onChange}
-												disabled={(date) =>
-													date > new Date() || date < new Date("2020-01-01")
-												}
+												disabled={(date) => date < new Date()}
 												initialFocus
 											/>
 										</PopoverContent>

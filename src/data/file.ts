@@ -1,3 +1,5 @@
+"use server";
+
 import { db } from "@/lib/db";
 
 export const getFiles = async () => {
@@ -9,7 +11,7 @@ export const getFiles = async () => {
 	}
 };
 
-export const getFileByUseId = async (userId: string) => {
+export const getFileByUserId = async (userId: string) => {
 	try {
 		const files = await db.file.findMany({
 			where: {
