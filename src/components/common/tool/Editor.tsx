@@ -35,7 +35,6 @@ const Editor: React.FC<EditorProps> = ({
 			editable={editable}
 			theme={resolvedTheme === "dark" ? "dark" : "light"}
 			onChange={() => onChange(JSON.stringify(editor.document))}
-			sideMenu={false}
 		/>
 	);
 };

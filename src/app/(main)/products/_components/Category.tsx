@@ -51,7 +51,7 @@ const mockProducts = [
 const Category = () => {
 	return (
 		<Collapsible className="border dark:border-primary rounded-md shadow-sm ">
-			<CollapsibleTrigger className="flex rounded-t-md w-full md:max-w-[400px] items-center justify-between px-4 py-3 mb-2 bg-gray-100 dark:bg-gray-800 border-b border-r md:rounded-br-3xl">
+			<CollapsibleTrigger className="flex rounded-t-md w-full md:max-w-[400px] items-center justify-between px-4 py-3 mb-2 bg-gray-100 dark:bg-gray-800 border-b border-r md:rounded-br-3xl md:rounded-tr-none">
 				<div className="flex items-center gap-2">
 					<BoxesIcon className="h-8 w-8 text-gray-500 dark:text-gray-400" />
 					<h3 className="font-semibold">Server</h3>

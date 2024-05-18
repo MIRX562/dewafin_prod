@@ -1,11 +1,18 @@
-import { getFiles } from "@/data/file";
-import FileView from "./_components/FileView";
+import Loading from "@/app/loading";
+import PageToolbar from "@/components/common/tool/PageToolbar";
+import { Suspense } from "react";
+import UploadButton from "./_components/FileUploadButton";
+import FilesTable from "./_components/filesTable";
 
 export default async function FileArchivePage() {
-  const files = await getFiles();
-  return (
-    <div className="flex flex-col w-full h-full">
-      <FileView files={files as any} />
-    </div>
-  );
+	return (
+		<div className="h-full flex-1 flex-col p-1 flex ">
+			<PageToolbar>
+				<UploadButton />
+			</PageToolbar>
+			<Suspense fallback={<Loading />}>
+				<FilesTable />
+			</Suspense>
+		</div>
+	);
 }

@@ -75,7 +75,6 @@ model User {
   employee              Employee?
   accounts              Account[]
   reports               Report[]
-  files                 File[]
   notes                 Note[]
   tasks                 Task[]
 
@@ -107,13 +106,11 @@ model Employee {
 
 model File {
   id       String @id @default(cuid())
-  userId   String
-  fileName String
+  name String
   mimeType String
   size     Int
   location String
 
-  User User @relation(fields: [userId], references: [id])
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

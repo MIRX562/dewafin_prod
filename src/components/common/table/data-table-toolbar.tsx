@@ -11,37 +11,37 @@ import { DataTableViewOptions } from "./data-table-view-options";
 // import { DataTableFacetedFilter } from '../FacetedFilter/data-table-faceted-filter';
 
 interface DataTableToolbarProps<TData> {
-  table: Table<TData>;
+	table: Table<TData>;
 }
 
 export function DataTableToolbar<TData>({
-  table,
+	table,
 }: DataTableToolbarProps<TData>) {
-  const isFiltered = table.getState().columnFilters.length > 0;
+	const isFiltered = table.getState().columnFilters.length > 0;
 
-  return (
-    <div className="flex flex-row space-x-1 items-center justify-between">
-      <div className="flex flex-1 w-full items-center space-x-2 md:mr-2">
-        <Input
-          placeholder="Search Email..."
-          value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
-          onChange={(event) =>
-            table.getColumn("email")?.setFilterValue(event.target.value)
-          }
-          className="h-8 w-full md:w[200px] lg:w-[250px]"
-        />
-        {isFiltered && (
-          <Button
-            variant="ghost"
-            onClick={() => table.resetColumnFilters()}
-            className="h-8 px-2 lg:px-3"
-          >
-            Reset
-            <Cross2Icon className="ml-2 h-4 w-4" />
-          </Button>
-        )}
-      </div>
-      <DataTableViewOptions table={table} />
-    </div>
-  );
+	return (
+		<div className="flex flex-row space-x-1 items-center justify-between">
+			<div className="flex flex-1 w-full items-center space-x-2 md:mr-2">
+				<Input
+					placeholder="Search File Name..."
+					value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
+					onChange={(event) =>
+						table.getColumn("name")?.setFilterValue(event.target.value)
+					}
+					className="h-8 w-full md:w[200px] lg:w-[250px]"
+				/>
+				{isFiltered && (
+					<Button
+						variant="ghost"
+						onClick={() => table.resetColumnFilters()}
+						className="h-8 px-2 lg:px-3"
+					>
+						Reset
+						<Cross2Icon className="ml-2 h-4 w-4" />
+					</Button>
+				)}
+			</div>
+			<DataTableViewOptions table={table} />
+		</div>
+	);
 }
