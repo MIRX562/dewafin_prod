@@ -3,7 +3,7 @@ import TableExportButton from "@/components/common/buttons/TableExportButton";
 import PageToolbar from "@/components/common/tool/PageToolbar";
 import { Suspense } from "react";
 import AddEmployeeButton from "./_components/addEmployeeButton";
-import EmployeesTable from "./_components/employeesTable";
+import EmployeesTable from "./_components/table/employeesTable";
 
 export default async function EmployeesPage() {
 	return (

@@ -21,8 +21,8 @@ const NoteView: React.FC = () => {
 	const [title, setTitle] = useState<string>("");
 	const [content, setContent] = useState<string>("");
 	const [isPublic, setIsPublic] = useState<boolean>(false);
-	const debouncedTitle = useDebounce(title, 2000);
-	const debouncedContent = useDebounce(content, 2000);
+	const debouncedTitle = useDebounce(title, 1000);
+	const debouncedContent = useDebounce(content, 1000);
 	const uId = useCurrentUserId();
 	const searchParams = useSearchParams();
 	const noteId = searchParams.get("id");
@@ -102,12 +102,16 @@ const NoteView: React.FC = () => {
 						>
 							<ArrowLeftIcon />
 						</Button>
-						<Button
-							onClick={handleTogglePublic}
-							variant={isPublic ? "default" : "outline"}
-						>
-							{isPublic ? "Set Private" : "Set Public"}
-						</Button>
+						{editable ? (
+							<Button
+								onClick={handleTogglePublic}
+								variant={isPublic ? "default" : "outline"}
+							>
+								{isPublic ? "Set Private" : "Set Public"}
+							</Button>
+						) : (
+							""
+						)}
 					</div>
 				</header>
 				<div className="flex-1 overflow-auto group pt-2">

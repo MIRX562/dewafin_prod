@@ -2,7 +2,7 @@ import Loading from "@/app/loading";
 import PageToolbar from "@/components/common/tool/PageToolbar";
 import { Suspense } from "react";
 import UploadButton from "./_components/FileUploadButton";
-import FilesTable from "./_components/filesTable";
+import FilesTable from "./_components/table/filesTable";
 
 export default async function FileArchivePage() {
 	return (
