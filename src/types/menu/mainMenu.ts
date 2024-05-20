@@ -76,11 +76,6 @@ export const navItemsUser: Menu[] = [
 		path: "/task",
 	},
 	{
-		icon: SquareGanttChart,
-		label: "Reports",
-		path: "/reports",
-	},
-	{
 		icon: BoxesIcon,
 		label: "Products",
 		path: "/products",

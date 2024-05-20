@@ -8,7 +8,7 @@ export default function ReportDetailsPage({
 	params: { slug: string };
 }) {
 	return (
-		<RoleGate allowedRole="MANAGER">
+		<RoleGate allowedRole="ADMIN">
 			<div className="w-full h-full">
 				<h1 className="text-2xl font-semibold">{parseTitle(params.slug)}</h1>
 				<div className="flex flex-wrap items-center justify-end gap-4 p-4 border-b">

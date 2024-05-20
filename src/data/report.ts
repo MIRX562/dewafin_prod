@@ -5,7 +5,7 @@ import { currentRole } from "@/lib/sessionUser";
 
 export const getReports = async () => {
 	const role = await currentRole();
-	if (role !== "MANAGER") return;
+	if (role !== "ADMIN") return;
 	try {
 		const reports = await db.report.findMany();
 		return reports;
@@ -19,23 +19,6 @@ export const getReportById = async (id: string) => {
 		const report = await db.report.findUnique({
 			where: {
 				id,
-			},
-			include: {
-				task: true,
-				user: true,
-			},
-		});
-		return report;
-	} catch (error) {
-		return null;
-	}
-};
-
-export const getReportByUserId = async (userId: string) => {
-	try {
-		const report = await db.report.findMany({
-			where: {
-				userId,
 			},
 		});
 		return report;

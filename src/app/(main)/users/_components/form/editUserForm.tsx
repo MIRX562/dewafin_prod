@@ -157,7 +157,6 @@ const EditUserForm = ({ userData }: { userData: User }) => {
 										<SelectContent>
 											<SelectItem value={UserRole.ADMIN}>Admin</SelectItem>
 											<SelectItem value={UserRole.USER}>User</SelectItem>
-											<SelectItem value={UserRole.MANAGER}>Manager</SelectItem>
 										</SelectContent>
 									</Select>
 									<FormMessage />

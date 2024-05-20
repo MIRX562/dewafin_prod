@@ -1,9 +1,9 @@
-import { currentRole } from "@/lib/sessionUser";
-import ManagerView from "./_components/view/ManagerView";
-import RegularView from "./_components/view/RegularView";
+import RoleGate from "@/components/auth/access/RoleGate";
 
 export default async function ReportPage() {
-	const role = await currentRole();
-	
-	return <>{role === "MANAGER" ? <ManagerView /> : <RegularView />}</>;
+	return (
+		<RoleGate allowedRole="ADMIN">
+			<div></div>
+		</RoleGate>
+	);
 }

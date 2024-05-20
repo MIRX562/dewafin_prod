@@ -1,5 +1,6 @@
 "use client";
 
+import EditEmployeeForm from "@/app/(main)/employees/_components/form/editEmployeeForm";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import {
@@ -15,7 +16,6 @@ import { Employee } from "@prisma/client";
 import { DotsHorizontalIcon } from "@radix-ui/react-icons";
 import { Row } from "@tanstack/react-table";
 import { useRouter } from "next/navigation";
-import EditEmployeeForm from "../form/editEmployeeForm";
 
 interface DataTableRowActionsProps<TData> {
 	row: Row<TData>;
