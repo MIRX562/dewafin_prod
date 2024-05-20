@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { parseFile, readFile } from "@/lib/parseSheet";
 import { formatFileSize } from "@/lib/utils";
-import { fileArchiveSchema } from "@/schemas/file";
+import { reportFileSchema } from "@/schemas/file";
 import { addReport } from "@/server-actions/report";
 import { FileIcon, PlusCircleIcon, UploadIcon, XIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -19,7 +19,7 @@ import { useState } from "react";
 
 const validateFile = (file: File) => {
 	try {
-		fileArchiveSchema.parse({
+		reportFileSchema.parse({
 			name: file.name,
 			size: file.size,
 			type: file.type,
@@ -157,8 +157,7 @@ export default function AddReportButton() {
 						</div>
 						<div className="grid gap-2 space-y-2">
 							<p className="text-sm text-gray-500 dark:text-gray-400">
-								Supported file types: txt, pdf, doc, xls, ppt, xlsx, docx, pptx,
-								zip, jpeg, png, mp3, mp4
+								Supported file types: csv
 							</p>
 							{fileError && (
 								<p className="text-sm text-red-500 dark:text-red-400">

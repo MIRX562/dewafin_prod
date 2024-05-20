@@ -38,6 +38,17 @@ export const fileArchiveSchema = z.object({
 		"File type not supported"
 	),
 });
+export const reportFileSchema = z.object({
+	name: z.string().min(1, "File name is required"),
+	size: z.number().positive("File size must be greater than 0"),
+	type: z.string().refine(
+		(value) =>
+			[
+				"text/csv", // csv
+			].includes(value),
+		"File type not supported"
+	),
+});
 
 export const fileSchema = z.object({
 	id: z.string(),
@@ -51,4 +62,5 @@ export const fileSchema = z.object({
 
 export type DataImportFile = z.infer<typeof dataImportFileSchema>;
 export type FileArchive = z.infer<typeof fileArchiveSchema>;
+export type ReportFile = z.infer<typeof reportFileSchema>;
 export type File = z.infer<typeof fileSchema>;

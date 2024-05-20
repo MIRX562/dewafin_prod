@@ -23,7 +23,7 @@ export const addReport = async (
 		const newReport = await db.report.create({
 			data: {
 				title: `Laporan Keuangan - ${date}`,
-				description: "",
+				description: "Edit to add description",
 				month: new Date(),
 				data: values.data as any,
 				initial: values.saldoAwal as any,

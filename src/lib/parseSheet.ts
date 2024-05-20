@@ -1,12 +1,14 @@
 import XLSX from "xlsx";
-import { parseCurrency } from "./utils";
+import { formatCurrency, parseCurrency } from "./utils";
 
 // Define types for the data structure
 export interface ParsedData {
-	SALDO: string;
+	NO: number;
+	TGL: string;
+	KETERANGAN: string;
 	DEBIT?: string;
 	KREDIT?: string;
-	KETERANGAN: string;
+	SALDO: string;
 }
 
 export interface ParsedResult {
@@ -27,12 +29,25 @@ export const parseFile = (fileData: string | ArrayBuffer): ParsedResult => {
 	const header = jsonData[0];
 	const rows = jsonData.slice(1);
 
-	const data: ParsedData[] = rows.map((row) => {
+	let saldo = 0;
+	const data: ParsedData[] = rows.map((row, index) => {
+		const debit = parseCurrency(row[header.indexOf("DEBIT")]) || 0;
+		const kredit = parseCurrency(row[header.indexOf("KREDIT")]) || 0;
+
+		// Update saldo based on DEBIT and KREDIT values
+		if (row[header.indexOf("KETERANGAN")] === "Saldo Awal") {
+			saldo = parseCurrency(row[header.indexOf("SALDO")]) || 0;
+		} else {
+			saldo += debit - kredit;
+		}
+
 		const entry: ParsedData = {
-			SALDO: row[header.indexOf("SALDO")] || "",
-			DEBIT: row[header.indexOf("DEBIT")] || "",
-			KREDIT: row[header.indexOf("KREDIT")] || "",
+			NO: Number(row[header.indexOf("NO")]),
+			TGL: row[header.indexOf("TGL")] || "",
 			KETERANGAN: row[header.indexOf("KETERANGAN")] || "",
+			DEBIT: row[header.indexOf("DEBIT")] || "-",
+			KREDIT: row[header.indexOf("KREDIT")] || "-",
+			SALDO: formatCurrency(saldo), // Format saldo
 		};
 		return entry;
 	});
