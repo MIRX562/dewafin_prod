@@ -29,15 +29,22 @@ export const parseFile = (fileData: string | ArrayBuffer): ParsedResult => {
 	const header = jsonData[0];
 	const rows = jsonData.slice(1);
 
-	let saldo = 0;
+	// Find the initial balance (Saldo Awal)
+	const initialBalanceRow = rows.find(
+		(row) => row[header.indexOf("KETERANGAN")] === "Saldo Awal"
+	);
+	const saldoAwal = initialBalanceRow
+		? parseCurrency(initialBalanceRow[header.indexOf("SALDO")])
+		: 0;
+	let saldo = saldoAwal;
+
 	const data: ParsedData[] = rows.map((row, index) => {
 		const debit = parseCurrency(row[header.indexOf("DEBIT")]) || 0;
 		const kredit = parseCurrency(row[header.indexOf("KREDIT")]) || 0;
 
 		// Update saldo based on DEBIT and KREDIT values
-		if (row[header.indexOf("KETERANGAN")] === "Saldo Awal") {
-			saldo = parseCurrency(row[header.indexOf("SALDO")]) || 0;
-		} else {
+		if (row[header.indexOf("KETERANGAN")] !== "Saldo Awal") {
+			//@ts-ignore
 			saldo += debit - kredit;
 		}
 
@@ -52,7 +59,6 @@ export const parseFile = (fileData: string | ArrayBuffer): ParsedResult => {
 		return entry;
 	});
 
-	const saldoAwal = parseCurrency(data[0]["SALDO"]);
 	const danaMasuk = data.reduce(
 		(sum: any, row: any) => sum + parseCurrency(row["DEBIT"] || "0"),
 		0
