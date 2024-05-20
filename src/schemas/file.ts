@@ -21,6 +21,7 @@ export const fileArchiveSchema = z.object({
 		(value) =>
 			[
 				"text/plain", // txt
+				"text/csv", // csv
 				"application/pdf", // pdf
 				"application/msword", // doc
 				"application/vnd.ms-excel", // xls

@@ -61,7 +61,7 @@ model Account {
 
 model User {
   id                 String    @id @default(cuid())
-  employeeId         String?    @unique
+  employeeId         String?   @unique
   name               String
   email              String    @unique
   emailVerified      DateTime?
@@ -91,7 +91,7 @@ model Employee {
   isActive    Status     @default(Active)
   hireDate    DateTime
 
-  task   Task[]
+  task Task[]
 
   user User? @relation(fields: [userId], references: [id])
 
@@ -103,11 +103,10 @@ model Employee {
 
 model File {
   id       String @id @default(cuid())
-  name String
+  name     String
   mimeType String
   size     Int
   location String
-
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -124,7 +123,7 @@ model Category {
 }
 
 model Product {
-  id          String     @id @default(cuid())
+  id          String  @id @default(cuid())
   name        String  @unique
   description String?
   categoryId  String?
@@ -139,7 +138,7 @@ model Product {
 
 model Package {
   id                String  @id @default(cuid())
-  name              String  
+  name              String
   price             Decimal @default(0.00)
   description       String?
   specification     Json?
@@ -154,21 +153,27 @@ model Package {
 }
 
 model Report {
-  id          String     @id @default(cuid())
-  title       String     
+  id          String   @id @default(cuid())
+  title       String
   description String?
   data        Json
+  initial     BigInt
+  income      BigInt
+  outcome     BigInt
+  refund      BigInt
+  final       BigInt
+  net         BigInt
   month       DateTime @default(now())
-  
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Note {
-  id      String  @id @default(cuid())
-  userId  String
-  title   String
-  content String
+  id       String  @id @default(cuid())
+  userId   String
+  title    String
+  content  String
   isPublic Boolean @default(false)
 
   user User @relation(fields: [userId], references: [id])

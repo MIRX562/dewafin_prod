@@ -1,6 +1,7 @@
 import { File } from "@/schemas/file";
 import { deleteEmployee } from "@/server-actions/employee";
 import { deleteFile } from "@/server-actions/file";
+import { deleteReport } from "@/server-actions/report";
 import { deleteUser } from "@/server-actions/user";
 import { toast } from "sonner";
 
@@ -69,6 +70,28 @@ export const deleteFileToast = async (file: File, onSuccess?: () => void) => {
 						return "File is successfully deleted!";
 					},
 					error: "Failed to delete file",
+				});
+			},
+		},
+		cancel: {
+			label: "Cancel",
+			onClick: () => {},
+		},
+	});
+};
+export const deleteReportToast = async (id: string, onSuccess?: () => void) => {
+	toast.warning("Confirm delete", {
+		description: "This action cannot be undone!",
+		action: {
+			label: "Delete",
+			onClick: async () => {
+				toast.promise(deleteReport(id), {
+					loading: "Deleting Report...",
+					success: () => {
+						onSuccess?.(); // Call the provided callback function
+						return "Report is successfully deleted!";
+					},
+					error: "Failed to delete report",
 				});
 			},
 		},

@@ -234,3 +234,57 @@ export function calculateDuration(
 		return `${seconds} second${seconds !== 1 ? "s" : ""}`;
 	}
 }
+
+/**
+ * Parses a currency string and converts it to a number.
+ * @param currencyStr The currency string to parse.
+ * @returns The numeric value of the currency string.
+ */
+export function parseCurrency(currencyStr: string | undefined): number | null {
+	if (!currencyStr) {
+		return null;
+	}
+
+	// Remove currency symbols, commas, and extra spaces
+	const cleanedStr = currencyStr.replace(/[^\d.-]/g, "").trim();
+
+	// Convert to a number
+	const value = parseFloat(cleanedStr);
+
+	// Check if the conversion was successful
+	if (isNaN(value)) {
+		return null;
+	}
+
+	return value;
+}
+
+/**
+ * Converts a number to a formatted currency string.
+ * @param value The numeric value to format.
+ * @returns The formatted currency string.
+ */
+export function formatCurrency(value: number | null | bigint): string {
+	if (value === null) {
+		return "";
+	}
+
+	return new Intl.NumberFormat("id-ID", {
+		style: "currency",
+		currency: "IDR",
+		minimumFractionDigits: 2,
+	}).format(value);
+}
+
+/**
+ * Gets the current month and year as a localized string.
+ * @returns A string representing the current month and year.
+ */
+export function getCurrentMonthAndYear(): string {
+	const currentDate = new Date();
+	const options: Intl.DateTimeFormatOptions = {
+		year: "numeric",
+		month: "long",
+	};
+	return currentDate.toLocaleDateString(undefined, options);
+}

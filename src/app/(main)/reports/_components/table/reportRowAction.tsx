@@ -1,6 +1,5 @@
 "use client";
 
-import EditEmployeeForm from "@/app/(main)/employees/_components/form/editEmployeeForm";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import {
@@ -10,9 +9,8 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { deleteEmployeeToast } from "@/lib/toasts";
-import { EmployeeSchema } from "@/schemas/employee";
-import { Employee } from "@prisma/client";
+import { deleteReportToast } from "@/lib/toasts";
+import { ReportSchema } from "@/schemas/report";
 import { DotsHorizontalIcon } from "@radix-ui/react-icons";
 import { Row } from "@tanstack/react-table";
 import { useRouter } from "next/navigation";
@@ -21,14 +19,14 @@ interface DataTableRowActionsProps<TData> {
 	row: Row<TData>;
 }
 
-export function EmployeeDataTableRowActions<TData>({
+export function ReportDataTableRowActions<TData>({
 	row,
 }: DataTableRowActionsProps<TData>) {
-	const employee = EmployeeSchema.parse(row.original);
+	const report = ReportSchema.parse(row.original);
 	const router = useRouter();
 
 	const handleDeleteEmployee = async () => {
-		await deleteEmployeeToast(employee.id, () => {
+		await deleteReportToast(report.id, () => {
 			router.refresh();
 		});
 	};
@@ -53,9 +51,7 @@ export function EmployeeDataTableRowActions<TData>({
 						<DialogTrigger className="relative w-full flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 hover:bg-accent">
 							Edit
 						</DialogTrigger>
-						<DialogContent className="lg:w-[400px] grid place-items-center p-1 bg-transparent border-none shadow-sm">
-							<EditEmployeeForm employeeData={employee as Employee} />
-						</DialogContent>
+						<DialogContent className="lg:w-[400px] grid place-items-center p-1 bg-transparent border-none shadow-sm"></DialogContent>
 					</Dialog>
 				</DropdownMenuItem>
 				<DropdownMenuSeparator />
