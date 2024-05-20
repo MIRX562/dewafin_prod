@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { formatFileSize } from "@/lib/utils";
 import { fileArchiveSchema } from "@/schemas/file";
-import { upload } from "@/server-actions/fileOps";
+import { upload } from "@/server-actions/file";
 import { FileIcon, PlusCircleIcon, UploadIcon, XIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";

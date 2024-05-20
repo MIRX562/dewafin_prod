@@ -1,13 +1,9 @@
-import { getReportByUserId, getReports } from "@/data/report";
-import { currentRole, currentUserId } from "@/lib/sessionUser";
-import ManagerView from "./_components/ManagerView";
+import { currentRole } from "@/lib/sessionUser";
+import ManagerView from "./_components/view/ManagerView";
+import RegularView from "./_components/view/RegularView";
 
 export default async function ReportPage() {
 	const role = await currentRole();
-	const userId = await currentUserId();
-	if (!userId) return;
-	const reports =
-		role !== "MANAGER" ? await getReportByUserId(userId) : await getReports();
-	if (!reports) return;
-	return <>{role === "MANAGER" && <ManagerView />}</>;
+	
+	return <>{role === "MANAGER" ? <ManagerView /> : <RegularView />}</>;
 }

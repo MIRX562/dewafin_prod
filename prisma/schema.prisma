@@ -89,7 +89,7 @@ model Employee {
   lastName    String
   email       String     @unique
   phoneNumber String?
-  department        Department
+  department  Department
   isActive    Status     @default(Active)
   hireDate    DateTime
 
@@ -163,7 +163,6 @@ model Report {
   title       String     
   description String?
   filePath    String
-  department  Department
   taskId      String?     @unique
 
   task     Task?     @relation(fields: [taskId], references: [id])

@@ -1,6 +1,6 @@
 import { File } from "@/schemas/file";
 import { deleteEmployee } from "@/server-actions/employee";
-import { deleteFile } from "@/server-actions/fileOps";
+import { deleteFile } from "@/server-actions/file";
 import { deleteUser } from "@/server-actions/user";
 import { toast } from "sonner";
 

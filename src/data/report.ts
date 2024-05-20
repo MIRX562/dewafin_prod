@@ -20,6 +20,10 @@ export const getReportById = async (id: string) => {
 			where: {
 				id,
 			},
+			include: {
+				task: true,
+				user: true,
+			},
 		});
 		return report;
 	} catch (error) {

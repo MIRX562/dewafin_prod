@@ -19,7 +19,7 @@ export function FileDataTableRowActions<TData>({
 
 	const handleDownload = async () => {
 		try {
-			const response = await fetch(`/api/download?fileId=${row.id}`);
+			const response = await fetch(`/api/download?fileId=${file.id}`);
 			if (response.ok) {
 				// Create a blob from the response
 				const blob = await response.blob();
@@ -28,7 +28,7 @@ export function FileDataTableRowActions<TData>({
 				// Create a temporary link element
 				const link = document.createElement("a");
 				link.href = url;
-				link.download = row.getValue("fileName");
+				link.download = row.getValue("name");
 				// Simulate click on the link to start download
 				link.click();
 				// Release the URL object

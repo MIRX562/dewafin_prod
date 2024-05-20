@@ -1,5 +1,7 @@
+import Loading from "@/app/loading";
 import { getAllNotes } from "@/data/note";
 import { currentUser } from "@/lib/sessionUser";
+import { Suspense } from "react";
 import AddNoteButton from "./_components/AddNoteButton";
 import NoteList from "./_components/NoteList";
 
@@ -31,7 +33,9 @@ export default async function NotePage() {
 
 		return (
 			<main className="w-full h-full flex flex-col">
-				<NoteList notes={data} />
+				<Suspense fallback={<Loading />}>
+					<NoteList notes={data} />
+				</Suspense>
 			</main>
 		);
 	} catch (error) {

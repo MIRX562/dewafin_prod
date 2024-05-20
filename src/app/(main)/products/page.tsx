@@ -1,14 +1,11 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/09Rw0OWw8bf
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
+import Loading from "@/app/loading";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { PlusIcon, SearchIcon } from "lucide-react";
+import { Suspense } from "react";
 import Category from "./_components/Category";
 
-export default function ProductPage() {
+export default async function ProductPage() {
 	return (
 		<div className="container mx-auto px-4 py-8">
 			<div className="flex items-center justify-between mb-6 gap-2">
@@ -26,21 +23,23 @@ export default function ProductPage() {
 				</Button>
 			</div>
 			<div className="grid gap-6">
-				<Category />
-				<Category />
-				<Category />
-				<Category />
-				<Category />
-				<Category />
-				<Category />
-				<Category />
-				<Category />
-				<Category />
-				<Category />
-				<Category />
-				<Category />
-				<Category />
-				<Category />
+				<Suspense fallback={<Loading />}>
+					<Category />
+					<Category />
+					<Category />
+					<Category />
+					<Category />
+					<Category />
+					<Category />
+					<Category />
+					<Category />
+					<Category />
+					<Category />
+					<Category />
+					<Category />
+					<Category />
+					<Category />
+				</Suspense>
 			</div>
 		</div>
 	);

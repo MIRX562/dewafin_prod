@@ -3,6 +3,7 @@ import { db } from "@/lib/db";
 import { currentUserId } from "@/lib/sessionUser";
 import { readFile } from "fs/promises";
 import { NextRequest } from "next/server";
+import { join } from "path";
 
 export async function GET(req: NextRequest) {
 	// Ensure user is authenticated
@@ -23,7 +24,7 @@ export async function GET(req: NextRequest) {
 			return new Response("File not found", { status: 404 });
 		}
 
-		const filePath = file.location;
+		const filePath = join(process.cwd(), file.location);
 
 		// Read the file from the specified path
 		const fileData = await readFile(filePath);
