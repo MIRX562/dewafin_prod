@@ -153,50 +153,95 @@ const AddEmployeeForm = () => {
 								</FormItem>
 							)}
 						/>
-
-						<FormField
-							control={form.control}
-							name="department"
-							render={({ field }) => (
-								<FormItem>
-									<FormLabel>Department</FormLabel>
-									<Select
-										disabled={isPending}
-										onValueChange={field.onChange}
-									>
-										<FormControl>
-											<SelectTrigger>
-												<SelectValue placeholder="Select a role" />
-											</SelectTrigger>
-										</FormControl>
-										<SelectContent>
-											<SelectItem value={Department.Management}>
-												Manager
-											</SelectItem>
-											<SelectItem value={Department.Administration}>
-												Administration
-											</SelectItem>
-											<SelectItem value={Department.Customer_Support}>
-												Customer Support
-											</SelectItem>
-											<SelectItem value={Department.Sales_Marketing}>
-												Sales & Marketing
-											</SelectItem>
-											<SelectItem value={Department.Technical_Support}>
-												Technical Support
-											</SelectItem>
-										</SelectContent>
-									</Select>
-									<FormMessage />
-								</FormItem>
-							)}
-						/>
+						<div className="flex w-full gap-2">
+							<FormField
+								control={form.control}
+								name="department"
+								render={({ field }) => (
+									<FormItem className="flex flex-col w-1/2">
+										<FormLabel>Department</FormLabel>
+										<Select
+											disabled={isPending}
+											onValueChange={field.onChange}
+										>
+											<FormControl>
+												<SelectTrigger>
+													<SelectValue placeholder="Pick department" />
+												</SelectTrigger>
+											</FormControl>
+											<SelectContent>
+												<SelectItem value={Department.Management}>
+													Manager
+												</SelectItem>
+												<SelectItem value={Department.Administration}>
+													Administration
+												</SelectItem>
+												<SelectItem value={Department.Customer_Support}>
+													Customer Support
+												</SelectItem>
+												<SelectItem value={Department.Sales_Marketing}>
+													Sales & Marketing
+												</SelectItem>
+												<SelectItem value={Department.Technical_Support}>
+													Technical Support
+												</SelectItem>
+											</SelectContent>
+										</Select>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+							<FormField
+								control={form.control}
+								name="hireDate"
+								render={({ field }) => (
+									<FormItem className="flex flex-col justify-center w-1/2">
+										<FormLabel>Hired At</FormLabel>
+										<Popover>
+											<PopoverTrigger asChild>
+												<FormControl>
+													<Button
+														variant={"outline"}
+														className={cn(
+															"w-full pl-3 text-left font-normal",
+															!field.value && "text-muted-foreground"
+														)}
+													>
+														{field.value ? (
+															format(field.value, "PPP")
+														) : (
+															<span>Pick a date</span>
+														)}
+														<CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+													</Button>
+												</FormControl>
+											</PopoverTrigger>
+											<PopoverContent
+												className="w-auto p-0"
+												align="start"
+											>
+												<Calendar
+													mode="single"
+													selected={field.value}
+													onSelect={field.onChange}
+													disabled={(date) =>
+														date > new Date() || date < new Date("2020-01-01")
+													}
+													initialFocus
+												/>
+											</PopoverContent>
+										</Popover>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+						</div>
 						<FormField
 							control={form.control}
 							name="userId"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>Employee Data</FormLabel>
+									<FormLabel>User Account</FormLabel>
 									<Select
 										disabled={isPending}
 										onValueChange={field.onChange}
@@ -217,50 +262,6 @@ const AddEmployeeForm = () => {
 											))}
 										</SelectContent>
 									</Select>
-									<FormMessage />
-								</FormItem>
-							)}
-						/>
-						<FormField
-							control={form.control}
-							name="hireDate"
-							render={({ field }) => (
-								<FormItem className="flex flex-col">
-									<FormLabel>Hired At</FormLabel>
-									<Popover>
-										<PopoverTrigger asChild>
-											<FormControl>
-												<Button
-													variant={"outline"}
-													className={cn(
-														"w-full pl-3 text-left font-normal",
-														!field.value && "text-muted-foreground"
-													)}
-												>
-													{field.value ? (
-														format(field.value, "PPP")
-													) : (
-														<span>Pick a date</span>
-													)}
-													<CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-												</Button>
-											</FormControl>
-										</PopoverTrigger>
-										<PopoverContent
-											className="w-auto p-0"
-											align="start"
-										>
-											<Calendar
-												mode="single"
-												selected={field.value}
-												onSelect={field.onChange}
-												disabled={(date) =>
-													date > new Date() || date < new Date("2020-01-01")
-												}
-												initialFocus
-											/>
-										</PopoverContent>
-									</Popover>
 									<FormMessage />
 								</FormItem>
 							)}

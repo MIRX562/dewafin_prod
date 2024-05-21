@@ -17,6 +17,7 @@ export interface ParsedResult {
 	danaMasuk: number;
 	danaKeluar: number;
 	totalRefund: number;
+	pendapatan: number;
 	saldoAkhir: number;
 	totalBersih: number;
 }
@@ -77,6 +78,7 @@ export const parseFile = (fileData: string | ArrayBuffer): ParsedResult => {
 	);
 	const saldoAkhir = saldoAwal + danaMasuk - danaKeluar;
 	const totalBersih = danaMasuk - danaKeluar;
+	const pendapatan = danaMasuk - totalRefund;
 
 	const result: ParsedResult = {
 		data,
@@ -84,6 +86,7 @@ export const parseFile = (fileData: string | ArrayBuffer): ParsedResult => {
 		danaMasuk,
 		danaKeluar,
 		totalRefund,
+		pendapatan,
 		saldoAkhir,
 		totalBersih,
 	};

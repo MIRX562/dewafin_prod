@@ -1,5 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
 import { Card } from "@/components/ui/card";
 import {
 	Dialog,
@@ -9,11 +10,24 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import {
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from "@/components/ui/popover";
 import { parseFile, readFile } from "@/lib/parseSheet";
-import { formatFileSize } from "@/lib/utils";
+import { cn, formatFileSize } from "@/lib/utils";
 import { reportFileSchema } from "@/schemas/file";
 import { addReport } from "@/server-actions/report";
-import { FileIcon, PlusCircleIcon, UploadIcon, XIcon } from "lucide-react";
+import { format } from "date-fns";
+import {
+	CalendarIcon,
+	FileIcon,
+	PlusCircleIcon,
+	UploadIcon,
+	XIcon,
+} from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -36,6 +50,8 @@ export default function AddReportButton() {
 	const [file, setFile] = useState<File | null>(null);
 	const [isDragOver, setIsDragOver] = useState(false);
 	const [fileError, setFileError] = useState<string | null>(null);
+	const [description, setDescription] = useState<string>("");
+	const [month, setMonth] = useState<Date>();
 	const router = useRouter();
 
 	const handleFileChange = async (e: any) => {
@@ -63,10 +79,16 @@ export default function AddReportButton() {
 
 			// Process the parsed data as needed
 			// For example, send it to the server or update the state
-			await addReport(parsedData);
+			const reportData = {
+				...parsedData,
+				description,
+				month,
+			};
 
+			const rp = await addReport(reportData);
 			// Reset file state and close dialog
 			setFile(null);
+			setDescription("");
 			setIsOpen(false);
 			router.refresh();
 		} catch (error) {
@@ -115,7 +137,7 @@ export default function AddReportButton() {
 					className="flex gap-2 items-center"
 				>
 					<PlusCircleIcon className="text-primary w-4 h-4" />
-					Add File
+					Add Report File
 				</Button>
 			</DialogTrigger>
 			<DialogContent className="max-w-[90svh] md:max-w-[500px]">
@@ -188,6 +210,51 @@ export default function AddReportButton() {
 									</Card>
 								</div>
 							)}
+							<div className="flex flex-col gap-2">
+								<label className="text-sm text-gray-500 dark:text-gray-400">
+									Description
+									<Input
+										type="text"
+										value={description}
+										onChange={(e) => setDescription(e.target.value)}
+										className="mt-1 block w-full rounded-md border-gray-300 shadow-sm dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300"
+									/>
+								</label>
+
+								<label className="text-sm text-gray-500 dark:text-gray-400">
+									Month
+									<Popover>
+										<PopoverTrigger asChild>
+											<Button
+												variant={"outline"}
+												className={cn(
+													"w-full pl-3 text-left font-normal",
+													!month && "text-muted-foreground"
+												)}
+											>
+												{month ? (
+													format(month, "PPP")
+												) : (
+													<span>Pick a date</span>
+												)}
+												<CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+											</Button>
+										</PopoverTrigger>
+										<PopoverContent
+											className="w-auto p-0"
+											align="start"
+										>
+											<Calendar
+												mode="single"
+												selected={month}
+												onSelect={setMonth}
+												disabled={(date) => date > new Date()}
+												initialFocus
+											/>
+										</PopoverContent>
+									</Popover>
+								</label>
+							</div>
 							<div className="flex justify-between">
 								<Button
 									onClick={() => {

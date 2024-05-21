@@ -166,6 +166,20 @@ export function formatDate(date: Date): string {
 }
 
 /**
+ * Formats a date object into a string in the format "Month Day, Year".
+ * @param date The date object to format.
+ * @returns A formatted date string.
+ */
+export function formatMonthYear(date: Date): string {
+	const options: Intl.DateTimeFormatOptions = {
+		year: "numeric",
+		month: "long",
+	};
+
+	return date.toLocaleDateString("id", options);
+}
+
+/**
  * Formats a date object into a time string in the format "HH:MM AM/PM".
  * @param date The date object to format.
  * @returns A formatted time string.
@@ -177,7 +191,7 @@ export function formatTime(date: Date): string {
 		hour12: true,
 	};
 
-	return date.toLocaleTimeString("en-US", options);
+	return date.toLocaleTimeString("id", options);
 }
 
 /**
@@ -246,7 +260,7 @@ export function parseCurrency(currencyStr: string | undefined): number | null {
 	}
 
 	// Remove currency symbols, commas, and extra spaces
-	const cleanedStr = currencyStr.replace(/[^\d.-]/g, "").trim();
+	const cleanedStr = currencyStr.replace(/[^\d-]/g, "").trim();
 
 	// Convert to a number
 	const value = parseFloat(cleanedStr);
@@ -272,7 +286,7 @@ export function formatCurrency(value: number | null | bigint): string {
 	return new Intl.NumberFormat("id-ID", {
 		style: "currency",
 		currency: "IDR",
-		minimumFractionDigits: 2,
+		minimumFractionDigits: 0,
 	}).format(value);
 }
 
@@ -286,5 +300,41 @@ export function getCurrentMonthAndYear(): string {
 		year: "numeric",
 		month: "long",
 	};
-	return currentDate.toLocaleDateString(undefined, options);
+	return currentDate.toLocaleDateString("id", options);
+}
+
+/**
+ * Generates the last date of the previous month and the last date of the inputted date.
+ * @param date - The input date as a Date object.
+ * @returns A string representing the last date of the previous month and the last date of the inputted date.
+ */
+export function generateReportDateRange(date: Date): string {
+	// Get the last date of the input month
+	const lastDateOfInputMonth = new Date(
+		date.getFullYear(),
+		date.getMonth() + 1,
+		0
+	);
+
+	// Get the last date of the previous month
+	const lastDateOfPreviousMonth = new Date(
+		date.getFullYear(),
+		date.getMonth(),
+		0
+	);
+
+	const options: Intl.DateTimeFormatOptions = {
+		year: "numeric",
+		month: "long",
+		day: "numeric",
+	};
+
+	const lastDateOfInputMonthString = lastDateOfInputMonth.toLocaleDateString(
+		undefined,
+		options
+	);
+	const lastDateOfPreviousMonthString =
+		lastDateOfPreviousMonth.toLocaleDateString(undefined, options);
+
+	return `${lastDateOfPreviousMonthString} - ${lastDateOfInputMonthString}`;
 }

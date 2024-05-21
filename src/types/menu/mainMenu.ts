@@ -25,7 +25,7 @@ export const navItems: Menu[] = [
 	},
 	{
 		icon: SquareGanttChart,
-		label: "Reports",
+		label: "Financial Reports",
 		path: "/reports",
 	},
 	{
@@ -105,7 +105,7 @@ export const favNavItems: Menu[] = [
 	},
 	{
 		icon: SquareGanttChart,
-		label: "Reports",
+		label: "Financial Reports",
 		path: "/reports",
 	},
 	{

@@ -1,18 +1,15 @@
 "use server";
 
 import { db } from "@/lib/db";
-import { ParsedResult } from "@/lib/parseSheet";
 import { currentUser } from "@/lib/sessionUser";
-import { getCurrentMonthAndYear } from "@/lib/utils";
+import { formatMonthYear, getCurrentMonthAndYear } from "@/lib/utils";
 import { revalidatePath } from "next/cache";
 
 type RegisterResponse = {
 	error?: string;
 	success?: string;
 };
-export const addReport = async (
-	values: ParsedResult
-): Promise<RegisterResponse> => {
+export const addReport = async (values: any): Promise<RegisterResponse> => {
 	const user = await currentUser();
 	if (!user) {
 		return { error: "Unauthorized" };
@@ -22,9 +19,9 @@ export const addReport = async (
 	try {
 		const newReport = await db.report.create({
 			data: {
-				title: `Laporan Keuangan - ${date}`,
-				description: "Edit to add description",
-				month: new Date(),
+				title: `Laporan Keuangan - ${formatMonthYear(values.month)}`,
+				description: values.description as any,
+				month: values.month,
 				data: values.data as any,
 				initial: values.saldoAwal as any,
 				income: values.danaMasuk,
@@ -32,13 +29,14 @@ export const addReport = async (
 				refund: values.totalRefund,
 				net: values.totalBersih,
 				final: values.saldoAkhir,
-				// Add additional fields from sheetData if needed
+				profit: values.pendapatan,
 			},
 		});
 
 		revalidatePath("/reports");
 		return { success: "Success Creating New Report" };
 	} catch (error) {
+		console.log(error);
 		return { error: "Something went wrong" };
 	}
 };

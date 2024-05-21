@@ -3,7 +3,7 @@
 // import { Checkbox } from '@/components/ui/checkbox';
 import { DataTableColumnHeader } from "@/components/common/table/data-table-column-header";
 import { Checkbox } from "@/components/ui/checkbox";
-import { formatCurrency, formatDate } from "@/lib/utils";
+import { formatCurrency, generateReportDateRange } from "@/lib/utils";
 import { Report } from "@prisma/client";
 import { ColumnDef } from "@tanstack/react-table";
 import Link from "next/link";
@@ -59,24 +59,6 @@ export const reportColumns: ColumnDef<Report>[] = [
 		},
 	},
 	{
-		accessorKey: "description",
-		header: ({ column }) => (
-			<DataTableColumnHeader
-				column={column}
-				title="Description"
-			/>
-		),
-		cell: ({ row }) => {
-			return (
-				<div className="flex space-x-2">
-					<span className="max-w-[200px] truncate font-medium">
-						{row.getValue("description")}
-					</span>
-				</div>
-			);
-		},
-	},
-	{
 		accessorKey: "month",
 		header: ({ column }) => (
 			<DataTableColumnHeader
@@ -87,8 +69,8 @@ export const reportColumns: ColumnDef<Report>[] = [
 		cell: ({ row }) => {
 			return (
 				<div className="flex space-x-2">
-					<span className="max-w-[200px] truncate font-medium">
-						{formatDate(row.getValue("month"))}
+					<span className="max-w-[300px] truncate font-medium">
+						{generateReportDateRange(row.getValue("month"))}
 					</span>
 				</div>
 			);
@@ -107,6 +89,24 @@ export const reportColumns: ColumnDef<Report>[] = [
 				<div className="flex space-x-2">
 					<span className="max-w-[200px] truncate font-medium">
 						{formatCurrency(row.getValue("net"))}
+					</span>
+				</div>
+			);
+		},
+	},
+	{
+		accessorKey: "final",
+		header: ({ column }) => (
+			<DataTableColumnHeader
+				column={column}
+				title="Saldo"
+			/>
+		),
+		cell: ({ row }) => {
+			return (
+				<div className="flex space-x-2">
+					<span className="max-w-[200px] truncate font-medium">
+						{formatCurrency(row.getValue("final"))}
 					</span>
 				</div>
 			);

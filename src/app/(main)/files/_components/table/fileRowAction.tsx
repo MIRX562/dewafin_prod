@@ -21,17 +21,16 @@ export function FileDataTableRowActions<TData>({
 		try {
 			const response = await fetch(`/api/download?fileId=${file.id}`);
 			if (response.ok) {
-				// Create a blob from the response
 				const blob = await response.blob();
-				// Create a temporary URL for the blob
+
 				const url = window.URL.createObjectURL(blob);
-				// Create a temporary link element
+
 				const link = document.createElement("a");
 				link.href = url;
 				link.download = row.getValue("name");
-				// Simulate click on the link to start download
+
 				link.click();
-				// Release the URL object
+
 				window.URL.revokeObjectURL(url);
 			} else {
 				const error = await response.text();
