@@ -20,6 +20,7 @@ export interface ParsedResult {
 	pendapatan: number;
 	saldoAkhir: number;
 	totalBersih: number;
+	totalPinjaman: number;
 }
 
 export const parseFile = (fileData: string | ArrayBuffer): ParsedResult => {
@@ -76,9 +77,17 @@ export const parseFile = (fileData: string | ArrayBuffer): ParsedResult => {
 				: 0),
 		0
 	);
+	const totalPinjaman = data.reduce(
+		(sum: any, row: any) =>
+			sum +
+			(row["KETERANGAN"].includes("Pinjaman")
+				? parseCurrency(row["DEBIT"] || "0")
+				: 0),
+		0
+	);
 	const saldoAkhir = saldoAwal + danaMasuk - danaKeluar;
 	const totalBersih = danaMasuk - danaKeluar;
-	const pendapatan = danaMasuk - totalRefund;
+	const pendapatan = danaMasuk - totalRefund - totalPinjaman;
 
 	const result: ParsedResult = {
 		data,
@@ -89,6 +98,7 @@ export const parseFile = (fileData: string | ArrayBuffer): ParsedResult => {
 		pendapatan,
 		saldoAkhir,
 		totalBersih,
+		totalPinjaman,
 	};
 
 	return result;

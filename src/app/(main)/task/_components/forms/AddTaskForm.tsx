@@ -95,9 +95,8 @@ const AddTaskForm = () => {
 									<FormControl>
 										<Input
 											disabled={isPending}
-											{...field}
 											placeholder="Task"
-											defaultValue={field.value}
+											{...field}
 										/>
 									</FormControl>
 									<FormMessage />
@@ -115,7 +114,6 @@ const AddTaskForm = () => {
 											disabled={isPending}
 											{...field}
 											placeholder="description.."
-											defaultValue={field.value}
 										/>
 									</FormControl>
 									<FormMessage />
@@ -136,7 +134,7 @@ const AddTaskForm = () => {
 										>
 											<FormControl>
 												<SelectTrigger>
-													<SelectValue placeholder="Select a role" />
+													<SelectValue placeholder="Select status" />
 												</SelectTrigger>
 											</FormControl>
 											<SelectContent>
@@ -189,7 +187,6 @@ const AddTaskForm = () => {
 									<Select
 										disabled={isPending}
 										onValueChange={field.onChange}
-										defaultValue={field.value as any}
 									>
 										<FormControl>
 											<SelectTrigger>
@@ -222,7 +219,6 @@ const AddTaskForm = () => {
 											disabled={isPending}
 											{...field}
 											placeholder="link to report file"
-											defaultValue={field.value}
 										/>
 									</FormControl>
 									<FormMessage />

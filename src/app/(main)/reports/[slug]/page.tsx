@@ -1,5 +1,5 @@
 "use client";
-import NotFound from "@/app/not-found";
+import Loading from "@/app/loading";
 import RoleGate from "@/components/auth/access/RoleGate";
 import { Button } from "@/components/ui/button";
 import {
@@ -53,7 +53,7 @@ export default function ReportDetailsPage({
 	}, [id]);
 
 	if (!data || !data.data) {
-		return <NotFound />;
+		return <Loading />;
 	}
 
 	const columns = ["NO", "TGL", "KETERANGAN", "DEBIT", "KREDIT", "SALDO"];

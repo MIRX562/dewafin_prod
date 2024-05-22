@@ -5,35 +5,37 @@ export const taskSchema = z.object({
 	id: z.string(),
 	title: z.string(),
 	userId: z.string(),
-	employeeId: z.optional(z.string().nullable()),
-	description: z.optional(z.string().nullable()),
-	startDate: z.date(),
-	endDate: z.date(),
-	status: z.nativeEnum(TaskStatus),
-	priority: z.nativeEnum(Priority),
-});
-
-export const addTaskSchema = z.object({
-	title: z.string(),
-	userId: z.string(),
-	employeeId: z.string(),
 	description: z.optional(z.string()),
 	startDate: z.date(),
 	endDate: z.date(),
 	status: z.nativeEnum(TaskStatus),
 	priority: z.nativeEnum(Priority),
-	reportUrl: z.string(),
+	employeeId: z.optional(z.string().nullable()),
+	reportUrl: z.optional(z.string()),
 });
 
-export const editTaskSchema = z.object({
-	id: z.string(),
+export const addTaskSchema = z.object({
 	title: z.string(),
-	employeeId: z.optional(z.string().nullable()),
-	description: z.optional(z.string().nullable()),
+	userId: z.string(),
+	description: z.optional(z.string()),
 	startDate: z.date(),
 	endDate: z.date(),
 	status: z.nativeEnum(TaskStatus),
 	priority: z.nativeEnum(Priority),
+	employeeId: z.optional(z.string()),
+	reportUrl: z.optional(z.string()),
+});
+
+export const editTaskSchema = z.object({
+	title: z.string(),
+	userId: z.string(),
+	description: z.optional(z.string()),
+	startDate: z.date(),
+	endDate: z.date(),
+	status: z.nativeEnum(TaskStatus),
+	priority: z.nativeEnum(Priority),
+	employeeId: z.optional(z.string().nullable()),
+	reportUrl: z.optional(z.string()),
 });
 
 export type AddTask = z.infer<typeof addTaskSchema>;
