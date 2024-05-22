@@ -8,7 +8,7 @@ export default async function layout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<div className="flex min-h-screen">
+		<div className="flex max-h-screen">
 			<Sidebar />
 			<div className="flex flex-col flex-grow">
 				<NavHeader />

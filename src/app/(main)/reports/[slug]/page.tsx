@@ -22,6 +22,7 @@ import jsPDF from "jspdf";
 import "jspdf-autotable";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import Summaryitem from "./_components/summaryItems";
 
 interface ReportData {
 	NO: number;
@@ -57,6 +58,17 @@ export default function ReportDetailsPage({
 	}
 
 	const columns = ["NO", "TGL", "KETERANGAN", "DEBIT", "KREDIT", "SALDO"];
+
+	const summaryData = [
+		{ label: "Initial Account", value: data.initial },
+		{ label: "Final Account", value: data.final },
+		{ label: "Net Profit", value: data.net },
+		{ label: "Profit", value: data.profit },
+		{ label: "Total Expenses", value: data.outcome },
+		{ label: "Total Revenue", value: data.income },
+		{ label: "Total Refund", value: data.refund },
+		{ label: "Total Loan", value: data.loan },
+	];
 
 	const exportPDF = () => {
 		const doc = new jsPDF();
@@ -104,8 +116,8 @@ export default function ReportDetailsPage({
 	};
 
 	return (
-		<RoleGate allowedRole="ADMIN">
-			<div className="flex flex-col gap-3 md:gap-4">
+		<div className="flex flex-col gap-3 md:gap-4 max-h-full overflow-auto">
+			<RoleGate allowedRole="ADMIN">
 				<h1 className="text-xl md:text-3xl font-bold">
 					{parseTitle(params.slug)}
 				</h1>
@@ -119,53 +131,17 @@ export default function ReportDetailsPage({
 							Export to PDF
 						</Button>
 					</div>
-					<div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:align">
-						<div className=" flex flex-col md:items-center md:justify-center">
-							<p className="text-gray-500 dark:text-gray-400">
-								Initial Account
-							</p>
-							<p className="text-xl md:text-2xl font-bold">
-								{formatCurrency(data.initial)}
-							</p>
-						</div>
-						<div className=" flex flex-col md:items-center md:justify-center">
-							<p className="text-gray-500 dark:text-gray-400">Total Expenses</p>
-							<p className={`text-xl md:text-2xl font-bold `}>
-								{formatCurrency(data.outcome)}
-							</p>
-						</div>
-						<div className=" flex flex-col md:items-center md:justify-center">
-							<p className="text-gray-500 dark:text-gray-400">Total Revenue</p>
-
-							<p className={`text-xl md:text-2xl font-bold `}>
-								{formatCurrency(data.income)}
-							</p>
-						</div>
-						<div className=" flex flex-col md:items-center md:justify-center">
-							<p className="text-gray-500 dark:text-gray-400">Net Profit</p>
-							<p
-								className={`text-xl md:text-2xl font-bold ${data.net > 0 ? "text-emerald-500" : "text-destructive"}`}
-							>
-								{formatCurrency(data.net)}
-							</p>
-						</div>
-						<div className=" flex flex-col md:items-center md:justify-center">
-							<p className="text-gray-500 dark:text-gray-400">Total Refund</p>
-							<p className="text-xl md:text-2xl font-bold">
-								{formatCurrency(data.refund)}
-							</p>
-						</div>
-						<div className=" flex flex-col md:items-center md:justify-center">
-							<p className="text-gray-500 dark:text-gray-400">Final Account</p>
-							<p
-								className={`text-xl md:text-2xl font-bold ${data.final > 0 ? "" : "text-destructive"}`}
-							>
-								{formatCurrency(data.final)}
-							</p>
-						</div>
+					<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:align">
+						{summaryData.map((item, index) => (
+							<Summaryitem
+								key={index}
+								label={item.label}
+								value={item.value}
+							/>
+						))}
 					</div>
 				</div>
-				<div className="max-h-[53svh] md:max-h-[60svh] overflow-auto rounded-lg border">
+				<div className=" w-full overflow-auto rounded-lg md:border">
 					<Table>
 						<TableHeader>
 							<TableRow>
@@ -190,7 +166,7 @@ export default function ReportDetailsPage({
 						</TableBody>
 					</Table>
 				</div>
-			</div>
-		</RoleGate>
+			</RoleGate>
+		</div>
 	);
 }

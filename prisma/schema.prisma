@@ -97,8 +97,6 @@ model Employee {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
-  @@unique([id, department])
 }
 
 model File {
@@ -119,7 +117,7 @@ model Category {
   products Product[]
 
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime @default(now())
 }
 
 model Product {
@@ -128,12 +126,12 @@ model Product {
   description String?
   categoryId  String?
 
-  package Package[]
+  packages Package[]
 
   category Category? @relation(fields: [categoryId], references: [id])
 
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime @default(now())
 }
 
 model Package {
@@ -149,7 +147,7 @@ model Package {
   product Product? @relation(fields: [productId], references: [id])
 
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime @default(now())
 }
 
 model Report {
@@ -161,13 +159,14 @@ model Report {
   income      BigInt
   outcome     BigInt
   refund      BigInt
-  profit  BigInt
+  profit      BigInt
   final       BigInt
   net         BigInt
+  loan        BigInt
   month       DateTime @default(now())
 
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime @default(now())
 }
 
 model Note {
@@ -180,7 +179,7 @@ model Note {
   user User @relation(fields: [userId], references: [id])
 
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime @default(now())
 }
 
 model Task {
@@ -199,10 +198,9 @@ model Task {
   employee Employee? @relation(fields: [employeeId], references: [id])
 
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime @default(now())
 }
 
-// ? For Auth Purposes
 model VerificationToken {
   id      String   @id @default(cuid())
   email   String

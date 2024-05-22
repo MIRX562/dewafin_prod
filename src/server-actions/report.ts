@@ -2,7 +2,7 @@
 
 import { db } from "@/lib/db";
 import { currentUser } from "@/lib/sessionUser";
-import { formatMonthYear, getCurrentMonthAndYear } from "@/lib/utils";
+import { formatMonthYear } from "@/lib/utils";
 import { revalidatePath } from "next/cache";
 
 type RegisterResponse = {
@@ -14,22 +14,22 @@ export const addReport = async (values: any): Promise<RegisterResponse> => {
 	if (!user) {
 		return { error: "Unauthorized" };
 	}
-	const date = getCurrentMonthAndYear();
 
 	try {
 		const newReport = await db.report.create({
 			data: {
 				title: `Laporan Keuangan - ${formatMonthYear(values.month)}`,
-				description: values.description as any,
+				description: values.description,
 				month: values.month,
-				data: values.data as any,
-				initial: values.saldoAwal as any,
+				data: values.data,
+				initial: values.saldoAwal,
 				income: values.danaMasuk,
 				outcome: values.danaKeluar,
 				refund: values.totalRefund,
 				net: values.totalBersih,
 				final: values.saldoAkhir,
 				profit: values.pendapatan,
+				loan: values.totalPinjaman,
 			},
 		});
 

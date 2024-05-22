@@ -25,6 +25,8 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+import { useCurrentUserId } from "@/hooks/useCurrentUser";
 import { cn } from "@/lib/utils";
 import { AddTask, addTaskSchema } from "@/schemas/task";
 import { addTask } from "@/server-actions/task";
@@ -39,18 +41,24 @@ const AddTaskForm = () => {
 	const [success, setSuccess] = useState<string | undefined>("");
 	const [error, setError] = useState<string | undefined>("");
 	const [isPending, startTransition] = useTransition();
-	const [employees, setEmployees] = useState([]);
+	const [employees, setEmployees] = useState<Employee[]>([]);
+	const userId = useCurrentUserId() || "";
 
 	const form = useForm<AddTask>({
 		resolver: zodResolver(addTaskSchema),
 		defaultValues: {
+			title: undefined,
+			description: "",
 			startDate: new Date(),
 			endDate: new Date(),
 			status: TaskStatus.TODO,
 			priority: Priority.LOW,
+			//@ts-ignore
+			employeeId: undefined,
+			reportUrl: "",
+			userId: userId || "",
 		},
 	});
-
 	const onSubmit = (values: AddTask) => {
 		setError("");
 		setSuccess("");
@@ -76,7 +84,7 @@ const AddTaskForm = () => {
 		};
 
 		fetchEmployees();
-	}, []);
+	});
 
 	return (
 		<DataFormWrapper title="Task">
@@ -95,8 +103,8 @@ const AddTaskForm = () => {
 									<FormControl>
 										<Input
 											disabled={isPending}
-											placeholder="Task"
 											{...field}
+											placeholder="Task"
 										/>
 									</FormControl>
 									<FormMessage />
@@ -110,10 +118,11 @@ const AddTaskForm = () => {
 								<FormItem>
 									<FormLabel>Description</FormLabel>
 									<FormControl>
-										<Input
+										<Textarea
 											disabled={isPending}
+											placeholder="describe the task here..."
+											className="h-[100px]"
 											{...field}
-											placeholder="description.."
 										/>
 									</FormControl>
 									<FormMessage />
@@ -134,7 +143,7 @@ const AddTaskForm = () => {
 										>
 											<FormControl>
 												<SelectTrigger>
-													<SelectValue placeholder="Select status" />
+													<SelectValue placeholder="Select a role" />
 												</SelectTrigger>
 											</FormControl>
 											<SelectContent>
@@ -178,6 +187,7 @@ const AddTaskForm = () => {
 								)}
 							/>
 						</div>
+
 						<FormField
 							control={form.control}
 							name="employeeId"
@@ -187,6 +197,7 @@ const AddTaskForm = () => {
 									<Select
 										disabled={isPending}
 										onValueChange={field.onChange}
+										defaultValue={field.value as any}
 									>
 										<FormControl>
 											<SelectTrigger>
@@ -216,9 +227,10 @@ const AddTaskForm = () => {
 									<FormLabel>Report File (URL)</FormLabel>
 									<FormControl>
 										<Input
-											disabled={isPending}
 											{...field}
+											disabled={isPending}
 											placeholder="link to report file"
+											defaultValue={field.value}
 										/>
 									</FormControl>
 									<FormMessage />
@@ -303,7 +315,9 @@ const AddTaskForm = () => {
 													mode="single"
 													selected={field.value}
 													onSelect={field.onChange}
-													disabled={(date) => date < new Date()}
+													disabled={(date) =>
+														date > new Date() || date < new Date("2020-01-01")
+													}
 													initialFocus
 												/>
 											</PopoverContent>

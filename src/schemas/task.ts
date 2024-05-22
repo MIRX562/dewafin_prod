@@ -10,7 +10,7 @@ export const taskSchema = z.object({
 	endDate: z.date(),
 	status: z.nativeEnum(TaskStatus),
 	priority: z.nativeEnum(Priority),
-	employeeId: z.optional(z.string().nullable()),
+	employeeId: z.optional(z.string()),
 	reportUrl: z.optional(z.string()),
 });
 
@@ -22,7 +22,7 @@ export const addTaskSchema = z.object({
 	endDate: z.date(),
 	status: z.nativeEnum(TaskStatus),
 	priority: z.nativeEnum(Priority),
-	employeeId: z.optional(z.string()),
+	employeeId: z.string(),
 	reportUrl: z.optional(z.string()),
 });
 
@@ -34,7 +34,7 @@ export const editTaskSchema = z.object({
 	endDate: z.date(),
 	status: z.nativeEnum(TaskStatus),
 	priority: z.nativeEnum(Priority),
-	employeeId: z.optional(z.string().nullable()),
+	employeeId: z.optional(z.string()),
 	reportUrl: z.optional(z.string()),
 });
 
