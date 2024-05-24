@@ -41,7 +41,7 @@ const AddTaskForm = () => {
 	const [success, setSuccess] = useState<string | undefined>("");
 	const [error, setError] = useState<string | undefined>("");
 	const [isPending, startTransition] = useTransition();
-	const [employees, setEmployees] = useState<Employee[]>([]);
+	const [employees, setEmployees] = useState([]);
 	const userId = useCurrentUserId() || "";
 
 	const form = useForm<AddTask>({
@@ -84,7 +84,7 @@ const AddTaskForm = () => {
 		};
 
 		fetchEmployees();
-	});
+	}, []);
 
 	return (
 		<DataFormWrapper title="Task">

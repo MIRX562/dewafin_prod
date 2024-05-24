@@ -1,24 +1,33 @@
-import { getTaskByStatus } from "@/data/task";
-import { TaskStatus } from "@prisma/client";
-import TodoList from "./TaskBoard";
+import {
+	getGroupedTasksByStatus,
+	getGroupedTasksByStatusByUserId,
+} from "@/data/task";
+import { currentUser } from "@/lib/sessionUser";
+import TaskBoard from "./TaskBoard";
 
 const TaskView = async () => {
-	const todo = (await getTaskByStatus(TaskStatus.TODO)) || [];
-	const inProgres = (await getTaskByStatus(TaskStatus.IN_PROGRESS)) || [];
-	const done = (await getTaskByStatus(TaskStatus.FINISHED)) || [];
+	const user = await currentUser();
+	if (!user) return;
+	const task =
+		user.role === "ADMIN"
+			? await getGroupedTasksByStatus()
+			: await getGroupedTasksByStatusByUserId(user.id || "");
+	if (!task) {
+		return;
+	}
 	return (
-		<div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-			<TodoList
+		<div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+			<TaskBoard
 				title="To Do"
-				tasks={todo}
+				tasks={task.TODO || []}
 			/>
-			<TodoList
+			<TaskBoard
 				title="In Progress"
-				tasks={inProgres}
+				tasks={task.IN_PROGRESS || []}
 			/>
-			<TodoList
+			<TaskBoard
 				title="Done"
-				tasks={done}
+				tasks={task.FINISHED || []}
 			/>
 		</div>
 	);

@@ -1,9 +1,9 @@
 "use server";
 
-import { getTaskById } from "@/data/task";
 import { db } from "@/lib/db";
 import { currentUser } from "@/lib/sessionUser";
 import { AddTask, addTaskSchema, EditTask } from "@/schemas/task";
+import { TaskStatus } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 
 type RegisterResponse = {
@@ -66,23 +66,42 @@ export const deleteTask = async (taskId: string): Promise<RegisterResponse> => {
 
 export const editTask = async (
 	taskData: EditTask,
-	taskId: string
+	id: string
 ): Promise<RegisterResponse> => {
 	const user = await currentUser();
 	if (!user) {
 		return { error: "Unauthorized" };
 	}
 
-	const dbTask = await getTaskById(taskId);
+	try {
+		await db.task.update({
+			where: { id },
+			data: taskData,
+		});
+		revalidatePath("/tasks");
 
-	if (!dbTask) {
-		return { error: "Task not found in database" };
+		return { success: "Task data successfully updated" };
+	} catch (error) {
+		console.log(error);
+
+		return { error: `Failed to update task data` };
+	}
+};
+export const updateTaskStatus = async (
+	status: TaskStatus,
+	id: string
+): Promise<RegisterResponse> => {
+	const user = await currentUser();
+	if (!user) {
+		return { error: "Unauthorized" };
 	}
 
 	try {
 		await db.task.update({
-			where: { id: dbTask.id },
-			data: taskData,
+			where: { id },
+			data: {
+				status,
+			},
 		});
 		revalidatePath("/tasks");
 

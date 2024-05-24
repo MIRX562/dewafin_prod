@@ -1,24 +1,27 @@
-import { Task } from "@prisma/client";
+import { TaskWithRelations } from "@/data/task";
 import TaskCard from "./TaskCard";
 
 type Props = {
-  title: string;
-  tasks: Task[];
+	title: string;
+	tasks: TaskWithRelations[];
 };
 
-const TodoList = ({ title, tasks }: Props) => {
-  return (
-    <div className="border shadow-sm rounded-lg">
-      <div className="flex items-center justify-between border-b px-4 py-3">
-        <h3 className="font-semibold">{title}</h3>
-      </div>
-      <div className="p-4 space-y-2 overflow-auto max-h-[400px]">
-        {tasks.map((task, index: number) => (
-          <TaskCard key={index} task={task} />
-        ))}
-      </div>
-    </div>
-  );
+const TaskBoard = ({ title, tasks }: Props) => {
+	return (
+		<div className="border shadow-sm rounded-lg flex flex-col">
+			<div className="border-b px-4 py-3">
+				<h3 className="font-semibold">{title}</h3>
+			</div>
+			<div className="p-4 flex flex-col gap-2 overflow-auto max-h-[20svh] md:max-h-[80svh]">
+				{tasks.map((task) => (
+					<TaskCard
+						key={task.id}
+						task={task}
+					/>
+				))}
+			</div>
+		</div>
+	);
 };
 
-export default TodoList;
+export default TaskBoard;

@@ -7,7 +7,7 @@ import ToDoList from "./_components/Todos";
 
 export default async function DashboardPage() {
 	return (
-		<main className="flex-1 flex-col p-1 flex gap-6 overscroll-none">
+		<main className="flex-1 flex-col p-1 flex gap-2 md:gap-6 overscroll-none">
 			<Suspense fallback={<Loading />}>
 				<NavItems />
 				<div className="flex flex-wrap gap-2 md:gap-4 lg:gap-6">
