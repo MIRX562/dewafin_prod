@@ -235,3 +235,11 @@ model TwoFactorConfirmation {
 
   @@unique([userId])
 }
+
+// logging purpose
+model Logs{
+  id String @id @default(cuid())
+  level String
+  message String
+  timestamp DateTime @default(now())
+}

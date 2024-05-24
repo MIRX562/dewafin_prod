@@ -26,7 +26,8 @@
 		"**/*.ts",
 		"**/*.tsx",
 		".next/types/**/*.ts",
-		"prisma/seed.mjs"
+		"prisma/seed.mjs",
+		"src/cron.mts"
 	],
 	"exclude": ["node_modules"]
 }

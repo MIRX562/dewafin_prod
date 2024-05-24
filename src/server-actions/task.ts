@@ -1,6 +1,6 @@
 "use server";
-
 import { db } from "@/lib/db";
+import { logActivity } from "@/lib/logger";
 import { currentUser } from "@/lib/sessionUser";
 import { AddTask, addTaskSchema, EditTask } from "@/schemas/task";
 import { TaskStatus } from "@prisma/client";
@@ -34,12 +34,17 @@ export const addTask = async (values: AddTask): Promise<RegisterResponse> => {
 
 		revalidatePath("/tasks");
 
+		await logActivity("info", `New task created: ${newTask.id}`);
+
 		return {
 			success: "Success Creating New Task",
 		};
 	} catch (error) {
-		console.log(error);
-		return { error: "Something wen't wrong" };
+		console.error(error);
+
+		await logActivity("error", "Failed to create new task");
+
+		return { error: "Something went wrong" };
 	}
 };
 
@@ -56,11 +61,15 @@ export const deleteTask = async (taskId: string): Promise<RegisterResponse> => {
 		});
 		revalidatePath("/tasks");
 
+		await logActivity("info", `Task deleted: ${taskId}`);
+
 		return { success: "Task is Deleted" };
 	} catch (error) {
-		console.log(error);
+		console.error(error);
 
-		return { error: "Something wen't wrong" };
+		await logActivity("error", "Failed to delete task");
+
+		return { error: "Something went wrong" };
 	}
 };
 
@@ -80,13 +89,18 @@ export const editTask = async (
 		});
 		revalidatePath("/tasks");
 
+		await logActivity("info", `Task updated: ${id}`);
+
 		return { success: "Task data successfully updated" };
 	} catch (error) {
-		console.log(error);
+		console.error(error);
+
+		await logActivity("error", "Failed to update task");
 
 		return { error: `Failed to update task data` };
 	}
 };
+
 export const updateTaskStatus = async (
 	status: TaskStatus,
 	id: string
@@ -105,9 +119,13 @@ export const updateTaskStatus = async (
 		});
 		revalidatePath("/tasks");
 
+		await logActivity("info", `Task status updated: ${id}`);
+
 		return { success: "Task data successfully updated" };
 	} catch (error) {
-		console.log(error);
+		console.error(error);
+
+		await logActivity("error", "Failed to update task status");
 
 		return { error: `Failed to update task data` };
 	}

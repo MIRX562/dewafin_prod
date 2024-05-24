@@ -1,6 +1,6 @@
 "use server";
-
 import { db } from "@/lib/db";
+import { logActivity } from "@/lib/logger";
 import { currentUser } from "@/lib/sessionUser";
 import { formatMonthYear } from "@/lib/utils";
 import { revalidatePath } from "next/cache";
@@ -9,6 +9,7 @@ type RegisterResponse = {
 	error?: string;
 	success?: string;
 };
+
 export const addReport = async (values: any): Promise<RegisterResponse> => {
 	const user = await currentUser();
 	if (!user) {
@@ -33,10 +34,15 @@ export const addReport = async (values: any): Promise<RegisterResponse> => {
 			},
 		});
 
+		await logActivity("info", `Report created: ${newReport.title}`);
+
 		revalidatePath("/reports");
 		return { success: "Success Creating New Report" };
 	} catch (error) {
-		console.log(error);
+		console.error(error);
+
+		await logActivity("error", "Failed to create report");
+
 		return { error: "Something went wrong" };
 	}
 };
@@ -48,44 +54,23 @@ export const deleteReport = async (
 	if (!user) {
 		return { error: "Unauthorized" };
 	}
+
 	try {
-		await db.report.delete({
+		const deletedReport = await db.report.delete({
 			where: {
 				id: reportId,
 			},
 		});
-		revalidatePath("/reports");
 
+		await logActivity("info", `Report deleted: ${deletedReport.title}`);
+
+		revalidatePath("/reports");
 		return { success: "Report is Deleted" };
 	} catch (error) {
-		return { error: "Something wen't wrong" };
+		console.error(error);
+
+		await logActivity("error", "Failed to delete report");
+
+		return { error: "Something went wrong" };
 	}
 };
-
-// export const editReport = async (
-// 	taskData: EditReport,
-// 	reportId: string
-// ): Promise<RegisterResponse> => {
-// 	const user = await currentUser();
-// 	if (!user) {
-// 		return { error: "Unauthorized" };
-// 	}
-
-// 	const dbReport = await getReportById(reportId);
-
-// 	if (!dbReport) {
-// 		return { error: "Report not found in database" };
-// 	}
-
-// 	try {
-// 		await db.report.update({
-// 			where: { id: dbReport.id },
-// 			data: taskData,
-// 		});
-// 		revalidatePath("/tasks");
-
-// 		return { success: "Report data successfully updated" };
-// 	} catch (error) {
-// 		return { error: `Failed to update report data` };
-// 	}
-// };
