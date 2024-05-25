@@ -91,7 +91,7 @@ const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
 	}
 	return (
 		<div
-			className="bg-white dark:bg-gray-950 rounded-lg p-4 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+			className="bg-white dark:bg-gray-950 rounded-lg p-4 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors border-b"
 			onClick={toggleDetails}
 		>
 			<div className="flex items-center justify-between">

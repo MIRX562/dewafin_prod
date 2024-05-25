@@ -16,7 +16,7 @@ interface SearchBarProps {
 
 const SearchBar: React.FC<SearchBarProps> = ({ onSearch, onFilterChange }) => {
 	return (
-		<div className="mb-6 flex items-center space-x-4">
+		<div className="mb-6 flex items-center justify-between space-x-4">
 			<div className="relative w-full max-w-md">
 				<SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
 				<Input
@@ -26,22 +26,24 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch, onFilterChange }) => {
 					onChange={(e) => onSearch(e.target.value)}
 				/>
 			</div>
-			<Select
-				defaultValue="all"
-				onValueChange={(e) => onFilterChange(e)}
-			>
-				<SelectTrigger className="px-4 py-2 text-sm">
-					<SelectValue placeholder="Filter by log level" />
-				</SelectTrigger>
-				<SelectContent>
-					<SelectItem value="all">All</SelectItem>
-					<SelectItem value="debug">Debug</SelectItem>
-					<SelectItem value="info">Info</SelectItem>
-					<SelectItem value="warn">Warn</SelectItem>
-					<SelectItem value="error">Error</SelectItem>
-					<SelectItem value="fatal">Fatal</SelectItem>
-				</SelectContent>
-			</Select>
+			<div>
+				<Select
+					defaultValue="all"
+					onValueChange={(e) => onFilterChange(e)}
+				>
+					<SelectTrigger className="px-4 py-2 text-sm">
+						<SelectValue placeholder="Filter by log level" />
+					</SelectTrigger>
+					<SelectContent>
+						<SelectItem value="all">All</SelectItem>
+						<SelectItem value="debug">Debug</SelectItem>
+						<SelectItem value="info">Info</SelectItem>
+						<SelectItem value="warn">Warn</SelectItem>
+						<SelectItem value="error">Error</SelectItem>
+						<SelectItem value="fatal">Fatal</SelectItem>
+					</SelectContent>
+				</Select>
+			</div>
 		</div>
 	);
 };

@@ -7,17 +7,9 @@ import {
 	TableHeader,
 	TableRow,
 } from "@/components/ui/table";
-import React from "react";
+import { Logs } from "@prisma/client";
 
-interface LogTableProps {
-	logs: {
-		timestamp: string;
-		level: string;
-		message: string;
-	}[];
-}
-
-const LogTable: React.FC<LogTableProps> = ({ logs }) => {
+const LogTable = ({ logs }: { logs: Logs[] }) => {
 	return (
 		<div className="border rounded-lg overflow-hidden">
 			<Table>
@@ -31,9 +23,14 @@ const LogTable: React.FC<LogTableProps> = ({ logs }) => {
 				<TableBody>
 					{logs.map((log, index) => (
 						<TableRow key={index}>
-							<TableCell>{log.timestamp}</TableCell>
+							<TableCell>{log.timestamp.toLocaleString("id")}</TableCell>
 							<TableCell>
-								<Badge variant="success">{log.level}</Badge>
+								<Badge
+									variant={log.level === "info" ? "success" : "destructive"}
+									className="w-14 flex justify-center items-center"
+								>
+									{log.level}
+								</Badge>
 							</TableCell>
 							<TableCell>{log.message}</TableCell>
 						</TableRow>

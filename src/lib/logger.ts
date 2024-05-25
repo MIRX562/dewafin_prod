@@ -18,12 +18,10 @@ type LogLevels = "fatal" | "error" | "warn" | "info" | "debug" | "trace";
 
 export const logActivity = async (level: LogLevels, message: string) => {
 	const user = await currentUser();
-	const userInfo = user
-		? `User ID: ${user.id}, Name: ${user.name}`
-		: "Unknown User";
-	const logMessage = `${message} - ${userInfo}`;
+	const userInfo = user ? `User: ${user.name}` : "Unknown User";
+	const logMessage = `${message}    |By: ${userInfo}|`;
 
-	logger[level](logMessage);
+	// logger[level](logMessage);
 
 	try {
 		await db.logs.create({

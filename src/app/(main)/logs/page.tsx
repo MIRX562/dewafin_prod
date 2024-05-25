@@ -1,30 +1,21 @@
 "use client";
-import React, { useState } from "react";
+import { getLogs } from "@/data/log";
+import { Logs } from "@prisma/client";
+import React, { useEffect, useState } from "react";
 import Header from "./_components/LogHeader";
 import SearchBar from "./_components/LogSearchBar";
 import LogTable from "./_components/LogTable";
 
 const LogsPage: React.FC = () => {
-	const initialLogs = [
-		{
-			timestamp: "2023-04-30 12:34:56",
-			level: "Info",
-			message: "Application started successfully.",
-		},
-		// Add more log entries as needed
-	];
-
-	const [logs, setLogs] = useState<any[]>(initialLogs);
-	const [filteredLogs, setFilteredLogs] = useState<any[]>(initialLogs);
+	const [logs, setLogs] = useState<Logs[]>([]);
+	const [filteredLogs, setFilteredLogs] = useState<Logs[]>([]);
 
 	const handleClearLogs = () => {
-		setLogs([]);
-		setFilteredLogs([]); // Also clear filtered logs
+		setFilteredLogs(logs); // Also clear filtered logs
 	};
 
 	// Function to export logs
 	const handleExportLogs = () => {
-		// Placeholder implementation for exporting logs
 		console.log("Exporting logs...");
 	};
 
@@ -52,6 +43,15 @@ const LogsPage: React.FC = () => {
 			setFilteredLogs(filtered);
 		}
 	};
+
+	useEffect(() => {
+		const fetchLogs = async () => {
+			const data = (await getLogs()) || [];
+			setLogs(data);
+			setFilteredLogs(data);
+		};
+		fetchLogs();
+	}, []);
 
 	return (
 		<div className="flex flex-col h-full">
