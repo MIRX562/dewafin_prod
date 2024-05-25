@@ -45,7 +45,7 @@ const LogsPage: React.FC = () => {
 	return (
 		<div className="flex flex-col h-full">
 			<Header onExport={handleExportLogs} />
-			<div className="flex-1 overflow-auto p-6">
+			<div className="flex-1 overflow-auto md:p-4">
 				<SearchBar
 					onSearch={handleSearch}
 					onFilterChange={handleFilterChange}
