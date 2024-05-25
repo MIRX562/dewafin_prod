@@ -5,14 +5,7 @@ import pino from "pino";
 import { db } from "./db";
 import { currentUser } from "./sessionUser";
 
-export const logger = pino({
-	transport: {
-		target: "pino-pretty",
-		options: {
-			colorize: true,
-		},
-	},
-});
+export const logger = pino({});
 
 type LogLevels = "fatal" | "error" | "warn" | "info" | "debug" | "trace";
 

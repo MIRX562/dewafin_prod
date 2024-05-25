@@ -10,20 +10,9 @@ const LogsPage: React.FC = () => {
 	const [logs, setLogs] = useState<Logs[]>([]);
 	const [filteredLogs, setFilteredLogs] = useState<Logs[]>([]);
 
-	const handleClearLogs = () => {
-		setFilteredLogs(logs); // Also clear filtered logs
-	};
-
 	// Function to export logs
 	const handleExportLogs = () => {
 		console.log("Exporting logs...");
-	};
-
-	const handleRetentionPeriodChange = (value: string) => {
-		// Placeholder for actual retention period logic
-		console.log("Retention period changed to:", value);
-		// Implement logic to fetch logs based on the new retention period
-		// Update logs and filteredLogs accordingly
 	};
 
 	const handleSearch = (query: string) => {
@@ -55,11 +44,7 @@ const LogsPage: React.FC = () => {
 
 	return (
 		<div className="flex flex-col h-full">
-			<Header
-				onClear={handleClearLogs}
-				onRetentionPeriodChange={handleRetentionPeriodChange}
-				onExport={handleExportLogs}
-			/>
+			<Header onExport={handleExportLogs} />
 			<div className="flex-1 overflow-auto p-6">
 				<SearchBar
 					onSearch={handleSearch}
