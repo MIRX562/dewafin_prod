@@ -137,7 +137,7 @@ model Product {
 model Package {
   id                String  @id @default(cuid())
   name              String
-  price             Decimal @default(0.00)
+  price             String
   description       String?
   specification     Json?
   mainFeature       Json?

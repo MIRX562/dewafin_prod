@@ -1,11 +1,19 @@
-import Loading from "@/app/loading";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { PlusIcon, SearchIcon } from "lucide-react";
-import { Suspense } from "react";
-import Category from "./_components/Category";
+import { getAllCategories } from "@/data/product";
+import { SearchIcon } from "lucide-react";
+import CategoryList from "./_components/CategoryList";
+import { AddCategoryButton } from "./_components/ProductsButton";
 
 export default async function ProductPage() {
+	const data = await getAllCategories();
+	if (!data || data.length <= 0) {
+		return (
+			<div className="flex flex-col gap-4 w-full h-full items-center justify-center">
+				<p> no data exist yet!</p>
+				<AddCategoryButton />
+			</div>
+		);
+	}
 	return (
 		<div className="container mx-auto px-4 py-8">
 			<div className="flex items-center justify-between mb-6 gap-2">
@@ -17,29 +25,15 @@ export default async function ProductPage() {
 						type="search"
 					/>
 				</div>
-				<Button size="sm">
-					<PlusIcon className="mr-2 h-4 w-4" />
-					Add Category
-				</Button>
+				<AddCategoryButton />
 			</div>
 			<div className="grid gap-6">
-				<Suspense fallback={<Loading />}>
-					<Category />
-					<Category />
-					<Category />
-					<Category />
-					<Category />
-					<Category />
-					<Category />
-					<Category />
-					<Category />
-					<Category />
-					<Category />
-					<Category />
-					<Category />
-					<Category />
-					<Category />
-				</Suspense>
+				{data?.map((category) => (
+					<CategoryList
+						key={category.id}
+						data={category}
+					/>
+				))}
 			</div>
 		</div>
 	);

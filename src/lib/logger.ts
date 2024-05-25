@@ -5,7 +5,7 @@ import pino from "pino";
 import { db } from "./db";
 import { currentUser } from "./sessionUser";
 
-const logger = pino({
+export const logger = pino({
 	transport: {
 		target: "pino-pretty",
 		options: {
