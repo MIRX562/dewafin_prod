@@ -1,22 +1,29 @@
 import Loading from "@/app/loading";
-import DialogButton from "@/components/common/buttons/DialogButton";
+import {
+	getGroupedTasksByStatus,
+	getGroupedTasksByStatusByUserId,
+} from "@/data/task";
+import { currentUser } from "@/lib/sessionUser";
 import { Suspense } from "react";
-import AddTaskForm from "./_components/forms/AddTaskForm";
-import TaskNavBar from "./_components/TaskNavBar";
 import TaskView from "./_components/TaskView";
 
 export default async function TaskPage() {
+	const user = await currentUser();
+	if (!user) return;
+	const task =
+		user.role === "ADMIN"
+			? await getGroupedTasksByStatus()
+			: await getGroupedTasksByStatusByUserId(user.id || "");
+	if (!task) {
+		return;
+	}
 	return (
 		<main className="flex flex-1 flex-col gap-4 w-full h-full">
-			<TaskNavBar />
 			<div className="flex items-center justify-between">
 				<h1 className="font-semibold text-lg md:text-2xl">Tasks</h1>
-				<DialogButton title="Add Task">
-					<AddTaskForm />
-				</DialogButton>
 			</div>
 			<Suspense fallback={<Loading />}>
-				<TaskView />
+				<TaskView tasks={task} />
 			</Suspense>
 		</main>
 	);

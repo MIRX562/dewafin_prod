@@ -26,10 +26,11 @@ import {
 	SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { TaskWithRelations } from "@/data/task";
 import { useCurrentUserId } from "@/hooks/useCurrentUser";
 import { cn } from "@/lib/utils";
-import { AddTask, addTaskSchema } from "@/schemas/task";
-import { addTask } from "@/server-actions/task";
+import { AddTask, addTaskSchema, EditTask } from "@/schemas/task";
+import { editTask } from "@/server-actions/task";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Employee, Priority, TaskStatus } from "@prisma/client";
 import { format } from "date-fns";
@@ -37,7 +38,7 @@ import { CalendarIcon } from "lucide-react";
 import { useEffect, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 
-const AddTaskForm = () => {
+const EditTaskForm = ({ task }: { task: TaskWithRelations }) => {
 	const [success, setSuccess] = useState<string | undefined>("");
 	const [error, setError] = useState<string | undefined>("");
 	const [isPending, startTransition] = useTransition();
@@ -47,24 +48,26 @@ const AddTaskForm = () => {
 	const form = useForm<AddTask>({
 		resolver: zodResolver(addTaskSchema),
 		defaultValues: {
-			title: undefined,
-			description: "",
-			startDate: new Date(),
-			endDate: new Date(),
-			status: TaskStatus.TODO,
-			priority: Priority.LOW,
+			title: task.title,
 			//@ts-ignore
-			employeeId: undefined,
-			reportUrl: "",
+			description: task.description,
+			startDate: task.startDate,
+			endDate: task.endDate,
+			status: task.status,
+			priority: task.priority,
+			//@ts-ignore
+			employeeId: task.employee.id,
+			//@ts-ignore
+			reportUrl: task.reportUrl,
 			userId: userId || "",
 		},
 	});
-	const onSubmit = (values: AddTask) => {
+	const onSubmit = (values: EditTask) => {
 		setError("");
 		setSuccess("");
 
 		startTransition(() => {
-			addTask(values).then((data) => {
+			editTask(values, task.id).then((data) => {
 				setError(data.error);
 				setSuccess(data.success);
 			});
@@ -87,7 +90,7 @@ const AddTaskForm = () => {
 	}, []);
 
 	return (
-		<DataFormWrapper title="Create Task">
+		<DataFormWrapper title="Edit Task">
 			<Form {...form}>
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}
@@ -328,8 +331,11 @@ const AddTaskForm = () => {
 						disabled={isPending}
 						typeof="submit"
 						className="w-full"
+						onClick={(e) => {
+							e.stopPropagation();
+						}}
 					>
-						Create Task
+						Update Task
 					</Button>
 				</form>
 			</Form>
@@ -337,4 +343,4 @@ const AddTaskForm = () => {
 	);
 };
 
-export default AddTaskForm;
+export default EditTaskForm;

@@ -1,10 +1,12 @@
 "use client";
 import Loading from "@/app/loading";
 import { Input } from "@/components/ui/input";
-import { getCategoriesById } from "@/data/product";
+import { Separator } from "@/components/ui/separator";
+import { getProductsById } from "@/data/product";
 import { SearchIcon } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import PackageList from "../../_components/PackageList";
 import { ProductListProps } from "../../_components/ProductList";
 import { AddPackageButton } from "../../_components/ProductsButton";
 
@@ -17,11 +19,12 @@ const ProductPage: React.FC<{ params: { product: string } }> = ({ params }) => {
 
 	useEffect(() => {
 		if (id) {
-			getCategoriesById(id)
+			getProductsById(id)
 				.then((fetchedData) => {
 					//@ts-ignore
 					setData(fetchedData);
 				})
+				.catch((error) => {})
 				.finally(() => {
 					setLoading(false);
 				});
@@ -30,7 +33,9 @@ const ProductPage: React.FC<{ params: { product: string } }> = ({ params }) => {
 		}
 	}, [id]);
 
-	if (!id) return;
+	if (!id) {
+		return null;
+	}
 
 	if (loading) {
 		return (
@@ -51,7 +56,7 @@ const ProductPage: React.FC<{ params: { product: string } }> = ({ params }) => {
 
 	return (
 		<div className="container mx-auto px-4 py-8">
-			<div className="flex items-center justify-between mb-6 gap-2">
+			<div className="flex items-center justify-between mb-6 gap-2 md:gap-4">
 				<div className="relative w-full max-w-md">
 					<SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400" />
 					<Input
@@ -62,7 +67,17 @@ const ProductPage: React.FC<{ params: { product: string } }> = ({ params }) => {
 				</div>
 				<AddPackageButton id={id} />
 			</div>
-			<div className="grid gap-6">{/* packages */}</div>
+			<div>
+				<p>{data.description}</p>
+			</div>
+			<div className="grid gap-6">
+				{data.packages.map((packageItem) => (
+					<React.Fragment key={packageItem.id}>
+						<PackageList data={packageItem} />
+						<Separator />
+					</React.Fragment>
+				))}
+			</div>
 		</div>
 	);
 };

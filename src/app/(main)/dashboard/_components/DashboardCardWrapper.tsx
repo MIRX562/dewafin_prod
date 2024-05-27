@@ -19,7 +19,7 @@ const DashboardCardWrapper = ({ children, title, href }: Props) => {
 					View all
 				</Link>
 			</CardHeader>
-			<CardContent className="space-y-4 overflow-auto max-h-[350px]">
+			<CardContent className="space-y-4 overflow-auto max-h-[350px] md:max-h-full">
 				{children}
 			</CardContent>
 		</Card>

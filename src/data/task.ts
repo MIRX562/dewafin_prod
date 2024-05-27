@@ -7,6 +7,7 @@ export interface TaskWithRelations extends Task {
 		department: string;
 		firstName: string;
 		lastName: string;
+		id: string;
 	} | null;
 	user: {
 		name: string;
@@ -28,6 +29,7 @@ export const getGroupedTasksByStatus =
 							department: true,
 							firstName: true,
 							lastName: true,
+							id: true,
 						},
 					},
 					user: {
@@ -71,6 +73,7 @@ export const getGroupedTasksByStatusByUserId = async (
 						department: true,
 						firstName: true,
 						lastName: true,
+						id: true,
 					},
 				},
 				user: {

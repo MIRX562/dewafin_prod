@@ -4,7 +4,11 @@ import { db } from "@/lib/db";
 
 export const getLogs = async () => {
 	try {
-		const logs = await db.logs.findMany();
+		const logs = await db.logs.findMany({
+			orderBy: {
+				timestamp: "desc",
+			},
+		});
 		return logs;
 	} catch (error) {
 		return null;

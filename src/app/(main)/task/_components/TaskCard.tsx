@@ -10,9 +10,14 @@ import {
 	ArrowLeftIcon,
 	ArrowRightIcon,
 	CalendarIcon,
+	PencilIcon,
 	TrashIcon,
 } from "lucide-react";
+
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+
 import React, { useState } from "react";
+import EditTaskForm from "./forms/EditTaskForm";
 
 interface TaskCardProps {
 	task: TaskWithRelations;
@@ -28,6 +33,7 @@ const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
 		status,
 		priority,
 		employee,
+		reportUrl,
 	} = task;
 
 	const start = parseDate(startDate);
@@ -91,7 +97,7 @@ const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
 	}
 	return (
 		<div
-			className="bg-white dark:bg-gray-950 rounded-lg p-4 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors border-b"
+			className="bg-white dark:bg-gray-950 rounded-lg p-4 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors border-b shadow-md"
 			onClick={toggleDetails}
 		>
 			<div className="flex items-center justify-between">
@@ -124,26 +130,61 @@ const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
 						<CalendarIcon className="h-4 w-4" />
 						<span>{`${start} - ${end}`}</span>
 					</div>
-					<div className="mt-1">
-						<span>{`Duration: ${duration}`}</span>
-					</div>
+
 					<div className="mt-1">
 						<span>{`Priority: ${priority}`}</span>
+					</div>
+					<div className="mt-1 truncate">
+						<span>
+							Report:{" "}
+							<a
+								href={reportUrl as any}
+								target="_blank"
+								rel="noopener noreferrer"
+								className="text-blue-500 underline"
+							>
+								{reportUrl}
+							</a>
+						</span>
 					</div>
 					<div
 						className={` w-full ${isUpdating ? "bg-muted text-muted-foreground/50" : ""} flex items-center justify-between mt-2`}
 					>
-						<Button
-							variant="outline"
-							size="icon"
-							className=" cursor-pointer"
-							onClick={(e) => {
-								e.stopPropagation();
-								handleDelete(id);
-							}}
-						>
-							<TrashIcon className="w-6 h-6" />
-						</Button>
+						<div className=" flex gap-2">
+							<Button
+								variant="outline"
+								size="icon"
+								className=" cursor-pointer"
+								onClick={(e) => {
+									e.stopPropagation();
+									handleDelete(id);
+								}}
+							>
+								<TrashIcon className="w-6 h-6" />
+							</Button>
+							<Dialog>
+								<DialogTrigger asChild>
+									<Button
+										variant="outline"
+										size="icon"
+										className=" cursor-pointer"
+										onClick={(e) => {
+											e.stopPropagation();
+										}}
+									>
+										<PencilIcon className="w-6 h-6" />
+									</Button>
+								</DialogTrigger>
+								<DialogContent
+									className="border-none p-0 bg-transparent w-fit"
+									onClick={(e) => {
+										e.stopPropagation();
+									}}
+								>
+									<EditTaskForm task={task} />
+								</DialogContent>
+							</Dialog>
+						</div>
 						{currentStatus === "IN_PROGRESS" ? (
 							<div className="flex gap-2">
 								<Button

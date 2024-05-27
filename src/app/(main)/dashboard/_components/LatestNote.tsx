@@ -1,3 +1,5 @@
+import { getLatestPublicNotes } from "@/data/dashboard";
+import { formatDate } from "@/lib/utils";
 import { NotebookIcon } from "lucide-react";
 import DashboardCardWrapper from "./DashboardCardWrapper";
 
@@ -7,57 +9,35 @@ type NoteItemProps = {
 	time: string;
 };
 
-const LatestNotes = () => {
+const LatestNotes = async () => {
+	const notes = await getLatestPublicNotes();
+
+	if (!notes || notes.length === 0) {
+		return (
+			<DashboardCardWrapper
+				title="Latest Notes"
+				href="/notes"
+			>
+				<div className="h-full flex items-center justify-center">
+					<p>No public notes available.</p>
+				</div>
+			</DashboardCardWrapper>
+		);
+	}
+
 	return (
 		<DashboardCardWrapper
 			title="Lates Notes"
 			href="/notes"
 		>
-			<NoteItem
-				title="Meeting Notes"
-				by="Summary of the ."
-				time="2 days ago"
-			/>
-			<NoteItem
-				title="Project Roadmap"
-				by="Outline ."
-				time="5 days ago"
-			/>
-			<NoteItem
-				title="Project Roadmap"
-				by="Outline ."
-				time="5 days ago"
-			/>
-			<NoteItem
-				title="Project Roadmap"
-				by="Outline ."
-				time="5 days ago"
-			/>
-			<NoteItem
-				title="Project Roadmap"
-				by="Outline ."
-				time="5 days ago"
-			/>
-			<NoteItem
-				title="Project Roadmap"
-				by="Outline ."
-				time="5 days ago"
-			/>
-			<NoteItem
-				title="Project Roadmap"
-				by="Outline ."
-				time="5 days ago"
-			/>
-			<NoteItem
-				title="Project Roadmap"
-				by="Outline ."
-				time="5 days ago"
-			/>
-			<NoteItem
-				title="Project Roadmap"
-				by="Outline ."
-				time="5 days ago"
-			/>
+			{notes.map((note) => (
+				<NoteItem
+					key={note.id}
+					title={note.title}
+					by={note.user.name}
+					time={formatDate(note.updatedAt)}
+				/>
+			))}
 		</DashboardCardWrapper>
 	);
 };
