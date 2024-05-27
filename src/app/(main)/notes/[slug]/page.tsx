@@ -21,8 +21,8 @@ const NoteView: React.FC = () => {
 	const [title, setTitle] = useState<string>("");
 	const [content, setContent] = useState<string>("");
 	const [isPublic, setIsPublic] = useState<boolean>(false);
-	const debouncedTitle = useDebounce(title, 1000);
-	const debouncedContent = useDebounce(content, 1000);
+	const debouncedTitle = useDebounce(title, 500);
+	const debouncedContent = useDebounce(content, 500);
 	const uId = useCurrentUserId();
 	const searchParams = useSearchParams();
 	const noteId = searchParams.get("id");
@@ -95,7 +95,7 @@ const NoteView: React.FC = () => {
 						onChange={handleTitleChange}
 						readOnly={!editable}
 					/>
-					<div className="flex h-full items-start justify-start py-2">
+					<div className="flex flex-col md:flex-row h-full items-start justify-start gap-2">
 						<Button
 							onClick={handleGoBack}
 							variant="outline"

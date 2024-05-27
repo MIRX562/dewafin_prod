@@ -1,44 +1,42 @@
-// "use server";
+"use server";
+import { getUserById } from "@/data/user";
+import { db } from "@/lib/db";
+import { logActivity } from "@/lib/logger";
+import { currentUser } from "@/lib/sessionUser";
+import { User } from "@prisma/client";
+import { revalidatePath } from "next/cache";
 
-// import { currentUser } from "@/lib/sessionUser";
-// import { getUserById } from "@/data/user";
-// import { db } from "@/lib/db";
+export const editUserSettings = async (
+	userData: User,
+	userId: string | undefined
+) => {
+	const user = await currentUser();
 
-// // Function to update user settings
-// export const updateUserSettings = async (settings: Settings) => {
-//   // Get the current user
-//   const user = await currentUser();
+	if (!user) {
+		return { error: "Unauthorized: User not found" };
+	}
 
-//   // If no user is found, return an error
-//   if (!user) {
-//     return { error: "Unauthorized: User not found" };
-//   }
+	const dbUser = await getUserById(userId);
 
-//   // Fetch the user from the database
-//   const dbUser = await getUserById(user.id);
+	if (!dbUser) {
+		return { error: "Unauthorized: User not found in database" };
+	}
 
-//   // If no user is found in the database, return an error
-//   if (!dbUser) {
-//     return { error: "Unauthorized: User not found in database" };
-//   }
+	try {
+		await db.user.update({
+			where: { id: dbUser.id },
+			data: userData,
+		});
+		revalidatePath("/settings");
 
-//   // If the user is using OAuth, restrict updates to certain fields
-//   if (user.isOAuth) {
-//     settings.email = undefined;
-//     settings.password = undefined;
-//     settings.newPassword = undefined;
-//     settings.isTwoFactorEnabled = undefined;
-//   }
+		await logActivity("info", `Settings updated: ${userId}`);
 
-//   // Update the user settings in the database
-//   try {
-//     await db.user.update({
-//       where: { id: dbUser.id },
-//       data: settings,
-//     });
-//     return { success: "Settings successfully updated" };
-//   } catch (error) {
-//     // Handle potential errors during the update
-//     return { error: `Failed to update settings` };
-//   }
-// };
+		return { success: "User data successfully updated" };
+	} catch (error) {
+		console.error(error);
+
+		await logActivity("error", "Failed to update user");
+
+		return { error: `Failed to update user data` };
+	}
+};
