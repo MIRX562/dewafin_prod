@@ -27,7 +27,7 @@ const LatestNotes = async () => {
 
 	return (
 		<DashboardCardWrapper
-			title="Lates Notes"
+			title="Lates Public Notes"
 			href="/notes"
 		>
 			{notes.map((note) => (

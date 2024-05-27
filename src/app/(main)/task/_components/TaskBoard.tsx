@@ -9,7 +9,7 @@ type Props = {
 const TaskBoard = ({ title, tasks }: Props) => {
 	return (
 		<div className="border shadow-sm rounded-lg flex flex-col">
-			<div className="border-b px-4 py-3">
+			<div className="border-b px-4 py-3 bg-slate-800">
 				<h3 className="font-semibold">{title}</h3>
 			</div>
 			<div className="p-4 flex flex-col gap-2 overflow-auto max-h-[20svh] md:max-h-[80svh]">

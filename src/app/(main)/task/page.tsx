@@ -19,7 +19,7 @@ export default async function TaskPage() {
 	}
 	return (
 		<main className="flex flex-1 flex-col gap-4 w-full h-full">
-			<div className="flex items-center justify-between">
+			<div className="flex items-center justify-between hidden md:block">
 				<h1 className="font-semibold text-lg md:text-2xl">Tasks</h1>
 			</div>
 			<Suspense fallback={<Loading />}>
