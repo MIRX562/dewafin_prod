@@ -193,6 +193,7 @@ model Task {
   priority    Priority
   employeeId  String?
   reportUrl   String?
+  isArchived  Boolean @default(false)
 
   user     User      @relation(fields: [userId], references: [id])
   employee Employee? @relation(fields: [employeeId], references: [id])

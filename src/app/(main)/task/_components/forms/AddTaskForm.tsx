@@ -57,6 +57,7 @@ const AddTaskForm = () => {
 			employeeId: undefined,
 			reportUrl: "",
 			userId: userId || "",
+			isArchived: false,
 		},
 	});
 	const onSubmit = (values: AddTask) => {

@@ -60,6 +60,7 @@ const EditTaskForm = ({ task }: { task: TaskWithRelations }) => {
 			//@ts-ignore
 			reportUrl: task.reportUrl,
 			userId: userId || "",
+			isArchived: task.isArchived,
 		},
 	});
 	const onSubmit = (values: EditTask) => {

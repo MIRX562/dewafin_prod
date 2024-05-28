@@ -2,6 +2,7 @@ import { File } from "@/schemas/file";
 import { deleteEmployee } from "@/server-actions/employee";
 import { deleteFile } from "@/server-actions/file";
 import { deleteReport } from "@/server-actions/report";
+import { archiveTask, deleteTask, restoreTask } from "@/server-actions/task";
 import { deleteUser } from "@/server-actions/user";
 import { toast } from "sonner";
 
@@ -92,6 +93,75 @@ export const deleteReportToast = async (id: string, onSuccess?: () => void) => {
 						return "Report is successfully deleted!";
 					},
 					error: "Failed to delete report",
+				});
+			},
+		},
+		cancel: {
+			label: "Cancel",
+			onClick: () => {},
+		},
+	});
+};
+
+export const deleteTaskToast = async (id: string, onSuccess?: () => void) => {
+	toast.warning("Confirm delete", {
+		description: "This action cannot be undone!",
+		action: {
+			label: "Delete",
+			onClick: async () => {
+				toast.promise(deleteTask(id), {
+					loading: "Deleting Task...",
+					success: () => {
+						onSuccess?.(); // Call the provided callback function
+						return "Task is successfully deleted!";
+					},
+					error: "Failed to delete task",
+				});
+			},
+		},
+		cancel: {
+			label: "Cancel",
+			onClick: () => {},
+		},
+	});
+};
+
+export const restoreTaskToast = async (id: string, onSuccess?: () => void) => {
+	toast.info("Confirm restore", {
+		description: "Restore task from archived page",
+		action: {
+			label: "Restore",
+			onClick: async () => {
+				toast.promise(restoreTask(id), {
+					loading: "Restoring Task...",
+					success: () => {
+						onSuccess?.(); // Call the provided callback function
+						return "Task is successfully restored!";
+					},
+					error: "Failed to restore task",
+				});
+			},
+		},
+		cancel: {
+			label: "Cancel",
+			onClick: () => {},
+		},
+	});
+};
+
+export const archiveTaskToast = async (id: string, onSuccess?: () => void) => {
+	toast.info("Confirm Archive", {
+		description: "Move task into archived page",
+		action: {
+			label: "Archive",
+			onClick: async () => {
+				toast.promise(archiveTask(id), {
+					loading: "Moving Task...",
+					success: () => {
+						onSuccess?.(); // Call the provided callback function
+						return "Task is successfully Archived!";
+					},
+					error: "Failed to archive task",
 				});
 			},
 		},

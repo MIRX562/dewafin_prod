@@ -1,7 +1,11 @@
 import DialogButton from "@/components/common/buttons/DialogButton";
+import { Category, Package, Product } from "@prisma/client";
 import AddCategoryForm from "./form/AddCategoryForm";
 import AddPackageForm from "./form/AddPackageForm";
 import AddProductForm from "./form/AddProductForm";
+import EditCategoryForm from "./form/EditCategoryForm";
+import EditPackageForm from "./form/EditPackageForm";
+import EditProductForm from "./form/EditProductForm";
 
 export const AddCategoryButton = () => {
 	return (
@@ -21,6 +25,30 @@ export const AddPackageButton = ({ id }: { id: string }) => {
 	return (
 		<DialogButton title="Add Package">
 			<AddPackageForm id={id} />
+		</DialogButton>
+	);
+};
+
+export const EditPackageButton = ({ packages }: { packages: Package }) => {
+	return (
+		<DialogButton title="Edit">
+			<EditPackageForm data={packages} />
+		</DialogButton>
+	);
+};
+
+export const EditCategoryButton = ({ category }: { category: Category }) => {
+	return (
+		<DialogButton title="Rename">
+			<EditCategoryForm data={category} />
+		</DialogButton>
+	);
+};
+
+export const EditProductButton = ({ product }: { product: Product }) => {
+	return (
+		<DialogButton title="Edit">
+			<EditProductForm data={product} />
 		</DialogButton>
 	);
 };

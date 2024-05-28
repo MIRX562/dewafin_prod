@@ -5,10 +5,13 @@ import { Separator } from "@/components/ui/separator";
 import { getProductsById } from "@/data/product";
 import { SearchIcon } from "lucide-react";
 import { useSearchParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useMemo, useState } from "react";
 import PackageList from "../../_components/PackageList";
 import { ProductListProps } from "../../_components/ProductList";
-import { AddPackageButton } from "../../_components/ProductsButton";
+import {
+	AddPackageButton,
+	EditProductButton,
+} from "../../_components/ProductsButton";
 
 const ProductPage: React.FC<{ params: { product: string } }> = ({ params }) => {
 	const searchParams = useSearchParams();
@@ -16,6 +19,7 @@ const ProductPage: React.FC<{ params: { product: string } }> = ({ params }) => {
 
 	const [data, setData] = useState<ProductListProps>();
 	const [loading, setLoading] = useState<boolean>(true);
+	const [searchQuery, setSearchQuery] = useState<string>("");
 
 	useEffect(() => {
 		if (id) {
@@ -24,7 +28,9 @@ const ProductPage: React.FC<{ params: { product: string } }> = ({ params }) => {
 					//@ts-ignore
 					setData(fetchedData);
 				})
-				.catch((error) => {})
+				.catch((error) => {
+					console.error("Error fetching data:", error);
+				})
 				.finally(() => {
 					setLoading(false);
 				});
@@ -33,9 +39,21 @@ const ProductPage: React.FC<{ params: { product: string } }> = ({ params }) => {
 		}
 	}, [id]);
 
-	if (!id) {
-		return null;
-	}
+	const memoizedData = useMemo(() => {
+		if (!data) return null;
+
+		const query = searchQuery.toLowerCase();
+		const filteredPackages = data.packages.filter((pkg) =>
+			pkg.name.toLowerCase().includes(query)
+		);
+
+		return {
+			...data,
+			packages: filteredPackages,
+		};
+	}, [data, searchQuery]);
+
+	if (!id) return null;
 
 	if (loading) {
 		return (
@@ -45,7 +63,7 @@ const ProductPage: React.FC<{ params: { product: string } }> = ({ params }) => {
 		);
 	}
 
-	if (!data) {
+	if (!memoizedData) {
 		return (
 			<div className="flex flex-col gap-4 w-full h-full items-center justify-center">
 				<p>No data exists yet!</p>
@@ -55,23 +73,35 @@ const ProductPage: React.FC<{ params: { product: string } }> = ({ params }) => {
 	}
 
 	return (
-		<div className="container mx-auto px-4 py-8">
-			<div className="flex items-center justify-between mb-6 gap-2 md:gap-4">
+		<div className="flex flex-1 flex-col gap-2 md:gap-6">
+			<div className="flex flex-col gap-2">
+				<div className="flex items-center justify-between gap-2">
+					<div>
+						<h1 className="text-3xl font-bold">{memoizedData.name}</h1>
+						<p>{memoizedData.description}</p>
+					</div>
+					<EditProductButton product={memoizedData} />
+				</div>
+				<Separator />
+			</div>
+			<div className="flex items-center justify-between gap-2 md:gap-4">
 				<div className="relative w-full max-w-md">
 					<SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400" />
 					<Input
 						className="w-full pl-10 pr-4 py-2 rounded-md shadow-sm border focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
 						placeholder={`Search ${params.product} package...`}
 						type="search"
+						value={searchQuery}
+						onChange={(e: ChangeEvent<HTMLInputElement>) =>
+							setSearchQuery(e.target.value)
+						}
 					/>
 				</div>
 				<AddPackageButton id={id} />
 			</div>
-			<div>
-				<p>{data.description}</p>
-			</div>
-			<div className="grid gap-6">
-				{data.packages.map((packageItem) => (
+
+			<div className="flex flex-col gap-6">
+				{memoizedData.packages.map((packageItem) => (
 					<React.Fragment key={packageItem.id}>
 						<PackageList data={packageItem} />
 						<Separator />

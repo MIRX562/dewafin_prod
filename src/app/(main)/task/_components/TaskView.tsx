@@ -1,5 +1,6 @@
 "use client";
 import DialogButton from "@/components/common/buttons/DialogButton";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
 	Select,
@@ -9,6 +10,8 @@ import {
 	SelectValue,
 } from "@/components/ui/select";
 import { Department } from "@prisma/client";
+import { ArchiveIcon } from "lucide-react";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import AddTaskForm from "./forms/AddTaskForm";
 import TaskBoard from "./TaskBoard";
@@ -85,6 +88,15 @@ const TaskView = ({ tasks }: { tasks: any }) => {
 							</SelectItem>
 						</SelectContent>
 					</Select>
+					<Link href="/task/archived">
+						<Button
+							variant="secondary"
+							className="flex gap-2"
+						>
+							<ArchiveIcon className="w-4 h-4" />
+							Archived
+						</Button>
+					</Link>
 					<DialogButton title="Add Task">
 						<AddTaskForm />
 					</DialogButton>

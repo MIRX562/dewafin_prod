@@ -23,6 +23,7 @@ export const getGroupedTasksByStatus =
 		try {
 			// Fetch all tasks including related data
 			const tasks = await db.task.findMany({
+				where: { isArchived: false },
 				include: {
 					employee: {
 						select: {
@@ -66,7 +67,7 @@ export const getGroupedTasksByStatusByUserId = async (
 	try {
 		// Fetch all tasks including related data
 		const tasks = await db.task.findMany({
-			where: { userId },
+			where: { userId, isArchived: false },
 			include: {
 				employee: {
 					select: {
@@ -158,6 +159,31 @@ export const getTaskByStatus = async (status: TaskStatus) => {
 			},
 			orderBy: {
 				priority: "asc",
+			},
+		});
+		return task;
+	} catch (error) {
+		return null;
+	}
+};
+
+export const getArchivedTask = async () => {
+	const userId = await currentUserId();
+	try {
+		const task = await db.task.findMany({
+			where: {
+				userId,
+				isArchived: true,
+			},
+			include: {
+				employee: {
+					select: {
+						department: true,
+					},
+				},
+			},
+			orderBy: {
+				createdAt: "asc",
 			},
 		});
 		return task;

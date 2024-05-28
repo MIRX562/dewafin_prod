@@ -6,6 +6,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { formatCurrency, parseCurrency } from "@/lib/utils";
 import { BoxIcon, ChevronDownIcon } from "lucide-react";
+import { EditPackageButton } from "./ProductsButton";
 
 const PackageList = ({ data }: { data: any }) => {
 	const {
@@ -36,11 +37,16 @@ const PackageList = ({ data }: { data: any }) => {
 			</CollapsibleTrigger>
 			<CollapsibleContent>
 				<div className="px-4 py-2 transition-all duration-300 ease-in-out bg-gray-100 rounded-md dark:bg-gray-800 border border-primary mb-2">
-					<p>
-						<span className="font-medium">Price:</span>
-						{formatCurrency(parseCurrency(price))}
-					</p>
-					<p>{description}</p>
+					<div className="flex items-center justify-between gap-2">
+						<div>
+							<p>
+								<span className="font-medium">Price:</span>
+								{formatCurrency(parseCurrency(price))}
+							</p>
+							<p>{description}</p>
+						</div>
+						<EditPackageButton packages={data} />
+					</div>
 					<Separator />
 					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
 						<div className="flex flex-col">

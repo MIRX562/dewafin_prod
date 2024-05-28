@@ -130,3 +130,56 @@ export const updateTaskStatus = async (
 		return { error: `Failed to update task data` };
 	}
 };
+
+export const archiveTask = async (id: string): Promise<RegisterResponse> => {
+	const user = await currentUser();
+	if (!user) {
+		return { error: "Unauthorized" };
+	}
+
+	try {
+		const task = await db.task.update({
+			where: { id },
+			data: {
+				isArchived: true,
+			},
+		});
+
+		await logActivity("info", `Task Archived: ${task.title}`);
+
+		return { success: "Task successfully archived" };
+	} catch (error) {
+		console.error(error);
+
+		await logActivity("error", "Failed to archive task ");
+
+		return { error: `Failed to archived task ` };
+	}
+};
+
+export const restoreTask = async (id: string): Promise<RegisterResponse> => {
+	const user = await currentUser();
+	if (!user) {
+		return { error: "Unauthorized" };
+	}
+
+	try {
+		await db.task.update({
+			where: { id },
+			data: {
+				isArchived: false,
+			},
+		});
+		revalidatePath("/tasks/archived");
+
+		await logActivity("info", `Task Restored: ${id}`);
+
+		return { success: "Task successfully restored" };
+	} catch (error) {
+		console.error(error);
+
+		await logActivity("error", "Failed to restore task ");
+
+		return { error: `Failed to restore task ` };
+	}
+};

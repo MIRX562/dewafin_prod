@@ -24,7 +24,7 @@ import {
 	useReactTable,
 } from "@tanstack/react-table";
 import * as React from "react";
-import { ReportDataTableToolbar } from "./data-table-toolbar";
+import { ReportDataTableToolbar } from "./reportTableToolBar";
 
 interface DataTableProps<TData, TValue> {
 	columns: ColumnDef<TData, TValue>[];

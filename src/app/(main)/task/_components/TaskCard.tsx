@@ -3,10 +3,11 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { TaskWithRelations } from "@/data/task";
 import { useCurrentRole } from "@/hooks/useCurrentRole";
-import { calculateDuration, parseDate, parseTitle } from "@/lib/utils";
-import { deleteTask, updateTaskStatus } from "@/server-actions/task"; // Import your server action
+import { parseDate, parseTitle } from "@/lib/utils";
+import { updateTaskStatus } from "@/server-actions/task"; // Import your server action
 import { TaskStatus } from "@prisma/client";
 import {
+	ArchiveIcon,
 	ArrowLeftIcon,
 	ArrowRightIcon,
 	CalendarIcon,
@@ -16,6 +17,8 @@ import {
 
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
+import { archiveTaskToast, deleteTaskToast } from "@/lib/toasts";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import EditTaskForm from "./forms/EditTaskForm";
 
@@ -38,10 +41,10 @@ const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
 
 	const start = parseDate(startDate);
 	const end = parseDate(endDate);
-	const duration = calculateDuration(startDate, endDate);
 	const [showDetails, setShowDetails] = useState(false);
 	const [currentStatus, setCurrentStatus] = useState<TaskStatus>(status);
 	const [isUpdating, setIsUpdating] = useState(false);
+	const router = useRouter();
 
 	const toggleDetails = () => {
 		setShowDetails(!showDetails);
@@ -87,7 +90,18 @@ const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
 
 	const handleDelete = async (id: string) => {
 		setIsUpdating(true);
-		const result = await deleteTask(id);
+		const result = await deleteTaskToast(task.id, () => {
+			router.refresh();
+		});
+
+		setIsUpdating(false);
+	};
+
+	const handleArchive = async (id: string) => {
+		setIsUpdating(true);
+		const result = await archiveTaskToast(task.id, () => {
+			router.refresh();
+		});
 
 		setIsUpdating(false);
 	};
@@ -184,6 +198,17 @@ const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
 									<EditTaskForm task={task} />
 								</DialogContent>
 							</Dialog>
+							<Button
+								variant="outline"
+								size="icon"
+								className=" cursor-pointer"
+								onClick={(e) => {
+									e.stopPropagation();
+									handleArchive(id);
+								}}
+							>
+								<ArchiveIcon className="w-6 h-6" />
+							</Button>
 						</div>
 						{currentStatus === "IN_PROGRESS" ? (
 							<div className="flex gap-2">

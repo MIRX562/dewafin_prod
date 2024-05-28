@@ -12,6 +12,7 @@ export const taskSchema = z.object({
 	priority: z.nativeEnum(Priority),
 	employeeId: z.optional(z.string()),
 	reportUrl: z.optional(z.string()),
+	isArchived: z.boolean(),
 });
 
 export const addTaskSchema = z.object({
@@ -24,6 +25,7 @@ export const addTaskSchema = z.object({
 	priority: z.nativeEnum(Priority),
 	employeeId: z.string(),
 	reportUrl: z.optional(z.string()),
+	isArchived: z.boolean(),
 });
 
 export const editTaskSchema = z.object({
@@ -36,6 +38,7 @@ export const editTaskSchema = z.object({
 	priority: z.nativeEnum(Priority),
 	employeeId: z.optional(z.string()),
 	reportUrl: z.optional(z.string()),
+	isArchived: z.boolean(),
 });
 
 export type AddTask = z.infer<typeof addTaskSchema>;
