@@ -3,8 +3,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { TaskWithRelations } from "@/data/task";
 import { useCurrentRole } from "@/hooks/useCurrentRole";
-import { parseDate, parseTitle } from "@/lib/utils";
-import { updateTaskStatus } from "@/server-actions/task"; // Import your server action
+import { formatDate, parseTitle } from "@/lib/utils";
+import { updateTaskStatus } from "@/server-actions/task";
 import { TaskStatus } from "@prisma/client";
 import {
 	ArchiveIcon,
@@ -35,12 +35,12 @@ const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
 		endDate,
 		status,
 		priority,
-		employee,
+		employees,
 		reportUrl,
 	} = task;
 
-	const start = parseDate(startDate);
-	const end = parseDate(endDate);
+	const start = formatDate(startDate);
+	const end = formatDate(endDate);
 	const [showDetails, setShowDetails] = useState(false);
 	const [currentStatus, setCurrentStatus] = useState<TaskStatus>(status);
 	const [isUpdating, setIsUpdating] = useState(false);
@@ -90,25 +90,20 @@ const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
 
 	const handleDelete = async (id: string) => {
 		setIsUpdating(true);
-		const result = await deleteTaskToast(task.id, () => {
+		await deleteTaskToast(task.id, () => {
 			router.refresh();
 		});
-
 		setIsUpdating(false);
 	};
 
 	const handleArchive = async (id: string) => {
 		setIsUpdating(true);
-		const result = await archiveTaskToast(task.id, () => {
+		await archiveTaskToast(task.id, () => {
 			router.refresh();
 		});
-
 		setIsUpdating(false);
 	};
 
-	if (!employee) {
-		return null;
-	}
 	return (
 		<div
 			className="bg-white dark:bg-gray-950 rounded-lg p-4 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors border-b shadow-md"
@@ -119,8 +114,8 @@ const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
 					<h3 className="font-semibold text-base">{title}</h3>
 					<p className="text-sm text-gray-500 dark:text-gray-400">
 						{role === "ADMIN"
-							? parseTitle(employee.department)
-							: description || "no description"}
+							? employees?.map((emp) => parseTitle(emp.department)).join(", ")
+							: ""}
 					</p>
 				</div>
 				<div className="flex items-center justify-between mt-2">
@@ -144,9 +139,14 @@ const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
 						<CalendarIcon className="h-4 w-4" />
 						<span>{`${start} - ${end}`}</span>
 					</div>
-
 					<div className="mt-1">
 						<span>{`Priority: ${priority}`}</span>
+					</div>
+					<div>
+						<span className="mt-1">{`Description: ${description}`}</span>
+					</div>
+					<div className="mt-1">
+						<span>{`Assigned to: ${employees.map((emp) => `${emp.firstName} ${emp.lastName}`).join(", ")}`}</span>
 					</div>
 					<div className="mt-1 truncate">
 						<span>
@@ -162,13 +162,13 @@ const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
 						</span>
 					</div>
 					<div
-						className={` w-full ${isUpdating ? "bg-muted text-muted-foreground/50" : ""} flex items-center justify-between mt-2`}
+						className={`w-full ${isUpdating ? "bg-muted text-muted-foreground/50" : ""} flex items-center justify-between mt-2`}
 					>
-						<div className=" flex gap-2">
+						<div className="flex gap-2">
 							<Button
 								variant="outline"
 								size="icon"
-								className=" cursor-pointer"
+								className="cursor-pointer"
 								onClick={(e) => {
 									e.stopPropagation();
 									handleDelete(id);
@@ -181,7 +181,7 @@ const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
 									<Button
 										variant="outline"
 										size="icon"
-										className=" cursor-pointer"
+										className="cursor-pointer"
 										onClick={(e) => {
 											e.stopPropagation();
 										}}
@@ -201,7 +201,7 @@ const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
 							<Button
 								variant="outline"
 								size="icon"
-								className=" cursor-pointer"
+								className="cursor-pointer"
 								onClick={(e) => {
 									e.stopPropagation();
 									handleArchive(id);
@@ -215,7 +215,7 @@ const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
 								<Button
 									variant="outline"
 									size="icon"
-									className=" cursor-pointer"
+									className="cursor-pointer"
 									onClick={(e) => {
 										e.stopPropagation();
 										handleStatusUpdate(getPreviousStatus(currentStatus));
@@ -226,7 +226,7 @@ const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
 								<Button
 									variant="outline"
 									size="icon"
-									className=" cursor-pointer"
+									className="cursor-pointer"
 									onClick={(e) => {
 										e.stopPropagation();
 										handleStatusUpdate(getNextStatus(currentStatus));
@@ -239,7 +239,7 @@ const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
 							<Button
 								variant="outline"
 								size="icon"
-								className=" cursor-pointer"
+								className="cursor-pointer"
 								onClick={(e) => {
 									e.stopPropagation();
 									handleStatusUpdate(getNextStatus(currentStatus));
@@ -251,7 +251,7 @@ const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
 							<Button
 								variant="outline"
 								size="icon"
-								className=" cursor-pointer"
+								className="cursor-pointer"
 								onClick={(e) => {
 									e.stopPropagation();
 									handleStatusUpdate(getPreviousStatus(currentStatus));

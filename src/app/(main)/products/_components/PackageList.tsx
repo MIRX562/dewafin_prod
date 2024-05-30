@@ -1,15 +1,19 @@
+"use client";
 import {
 	Collapsible,
 	CollapsibleContent,
 	CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 import { Separator } from "@/components/ui/separator";
+import { deletePackageToast } from "@/lib/toasts";
 import { formatCurrency, parseCurrency } from "@/lib/utils";
 import { BoxIcon, ChevronDownIcon } from "lucide-react";
-import { EditPackageButton } from "./ProductsButton";
+import { useRouter } from "next/navigation";
+import { DeletePackageButton, EditPackageButton } from "./ProductsButton";
 
 const PackageList = ({ data }: { data: any }) => {
 	const {
+		id,
 		name,
 		description,
 		price,
@@ -17,7 +21,7 @@ const PackageList = ({ data }: { data: any }) => {
 		mainFeature,
 		additionalFeature,
 	} = data;
-
+	const router = useRouter();
 	const renderFeatures = (features: any) => (
 		<ul className="list-disc pl-4">
 			{Array.isArray(features) ? (
@@ -27,6 +31,12 @@ const PackageList = ({ data }: { data: any }) => {
 			)}
 		</ul>
 	);
+
+	const handleDelete = async () => {
+		await deletePackageToast(id, () => {
+			router.refresh();
+		});
+	};
 
 	return (
 		<Collapsible className="space-y-2 w-full">
@@ -45,7 +55,10 @@ const PackageList = ({ data }: { data: any }) => {
 							</p>
 							<p>{description}</p>
 						</div>
-						<EditPackageButton packages={data} />
+						<div className="flex gap-2">
+							<EditPackageButton packages={data} />
+							<DeletePackageButton onClick={handleDelete} />
+						</div>
 					</div>
 					<Separator />
 					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">

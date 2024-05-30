@@ -1,173 +1,195 @@
 import { File } from "@/schemas/file";
 import { deleteEmployee } from "@/server-actions/employee";
 import { deleteFile } from "@/server-actions/file";
+import { deleteNote } from "@/server-actions/note";
+import {
+	deleteCategory,
+	deletePackage,
+	deleteProduct,
+} from "@/server-actions/product";
 import { deleteReport } from "@/server-actions/report";
 import { archiveTask, deleteTask, restoreTask } from "@/server-actions/task";
 import { deleteUser } from "@/server-actions/user";
 import { toast } from "sonner";
 
+// Generic toast function
+const showToast = async (
+	type: "warning" | "info",
+	message: string,
+	actionLabel: string,
+	actionFn: () => Promise<any>,
+	onSuccessMessage: string,
+	onSuccess?: () => void,
+	onErrorMessage: string = "Failed to perform action"
+) => {
+	toast[type](message, {
+		description: "This action cannot be undone!",
+		action: {
+			label: actionLabel,
+			onClick: async () => {
+				toast.promise(actionFn(), {
+					loading: `${actionLabel}ing...`,
+					success: () => {
+						onSuccess?.();
+						return onSuccessMessage;
+					},
+					error: onErrorMessage,
+				});
+			},
+		},
+		cancel: {
+			label: "Cancel",
+			onClick: () => {},
+		},
+	});
+};
+
+// Delete user toast
 export const deleteUserToast = async (
 	userId: string,
 	onSuccess?: () => void
 ) => {
-	toast.warning("Confirm delete", {
-		description: "This action cannot be undone!",
-		action: {
-			label: "Delete",
-			onClick: async () => {
-				toast.promise(deleteUser(userId), {
-					loading: "Deleting user...",
-					success: () => {
-						onSuccess?.(); // Call the provided callback function
-						return "User is successfully deleted!";
-					},
-					error: "Failed to delete user",
-				});
-			},
-		},
-		cancel: {
-			label: "Cancel",
-			onClick: () => {},
-		},
-	});
+	await showToast(
+		"warning",
+		"Confirm delete",
+		"Delete",
+		() => deleteUser(userId),
+		"User is successfully deleted!",
+		onSuccess
+	);
 };
 
+// Delete package toast
+export const deletePackageToast = async (
+	packageId: string,
+	onSuccess?: () => void
+) => {
+	await showToast(
+		"warning",
+		"Confirm delete",
+		"Delete",
+		() => deletePackage(packageId),
+		"Package is successfully deleted!",
+		onSuccess
+	);
+};
+
+// Delete product toast
+export const deleteProductToast = async (
+	productId: string,
+	onSuccess?: () => void
+) => {
+	await showToast(
+		"warning",
+		"Confirm delete",
+		"Delete",
+		() => deleteProduct(productId),
+		"Product is successfully deleted!",
+		onSuccess
+	);
+};
+
+// Delete category toast
+export const deleteCategoryToast = async (
+	categoryId: string,
+	onSuccess?: () => void
+) => {
+	await showToast(
+		"warning",
+		"Confirm delete",
+		"Delete",
+		() => deleteCategory(categoryId),
+		"Category is successfully deleted!",
+		onSuccess
+	);
+};
+
+// Delete employee toast
 export const deleteEmployeeToast = async (
 	employeeId: string,
 	onSuccess?: () => void
 ) => {
-	toast.warning("Confirm delete", {
-		description: "This action cannot be undone!",
-		action: {
-			label: "Delete",
-			onClick: async () => {
-				toast.promise(deleteEmployee(employeeId), {
-					loading: "Deleting employee...",
-					success: () => {
-						onSuccess?.(); // Call the provided callback function
-						return "Emlployee is successfully deleted!";
-					},
-					error: "Failed to delete employee",
-				});
-			},
-		},
-		cancel: {
-			label: "Cancel",
-			onClick: () => {},
-		},
-	});
+	await showToast(
+		"warning",
+		"Confirm delete",
+		"Delete",
+		() => deleteEmployee(employeeId),
+		"Employee is successfully deleted!",
+		onSuccess
+	);
 };
 
+// Delete note toast
+export const deleteNoteToast = async (
+	noteId: string,
+	onSuccess?: () => void
+) => {
+	await showToast(
+		"warning",
+		"Confirm delete",
+		"Delete",
+		() => deleteNote(noteId),
+		"Note is successfully deleted!",
+		onSuccess
+	);
+};
+
+// Delete file toast
 export const deleteFileToast = async (file: File, onSuccess?: () => void) => {
-	toast.warning("Confirm delete", {
-		description: "This action cannot be undone!",
-		action: {
-			label: "Delete",
-			onClick: async () => {
-				toast.promise(deleteFile(file), {
-					loading: "Deleting File...",
-					success: () => {
-						onSuccess?.(); // Call the provided callback function
-						return "File is successfully deleted!";
-					},
-					error: "Failed to delete file",
-				});
-			},
-		},
-		cancel: {
-			label: "Cancel",
-			onClick: () => {},
-		},
-	});
+	await showToast(
+		"warning",
+		"Confirm delete",
+		"Delete",
+		() => deleteFile(file),
+		"File is successfully deleted!",
+		onSuccess
+	);
 };
+
+// Delete report toast
 export const deleteReportToast = async (id: string, onSuccess?: () => void) => {
-	toast.warning("Confirm delete", {
-		description: "This action cannot be undone!",
-		action: {
-			label: "Delete",
-			onClick: async () => {
-				toast.promise(deleteReport(id), {
-					loading: "Deleting Report...",
-					success: () => {
-						onSuccess?.(); // Call the provided callback function
-						return "Report is successfully deleted!";
-					},
-					error: "Failed to delete report",
-				});
-			},
-		},
-		cancel: {
-			label: "Cancel",
-			onClick: () => {},
-		},
-	});
+	await showToast(
+		"warning",
+		"Confirm delete",
+		"Delete",
+		() => deleteReport(id),
+		"Report is successfully deleted!",
+		onSuccess
+	);
 };
 
+// Delete task toast
 export const deleteTaskToast = async (id: string, onSuccess?: () => void) => {
-	toast.warning("Confirm delete", {
-		description: "This action cannot be undone!",
-		action: {
-			label: "Delete",
-			onClick: async () => {
-				toast.promise(deleteTask(id), {
-					loading: "Deleting Task...",
-					success: () => {
-						onSuccess?.(); // Call the provided callback function
-						return "Task is successfully deleted!";
-					},
-					error: "Failed to delete task",
-				});
-			},
-		},
-		cancel: {
-			label: "Cancel",
-			onClick: () => {},
-		},
-	});
+	await showToast(
+		"warning",
+		"Confirm delete",
+		"Delete",
+		() => deleteTask(id),
+		"Task is successfully deleted!",
+		onSuccess
+	);
 };
 
+// Restore task toast
 export const restoreTaskToast = async (id: string, onSuccess?: () => void) => {
-	toast.info("Confirm restore", {
-		description: "Restore task from archived page",
-		action: {
-			label: "Restore",
-			onClick: async () => {
-				toast.promise(restoreTask(id), {
-					loading: "Restoring Task...",
-					success: () => {
-						onSuccess?.(); // Call the provided callback function
-						return "Task is successfully restored!";
-					},
-					error: "Failed to restore task",
-				});
-			},
-		},
-		cancel: {
-			label: "Cancel",
-			onClick: () => {},
-		},
-	});
+	await showToast(
+		"info",
+		"Confirm restore",
+		"Restore",
+		() => restoreTask(id),
+		"Task is successfully restored!",
+		onSuccess
+	);
 };
 
+// Archive task toast
 export const archiveTaskToast = async (id: string, onSuccess?: () => void) => {
-	toast.info("Confirm Archive", {
-		description: "Move task into archived page",
-		action: {
-			label: "Archive",
-			onClick: async () => {
-				toast.promise(archiveTask(id), {
-					loading: "Moving Task...",
-					success: () => {
-						onSuccess?.(); // Call the provided callback function
-						return "Task is successfully Archived!";
-					},
-					error: "Failed to archive task",
-				});
-			},
-		},
-		cancel: {
-			label: "Cancel",
-			onClick: () => {},
-		},
-	});
+	await showToast(
+		"info",
+		"Confirm Archive",
+		"Archive",
+		() => archiveTask(id),
+		"Task is successfully Archived!",
+		onSuccess
+	);
 };

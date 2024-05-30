@@ -1,5 +1,7 @@
 import DialogButton from "@/components/common/buttons/DialogButton";
+import { Button } from "@/components/ui/button";
 import { Category, Package, Product } from "@prisma/client";
+import { TrashIcon } from "lucide-react";
 import AddCategoryForm from "./form/AddCategoryForm";
 import AddPackageForm from "./form/AddPackageForm";
 import AddProductForm from "./form/AddProductForm";
@@ -50,5 +52,41 @@ export const EditProductButton = ({ product }: { product: Product }) => {
 		<DialogButton title="Edit">
 			<EditProductForm data={product} />
 		</DialogButton>
+	);
+};
+
+export const DeletePackageButton = ({ onClick }: { onClick: () => void }) => {
+	return (
+		<Button
+			variant="outline"
+			size="icon"
+			onClick={onClick}
+		>
+			<TrashIcon className="w-6 h-6 text-destructive" />
+		</Button>
+	);
+};
+
+export const DeleteCategoryButton = ({ onClick }: { onClick: () => void }) => {
+	return (
+		<Button
+			variant="outline"
+			size="icon"
+			onClick={onClick}
+		>
+			<TrashIcon className="w-6 h-6 text-destructive" />
+		</Button>
+	);
+};
+
+export const DeleteProductButton = ({ onClick }: { onClick: () => void }) => {
+	return (
+		<Button
+			variant="outline"
+			size="icon"
+			onClick={onClick}
+		>
+			<TrashIcon className="w-6 h-6 text-destructive" />
+		</Button>
 	);
 };

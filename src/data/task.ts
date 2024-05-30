@@ -1,14 +1,13 @@
 import { db } from "@/lib/db";
-import { currentUserId } from "@/lib/sessionUser";
 import { Task, TaskStatus } from "@prisma/client";
 
 export interface TaskWithRelations extends Task {
-	employee: {
+	employees: {
 		department: string;
 		firstName: string;
 		lastName: string;
 		id: string;
-	} | null;
+	}[];
 	user: {
 		name: string;
 	} | null;
@@ -18,58 +17,23 @@ export type GroupedTasks = {
 	[status in TaskStatus]?: TaskWithRelations[];
 };
 
-export const getGroupedTasksByStatus =
-	async (): Promise<GroupedTasks | null> => {
-		try {
-			// Fetch all tasks including related data
-			const tasks = await db.task.findMany({
-				where: { isArchived: false },
-				include: {
-					employee: {
-						select: {
-							department: true,
-							firstName: true,
-							lastName: true,
-							id: true,
-						},
-					},
-					user: {
-						select: {
-							name: true,
-						},
-					},
-				},
-				orderBy: {
-					priority: "asc",
-				},
-			});
-
-			// Group tasks by status
-			const groupedTasks: GroupedTasks = tasks.reduce((groups, task) => {
-				const { status } = task;
-				if (!groups[status]) {
-					groups[status] = [];
-				}
-				groups[status]?.push(task);
-				return groups;
-			}, {} as GroupedTasks);
-
-			return groupedTasks;
-		} catch (error) {
-			console.error(error);
-			return null;
+const groupTasksByStatus = (tasks: TaskWithRelations[]): GroupedTasks => {
+	return tasks.reduce((groups, task) => {
+		const { status } = task;
+		if (!groups[status]) {
+			groups[status] = [];
 		}
-	};
+		groups[status]?.push(task);
+		return groups;
+	}, {} as GroupedTasks);
+};
 
-export const getGroupedTasksByStatusByUserId = async (
-	userId: string
-): Promise<GroupedTasks | null> => {
+export const getAllTasks = async (): Promise<TaskWithRelations[] | null> => {
 	try {
-		// Fetch all tasks including related data
 		const tasks = await db.task.findMany({
-			where: { userId, isArchived: false },
+			where: { isArchived: false },
 			include: {
-				employee: {
+				employees: {
 					select: {
 						department: true,
 						firstName: true,
@@ -88,45 +52,29 @@ export const getGroupedTasksByStatusByUserId = async (
 			},
 		});
 
-		// Group tasks by status
-		const groupedTasks: GroupedTasks = tasks.reduce((groups, task) => {
-			const { status } = task;
-			if (!groups[status]) {
-				groups[status] = [];
-			}
-			groups[status]?.push(task);
-			return groups;
-		}, {} as GroupedTasks);
-
-		return groupedTasks;
+		return tasks;
 	} catch (error) {
 		console.error(error);
 		return null;
 	}
 };
-
-export const getTaskById = async (id: string | undefined) => {
+export const getGroupedTasksByUserIdAndEmployeeId = async (
+	userId: any,
+	employeeId: any
+): Promise<TaskWithRelations[] | null> => {
 	try {
-		const task = await db.task.findUnique({
+		const tasks = await db.task.findMany({
 			where: {
-				id,
+				isArchived: false,
+				OR: [{ userId: userId }, { employees: { some: { id: employeeId } } }],
 			},
-		});
-		return task;
-	} catch (error) {
-		return null;
-	}
-};
-
-export const getTasks = async () => {
-	try {
-		const task = await db.task.findMany({
 			include: {
-				employee: {
+				employees: {
 					select: {
 						department: true,
 						firstName: true,
 						lastName: true,
+						id: true,
 					},
 				},
 				user: {
@@ -135,59 +83,14 @@ export const getTasks = async () => {
 					},
 				},
 			},
-		});
-		return task;
-	} catch (error) {
-		return null;
-	}
-};
-
-export const getTaskByStatus = async (status: TaskStatus) => {
-	const userId = await currentUserId();
-	try {
-		const task = await db.task.findMany({
-			where: {
-				status,
-				userId,
-			},
-			include: {
-				employee: {
-					select: {
-						department: true,
-					},
-				},
-			},
 			orderBy: {
 				priority: "asc",
 			},
 		});
-		return task;
-	} catch (error) {
-		return null;
-	}
-};
 
-export const getArchivedTask = async () => {
-	const userId = await currentUserId();
-	try {
-		const task = await db.task.findMany({
-			where: {
-				userId,
-				isArchived: true,
-			},
-			include: {
-				employee: {
-					select: {
-						department: true,
-					},
-				},
-			},
-			orderBy: {
-				createdAt: "asc",
-			},
-		});
-		return task;
+		return tasks;
 	} catch (error) {
+		console.error(error);
 		return null;
 	}
 };

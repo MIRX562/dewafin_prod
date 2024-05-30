@@ -24,11 +24,25 @@ export const addTask = async (values: AddTask): Promise<RegisterResponse> => {
 	}
 
 	const data = validatedFields.data;
+	const employees = data.employeeIds;
 
 	try {
 		const newTask = await db.task.create({
 			data: {
-				...data,
+				title: data.title,
+				description: data.description,
+				startDate: data.startDate,
+				endDate: data.endDate,
+				status: data.status,
+				priority: data.priority,
+				reportUrl: data.reportUrl,
+				isArchived: data.isArchived,
+				userId: data.userId,
+				employees: {
+					connect: employees.map((employeeId: string) => ({
+						id: employeeId,
+					})),
+				},
 			},
 		});
 

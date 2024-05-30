@@ -78,11 +78,6 @@ export async function updateNote({
 			data: { title, content, isPublic },
 		});
 
-		await logActivity(
-			"info",
-			`Note updated: ${originalNote.title} -> ${title}`
-		);
-
 		return updatedNote;
 	} catch (error) {
 		console.error("Error updating note title:", error);

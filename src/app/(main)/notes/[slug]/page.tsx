@@ -21,8 +21,10 @@ const NoteView: React.FC = () => {
 	const [title, setTitle] = useState<string>("");
 	const [content, setContent] = useState<string>("");
 	const [isPublic, setIsPublic] = useState<boolean>(false);
-	const debouncedTitle = useDebounce(title, 500);
-	const debouncedContent = useDebounce(content, 500);
+	const [renderEditor, setRenderEditor] = useState<boolean>(false); // Add this state
+
+	const debouncedTitle = useDebounce(title, 1000);
+	const debouncedContent = useDebounce(content, 1000);
 	const uId = useCurrentUserId();
 	const searchParams = useSearchParams();
 	const noteId = searchParams.get("id");
@@ -39,25 +41,22 @@ const NoteView: React.FC = () => {
 				if (!noteData) {
 					throw new Error("Note not found");
 				}
-
 				const isEditable = noteData.userId === uId;
 				setEditable(isEditable);
 				setNote(noteData);
 				setTitle(noteData.title);
-				setContent(noteData.content || "");
+				setContent(noteData.content);
 				setIsPublic(noteData.isPublic);
 			} catch (error) {
 				console.error("Error fetching note:", error);
 			}
 		};
-
 		fetchNote();
 	}, [noteId, uId]);
 
 	useEffect(() => {
 		const handleSaveNote = async () => {
 			if (!editable || !note) return;
-
 			try {
 				await updateNote({
 					id: note.id,
@@ -69,9 +68,17 @@ const NoteView: React.FC = () => {
 				console.error("Error updating note:", error);
 			}
 		};
-
 		handleSaveNote();
 	}, [debouncedTitle, debouncedContent, editable, note, isPublic]);
+
+	useEffect(() => {
+		// Delay rendering the Editor component by 500ms
+		const timeout = setTimeout(() => {
+			setRenderEditor(true);
+		}, 500);
+
+		return () => clearTimeout(timeout); // Clean up the timeout on component unmount
+	}, []); // Empty dependency array ensures the effect runs only once
 
 	const handleTitleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
 		setTitle(e.target.value);
@@ -95,7 +102,7 @@ const NoteView: React.FC = () => {
 						onChange={handleTitleChange}
 						readOnly={!editable}
 					/>
-					<div className="flex flex-col md:flex-row h-full items-start justify-start gap-2">
+					<div className="flex h-full items-start justify-start py-2">
 						<Button
 							onClick={handleGoBack}
 							variant="outline"
@@ -114,12 +121,14 @@ const NoteView: React.FC = () => {
 						)}
 					</div>
 				</header>
-				<div className="flex-1 overflow-auto group pt-2">
-					<Editor
-						editable={editable}
-						onChange={(value) => setContent(value)}
-						initialContent={note?.content || ""}
-					/>
+				<div className=" flex-1 overflow-auto gap-2 md:gap-4">
+					{renderEditor && (
+						<Editor
+							editable={editable}
+							onChange={(value) => setContent(value)}
+							initialContent={note?.content}
+						/>
+					)}
 				</div>
 			</div>
 		</div>

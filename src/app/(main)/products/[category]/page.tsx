@@ -2,13 +2,15 @@
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { getCategoriesById } from "@/data/product";
+import { deleteCategoryToast } from "@/lib/toasts";
 import { SearchIcon } from "lucide-react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import React, { ChangeEvent, useEffect, useMemo, useState } from "react";
 import { CategoryProps } from "../_components/CategoryList";
 import ProductList from "../_components/ProductList";
 import {
 	AddProductButton,
+	DeleteCategoryButton,
 	EditCategoryButton,
 } from "../_components/ProductsButton";
 
@@ -19,6 +21,7 @@ const CategoryPage: React.FC<{ params: { category: string } }> = ({
 	const id = searchParams.get("id");
 	const [data, setData] = useState<CategoryProps | null>(null);
 	const [searchQuery, setSearchQuery] = useState<string>("");
+	const router = useRouter();
 
 	useEffect(() => {
 		if (id) {
@@ -77,12 +80,21 @@ const CategoryPage: React.FC<{ params: { category: string } }> = ({
 		);
 	}
 
+	const handleDelete = async () => {
+		await deleteCategoryToast(memoizedData.id, () => {
+			router.back();
+		});
+	};
+
 	return (
 		<div className="flex flex-1 flex-col gap-2 md:gap-4">
 			<div className="flex flex-col gap-2">
 				<div className="flex items-center justify-between gap-2">
 					<h1 className="text-3xl font-bold">{memoizedData.name}</h1>
-					<EditCategoryButton category={memoizedData} />
+					<div className="flex gap-2">
+						<EditCategoryButton category={memoizedData} />
+						<DeleteCategoryButton onClick={handleDelete} />
+					</div>
 				</div>
 				<Separator />
 			</div>

@@ -3,19 +3,22 @@ import Loading from "@/app/loading";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { getProductsById } from "@/data/product";
+import { deleteProductToast } from "@/lib/toasts";
 import { SearchIcon } from "lucide-react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import React, { ChangeEvent, useEffect, useMemo, useState } from "react";
 import PackageList from "../../_components/PackageList";
 import { ProductListProps } from "../../_components/ProductList";
 import {
 	AddPackageButton,
+	DeleteProductButton,
 	EditProductButton,
 } from "../../_components/ProductsButton";
 
 const ProductPage: React.FC<{ params: { product: string } }> = ({ params }) => {
 	const searchParams = useSearchParams();
 	const id = searchParams.get("id");
+	const router = useRouter();
 
 	const [data, setData] = useState<ProductListProps>();
 	const [loading, setLoading] = useState<boolean>(true);
@@ -72,6 +75,12 @@ const ProductPage: React.FC<{ params: { product: string } }> = ({ params }) => {
 		);
 	}
 
+	const handleDelete = async () => {
+		await deleteProductToast(memoizedData.id, () => {
+			router.back();
+		});
+	};
+
 	return (
 		<div className="flex flex-1 flex-col gap-2 md:gap-6">
 			<div className="flex flex-col gap-2">
@@ -80,7 +89,10 @@ const ProductPage: React.FC<{ params: { product: string } }> = ({ params }) => {
 						<h1 className="text-3xl font-bold">{memoizedData.name}</h1>
 						<p>{memoizedData.description}</p>
 					</div>
-					<EditProductButton product={memoizedData} />
+					<div className="flex gap-2">
+						<EditProductButton product={memoizedData} />
+						<DeleteProductButton onClick={handleDelete} />
+					</div>
 				</div>
 				<Separator />
 			</div>

@@ -25,11 +25,11 @@ const Editor: React.FC<EditorProps> = ({
 			: undefined,
 		uploadFile: async (file: File) => {
 			const [res] = await uploadFiles("imageUploader", { files: [file] });
+			console.log(res);
 			return res.url;
 		},
 	});
 	return (
-		// Renders the editor instance using a React component.
 		<BlockNoteView
 			editor={editor}
 			editable={editable}

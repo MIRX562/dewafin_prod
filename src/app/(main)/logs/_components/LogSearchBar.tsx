@@ -26,16 +26,16 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch, onFilterChange }) => {
 					onChange={(e) => onSearch(e.target.value)}
 				/>
 			</div>
-			<div>
+			<div className="w-24">
 				<Select
 					defaultValue="all"
 					onValueChange={(e) => onFilterChange(e)}
 				>
-					<SelectTrigger className="px-4 py-2 text-sm">
+					<SelectTrigger>
 						<SelectValue placeholder="Filter by log level" />
 					</SelectTrigger>
 					<SelectContent>
-						<SelectItem value="all">All</SelectItem>
+						<SelectItem value="all">All </SelectItem>
 						<SelectItem value="debug">Debug</SelectItem>
 						<SelectItem value="info">Info</SelectItem>
 						<SelectItem value="warn">Warn</SelectItem>

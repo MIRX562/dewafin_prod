@@ -10,11 +10,6 @@ const LogsPage: React.FC = () => {
 	const [logs, setLogs] = useState<Logs[]>([]);
 	const [filteredLogs, setFilteredLogs] = useState<Logs[]>([]);
 
-	// Function to export logs
-	const handleExportLogs = () => {
-		console.log("Exporting logs...");
-	};
-
 	const handleSearch = (query: string) => {
 		const filtered = logs.filter((log) =>
 			log.message.toLowerCase().includes(query.toLowerCase())
@@ -44,7 +39,7 @@ const LogsPage: React.FC = () => {
 
 	return (
 		<div className="flex flex-col h-full">
-			<Header onExport={handleExportLogs} />
+			<Header />
 			<div className="flex-1 overflow-auto md:p-4">
 				<SearchBar
 					onSearch={handleSearch}

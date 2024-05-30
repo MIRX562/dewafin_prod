@@ -1,4 +1,5 @@
 "use client";
+
 import DialogButton from "@/components/common/buttons/DialogButton";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,14 +10,14 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select";
-import { Department } from "@prisma/client";
+import { Department, TaskStatus } from "@prisma/client";
 import { ArchiveIcon } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import AddTaskForm from "./forms/AddTaskForm";
 import TaskBoard from "./TaskBoard";
 
-const TaskView = ({ tasks }: { tasks: any }) => {
+const TaskView = ({ tasks }: { tasks: any[] }) => {
 	const [searchQuery, setSearchQuery] = useState("");
 	const [department, setDepartment] = useState<string | null>(null);
 	const [filteredTasks, setFilteredTasks] = useState({
@@ -32,14 +33,21 @@ const TaskView = ({ tasks }: { tasks: any }) => {
 				return taskList.filter(
 					(task: any) =>
 						task.title.toLowerCase().includes(query) &&
-						(department ? task.employee.department === department : true)
+						(!department ||
+							task.employees.some((emp: any) => emp.department === department))
 				);
 			};
 
 			setFilteredTasks({
-				TODO: filterTasks(tasks.TODO || []),
-				IN_PROGRESS: filterTasks(tasks.IN_PROGRESS || []),
-				FINISHED: filterTasks(tasks.FINISHED || []),
+				TODO: filterTasks(
+					tasks.filter((task: any) => task.status === TaskStatus.TODO)
+				),
+				IN_PROGRESS: filterTasks(
+					tasks.filter((task: any) => task.status === TaskStatus.IN_PROGRESS)
+				),
+				FINISHED: filterTasks(
+					tasks.filter((task: any) => task.status === TaskStatus.FINISHED)
+				),
 			});
 		}
 	}, [searchQuery, department, tasks]);

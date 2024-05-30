@@ -5,6 +5,12 @@ import FormSuccess from "@/components/common/forms/FormSuccess";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import {
+	DropdownMenu,
+	DropdownMenuCheckboxItem,
+	DropdownMenuContent,
+	DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import {
 	Form,
 	FormControl,
 	FormField,
@@ -33,7 +39,7 @@ import { addTask } from "@/server-actions/task";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Employee, Priority, TaskStatus } from "@prisma/client";
 import { format } from "date-fns";
-import { CalendarIcon } from "lucide-react";
+import { CalendarIcon, ChevronDownIcon } from "lucide-react";
 import { useEffect, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 
@@ -41,7 +47,8 @@ const AddTaskForm = () => {
 	const [success, setSuccess] = useState<string | undefined>("");
 	const [error, setError] = useState<string | undefined>("");
 	const [isPending, startTransition] = useTransition();
-	const [employees, setEmployees] = useState([]);
+	const [employees, setEmployees] = useState<Employee[]>([]);
+	const [selectedEmployees, setSelectedEmployees] = useState<string[]>([]);
 	const userId = useCurrentUserId() || "";
 
 	const form = useForm<AddTask>({
@@ -53,8 +60,7 @@ const AddTaskForm = () => {
 			endDate: new Date(),
 			status: TaskStatus.TODO,
 			priority: Priority.LOW,
-			//@ts-ignore
-			employeeId: undefined,
+			employeeIds: [],
 			reportUrl: "",
 			userId: userId || "",
 			isArchived: false,
@@ -65,7 +71,7 @@ const AddTaskForm = () => {
 		setSuccess("");
 
 		startTransition(() => {
-			addTask(values).then((data) => {
+			addTask({ ...values, employeeIds: selectedEmployees }).then((data) => {
 				setError(data.error);
 				setSuccess(data.success);
 			});
@@ -86,6 +92,14 @@ const AddTaskForm = () => {
 
 		fetchEmployees();
 	}, []);
+
+	const handleEmployeeToggle = (employeeId: string, isSelected: boolean) => {
+		setSelectedEmployees((prev) =>
+			isSelected
+				? [...prev, employeeId]
+				: prev.filter((id) => id !== employeeId)
+		);
+	};
 
 	return (
 		<DataFormWrapper title="Create Task">
@@ -188,38 +202,37 @@ const AddTaskForm = () => {
 								)}
 							/>
 						</div>
-
-						<FormField
-							control={form.control}
-							name="employeeId"
-							render={({ field }) => (
-								<FormItem>
-									<FormLabel>Assign to</FormLabel>
-									<Select
-										disabled={isPending}
-										onValueChange={field.onChange}
-										defaultValue={field.value as any}
+						<FormItem>
+							<FormLabel>Assign to</FormLabel>
+							<DropdownMenu>
+								<DropdownMenuTrigger asChild>
+									<Button
+										variant="outline"
+										className="ml-auto flex text-muted-foreground justify-between w-full"
 									>
-										<FormControl>
-											<SelectTrigger>
-												<SelectValue placeholder="Select an employee" />
-											</SelectTrigger>
-										</FormControl>
-										<SelectContent>
-											{employees.map((employee: Employee) => (
-												<SelectItem
-													key={employee.id}
-													value={employee.id}
-												>
-													{`${employee.firstName} ${employee.lastName}`}
-												</SelectItem>
-											))}
-										</SelectContent>
-									</Select>
-									<FormMessage />
-								</FormItem>
-							)}
-						/>
+										Select Employees
+										<ChevronDownIcon className="mr-2 h-4 w-4" />
+									</Button>
+								</DropdownMenuTrigger>
+								<DropdownMenuContent
+									align="center"
+									className="flex flex-col w-[340px]"
+								>
+									{employees.map((employee) => (
+										<DropdownMenuCheckboxItem
+											key={employee.id}
+											className="capitalize"
+											checked={selectedEmployees.includes(employee.id)}
+											onCheckedChange={(value) =>
+												handleEmployeeToggle(employee.id, value)
+											}
+										>
+											{`${employee.firstName} ${employee.lastName}`}
+										</DropdownMenuCheckboxItem>
+									))}
+								</DropdownMenuContent>
+							</DropdownMenu>
+						</FormItem>
 						<FormField
 							control={form.control}
 							name="reportUrl"
@@ -322,15 +335,15 @@ const AddTaskForm = () => {
 								)}
 							/>
 						</div>
+						{success && <FormSuccess message={success} />}
+						{error && <FormError message={error} />}
 					</div>
-					<FormError message={error} />
-					<FormSuccess message={success} />
 					<Button
-						disabled={isPending}
-						typeof="submit"
+						type="submit"
 						className="w-full"
+						disabled={isPending}
 					>
-						Create Task
+						{isPending ? "Saving..." : "Save"}
 					</Button>
 				</form>
 			</Form>
