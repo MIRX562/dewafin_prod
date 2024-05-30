@@ -56,7 +56,7 @@ export const getAllTasks = async () => {
 				userId,
 			},
 			include: {
-				employee: {
+				employees: {
 					select: {
 						firstName: true,
 						lastName: true,

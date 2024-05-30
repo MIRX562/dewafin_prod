@@ -65,6 +65,7 @@ export const getEmployeeById = async (id: string) => {
 		return null;
 	}
 };
+
 export const getEmployeeByUserId = async (userId: string) => {
 	try {
 		const employee = await db.employee.findUnique({
@@ -73,6 +74,23 @@ export const getEmployeeByUserId = async (userId: string) => {
 			},
 			select: {
 				id: true,
+			},
+		});
+		return employee;
+	} catch (error) {
+		return null;
+	}
+};
+
+export const getEmployeeEmailById = async (id: string) => {
+	try {
+		const employee = await db.employee.findUnique({
+			where: {
+				id,
+			},
+			select: {
+				id: true,
+				email: true,
 			},
 		});
 		return employee;

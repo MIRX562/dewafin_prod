@@ -1,6 +1,10 @@
 "use server";
 import { db } from "@/lib/db";
 import { logActivity } from "@/lib/logger";
+import {
+	sendTaskAssignmentNotification,
+	sendTaskCompletionNotification,
+} from "@/lib/mail";
 import { currentUser } from "@/lib/sessionUser";
 import { AddTask, addTaskSchema, EditTask } from "@/schemas/task";
 import { TaskStatus } from "@prisma/client";
@@ -44,11 +48,22 @@ export const addTask = async (values: AddTask): Promise<RegisterResponse> => {
 					})),
 				},
 			},
+			include: {
+				employees: {
+					select: {
+						email: true,
+					},
+				},
+			},
 		});
 
 		revalidatePath("/tasks");
 
 		await logActivity("info", `New task created: ${newTask.id}`);
+
+		for (const employee of newTask.employees) {
+			await sendTaskAssignmentNotification(employee.email, newTask.title);
+		}
 
 		return {
 			success: "Success Creating New Task",
@@ -100,6 +115,7 @@ export const editTask = async (
 		await db.task.update({
 			where: { id },
 			data: taskData,
+			include: { employees: true }, // Include assigned employees
 		});
 		revalidatePath("/tasks");
 
@@ -125,13 +141,29 @@ export const updateTaskStatus = async (
 	}
 
 	try {
-		await db.task.update({
+		const updatedTask = await db.task.update({
 			where: { id },
 			data: {
 				status,
 			},
+			include: {
+				user: {
+					select: {
+						email: true,
+					},
+				},
+			}, // Include the assigner
 		});
+
 		revalidatePath("/tasks");
+
+		if (status === TaskStatus.FINISHED) {
+			// Send task completion notification to the assigner
+			await sendTaskCompletionNotification(
+				updatedTask.user.email,
+				updatedTask.title
+			);
+		}
 
 		await logActivity("info", `Task status updated: ${id}`);
 
