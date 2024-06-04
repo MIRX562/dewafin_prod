@@ -33,9 +33,8 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { TaskWithRelations } from "@/data/task";
-import { useCurrentUserId } from "@/hooks/useCurrentUser";
 import { cn } from "@/lib/utils";
-import { AddTask, addTaskSchema, EditTask } from "@/schemas/task";
+import { EditTask, editTaskSchema } from "@/schemas/task";
 import { editTask } from "@/server-actions/task";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Employee, Priority, TaskStatus } from "@prisma/client";
@@ -49,11 +48,12 @@ const EditTaskForm = ({ task }: { task: TaskWithRelations }) => {
 	const [error, setError] = useState<string | undefined>("");
 	const [isPending, startTransition] = useTransition();
 	const [employees, setEmployees] = useState<Employee[]>([]);
-	const [selectedEmployees, setSelectedEmployees] = useState<string[]>([]);
-	const userId = useCurrentUserId() || "";
+	const [selectedEmployees, setSelectedEmployees] = useState<string[]>(
+		task.employees.map((e) => e.id)
+	);
 
-	const form = useForm<AddTask>({
-		resolver: zodResolver(addTaskSchema),
+	const form = useForm<EditTask>({
+		resolver: zodResolver(editTaskSchema),
 		defaultValues: {
 			title: task.title,
 			//@ts-ignore
@@ -62,23 +62,22 @@ const EditTaskForm = ({ task }: { task: TaskWithRelations }) => {
 			endDate: task.endDate,
 			status: task.status,
 			priority: task.priority,
-			//@ts-ignore
-			employeeId: task.employee.id,
+			employeeIds: task.employees.map((e) => e.id),
 			//@ts-ignore
 			reportUrl: task.reportUrl,
-			userId: userId || "",
-			isArchived: task.isArchived,
 		},
 	});
+
 	const onSubmit = (values: EditTask) => {
 		setError("");
 		setSuccess("");
-
 		startTransition(() => {
-			editTask(values, task.id).then((data) => {
-				setError(data.error);
-				setSuccess(data.success);
-			});
+			editTask({ ...values, employeeIds: selectedEmployees }, task.id).then(
+				(data) => {
+					setError(data.error);
+					setSuccess(data.success);
+				}
+			);
 		});
 	};
 
@@ -106,7 +105,7 @@ const EditTaskForm = ({ task }: { task: TaskWithRelations }) => {
 	};
 
 	return (
-		<DataFormWrapper title="Create Task">
+		<DataFormWrapper title="Edit Task">
 			<Form {...form}>
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}
@@ -162,7 +161,7 @@ const EditTaskForm = ({ task }: { task: TaskWithRelations }) => {
 										>
 											<FormControl>
 												<SelectTrigger>
-													<SelectValue placeholder="Select a role" />
+													<SelectValue placeholder="Select status" />
 												</SelectTrigger>
 											</FormControl>
 											<SelectContent>
@@ -192,7 +191,7 @@ const EditTaskForm = ({ task }: { task: TaskWithRelations }) => {
 										>
 											<FormControl>
 												<SelectTrigger>
-													<SelectValue placeholder="Select a role" />
+													<SelectValue placeholder="Select priority" />
 												</SelectTrigger>
 											</FormControl>
 											<SelectContent>
@@ -214,7 +213,16 @@ const EditTaskForm = ({ task }: { task: TaskWithRelations }) => {
 										variant="outline"
 										className="ml-auto flex text-muted-foreground justify-between w-full"
 									>
-										Select Employees
+										{selectedEmployees.length > 0
+											? selectedEmployees
+													.map((employeeId) => {
+														const employee = employees.find(
+															(emp) => emp.id === employeeId
+														);
+														return `${employee?.firstName} ${employee?.lastName}`;
+													})
+													.join(", ")
+											: "Select Employees"}
 										<ChevronDownIcon className="mr-2 h-4 w-4" />
 									</Button>
 								</DropdownMenuTrigger>

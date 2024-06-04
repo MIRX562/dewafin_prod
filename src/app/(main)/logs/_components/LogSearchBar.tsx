@@ -6,7 +6,6 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select";
-import { SearchIcon } from "lucide-react";
 import React from "react";
 
 interface SearchBarProps {
@@ -16,11 +15,9 @@ interface SearchBarProps {
 
 const SearchBar: React.FC<SearchBarProps> = ({ onSearch, onFilterChange }) => {
 	return (
-		<div className="mb-6 flex items-center justify-between space-x-4">
-			<div className="relative w-full max-w-md">
-				<SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+		<div className=" flex items-center justify-between space-x-4">
+			<div className="w-full max-w-md">
 				<Input
-					className="pl-10 pr-4 py-2 rounded-md bg-white dark:bg-gray-950 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:focus:ring-blue-400"
 					placeholder="Search logs..."
 					type="search"
 					onChange={(e) => onSearch(e.target.value)}

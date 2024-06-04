@@ -1,43 +1,62 @@
-import { Button } from "@/components/ui/button";
-import { ViewIcon } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { getDashboardTask } from "@/data/dashboard";
+import { currentUser } from "@/lib/sessionUser";
+import { Priority } from "@prisma/client";
 import DashboardCardWrapper from "./DashboardCardWrapper";
 
-type TodoItemProps = { id: string; label: string; completed?: boolean };
+type TaskItemProps = {
+	title: string;
+	priority: string;
+	status: string;
+};
 
-const ToDoList = () => {
+const ToDoList = async () => {
+	const user = await currentUser();
+	const data = await getDashboardTask(user?.id, user?.employeeId);
+
+	if (!data) {
+		return (
+			<div className="flex w-full items-center justify-center">
+				<p>No Pending or OnGoing Task</p>
+			</div>
+		);
+	}
+
 	return (
 		<DashboardCardWrapper
-			title="Tasks"
+			title="Latest Tasks"
 			href="/tasks"
 		>
-			<TaskItem
-				id="task-2"
-				label="Schedule team meeting"
-				completed
-			/>
-			<TaskItem
-				id="task-3"
-				label="Review the design mockups"
-			/>
+			{data.map((task) => (
+				<TaskItem
+					key={task.id}
+					title={task.title}
+					priority={task.priority}
+					status={task.status}
+				/>
+			))}
 		</DashboardCardWrapper>
 	);
 };
 
-const TaskItem = ({ id, label, completed = false }: TodoItemProps) => (
-	<div className="flex items-center gap-2">
+const TaskItem = ({ title, priority, status }: TaskItemProps) => (
+	<div className="flex items-center justify-between gap-2 p-2 border-b w-full">
 		<label
-			className={`flex-1 ${completed ? "line-through text-gray-500" : ""}`}
-			htmlFor={id}
+			className={`flex-1 ${status === "FINISHED" ? "line-through text-gray-500" : ""} ${status === "IN_PROGRESS" ? "font-semibold text-primary" : ""}`}
 		>
-			{label}
+			{title}
 		</label>
-		<Button
-			size="icon"
-			variant="ghost"
+		<Badge
+			variant={
+				priority === Priority.LOW
+					? "success"
+					: priority === Priority.HIGH
+						? "destructive"
+						: "default"
+			}
 		>
-			<ViewIcon className="w-5 h-5 text-gray-500" />
-			<span className="sr-only">View Task</span>
-		</Button>
+			{priority}
+		</Badge>
 	</div>
 );
 

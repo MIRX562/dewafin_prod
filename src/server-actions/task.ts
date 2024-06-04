@@ -40,7 +40,6 @@ export const addTask = async (values: AddTask): Promise<RegisterResponse> => {
 				status: data.status,
 				priority: data.priority,
 				reportUrl: data.reportUrl,
-				isArchived: data.isArchived,
 				userId: data.userId,
 				employees: {
 					connect: employees.map((employeeId: string) => ({
@@ -111,11 +110,36 @@ export const editTask = async (
 		return { error: "Unauthorized" };
 	}
 
+	const { employeeIds, ...taskDetails } = taskData;
+	if (!employeeIds) return { error: "no employee ids" };
+
 	try {
+		const existingTask = await db.task.findUnique({
+			where: { id },
+			include: { employees: true },
+		});
+
+		const currentEmployeeIds =
+			existingTask?.employees.map((employee) => employee.id) || [];
+
+		const idsToDisconnect = currentEmployeeIds.filter(
+			(id) => !employeeIds.includes(id)
+		);
+
+		const idsToConnect = employeeIds.filter(
+			(id) => !currentEmployeeIds.includes(id)
+		);
+
 		await db.task.update({
 			where: { id },
-			data: taskData,
-			include: { employees: true }, // Include assigned employees
+			data: {
+				...taskDetails,
+				employees: {
+					disconnect: idsToDisconnect.map((employeeId) => ({ id: employeeId })),
+					connect: idsToConnect.map((employeeId) => ({ id: employeeId })),
+				},
+			},
+			include: { employees: true },
 		});
 		revalidatePath("/tasks");
 
@@ -139,7 +163,6 @@ export const updateTaskStatus = async (
 	if (!user) {
 		return { error: "Unauthorized" };
 	}
-
 	try {
 		const updatedTask = await db.task.update({
 			where: { id },
@@ -152,13 +175,12 @@ export const updateTaskStatus = async (
 						email: true,
 					},
 				},
-			}, // Include the assigner
+			},
 		});
 
 		revalidatePath("/tasks");
 
 		if (status === TaskStatus.FINISHED) {
-			// Send task completion notification to the assigner
 			await sendTaskCompletionNotification(
 				updatedTask.user.email,
 				updatedTask.title

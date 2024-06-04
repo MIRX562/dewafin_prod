@@ -47,17 +47,20 @@ const PackageList = ({ data }: { data: any }) => {
 			</CollapsibleTrigger>
 			<CollapsibleContent>
 				<div className="px-4 py-2 transition-all duration-300 ease-in-out bg-gray-100 rounded-md dark:bg-gray-800 border border-primary mb-2">
-					<div className="flex items-center justify-between gap-2">
-						<div>
+					<div className="flex flex-col-reverse md:flex-row items-center justify-between  gap-2">
+						<div className="flex flex-col w-full items-start">
 							<p>
 								<span className="font-medium">Price:</span>
 								{formatCurrency(parseCurrency(price))}
 							</p>
 							<p>{description}</p>
 						</div>
-						<div className="flex gap-2">
-							<EditPackageButton packages={data} />
-							<DeletePackageButton onClick={handleDelete} />
+						<div className="flex w-full items-center justify-between gap-2">
+							<h3 className="text-xl font-bold md:hidden">{name}</h3>
+							<div className="flex md:w-full gap-2 justify-end">
+								<EditPackageButton packages={data} />
+								<DeletePackageButton onClick={handleDelete} />
+							</div>
 						</div>
 					</div>
 					<Separator />

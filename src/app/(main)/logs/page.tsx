@@ -38,13 +38,13 @@ const LogsPage: React.FC = () => {
 	}, []);
 
 	return (
-		<div className="flex flex-col h-full">
+		<div className="flex flex-col h-full gap-2 md:gap-4">
 			<Header />
+			<SearchBar
+				onSearch={handleSearch}
+				onFilterChange={handleFilterChange}
+			/>
 			<div className="flex-1 overflow-auto md:p-4">
-				<SearchBar
-					onSearch={handleSearch}
-					onFilterChange={handleFilterChange}
-				/>
 				<LogTable logs={filteredLogs} />
 			</div>
 		</div>

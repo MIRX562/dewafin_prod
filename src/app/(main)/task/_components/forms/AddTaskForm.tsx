@@ -63,7 +63,6 @@ const AddTaskForm = () => {
 			employeeIds: [],
 			reportUrl: "",
 			userId: userId || "",
-			isArchived: false,
 		},
 	});
 	const onSubmit = (values: AddTask) => {
@@ -210,7 +209,16 @@ const AddTaskForm = () => {
 										variant="outline"
 										className="ml-auto flex text-muted-foreground justify-between w-full"
 									>
-										Select Employees
+										{selectedEmployees.length > 0
+											? selectedEmployees
+													.map((employeeId) => {
+														const employee = employees.find(
+															(emp) => emp.id === employeeId
+														);
+														return `${employee?.firstName} ${employee?.lastName}`;
+													})
+													.join(", ")
+											: "Select Employees"}
 										<ChevronDownIcon className="mr-2 h-4 w-4" />
 									</Button>
 								</DropdownMenuTrigger>

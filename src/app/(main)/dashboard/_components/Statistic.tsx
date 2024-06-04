@@ -1,8 +1,36 @@
+"use client";
+import Loading from "@/app/loading";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { getStatistics, StatisticsData } from "@/data/dashboard";
+import { useEffect, useState } from "react";
 
 type StatisticItemProps = { value: string; label: string };
 
 const Statistics = () => {
+	const [stats, setStats] = useState<StatisticsData | null>(null);
+
+	useEffect(() => {
+		const fetchData = async () => {
+			const data = await getStatistics();
+			setStats(data);
+		};
+
+		fetchData();
+	}, []);
+
+	if (!stats) {
+		return (
+			<Card className="flex-1 min-w-[350px]">
+				<CardHeader>
+					<CardTitle>Statistics</CardTitle>
+				</CardHeader>
+				<CardContent>
+					<Loading />
+				</CardContent>
+			</Card>
+		);
+	}
+
 	return (
 		<Card className="flex-1 min-w-[350px]">
 			<CardHeader>
@@ -11,19 +39,19 @@ const Statistics = () => {
 			<CardContent>
 				<div className="flex flex-wrap gap-4">
 					<StatisticItem
-						value="42"
+						value={stats.totalNotes.toString()}
 						label="Total Notes"
 					/>
 					<StatisticItem
-						value="18"
+						value={stats.completedTasks.toString()}
 						label="Completed Tasks"
 					/>
 					<StatisticItem
-						value="7"
+						value={stats.overdueTasks.toString()}
 						label="Overdue Tasks"
 					/>
 					<StatisticItem
-						value="95%"
+						value={stats.taskCompletionRate}
 						label="Task Completion"
 					/>
 				</div>

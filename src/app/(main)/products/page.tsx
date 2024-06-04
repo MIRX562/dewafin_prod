@@ -1,9 +1,9 @@
 "use client";
 
+import Loading from "@/app/loading";
 import { Input } from "@/components/ui/input";
 import { getAllCategories } from "@/data/product";
 import { Category, Product } from "@prisma/client";
-import { SearchIcon } from "lucide-react";
 import { ChangeEvent, useEffect, useState } from "react";
 import CategoryList from "./_components/CategoryList";
 import { AddCategoryButton } from "./_components/ProductsButton";
@@ -68,7 +68,7 @@ export default function ProductPage() {
 		setFilteredData(filterData());
 	}, [searchQuery, data]);
 
-	if (!data || data.length <= 0) {
+	if (!data) {
 		return (
 			<div className="flex flex-col gap-4 w-full h-full items-center justify-center">
 				<p>No data exists yet!</p>
@@ -77,13 +77,15 @@ export default function ProductPage() {
 		);
 	}
 
+	if (data.length <= 0) {
+		return <Loading />;
+	}
+
 	return (
-		<div className="container mx-auto px-4 py-8">
+		<div className="container mx-auto p-2 md:p-6">
 			<div className="flex items-center justify-between mb-6 gap-2">
-				<div className="relative w-full max-w-md">
-					<SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400" />
+				<div className="flex items-center gap-2 w-full max-w-md">
 					<Input
-						className="w-full pl-10 pr-4 py-2 rounded-md shadow-sm border focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
 						placeholder="Search category, product, or package..."
 						type="search"
 						value={searchQuery}
@@ -94,17 +96,13 @@ export default function ProductPage() {
 				</div>
 				<AddCategoryButton />
 			</div>
-			<div className="grid gap-6">
-				{filteredData.length > 0 ? (
-					filteredData.map((category) => (
-						<CategoryList
-							key={category.id}
-							data={category}
-						/>
-					))
-				) : (
-					<p>No categories found</p>
-				)}
+			<div className="flex w-full flex-col gap-4 md:gap-6">
+				{filteredData.map((category) => (
+					<CategoryList
+						key={category.id}
+						data={category}
+					/>
+				))}
 			</div>
 		</div>
 	);

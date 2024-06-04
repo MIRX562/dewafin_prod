@@ -55,7 +55,7 @@ const ProductList = ({ data }: { data: ProductListProps }) => {
 					</Button>
 				</Link>
 			</CollapsibleTrigger>
-			<CollapsibleContent className="px-4 py-3 ransition-all duration-300 ease-in-out">
+			<CollapsibleContent className="p-2 md:p-4 transition-all duration-300 ease-in-out">
 				<div>
 					<p>{description}</p>
 					<div className="flex flex-col space-y-2 mt-2">

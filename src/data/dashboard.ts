@@ -1,6 +1,7 @@
+"use server";
 import { db } from "@/lib/db";
-import { currentUserId } from "@/lib/sessionUser";
-import { Note, Task } from "@prisma/client";
+import { currentUser, currentUserId } from "@/lib/sessionUser";
+import { Note, Priority, TaskStatus } from "@prisma/client";
 
 export interface LatestPublicNotes extends Note {
 	user: { name: string };
@@ -37,33 +38,107 @@ export const getLatestPublicNotes = async () => {
 	}
 };
 
-export interface AllTasks extends Task {
-	employee: {
-		firstName: string;
-		lastName: string;
-	};
+interface DashboardTask {
+	title: string;
+	priority: Priority;
+	status: TaskStatus;
+	id: string;
 }
 
-export const getAllTasks = async () => {
-	const userId = await currentUserId();
-	if (!userId) {
+export const getDashboardTask = async (
+	userId: any,
+	employeeId: any
+): Promise<DashboardTask[] | null> => {
+	try {
+		const tasks = await db.task.findMany({
+			where: {
+				isArchived: false,
+				OR: [
+					{ userId: userId },
+					{ employees: { some: { id: employeeId } } },
+					{ status: TaskStatus.TODO },
+					{ status: TaskStatus.IN_PROGRESS },
+				],
+			},
+			select: {
+				id: true,
+				title: true,
+				priority: true,
+				status: true,
+			},
+			orderBy: {
+				priority: "asc",
+			},
+		});
+
+		return tasks;
+	} catch (error) {
+		console.error(error);
+		return null;
+	}
+};
+
+export interface StatisticsData {
+	totalNotes: number;
+	completedTasks: number;
+	overdueTasks: number;
+	taskCompletionRate: string;
+}
+
+export const getStatistics = async (): Promise<StatisticsData | null> => {
+	const user = await currentUser();
+	if (!user) {
 		return null;
 	}
 
 	try {
-		const tasks = await db.task.findMany({
+		const totalNotes = await db.note.count({
 			where: {
-				userId,
+				userId: user.id,
 			},
-			include: {
-				employees: {
-					select: {
-						firstName: true,
-						lastName: true,
-						department: true,
-					},
+		});
+
+		const completedTasks = await db.task.count({
+			where: {
+				status: "FINISHED",
+				OR: [
+					{ userId: user.id },
+					{ employees: { some: { id: user.employeeId } } },
+				],
+			},
+		});
+
+		const overdueTasks = await db.task.count({
+			where: {
+				userId: user.id,
+				status: {
+					not: "FINISHED",
+				},
+				endDate: {
+					lt: new Date(),
 				},
 			},
 		});
-	} catch (error) {}
+
+		const totalTasks = await db.task.count({
+			where: {
+				userId: user.id,
+			},
+		});
+
+		const taskCompletionRate =
+			totalTasks > 0
+				? `${((completedTasks / totalTasks) * 100).toFixed(2)}%`
+				: "0%";
+
+		return {
+			totalNotes,
+			completedTasks,
+			overdueTasks,
+			taskCompletionRate,
+		};
+	} catch (error) {
+		console.error(error);
+		return null;
+	}
 };

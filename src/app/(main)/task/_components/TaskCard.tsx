@@ -174,7 +174,7 @@ const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
 									handleDelete(id);
 								}}
 							>
-								<TrashIcon className="w-6 h-6" />
+								<TrashIcon className="w-6 h-6 text-destructive" />
 							</Button>
 							<Dialog>
 								<DialogTrigger asChild>
@@ -186,7 +186,7 @@ const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
 											e.stopPropagation();
 										}}
 									>
-										<PencilIcon className="w-6 h-6" />
+										<PencilIcon className="w-6 h-6 text-primary" />
 									</Button>
 								</DialogTrigger>
 								<DialogContent
@@ -207,7 +207,7 @@ const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
 									handleArchive(id);
 								}}
 							>
-								<ArchiveIcon className="w-6 h-6" />
+								<ArchiveIcon className="w-6 h-6 text-emerald-600" />
 							</Button>
 						</div>
 						{currentStatus === "IN_PROGRESS" ? (

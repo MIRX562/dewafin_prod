@@ -25,12 +25,10 @@ export const addTaskSchema = z.object({
 	priority: z.nativeEnum(Priority),
 	employeeIds: z.array(z.string()),
 	reportUrl: z.optional(z.string()),
-	isArchived: z.boolean(),
 });
 
 export const editTaskSchema = z.object({
 	title: z.string(),
-	userId: z.string(),
 	description: z.optional(z.string()),
 	startDate: z.date(),
 	endDate: z.date(),
@@ -38,7 +36,6 @@ export const editTaskSchema = z.object({
 	priority: z.nativeEnum(Priority),
 	employeeIds: z.optional(z.array(z.string())),
 	reportUrl: z.optional(z.string()),
-	isArchived: z.boolean(),
 });
 
 export type AddTask = z.infer<typeof addTaskSchema>;
