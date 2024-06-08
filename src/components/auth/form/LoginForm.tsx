@@ -76,6 +76,7 @@ export default function LoginForm() {
 			headerLabel="Welcome Back"
 			backButtonLabel="Don't have an account?"
 			backButtonHref="/auth/register"
+			showSocial
 		>
 			<Form {...form}>
 				<form

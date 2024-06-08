@@ -95,14 +95,14 @@ const NoteView: React.FC = () => {
 	return (
 		<div className="flex h-full w-full">
 			<div className="flex flex-1 flex-col">
-				<header className="flex pt-1 items-center border-b overflow-hidden justify-between gap-2">
+				<header className="flex flex-col-reverse md:flex-row pt-1 items-center overflow-hidden justify-between gap-4">
 					<TextAreaAutoSize
-						className="w-full resize-none appearance-none overflow-hidden bg-transparent text-3xl md:text-4xl md:pl-12 font-bold"
+						className="w-full resize-none appearance-none overflow-hidden bg-transparent text-2xl md:text-4xl md:pl-12 font-bold"
 						value={title}
 						onChange={handleTitleChange}
 						readOnly={!editable}
 					/>
-					<div className="flex h-full items-start justify-start py-2">
+					<div className="flex w-full items-start justify-between md:justify-end gap-2">
 						<Button
 							onClick={handleGoBack}
 							variant="outline"

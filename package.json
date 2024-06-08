@@ -3,7 +3,7 @@
 	"version": "1.0.0",
 	"private": true,
 	"scripts": {
-		"dev": "ts-node src/cron.mts & next dev",
+		"dev": "next dev",
 		"build": "next build",
 		"start": "ts-node src/cron.mts & next start",
 		"lint": "next lint",
