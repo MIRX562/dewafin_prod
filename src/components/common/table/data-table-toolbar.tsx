@@ -1,14 +1,10 @@
 "use client";
 
-import { Cross2Icon } from "@radix-ui/react-icons";
-import { Table } from "@tanstack/react-table";
-
+import { DataTableViewOptions } from "@/components/common/table/data-table-view-options";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { DataTableViewOptions } from "./data-table-view-options";
-
-// import { priorities, statuses } from '@/types/data-table';
-// import { DataTableFacetedFilter } from '../FacetedFilter/data-table-faceted-filter';
+import { Cross2Icon } from "@radix-ui/react-icons";
+import { Table } from "@tanstack/react-table";
 
 interface DataTableToolbarProps<TData> {
 	table: Table<TData>;
@@ -17,23 +13,27 @@ interface DataTableToolbarProps<TData> {
 export function DataTableToolbar<TData>({
 	table,
 }: DataTableToolbarProps<TData>) {
-	const isFiltered = table.getState().columnFilters.length > 0;
+	const isFiltered = table.getState().globalFilter;
+
+	// Update Input to set a global filter
+	const handleGlobalFilterChange = (value: string) => {
+		table.setGlobalFilter(value); // Use table's global filter mechanism
+	};
 
 	return (
 		<div className="flex flex-row space-x-1 items-center justify-between">
 			<div className="flex flex-1 w-full items-center space-x-2 md:mr-2">
 				<Input
-					placeholder="Search File Name..."
-					value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
-					onChange={(event) =>
-						table.getColumn("name")?.setFilterValue(event.target.value)
-					}
+					placeholder="Search..."
+					// Value will be the global filter's value
+					value={table.getState().globalFilter ?? ""}
+					onChange={(event) => handleGlobalFilterChange(event.target.value)}
 					className="h-8 w-full md:w[200px] lg:w-[250px]"
 				/>
 				{isFiltered && (
 					<Button
 						variant="ghost"
-						onClick={() => table.resetColumnFilters()}
+						onClick={() => table.resetGlobalFilter()}
 						className="h-8 px-2 lg:px-3"
 					>
 						Reset

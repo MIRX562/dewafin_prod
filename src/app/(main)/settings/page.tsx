@@ -1,4 +1,5 @@
 "use client";
+import Loading from "@/app/loading";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { getUserById } from "@/data/user";
@@ -35,16 +36,16 @@ const ProfileSettings = () => {
 	};
 
 	if (loading) {
-		return <div>Loading...</div>;
+		return <Loading />;
 	}
 
 	return (
-		<div className="max-w-3xl mx-auto py-8 sm:px-6 lg:px-8 ">
-			<div className="flex flex-col justify-center items-center gap-4">
+		<div className="max-w-3xl mx-auto sm:px-6 lg:px-8 ">
+			<div className="flex flex-col gap-4">
 				<div>
-					<h1 className="text-3xl font-bold">Profile Settings</h1>
-					<p className="text-gray-500 dark:text-gray-400">
-						Manage your account information and preferences.
+					<h3 className="text-lg font-medium">Profile</h3>
+					<p className="text-sm text-muted-foreground">
+						This is how others will see you on the site.
 					</p>
 				</div>
 				<Separator />
@@ -58,9 +59,8 @@ const ProfileSettings = () => {
 						setUser={setUser}
 					/>
 				</div>
-				<div className="flex justify-end">
-					<Button onClick={handleSaveChanges}>Save Changes</Button>
-				</div>
+
+				<Button onClick={handleSaveChanges}>Save Changes</Button>
 			</div>
 		</div>
 	);

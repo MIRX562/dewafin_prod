@@ -1,7 +1,6 @@
 import {
 	AreaChartIcon,
 	BoxesIcon,
-	CheckCheckIcon,
 	FolderDotIcon,
 	NotebookTextIcon,
 	ScrollTextIcon,
@@ -17,11 +16,6 @@ export const navItems: Menu[] = [
 		icon: AreaChartIcon,
 		label: "Dashboard",
 		path: "/dashboard",
-	},
-	{
-		icon: CheckCheckIcon,
-		label: "Task Manager",
-		path: "/task",
 	},
 	{
 		icon: SquareGanttChart,
@@ -71,11 +65,6 @@ export const navItemsUser: Menu[] = [
 		path: "/dashboard",
 	},
 	{
-		icon: CheckCheckIcon,
-		label: "Task Manager",
-		path: "/task",
-	},
-	{
 		icon: BoxesIcon,
 		label: "Products",
 		path: "/products",
@@ -98,11 +87,6 @@ export const navItemsUser: Menu[] = [
 ];
 
 export const favNavItems: Menu[] = [
-	{
-		icon: CheckCheckIcon,
-		label: "Task Manager",
-		path: "/task",
-	},
 	{
 		icon: SquareGanttChart,
 		label: "Financial Reports",

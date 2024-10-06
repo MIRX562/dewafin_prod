@@ -8,7 +8,6 @@ import {
 	deleteProduct,
 } from "@/server-actions/product";
 import { deleteReport } from "@/server-actions/report";
-import { archiveTask, deleteTask, restoreTask } from "@/server-actions/task";
 import { deleteUser } from "@/server-actions/user";
 import { toast } from "sonner";
 
@@ -154,42 +153,6 @@ export const deleteReportToast = async (id: string, onSuccess?: () => void) => {
 		"Delete",
 		() => deleteReport(id),
 		"Report is successfully deleted!",
-		onSuccess
-	);
-};
-
-// Delete task toast
-export const deleteTaskToast = async (id: string, onSuccess?: () => void) => {
-	await showToast(
-		"warning",
-		"Confirm delete",
-		"Delete",
-		() => deleteTask(id),
-		"Task is successfully deleted!",
-		onSuccess
-	);
-};
-
-// Restore task toast
-export const restoreTaskToast = async (id: string, onSuccess?: () => void) => {
-	await showToast(
-		"info",
-		"Confirm restore",
-		"Restore",
-		() => restoreTask(id),
-		"Task is successfully restored!",
-		onSuccess
-	);
-};
-
-// Archive task toast
-export const archiveTaskToast = async (id: string, onSuccess?: () => void) => {
-	await showToast(
-		"info",
-		"Confirm Archive",
-		"Archive",
-		() => archiveTask(id),
-		"Task is successfully Archived!",
 		onSuccess
 	);
 };

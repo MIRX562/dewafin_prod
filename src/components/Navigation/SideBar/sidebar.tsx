@@ -1,6 +1,5 @@
 import CopyRights from "../CopyRights";
 import NavLogo from "../NavLogo";
-import OutSideLink from "../OutSideLink";
 import SideBarLinks from "./sideBarLinks";
 
 export default function Sidebar() {
@@ -14,7 +13,6 @@ export default function Sidebar() {
 					<SideBarLinks />
 				</div>
 				<div className="mt-auto p-4 space-y-2">
-					<OutSideLink />
 					<CopyRights />
 				</div>
 			</div>

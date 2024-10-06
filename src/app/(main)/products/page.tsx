@@ -1,6 +1,5 @@
 "use client";
 
-import Loading from "@/app/loading";
 import { Input } from "@/components/ui/input";
 import { getAllCategories } from "@/data/product";
 import { Category, Product } from "@prisma/client";
@@ -68,17 +67,13 @@ export default function ProductPage() {
 		setFilteredData(filterData());
 	}, [searchQuery, data]);
 
-	if (!data) {
+	if (!data || data.length <= 0) {
 		return (
 			<div className="flex flex-col gap-4 w-full h-full items-center justify-center">
 				<p>No data exists yet!</p>
 				<AddCategoryButton />
 			</div>
 		);
-	}
-
-	if (data.length <= 0) {
-		return <Loading />;
 	}
 
 	return (

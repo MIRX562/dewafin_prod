@@ -24,10 +24,10 @@ export function DataTablePagination<TData>({
 }: DataTablePaginationProps<TData>) {
 	return (
 		<div className="flex items-center justify-between gap-2 px-2 w-full">
-			<div className="hidden md:flex text-sm text-muted-foreground">
+			{/* <div className="hidden md:flex text-sm text-muted-foreground">
 				{table.getFilteredRowModel().rows.length} row(s)
-				{/* {table.getFilteredSelectedRowModel().rows.length} of{" "} */}
-			</div>
+				{table.getFilteredSelectedRowModel().rows.length} of{" "}
+			</div> */}
 			<div className="flex items-center justify-between space-x-6 lg:space-x-8 w-full">
 				<div className="flex items-center space-x-2">
 					<p className="text-sm font-medium">Rows per page</p>
