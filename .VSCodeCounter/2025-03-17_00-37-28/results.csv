@@ -1,0 +1,234 @@
+"filename", "language", "TypeScript", "TypeScript JSX", "CSS", "comment", "blank", "total"
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\dashboard\_components\DashboardCardWrapper.tsx", "TypeScript JSX", 0, 26, 0, 0, 4, 30
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\dashboard\_components\FavMenu.tsx", "TypeScript JSX", 0, 22, 0, 0, 3, 25
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\dashboard\_components\LatestNote.tsx", "TypeScript JSX", 0, 58, 0, 0, 7, 65
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\dashboard\_components\Statistic.tsx", "TypeScript JSX", 0, 62, 0, 0, 9, 71
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\dashboard\_components\Todos.tsx", "TypeScript JSX", 0, 57, 0, 0, 7, 64
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\dashboard\page.tsx", "TypeScript JSX", 0, 20, 0, 0, 2, 22
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\employees\_components\addEmployeeButton.tsx", "TypeScript JSX", 0, 10, 0, 0, 3, 13
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\employees\_components\form\addEmployeeForm.tsx", "TypeScript JSX", 0, 278, 0, 0, 8, 286
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\employees\_components\form\editEmployeeForm.tsx", "TypeScript JSX", 0, 313, 0, 0, 7, 320
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\employees\_components\table\employeeCollumns.tsx", "TypeScript JSX", 0, 181, 0, 16, 5, 202
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\employees\_components\table\employeeRowAction.tsx", "TypeScript JSX", 0, 63, 0, 0, 6, 69
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\employees\_components\table\employeeTableOption.tsx", "TypeScript JSX", 0, 12, 0, 0, 1, 13
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\employees\_components\table\employeesTable.tsx", "TypeScript JSX", 0, 15, 0, 0, 4, 19
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\employees\page.tsx", "TypeScript JSX", 0, 19, 0, 0, 2, 21
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\files\_components\FileUploadButton.tsx", "TypeScript JSX", 0, 202, 0, 4, 13, 219
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\files\_components\table\fileColumns.tsx", "TypeScript JSX", 0, 101, 0, 26, 6, 133
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\files\_components\table\fileRowAction.tsx", "TypeScript JSX", 0, 60, 0, 0, 11, 71
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\files\_components\table\filesTable.tsx", "TypeScript JSX", 0, 13, 0, 0, 2, 15
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\files\page.tsx", "TypeScript JSX", 0, 17, 0, 0, 2, 19
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\layout.tsx", "TypeScript JSX", 0, 25, 0, 0, 2, 27
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\logs\_components\LogHeader.tsx", "TypeScript JSX", 0, 14, 0, 0, 4, 18
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\logs\_components\LogSearchBar.tsx", "TypeScript JSX", 0, 45, 0, 0, 4, 49
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\logs\_components\LogTable.tsx", "TypeScript JSX", 0, 42, 0, 0, 3, 45
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\logs\page.tsx", "TypeScript JSX", 0, 48, 0, 0, 7, 55
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\notes\[slug]\page.tsx", "TypeScript JSX", 0, 124, 0, 1, 14, 139
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\notes\_components\AddNoteButton.tsx", "TypeScript JSX", 0, 29, 0, 0, 6, 35
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\notes\_components\NoteCard.tsx", "TypeScript JSX", 0, 69, 0, 0, 7, 76
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\notes\_components\NoteList.tsx", "TypeScript JSX", 0, 73, 0, 0, 10, 83
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\notes\page.tsx", "TypeScript JSX", 0, 44, 0, 0, 6, 50
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\products\[category]\[product]\page.tsx", "TypeScript JSX", 0, 113, 0, 1, 14, 128
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\products\[category]\page.tsx", "TypeScript JSX", 0, 117, 0, 0, 12, 129
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\products\_components\CategoryList.tsx", "TypeScript JSX", 0, 48, 0, 0, 5, 53
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\products\_components\PackageList.tsx", "TypeScript JSX", 0, 107, 0, 0, 5, 112
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\products\_components\ProductList.tsx", "TypeScript JSX", 0, 71, 0, 0, 8, 79
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\products\_components\ProductsButton.tsx", "TypeScript JSX", 0, 85, 0, 0, 8, 93
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\products\_components\form\AddCategoryForm.tsx", "TypeScript JSX", 0, 83, 0, 19, 6, 108
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\products\_components\form\AddPackageForm.tsx", "TypeScript JSX", 0, 180, 0, 0, 8, 188
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\products\_components\form\AddProductForm.tsx", "TypeScript JSX", 0, 103, 0, 0, 6, 109
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\products\_components\form\EditCategoryForm.tsx", "TypeScript JSX", 0, 84, 0, 19, 6, 109
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\products\_components\form\EditPackageForm.tsx", "TypeScript JSX", 0, 181, 0, 4, 8, 193
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\products\_components\form\EditProductForm.tsx", "TypeScript JSX", 0, 104, 0, 1, 6, 111
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\products\page.tsx", "TypeScript JSX", 0, 94, 0, 2, 14, 110
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\reports\[slug]\_components\summaryItems.tsx", "TypeScript JSX", 0, 16, 0, 0, 4, 20
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\reports\[slug]\page.tsx", "TypeScript JSX", 0, 158, 0, 2, 13, 173
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\reports\_components\addReportButton.tsx", "TypeScript JSX", 0, 266, 0, 4, 13, 283
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\reports\_components\table\DataTable.tsx", "TypeScript JSX", 0, 122, 0, 0, 6, 128
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\reports\_components\table\reportCollumns.tsx", "TypeScript JSX", 0, 135, 0, 2, 4, 141
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\reports\_components\table\reportRowAction.tsx", "TypeScript JSX", 0, 30, 0, 0, 6, 36
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\reports\_components\table\reportTable.tsx", "TypeScript JSX", 0, 16, 0, 0, 3, 19
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\reports\_components\table\reportTableOption.tsx", "TypeScript JSX", 0, 12, 0, 0, 1, 13
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\reports\_components\table\reportTableToolBar.tsx", "TypeScript JSX", 0, 39, 0, 2, 7, 48
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\reports\page.tsx", "TypeScript JSX", 0, 18, 0, 0, 2, 20
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\settings\_components\AccountInformation.tsx", "TypeScript JSX", 0, 50, 0, 0, 4, 54
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\settings\_components\SecurityAndAppearance.tsx", "TypeScript JSX", 0, 85, 0, 0, 7, 92
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\settings\page.tsx", "TypeScript JSX", 0, 62, 0, 0, 8, 70
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\task\_components\TaskBoard.tsx", "TypeScript JSX", 0, 24, 0, 0, 4, 28
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\task\_components\TaskCard.tsx", "TypeScript JSX", 0, 257, 0, 0, 14, 271
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\task\_components\TaskView.tsx", "TypeScript JSX", 0, 123, 0, 0, 9, 132
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\task\_components\forms\AddTaskForm.tsx", "TypeScript JSX", 0, 353, 0, 1, 9, 363
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\task\_components\forms\EditTaskForm.tsx", "TypeScript JSX", 0, 355, 0, 3, 9, 367
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\task\archived\_components\DataTable.tsx", "TypeScript JSX", 0, 122, 0, 0, 6, 128
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\task\archived\_components\archivedTaskCollumn.tsx", "TypeScript JSX", 0, 93, 0, 26, 4, 123
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\task\archived\_components\archivedTaskRowAction.tsx", "TypeScript JSX", 0, 46, 0, 0, 6, 52
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\task\archived\_components\archivedTaskTable.tsx", "TypeScript JSX", 0, 16, 0, 0, 2, 18
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\task\archived\_components\archivedTaskTableToolBar.tsx", "TypeScript JSX", 0, 39, 0, 2, 7, 48
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\task\archived\page.tsx", "TypeScript JSX", 0, 13, 0, 0, 2, 15
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\task\page.tsx", "TypeScript JSX", 0, 26, 0, 0, 2, 28
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\users\_components\addUserButton.tsx", "TypeScript JSX", 0, 10, 0, 0, 3, 13
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\users\_components\form\addUserForm.tsx", "TypeScript JSX", 0, 239, 0, 1, 8, 248
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\users\_components\form\editUserForm.tsx", "TypeScript JSX", 0, 228, 0, 1, 7, 236
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\users\_components\table\userColumns.tsx", "TypeScript JSX", 0, 159, 0, 2, 8, 169
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\users\_components\table\userRowAction.tsx", "TypeScript JSX", 0, 61, 0, 0, 6, 67
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\users\_components\table\userTableOption.tsx", "TypeScript JSX", 0, 31, 0, 0, 3, 34
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\users\_components\table\usersTable.tsx", "TypeScript JSX", 0, 12, 0, 0, 2, 14
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\users\page.tsx", "TypeScript JSX", 0, 22, 0, 0, 2, 24
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\api\auth\[...nextauth]\route.ts", "TypeScript", 1, 0, 0, 0, 1, 2
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\api\data\employee\lonely\route.ts", "TypeScript", 14, 0, 0, 0, 2, 16
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\api\data\employee\route.ts", "TypeScript", 14, 0, 0, 0, 2, 16
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\api\data\user\lonely\route.ts", "TypeScript", 14, 0, 0, 0, 2, 16
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\api\data\user\route.ts", "TypeScript", 14, 0, 0, 0, 2, 16
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\api\download\route.ts", "TypeScript", 34, 0, 0, 6, 8, 48
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\api\export\[table]\route.ts", "TypeScript", 77, 0, 0, 0, 8, 85
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\api\uploadthing\core.ts", "TypeScript", 18, 0, 0, 8, 9, 35
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\api\uploadthing\route.ts", "TypeScript", 5, 0, 0, 3, 4, 12
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\auth\error\page.tsx", "TypeScript JSX", 0, 4, 0, 0, 2, 6
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\auth\layout.tsx", "TypeScript JSX", 0, 12, 0, 0, 2, 14
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\auth\login\page.tsx", "TypeScript JSX", 0, 5, 0, 0, 3, 8
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\auth\new-password\page.tsx", "TypeScript JSX", 0, 4, 0, 0, 2, 6
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\auth\register\page.tsx", "TypeScript JSX", 0, 5, 0, 0, 3, 8
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\auth\reset\page.tsx", "TypeScript JSX", 0, 4, 0, 0, 2, 6
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\auth\verify-email\page.tsx", "TypeScript JSX", 0, 4, 0, 0, 2, 6
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\globals.css", "CSS", 0, 0, 61, 0, 6, 67
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\layout.tsx", "TypeScript JSX", 0, 44, 0, 0, 5, 49
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\loading.tsx", "TypeScript JSX", 0, 11, 0, 0, 2, 13
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\not-found.tsx", "TypeScript JSX", 0, 24, 0, 0, 3, 27
+"c:\Programming\Asset Management - KP\dewafin_prod\src\app\page.tsx", "TypeScript JSX", 0, 42, 0, 0, 2, 44
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\Navigation\CopyRights.tsx", "TypeScript JSX", 0, 11, 0, 0, 3, 14
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\Navigation\Header\Breadcrumbs.tsx", "TypeScript JSX", 0, 61, 0, 0, 4, 65
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\Navigation\Header\HeaderTitle.tsx", "TypeScript JSX", 0, 12, 0, 0, 4, 16
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\Navigation\Header\PageHeader.tsx", "TypeScript JSX", 0, 14, 0, 0, 4, 18
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\Navigation\Header\header.tsx", "TypeScript JSX", 0, 24, 0, 0, 2, 26
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\Navigation\Header\navSearchBar.tsx", "TypeScript JSX", 0, 16, 0, 0, 2, 18
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\Navigation\Header\profileMenu.tsx", "TypeScript JSX", 0, 52, 0, 0, 3, 55
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\Navigation\MobileMenu\mobileMenu.tsx", "TypeScript JSX", 0, 37, 0, 0, 3, 40
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\Navigation\MobileMenu\mobileMenuLinks.tsx", "TypeScript JSX", 0, 32, 0, 0, 3, 35
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\Navigation\NavLogo.tsx", "TypeScript JSX", 0, 21, 0, 0, 2, 23
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\Navigation\OutSideLink.tsx", "TypeScript JSX", 0, 20, 0, 0, 2, 22
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\Navigation\Pagination\PaginationComponent.tsx", "TypeScript JSX", 0, 53, 0, 0, 5, 58
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\Navigation\SideBar\sideBarLinks.tsx", "TypeScript JSX", 0, 38, 0, 0, 2, 40
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\Navigation\SideBar\sidebar.tsx", "TypeScript JSX", 0, 22, 0, 0, 2, 24
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\auth\BackButton.tsx", "TypeScript JSX", 0, 14, 0, 0, 4, 18
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\auth\ErrorCard.tsx", "TypeScript JSX", 0, 15, 0, 0, 2, 17
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\auth\Header.tsx", "TypeScript JSX", 0, 34, 0, 0, 3, 37
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\auth\LoginButton.tsx", "TypeScript JSX", 0, 34, 0, 0, 6, 40
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\auth\LogoutButton.tsx", "TypeScript JSX", 0, 17, 0, 0, 5, 22
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\auth\Social.tsx", "TypeScript JSX", 0, 35, 0, 0, 2, 37
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\auth\access\AccessDenied.tsx", "TypeScript JSX", 0, 23, 0, 0, 3, 26
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\auth\access\RoleGate.tsx", "TypeScript JSX", 0, 16, 0, 0, 6, 22
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\auth\form\CardWrapper.tsx", "TypeScript JSX", 0, 44, 0, 0, 3, 47
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\auth\form\EmailVerificationForm.tsx", "TypeScript JSX", 0, 44, 0, 0, 7, 51
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\auth\form\LoginForm.tsx", "TypeScript JSX", 0, 173, 0, 0, 7, 180
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\auth\form\NewPasswordResetForm.tsx", "TypeScript JSX", 0, 81, 0, 0, 8, 89
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\auth\form\RegisterForm.tsx", "TypeScript JSX", 0, 122, 0, 0, 6, 128
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\auth\form\ResetForm.tsx", "TypeScript JSX", 0, 78, 0, 0, 7, 85
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\auth\login-card.tsx", "TypeScript JSX", 0, 48, 0, 0, 2, 50
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\common\buttons\DialogButton.tsx", "TypeScript JSX", 0, 19, 0, 0, 2, 21
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\common\buttons\TableExportButton.tsx", "TypeScript JSX", 0, 64, 0, 5, 3, 72
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\common\buttons\TableImportButton.tsx", "TypeScript JSX", 0, 179, 0, 1, 10, 190
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\common\forms\CommaSeparatedInput.tsx", "TypeScript JSX", 0, 25, 0, 0, 4, 29
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\common\forms\DataFormWrapper.tsx", "TypeScript JSX", 0, 20, 0, 0, 4, 24
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\common\forms\FormError.tsx", "TypeScript JSX", 0, 13, 0, 0, 3, 16
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\common\forms\FormSuccess.tsx", "TypeScript JSX", 0, 13, 0, 0, 3, 16
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\common\table\DataTable.tsx", "TypeScript JSX", 0, 119, 0, 0, 6, 125
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\common\table\data-table-column-header.tsx", "TypeScript JSX", 0, 67, 0, 0, 5, 72
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\common\table\data-table-faceted-filter.tsx", "TypeScript JSX", 0, 143, 0, 0, 5, 148
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\common\table\data-table-pagination.tsx", "TypeScript JSX", 0, 98, 0, 1, 4, 103
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\common\table\data-table-toolbar.tsx", "TypeScript JSX", 0, 39, 0, 2, 7, 48
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\common\table\data-table-view-options.tsx", "TypeScript JSX", 0, 55, 0, 0, 5, 60
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\common\tool\Editor.tsx", "TypeScript JSX", 0, 39, 0, 0, 4, 43
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\common\tool\PageToolbar.tsx", "TypeScript JSX", 0, 11, 0, 0, 3, 14
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\common\tool\ThemeProvider.tsx", "TypeScript JSX", 0, 7, 0, 0, 3, 10
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\common\tool\theme-toggle.tsx", "TypeScript JSX", 0, 36, 0, 0, 5, 41
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\avatar.tsx", "TypeScript JSX", 0, 44, 0, 0, 7, 51
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\badge.tsx", "TypeScript JSX", 0, 36, 0, 0, 6, 42
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\breadcrumb.tsx", "TypeScript JSX", 0, 105, 0, 0, 11, 116
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\button.tsx", "TypeScript JSX", 0, 51, 0, 0, 6, 57
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\calendar.tsx", "TypeScript JSX", 0, 61, 0, 0, 6, 67
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\card.tsx", "TypeScript JSX", 0, 82, 0, 0, 9, 91
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\checkbox.tsx", "TypeScript JSX", 0, 26, 0, 0, 5, 31
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\collapsible.tsx", "TypeScript JSX", 0, 6, 0, 0, 6, 12
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\command.tsx", "TypeScript JSX", 0, 137, 0, 0, 19, 156
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\dialog.tsx", "TypeScript JSX", 0, 109, 0, 0, 14, 123
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\dropdown-menu.tsx", "TypeScript JSX", 0, 182, 0, 0, 19, 201
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\form.tsx", "TypeScript JSX", 0, 153, 0, 0, 25, 178
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\input-otp.tsx", "TypeScript JSX", 0, 63, 0, 0, 9, 72
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\input.tsx", "TypeScript JSX", 0, 21, 0, 0, 5, 26
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\label.tsx", "TypeScript JSX", 0, 21, 0, 0, 6, 27
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\navigation-menu.tsx", "TypeScript JSX", 0, 117, 0, 0, 12, 129
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\pagination.tsx", "TypeScript JSX", 0, 107, 0, 0, 11, 118
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\popover.tsx", "TypeScript JSX", 0, 25, 0, 0, 7, 32
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\select.tsx", "TypeScript JSX", 0, 146, 0, 0, 15, 161
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\separator.tsx", "TypeScript JSX", 0, 27, 0, 0, 5, 32
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\sheet.tsx", "TypeScript JSX", 0, 125, 0, 0, 16, 141
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\sonner.tsx", "TypeScript JSX", 0, 26, 0, 0, 6, 32
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\switch.tsx", "TypeScript JSX", 0, 25, 0, 0, 5, 30
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\table.tsx", "TypeScript JSX", 0, 107, 0, 0, 11, 118
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\tabs.tsx", "TypeScript JSX", 0, 48, 0, 0, 8, 56
+"c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\textarea.tsx", "TypeScript JSX", 0, 20, 0, 0, 5, 25
+"c:\Programming\Asset Management - KP\dewafin_prod\src\cron.mts", "TypeScript", 13, 0, 0, 1, 3, 17
+"c:\Programming\Asset Management - KP\dewafin_prod\src\data\account.ts", "TypeScript", 12, 0, 0, 0, 3, 15
+"c:\Programming\Asset Management - KP\dewafin_prod\src\data\dashboard.ts", "TypeScript", 130, 0, 0, 0, 15, 145
+"c:\Programming\Asset Management - KP\dewafin_prod\src\data\employee.ts", "TypeScript", 93, 0, 0, 0, 8, 101
+"c:\Programming\Asset Management - KP\dewafin_prod\src\data\file.ts", "TypeScript", 22, 0, 0, 0, 4, 26
+"c:\Programming\Asset Management - KP\dewafin_prod\src\data\log.ts", "TypeScript", 26, 0, 0, 0, 4, 30
+"c:\Programming\Asset Management - KP\dewafin_prod\src\data\note.ts", "TypeScript", 72, 0, 0, 0, 6, 78
+"c:\Programming\Asset Management - KP\dewafin_prod\src\data\passwordResetToken.ts", "TypeScript", 22, 0, 0, 0, 5, 27
+"c:\Programming\Asset Management - KP\dewafin_prod\src\data\product.ts", "TypeScript", 62, 0, 0, 0, 3, 65
+"c:\Programming\Asset Management - KP\dewafin_prod\src\data\report.ts", "TypeScript", 25, 0, 0, 0, 4, 29
+"c:\Programming\Asset Management - KP\dewafin_prod\src\data\task.ts", "TypeScript", 112, 0, 0, 0, 8, 120
+"c:\Programming\Asset Management - KP\dewafin_prod\src\data\twoFactorConfirmation.ts", "TypeScript", 14, 0, 0, 0, 3, 17
+"c:\Programming\Asset Management - KP\dewafin_prod\src\data\twoFactorToken.ts", "TypeScript", 22, 0, 0, 0, 3, 25
+"c:\Programming\Asset Management - KP\dewafin_prod\src\data\user.ts", "TypeScript", 48, 0, 0, 0, 5, 53
+"c:\Programming\Asset Management - KP\dewafin_prod\src\data\verificationToken.ts", "TypeScript", 22, 0, 0, 0, 3, 25
+"c:\Programming\Asset Management - KP\dewafin_prod\src\hooks\useCurrentRole.ts", "TypeScript", 5, 0, 0, 1, 1, 7
+"c:\Programming\Asset Management - KP\dewafin_prod\src\hooks\useCurrentUser.ts", "TypeScript", 9, 0, 0, 1, 1, 11
+"c:\Programming\Asset Management - KP\dewafin_prod\src\hooks\useDebounce.ts", "TypeScript", 13, 0, 0, 0, 5, 18
+"c:\Programming\Asset Management - KP\dewafin_prod\src\hooks\useMediaQuery.ts", "TypeScript", 15, 0, 0, 1, 7, 23
+"c:\Programming\Asset Management - KP\dewafin_prod\src\hooks\usePagination.ts", "TypeScript", 40, 0, 0, 0, 8, 48
+"c:\Programming\Asset Management - KP\dewafin_prod\src\lib\auth.config.ts", "TypeScript", 34, 0, 0, 0, 6, 40
+"c:\Programming\Asset Management - KP\dewafin_prod\src\lib\auth.ts", "TypeScript", 85, 0, 0, 2, 9, 96
+"c:\Programming\Asset Management - KP\dewafin_prod\src\lib\db.ts", "TypeScript", 6, 0, 0, 0, 4, 10
+"c:\Programming\Asset Management - KP\dewafin_prod\src\lib\logger.ts", "TypeScript", 49, 0, 0, 1, 13, 63
+"c:\Programming\Asset Management - KP\dewafin_prod\src\lib\mail.ts", "TypeScript", 85, 0, 0, 0, 13, 98
+"c:\Programming\Asset Management - KP\dewafin_prod\src\lib\parseSheet.ts", "TypeScript", 107, 0, 0, 4, 13, 124
+"c:\Programming\Asset Management - KP\dewafin_prod\src\lib\sessionUser.ts", "TypeScript", 14, 0, 0, 0, 2, 16
+"c:\Programming\Asset Management - KP\dewafin_prod\src\lib\toasts.ts", "TypeScript", 171, 0, 0, 12, 13, 196
+"c:\Programming\Asset Management - KP\dewafin_prod\src\lib\tokens.ts", "TypeScript", 58, 0, 0, 0, 11, 69
+"c:\Programming\Asset Management - KP\dewafin_prod\src\lib\uploadthing.ts", "TypeScript", 9, 0, 0, 0, 3, 12
+"c:\Programming\Asset Management - KP\dewafin_prod\src\lib\utils.ts", "TypeScript", 188, 0, 0, 103, 50, 341
+"c:\Programming\Asset Management - KP\dewafin_prod\src\middleware.ts", "TypeScript", 42, 0, 0, 4, 9, 55
+"c:\Programming\Asset Management - KP\dewafin_prod\src\routes.ts", "TypeScript", 10, 0, 0, 19, 4, 33
+"c:\Programming\Asset Management - KP\dewafin_prod\src\schemas\employee.ts", "TypeScript", 35, 0, 0, 0, 3, 38
+"c:\Programming\Asset Management - KP\dewafin_prod\src\schemas\file.ts", "TypeScript", 62, 0, 0, 0, 5, 67
+"c:\Programming\Asset Management - KP\dewafin_prod\src\schemas\index.ts", "TypeScript", 98, 0, 0, 22, 7, 127
+"c:\Programming\Asset Management - KP\dewafin_prod\src\schemas\note.ts", "TypeScript", 8, 0, 0, 0, 3, 11
+"c:\Programming\Asset Management - KP\dewafin_prod\src\schemas\product.ts", "TypeScript", 19, 0, 0, 1, 5, 25
+"c:\Programming\Asset Management - KP\dewafin_prod\src\schemas\report.ts", "TypeScript", 14, 0, 0, 0, 3, 17
+"c:\Programming\Asset Management - KP\dewafin_prod\src\schemas\task.ts", "TypeScript", 38, 0, 0, 0, 5, 43
+"c:\Programming\Asset Management - KP\dewafin_prod\src\schemas\user.ts", "TypeScript", 51, 0, 0, 4, 4, 59
+"c:\Programming\Asset Management - KP\dewafin_prod\src\server-actions\emailVerification.ts", "TypeScript", 42, 0, 0, 0, 12, 54
+"c:\Programming\Asset Management - KP\dewafin_prod\src\server-actions\employee.ts", "TypeScript", 98, 0, 0, 0, 23, 121
+"c:\Programming\Asset Management - KP\dewafin_prod\src\server-actions\file.ts", "TypeScript", 122, 0, 0, 0, 31, 153
+"c:\Programming\Asset Management - KP\dewafin_prod\src\server-actions\logOut.ts", "TypeScript", 7, 0, 0, 0, 3, 10
+"c:\Programming\Asset Management - KP\dewafin_prod\src\server-actions\login.ts", "TypeScript", 91, 0, 0, 0, 17, 108
+"c:\Programming\Asset Management - KP\dewafin_prod\src\server-actions\newPassword.ts", "TypeScript", 54, 0, 0, 0, 15, 69
+"c:\Programming\Asset Management - KP\dewafin_prod\src\server-actions\note.ts", "TypeScript", 74, 0, 0, 0, 13, 87
+"c:\Programming\Asset Management - KP\dewafin_prod\src\server-actions\product.ts", "TypeScript", 144, 0, 0, 3, 35, 182
+"c:\Programming\Asset Management - KP\dewafin_prod\src\server-actions\register.ts", "TypeScript", 46, 0, 0, 0, 12, 58
+"c:\Programming\Asset Management - KP\dewafin_prod\src\server-actions\report.ts", "TypeScript", 63, 0, 0, 0, 14, 77
+"c:\Programming\Asset Management - KP\dewafin_prod\src\server-actions\reset.ts", "TypeScript", 34, 0, 0, 0, 12, 46
+"c:\Programming\Asset Management - KP\dewafin_prod\src\server-actions\settings.ts", "TypeScript", 33, 0, 0, 0, 10, 43
+"c:\Programming\Asset Management - KP\dewafin_prod\src\server-actions\task.ts", "TypeScript", 207, 0, 0, 0, 47, 254
+"c:\Programming\Asset Management - KP\dewafin_prod\src\server-actions\user.ts", "TypeScript", 103, 0, 0, 6, 26, 135
+"c:\Programming\Asset Management - KP\dewafin_prod\src\types\file.ts", "TypeScript", 1, 0, 0, 0, 1, 2
+"c:\Programming\Asset Management - KP\dewafin_prod\src\types\fileType.ts", "TypeScript", 119, 0, 0, 1, 4, 124
+"c:\Programming\Asset Management - KP\dewafin_prod\src\types\menu\_menu.ts", "TypeScript", 5, 0, 0, 0, 1, 6
+"c:\Programming\Asset Management - KP\dewafin_prod\src\types\menu\mainMenu.ts", "TypeScript", 129, 0, 0, 0, 4, 133
+"c:\Programming\Asset Management - KP\dewafin_prod\src\types\menu\reportMenu.ts", "TypeScript", 29, 0, 0, 0, 2, 31
+"c:\Programming\Asset Management - KP\dewafin_prod\src\types\menu\taskMenu.ts", "TypeScript", 29, 0, 0, 0, 2, 31
+"c:\Programming\Asset Management - KP\dewafin_prod\src\types\tabs\_tab.ts", "TypeScript", 4, 0, 0, 0, 1, 5
+"c:\Programming\Asset Management - KP\dewafin_prod\src\types\tabs\assetTabs.ts", "TypeScript", 8, 0, 0, 0, 2, 10
+"c:\Programming\Asset Management - KP\dewafin_prod\src\types\tabs\taskTabs.ts", "TypeScript", 8, 0, 0, 0, 2, 10
+"Total", "-", 3601, 10817, 61, 351, 1549, 16379

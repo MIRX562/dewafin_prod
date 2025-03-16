@@ -1,0 +1,365 @@
+Date : 2025-03-17 00:37:28
+Directory : c:\Programming\Asset Management - KP\dewafin_prod\src
+Total : 232 files,  14479 codes, 351 comments, 1549 blanks, all 16379 lines
+
+Languages
++----------------+------------+------------+------------+------------+------------+
+| language       | files      | code       | comment    | blank      | total      |
++----------------+------------+------------+------------+------------+------------+
+| TypeScript JSX |        158 |     10,817 |        148 |        932 |     11,897 |
+| TypeScript     |         73 |      3,601 |        203 |        611 |      4,415 |
+| CSS            |          1 |         61 |          0 |          6 |         67 |
++----------------+------------+------------+------------+------------+------------+
+
+Directories
++-------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                    | files      | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                       |        232 |     14,479 |        351 |      1,549 |     16,379 |
+| . (Files)                                                                                                               |          3 |         65 |         24 |         16 |        105 |
+| app                                                                                                                     |         96 |      7,061 |        156 |        534 |      7,751 |
+| app (Files)                                                                                                             |          5 |        182 |          0 |         18 |        200 |
+| app\(main)                                                                                                              |         75 |      6,650 |        139 |        462 |      7,251 |
+| app\(main) (Files)                                                                                                      |          1 |         25 |          0 |          2 |         27 |
+| app\(main)\dashboard                                                                                                    |          6 |        245 |          0 |         32 |        277 |
+| app\(main)\dashboard (Files)                                                                                            |          1 |         20 |          0 |          2 |         22 |
+| app\(main)\dashboard\_components                                                                                        |          5 |        225 |          0 |         30 |        255 |
+| app\(main)\employees                                                                                                    |          8 |        891 |         16 |         36 |        943 |
+| app\(main)\employees (Files)                                                                                            |          1 |         19 |          0 |          2 |         21 |
+| app\(main)\employees\_components                                                                                        |          7 |        872 |         16 |         34 |        922 |
+| app\(main)\employees\_components (Files)                                                                                |          1 |         10 |          0 |          3 |         13 |
+| app\(main)\employees\_components\form                                                                                   |          2 |        591 |          0 |         15 |        606 |
+| app\(main)\employees\_components\table                                                                                  |          4 |        271 |         16 |         16 |        303 |
+| app\(main)\files                                                                                                        |          5 |        393 |         30 |         34 |        457 |
+| app\(main)\files (Files)                                                                                                |          1 |         17 |          0 |          2 |         19 |
+| app\(main)\files\_components                                                                                            |          4 |        376 |         30 |         32 |        438 |
+| app\(main)\files\_components (Files)                                                                                    |          1 |        202 |          4 |         13 |        219 |
+| app\(main)\files\_components\table                                                                                      |          3 |        174 |         26 |         19 |        219 |
+| app\(main)\logs                                                                                                         |          4 |        149 |          0 |         18 |        167 |
+| app\(main)\logs (Files)                                                                                                 |          1 |         48 |          0 |          7 |         55 |
+| app\(main)\logs\_components                                                                                             |          3 |        101 |          0 |         11 |        112 |
+| app\(main)\notes                                                                                                        |          5 |        339 |          1 |         43 |        383 |
+| app\(main)\notes (Files)                                                                                                |          1 |         44 |          0 |          6 |         50 |
+| app\(main)\notes\[slug]                                                                                                 |          1 |        124 |          1 |         14 |        139 |
+| app\(main)\notes\_components                                                                                            |          3 |        171 |          0 |         23 |        194 |
+| app\(main)\products                                                                                                     |         13 |      1,370 |         46 |        106 |      1,522 |
+| app\(main)\products (Files)                                                                                             |          1 |         94 |          2 |         14 |        110 |
+| app\(main)\products\[category]                                                                                          |          2 |        230 |          1 |         26 |        257 |
+| app\(main)\products\[category] (Files)                                                                                  |          1 |        117 |          0 |         12 |        129 |
+| app\(main)\products\[category]\[product]                                                                                |          1 |        113 |          1 |         14 |        128 |
+| app\(main)\products\_components                                                                                         |         10 |      1,046 |         43 |         66 |      1,155 |
+| app\(main)\products\_components (Files)                                                                                 |          4 |        311 |          0 |         26 |        337 |
+| app\(main)\products\_components\form                                                                                    |          6 |        735 |         43 |         40 |        818 |
+| app\(main)\reports                                                                                                      |         10 |        812 |         10 |         59 |        881 |
+| app\(main)\reports (Files)                                                                                              |          1 |         18 |          0 |          2 |         20 |
+| app\(main)\reports\[slug]                                                                                               |          2 |        174 |          2 |         17 |        193 |
+| app\(main)\reports\[slug] (Files)                                                                                       |          1 |        158 |          2 |         13 |        173 |
+| app\(main)\reports\[slug]\_components                                                                                   |          1 |         16 |          0 |          4 |         20 |
+| app\(main)\reports\_components                                                                                          |          7 |        620 |          8 |         40 |        668 |
+| app\(main)\reports\_components (Files)                                                                                  |          1 |        266 |          4 |         13 |        283 |
+| app\(main)\reports\_components\table                                                                                    |          6 |        354 |          4 |         27 |        385 |
+| app\(main)\settings                                                                                                     |          3 |        197 |          0 |         19 |        216 |
+| app\(main)\settings (Files)                                                                                             |          1 |         62 |          0 |          8 |         70 |
+| app\(main)\settings\_components                                                                                         |          2 |        135 |          0 |         11 |        146 |
+| app\(main)\task                                                                                                         |         12 |      1,467 |         32 |         74 |      1,573 |
+| app\(main)\task (Files)                                                                                                 |          1 |         26 |          0 |          2 |         28 |
+| app\(main)\task\_components                                                                                             |          5 |      1,112 |          4 |         45 |      1,161 |
+| app\(main)\task\_components (Files)                                                                                     |          3 |        404 |          0 |         27 |        431 |
+| app\(main)\task\_components\forms                                                                                       |          2 |        708 |          4 |         18 |        730 |
+| app\(main)\task\archived                                                                                                |          6 |        329 |         28 |         27 |        384 |
+| app\(main)\task\archived (Files)                                                                                        |          1 |         13 |          0 |          2 |         15 |
+| app\(main)\task\archived\_components                                                                                    |          5 |        316 |         28 |         25 |        369 |
+| app\(main)\users                                                                                                        |          8 |        762 |          4 |         39 |        805 |
+| app\(main)\users (Files)                                                                                                |          1 |         22 |          0 |          2 |         24 |
+| app\(main)\users\_components                                                                                            |          7 |        740 |          4 |         37 |        781 |
+| app\(main)\users\_components (Files)                                                                                    |          1 |         10 |          0 |          3 |         13 |
+| app\(main)\users\_components\form                                                                                       |          2 |        467 |          2 |         15 |        484 |
+| app\(main)\users\_components\table                                                                                      |          4 |        263 |          2 |         19 |        284 |
+| app\api                                                                                                                 |          9 |        191 |         17 |         38 |        246 |
+| app\api\auth                                                                                                            |          1 |          1 |          0 |          1 |          2 |
+| app\api\auth\[...nextauth]                                                                                              |          1 |          1 |          0 |          1 |          2 |
+| app\api\data                                                                                                            |          4 |         56 |          0 |          8 |         64 |
+| app\api\data\employee                                                                                                   |          2 |         28 |          0 |          4 |         32 |
+| app\api\data\employee (Files)                                                                                           |          1 |         14 |          0 |          2 |         16 |
+| app\api\data\employee\lonely                                                                                            |          1 |         14 |          0 |          2 |         16 |
+| app\api\data\user                                                                                                       |          2 |         28 |          0 |          4 |         32 |
+| app\api\data\user (Files)                                                                                               |          1 |         14 |          0 |          2 |         16 |
+| app\api\data\user\lonely                                                                                                |          1 |         14 |          0 |          2 |         16 |
+| app\api\download                                                                                                        |          1 |         34 |          6 |          8 |         48 |
+| app\api\export                                                                                                          |          1 |         77 |          0 |          8 |         85 |
+| app\api\export\[table]                                                                                                  |          1 |         77 |          0 |          8 |         85 |
+| app\api\uploadthing                                                                                                     |          2 |         23 |         11 |         13 |         47 |
+| app\auth                                                                                                                |          7 |         38 |          0 |         16 |         54 |
+| app\auth (Files)                                                                                                        |          1 |         12 |          0 |          2 |         14 |
+| app\auth\error                                                                                                          |          1 |          4 |          0 |          2 |          6 |
+| app\auth\login                                                                                                          |          1 |          5 |          0 |          3 |          8 |
+| app\auth\new-password                                                                                                   |          1 |          4 |          0 |          2 |          6 |
+| app\auth\register                                                                                                       |          1 |          5 |          0 |          3 |          8 |
+| app\auth\reset                                                                                                          |          1 |          4 |          0 |          2 |          6 |
+| app\auth\verify-email                                                                                                   |          1 |          4 |          0 |          2 |          6 |
+| components                                                                                                              |         72 |      4,008 |          9 |        442 |      4,459 |
+| components\Navigation                                                                                                   |         14 |        413 |          0 |         41 |        454 |
+| components\Navigation (Files)                                                                                           |          3 |         52 |          0 |          7 |         59 |
+| components\Navigation\Header                                                                                            |          6 |        179 |          0 |         19 |        198 |
+| components\Navigation\MobileMenu                                                                                        |          2 |         69 |          0 |          6 |         75 |
+| components\Navigation\Pagination                                                                                        |          1 |         53 |          0 |          5 |         58 |
+| components\Navigation\SideBar                                                                                           |          2 |         60 |          0 |          4 |         64 |
+| components\auth                                                                                                         |         15 |        778 |          0 |         71 |        849 |
+| components\auth (Files)                                                                                                 |          7 |        197 |          0 |         24 |        221 |
+| components\auth\access                                                                                                  |          2 |         39 |          0 |          9 |         48 |
+| components\auth\form                                                                                                    |          6 |        542 |          0 |         38 |        580 |
+| components\common                                                                                                       |         17 |        947 |          9 |         76 |      1,032 |
+| components\common\buttons                                                                                               |          3 |        262 |          6 |         15 |        283 |
+| components\common\forms                                                                                                 |          4 |         71 |          0 |         14 |         85 |
+| components\common\table                                                                                                 |          6 |        521 |          3 |         32 |        556 |
+| components\common\tool                                                                                                  |          4 |         93 |          0 |         15 |        108 |
+| components\ui                                                                                                           |         26 |      1,870 |          0 |        254 |      2,124 |
+| data                                                                                                                    |         14 |        682 |          0 |         74 |        756 |
+| hooks                                                                                                                   |          5 |         82 |          3 |         22 |        107 |
+| lib                                                                                                                     |         11 |        806 |        122 |        137 |      1,065 |
+| schemas                                                                                                                 |          8 |        325 |         27 |         35 |        387 |
+| server-actions                                                                                                          |         14 |      1,118 |          9 |        270 |      1,397 |
+| types                                                                                                                   |          9 |        332 |          1 |         19 |        352 |
+| types (Files)                                                                                                           |          2 |        120 |          1 |          5 |        126 |
+| types\menu                                                                                                              |          4 |        192 |          0 |          9 |        201 |
+| types\tabs                                                                                                              |          3 |         20 |          0 |          5 |         25 |
++-------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-------------------------------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
+| filename                                                                                                                | language       | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\dashboard\_components\DashboardCardWrapper.tsx         | TypeScript JSX |         26 |          0 |          4 |         30 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\dashboard\_components\FavMenu.tsx                      | TypeScript JSX |         22 |          0 |          3 |         25 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\dashboard\_components\LatestNote.tsx                   | TypeScript JSX |         58 |          0 |          7 |         65 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\dashboard\_components\Statistic.tsx                    | TypeScript JSX |         62 |          0 |          9 |         71 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\dashboard\_components\Todos.tsx                        | TypeScript JSX |         57 |          0 |          7 |         64 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\dashboard\page.tsx                                     | TypeScript JSX |         20 |          0 |          2 |         22 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\employees\_components\addEmployeeButton.tsx            | TypeScript JSX |         10 |          0 |          3 |         13 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\employees\_components\form\addEmployeeForm.tsx         | TypeScript JSX |        278 |          0 |          8 |        286 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\employees\_components\form\editEmployeeForm.tsx        | TypeScript JSX |        313 |          0 |          7 |        320 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\employees\_components\table\employeeCollumns.tsx       | TypeScript JSX |        181 |         16 |          5 |        202 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\employees\_components\table\employeeRowAction.tsx      | TypeScript JSX |         63 |          0 |          6 |         69 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\employees\_components\table\employeeTableOption.tsx    | TypeScript JSX |         12 |          0 |          1 |         13 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\employees\_components\table\employeesTable.tsx         | TypeScript JSX |         15 |          0 |          4 |         19 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\employees\page.tsx                                     | TypeScript JSX |         19 |          0 |          2 |         21 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\files\_components\FileUploadButton.tsx                 | TypeScript JSX |        202 |          4 |         13 |        219 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\files\_components\table\fileColumns.tsx                | TypeScript JSX |        101 |         26 |          6 |        133 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\files\_components\table\fileRowAction.tsx              | TypeScript JSX |         60 |          0 |         11 |         71 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\files\_components\table\filesTable.tsx                 | TypeScript JSX |         13 |          0 |          2 |         15 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\files\page.tsx                                         | TypeScript JSX |         17 |          0 |          2 |         19 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\layout.tsx                                             | TypeScript JSX |         25 |          0 |          2 |         27 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\logs\_components\LogHeader.tsx                         | TypeScript JSX |         14 |          0 |          4 |         18 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\logs\_components\LogSearchBar.tsx                      | TypeScript JSX |         45 |          0 |          4 |         49 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\logs\_components\LogTable.tsx                          | TypeScript JSX |         42 |          0 |          3 |         45 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\logs\page.tsx                                          | TypeScript JSX |         48 |          0 |          7 |         55 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\notes\[slug]\page.tsx                                  | TypeScript JSX |        124 |          1 |         14 |        139 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\notes\_components\AddNoteButton.tsx                    | TypeScript JSX |         29 |          0 |          6 |         35 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\notes\_components\NoteCard.tsx                         | TypeScript JSX |         69 |          0 |          7 |         76 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\notes\_components\NoteList.tsx                         | TypeScript JSX |         73 |          0 |         10 |         83 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\notes\page.tsx                                         | TypeScript JSX |         44 |          0 |          6 |         50 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\products\[category]\[product]\page.tsx                 | TypeScript JSX |        113 |          1 |         14 |        128 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\products\[category]\page.tsx                           | TypeScript JSX |        117 |          0 |         12 |        129 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\products\_components\CategoryList.tsx                  | TypeScript JSX |         48 |          0 |          5 |         53 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\products\_components\PackageList.tsx                   | TypeScript JSX |        107 |          0 |          5 |        112 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\products\_components\ProductList.tsx                   | TypeScript JSX |         71 |          0 |          8 |         79 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\products\_components\ProductsButton.tsx                | TypeScript JSX |         85 |          0 |          8 |         93 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\products\_components\form\AddCategoryForm.tsx          | TypeScript JSX |         83 |         19 |          6 |        108 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\products\_components\form\AddPackageForm.tsx           | TypeScript JSX |        180 |          0 |          8 |        188 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\products\_components\form\AddProductForm.tsx           | TypeScript JSX |        103 |          0 |          6 |        109 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\products\_components\form\EditCategoryForm.tsx         | TypeScript JSX |         84 |         19 |          6 |        109 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\products\_components\form\EditPackageForm.tsx          | TypeScript JSX |        181 |          4 |          8 |        193 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\products\_components\form\EditProductForm.tsx          | TypeScript JSX |        104 |          1 |          6 |        111 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\products\page.tsx                                      | TypeScript JSX |         94 |          2 |         14 |        110 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\reports\[slug]\_components\summaryItems.tsx            | TypeScript JSX |         16 |          0 |          4 |         20 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\reports\[slug]\page.tsx                                | TypeScript JSX |        158 |          2 |         13 |        173 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\reports\_components\addReportButton.tsx                | TypeScript JSX |        266 |          4 |         13 |        283 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\reports\_components\table\DataTable.tsx                | TypeScript JSX |        122 |          0 |          6 |        128 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\reports\_components\table\reportCollumns.tsx           | TypeScript JSX |        135 |          2 |          4 |        141 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\reports\_components\table\reportRowAction.tsx          | TypeScript JSX |         30 |          0 |          6 |         36 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\reports\_components\table\reportTable.tsx              | TypeScript JSX |         16 |          0 |          3 |         19 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\reports\_components\table\reportTableOption.tsx        | TypeScript JSX |         12 |          0 |          1 |         13 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\reports\_components\table\reportTableToolBar.tsx       | TypeScript JSX |         39 |          2 |          7 |         48 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\reports\page.tsx                                       | TypeScript JSX |         18 |          0 |          2 |         20 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\settings\_components\AccountInformation.tsx            | TypeScript JSX |         50 |          0 |          4 |         54 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\settings\_components\SecurityAndAppearance.tsx         | TypeScript JSX |         85 |          0 |          7 |         92 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\settings\page.tsx                                      | TypeScript JSX |         62 |          0 |          8 |         70 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\task\_components\TaskBoard.tsx                         | TypeScript JSX |         24 |          0 |          4 |         28 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\task\_components\TaskCard.tsx                          | TypeScript JSX |        257 |          0 |         14 |        271 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\task\_components\TaskView.tsx                          | TypeScript JSX |        123 |          0 |          9 |        132 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\task\_components\forms\AddTaskForm.tsx                 | TypeScript JSX |        353 |          1 |          9 |        363 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\task\_components\forms\EditTaskForm.tsx                | TypeScript JSX |        355 |          3 |          9 |        367 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\task\archived\_components\DataTable.tsx                | TypeScript JSX |        122 |          0 |          6 |        128 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\task\archived\_components\archivedTaskCollumn.tsx      | TypeScript JSX |         93 |         26 |          4 |        123 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\task\archived\_components\archivedTaskRowAction.tsx    | TypeScript JSX |         46 |          0 |          6 |         52 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\task\archived\_components\archivedTaskTable.tsx        | TypeScript JSX |         16 |          0 |          2 |         18 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\task\archived\_components\archivedTaskTableToolBar.tsx | TypeScript JSX |         39 |          2 |          7 |         48 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\task\archived\page.tsx                                 | TypeScript JSX |         13 |          0 |          2 |         15 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\task\page.tsx                                          | TypeScript JSX |         26 |          0 |          2 |         28 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\users\_components\addUserButton.tsx                    | TypeScript JSX |         10 |          0 |          3 |         13 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\users\_components\form\addUserForm.tsx                 | TypeScript JSX |        239 |          1 |          8 |        248 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\users\_components\form\editUserForm.tsx                | TypeScript JSX |        228 |          1 |          7 |        236 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\users\_components\table\userColumns.tsx                | TypeScript JSX |        159 |          2 |          8 |        169 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\users\_components\table\userRowAction.tsx              | TypeScript JSX |         61 |          0 |          6 |         67 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\users\_components\table\userTableOption.tsx            | TypeScript JSX |         31 |          0 |          3 |         34 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\users\_components\table\usersTable.tsx                 | TypeScript JSX |         12 |          0 |          2 |         14 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\(main)\users\page.tsx                                         | TypeScript JSX |         22 |          0 |          2 |         24 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\api\auth\[...nextauth]\route.ts                               | TypeScript     |          1 |          0 |          1 |          2 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\api\data\employee\lonely\route.ts                             | TypeScript     |         14 |          0 |          2 |         16 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\api\data\employee\route.ts                                    | TypeScript     |         14 |          0 |          2 |         16 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\api\data\user\lonely\route.ts                                 | TypeScript     |         14 |          0 |          2 |         16 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\api\data\user\route.ts                                        | TypeScript     |         14 |          0 |          2 |         16 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\api\download\route.ts                                         | TypeScript     |         34 |          6 |          8 |         48 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\api\export\[table]\route.ts                                   | TypeScript     |         77 |          0 |          8 |         85 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\api\uploadthing\core.ts                                       | TypeScript     |         18 |          8 |          9 |         35 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\api\uploadthing\route.ts                                      | TypeScript     |          5 |          3 |          4 |         12 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\auth\error\page.tsx                                           | TypeScript JSX |          4 |          0 |          2 |          6 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\auth\layout.tsx                                               | TypeScript JSX |         12 |          0 |          2 |         14 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\auth\login\page.tsx                                           | TypeScript JSX |          5 |          0 |          3 |          8 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\auth\new-password\page.tsx                                    | TypeScript JSX |          4 |          0 |          2 |          6 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\auth\register\page.tsx                                        | TypeScript JSX |          5 |          0 |          3 |          8 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\auth\reset\page.tsx                                           | TypeScript JSX |          4 |          0 |          2 |          6 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\auth\verify-email\page.tsx                                    | TypeScript JSX |          4 |          0 |          2 |          6 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\globals.css                                                   | CSS            |         61 |          0 |          6 |         67 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\layout.tsx                                                    | TypeScript JSX |         44 |          0 |          5 |         49 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\loading.tsx                                                   | TypeScript JSX |         11 |          0 |          2 |         13 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\not-found.tsx                                                 | TypeScript JSX |         24 |          0 |          3 |         27 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\app\page.tsx                                                      | TypeScript JSX |         42 |          0 |          2 |         44 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\Navigation\CopyRights.tsx                              | TypeScript JSX |         11 |          0 |          3 |         14 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\Navigation\Header\Breadcrumbs.tsx                      | TypeScript JSX |         61 |          0 |          4 |         65 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\Navigation\Header\HeaderTitle.tsx                      | TypeScript JSX |         12 |          0 |          4 |         16 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\Navigation\Header\PageHeader.tsx                       | TypeScript JSX |         14 |          0 |          4 |         18 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\Navigation\Header\header.tsx                           | TypeScript JSX |         24 |          0 |          2 |         26 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\Navigation\Header\navSearchBar.tsx                     | TypeScript JSX |         16 |          0 |          2 |         18 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\Navigation\Header\profileMenu.tsx                      | TypeScript JSX |         52 |          0 |          3 |         55 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\Navigation\MobileMenu\mobileMenu.tsx                   | TypeScript JSX |         37 |          0 |          3 |         40 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\Navigation\MobileMenu\mobileMenuLinks.tsx              | TypeScript JSX |         32 |          0 |          3 |         35 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\Navigation\NavLogo.tsx                                 | TypeScript JSX |         21 |          0 |          2 |         23 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\Navigation\OutSideLink.tsx                             | TypeScript JSX |         20 |          0 |          2 |         22 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\Navigation\Pagination\PaginationComponent.tsx          | TypeScript JSX |         53 |          0 |          5 |         58 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\Navigation\SideBar\sideBarLinks.tsx                    | TypeScript JSX |         38 |          0 |          2 |         40 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\Navigation\SideBar\sidebar.tsx                         | TypeScript JSX |         22 |          0 |          2 |         24 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\auth\BackButton.tsx                                    | TypeScript JSX |         14 |          0 |          4 |         18 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\auth\ErrorCard.tsx                                     | TypeScript JSX |         15 |          0 |          2 |         17 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\auth\Header.tsx                                        | TypeScript JSX |         34 |          0 |          3 |         37 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\auth\LoginButton.tsx                                   | TypeScript JSX |         34 |          0 |          6 |         40 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\auth\LogoutButton.tsx                                  | TypeScript JSX |         17 |          0 |          5 |         22 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\auth\Social.tsx                                        | TypeScript JSX |         35 |          0 |          2 |         37 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\auth\access\AccessDenied.tsx                           | TypeScript JSX |         23 |          0 |          3 |         26 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\auth\access\RoleGate.tsx                               | TypeScript JSX |         16 |          0 |          6 |         22 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\auth\form\CardWrapper.tsx                              | TypeScript JSX |         44 |          0 |          3 |         47 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\auth\form\EmailVerificationForm.tsx                    | TypeScript JSX |         44 |          0 |          7 |         51 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\auth\form\LoginForm.tsx                                | TypeScript JSX |        173 |          0 |          7 |        180 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\auth\form\NewPasswordResetForm.tsx                     | TypeScript JSX |         81 |          0 |          8 |         89 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\auth\form\RegisterForm.tsx                             | TypeScript JSX |        122 |          0 |          6 |        128 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\auth\form\ResetForm.tsx                                | TypeScript JSX |         78 |          0 |          7 |         85 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\auth\login-card.tsx                                    | TypeScript JSX |         48 |          0 |          2 |         50 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\common\buttons\DialogButton.tsx                        | TypeScript JSX |         19 |          0 |          2 |         21 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\common\buttons\TableExportButton.tsx                   | TypeScript JSX |         64 |          5 |          3 |         72 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\common\buttons\TableImportButton.tsx                   | TypeScript JSX |        179 |          1 |         10 |        190 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\common\forms\CommaSeparatedInput.tsx                   | TypeScript JSX |         25 |          0 |          4 |         29 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\common\forms\DataFormWrapper.tsx                       | TypeScript JSX |         20 |          0 |          4 |         24 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\common\forms\FormError.tsx                             | TypeScript JSX |         13 |          0 |          3 |         16 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\common\forms\FormSuccess.tsx                           | TypeScript JSX |         13 |          0 |          3 |         16 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\common\table\DataTable.tsx                             | TypeScript JSX |        119 |          0 |          6 |        125 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\common\table\data-table-column-header.tsx              | TypeScript JSX |         67 |          0 |          5 |         72 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\common\table\data-table-faceted-filter.tsx             | TypeScript JSX |        143 |          0 |          5 |        148 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\common\table\data-table-pagination.tsx                 | TypeScript JSX |         98 |          1 |          4 |        103 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\common\table\data-table-toolbar.tsx                    | TypeScript JSX |         39 |          2 |          7 |         48 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\common\table\data-table-view-options.tsx               | TypeScript JSX |         55 |          0 |          5 |         60 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\common\tool\Editor.tsx                                 | TypeScript JSX |         39 |          0 |          4 |         43 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\common\tool\PageToolbar.tsx                            | TypeScript JSX |         11 |          0 |          3 |         14 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\common\tool\ThemeProvider.tsx                          | TypeScript JSX |          7 |          0 |          3 |         10 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\common\tool\theme-toggle.tsx                           | TypeScript JSX |         36 |          0 |          5 |         41 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\avatar.tsx                                          | TypeScript JSX |         44 |          0 |          7 |         51 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\badge.tsx                                           | TypeScript JSX |         36 |          0 |          6 |         42 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\breadcrumb.tsx                                      | TypeScript JSX |        105 |          0 |         11 |        116 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\button.tsx                                          | TypeScript JSX |         51 |          0 |          6 |         57 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\calendar.tsx                                        | TypeScript JSX |         61 |          0 |          6 |         67 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\card.tsx                                            | TypeScript JSX |         82 |          0 |          9 |         91 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\checkbox.tsx                                        | TypeScript JSX |         26 |          0 |          5 |         31 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\collapsible.tsx                                     | TypeScript JSX |          6 |          0 |          6 |         12 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\command.tsx                                         | TypeScript JSX |        137 |          0 |         19 |        156 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\dialog.tsx                                          | TypeScript JSX |        109 |          0 |         14 |        123 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\dropdown-menu.tsx                                   | TypeScript JSX |        182 |          0 |         19 |        201 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\form.tsx                                            | TypeScript JSX |        153 |          0 |         25 |        178 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\input-otp.tsx                                       | TypeScript JSX |         63 |          0 |          9 |         72 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\input.tsx                                           | TypeScript JSX |         21 |          0 |          5 |         26 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\label.tsx                                           | TypeScript JSX |         21 |          0 |          6 |         27 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\navigation-menu.tsx                                 | TypeScript JSX |        117 |          0 |         12 |        129 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\pagination.tsx                                      | TypeScript JSX |        107 |          0 |         11 |        118 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\popover.tsx                                         | TypeScript JSX |         25 |          0 |          7 |         32 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\select.tsx                                          | TypeScript JSX |        146 |          0 |         15 |        161 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\separator.tsx                                       | TypeScript JSX |         27 |          0 |          5 |         32 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\sheet.tsx                                           | TypeScript JSX |        125 |          0 |         16 |        141 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\sonner.tsx                                          | TypeScript JSX |         26 |          0 |          6 |         32 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\switch.tsx                                          | TypeScript JSX |         25 |          0 |          5 |         30 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\table.tsx                                           | TypeScript JSX |        107 |          0 |         11 |        118 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\tabs.tsx                                            | TypeScript JSX |         48 |          0 |          8 |         56 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\components\ui\textarea.tsx                                        | TypeScript JSX |         20 |          0 |          5 |         25 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\cron.mts                                                          | TypeScript     |         13 |          1 |          3 |         17 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\data\account.ts                                                   | TypeScript     |         12 |          0 |          3 |         15 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\data\dashboard.ts                                                 | TypeScript     |        130 |          0 |         15 |        145 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\data\employee.ts                                                  | TypeScript     |         93 |          0 |          8 |        101 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\data\file.ts                                                      | TypeScript     |         22 |          0 |          4 |         26 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\data\log.ts                                                       | TypeScript     |         26 |          0 |          4 |         30 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\data\note.ts                                                      | TypeScript     |         72 |          0 |          6 |         78 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\data\passwordResetToken.ts                                        | TypeScript     |         22 |          0 |          5 |         27 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\data\product.ts                                                   | TypeScript     |         62 |          0 |          3 |         65 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\data\report.ts                                                    | TypeScript     |         25 |          0 |          4 |         29 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\data\task.ts                                                      | TypeScript     |        112 |          0 |          8 |        120 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\data\twoFactorConfirmation.ts                                     | TypeScript     |         14 |          0 |          3 |         17 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\data\twoFactorToken.ts                                            | TypeScript     |         22 |          0 |          3 |         25 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\data\user.ts                                                      | TypeScript     |         48 |          0 |          5 |         53 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\data\verificationToken.ts                                         | TypeScript     |         22 |          0 |          3 |         25 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\hooks\useCurrentRole.ts                                           | TypeScript     |          5 |          1 |          1 |          7 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\hooks\useCurrentUser.ts                                           | TypeScript     |          9 |          1 |          1 |         11 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\hooks\useDebounce.ts                                              | TypeScript     |         13 |          0 |          5 |         18 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\hooks\useMediaQuery.ts                                            | TypeScript     |         15 |          1 |          7 |         23 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\hooks\usePagination.ts                                            | TypeScript     |         40 |          0 |          8 |         48 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\lib\auth.config.ts                                                | TypeScript     |         34 |          0 |          6 |         40 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\lib\auth.ts                                                       | TypeScript     |         85 |          2 |          9 |         96 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\lib\db.ts                                                         | TypeScript     |          6 |          0 |          4 |         10 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\lib\logger.ts                                                     | TypeScript     |         49 |          1 |         13 |         63 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\lib\mail.ts                                                       | TypeScript     |         85 |          0 |         13 |         98 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\lib\parseSheet.ts                                                 | TypeScript     |        107 |          4 |         13 |        124 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\lib\sessionUser.ts                                                | TypeScript     |         14 |          0 |          2 |         16 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\lib\toasts.ts                                                     | TypeScript     |        171 |         12 |         13 |        196 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\lib\tokens.ts                                                     | TypeScript     |         58 |          0 |         11 |         69 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\lib\uploadthing.ts                                                | TypeScript     |          9 |          0 |          3 |         12 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\lib\utils.ts                                                      | TypeScript     |        188 |        103 |         50 |        341 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\middleware.ts                                                     | TypeScript     |         42 |          4 |          9 |         55 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\routes.ts                                                         | TypeScript     |         10 |         19 |          4 |         33 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\schemas\employee.ts                                               | TypeScript     |         35 |          0 |          3 |         38 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\schemas\file.ts                                                   | TypeScript     |         62 |          0 |          5 |         67 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\schemas\index.ts                                                  | TypeScript     |         98 |         22 |          7 |        127 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\schemas\note.ts                                                   | TypeScript     |          8 |          0 |          3 |         11 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\schemas\product.ts                                                | TypeScript     |         19 |          1 |          5 |         25 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\schemas\report.ts                                                 | TypeScript     |         14 |          0 |          3 |         17 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\schemas\task.ts                                                   | TypeScript     |         38 |          0 |          5 |         43 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\schemas\user.ts                                                   | TypeScript     |         51 |          4 |          4 |         59 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\server-actions\emailVerification.ts                               | TypeScript     |         42 |          0 |         12 |         54 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\server-actions\employee.ts                                        | TypeScript     |         98 |          0 |         23 |        121 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\server-actions\file.ts                                            | TypeScript     |        122 |          0 |         31 |        153 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\server-actions\logOut.ts                                          | TypeScript     |          7 |          0 |          3 |         10 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\server-actions\login.ts                                           | TypeScript     |         91 |          0 |         17 |        108 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\server-actions\newPassword.ts                                     | TypeScript     |         54 |          0 |         15 |         69 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\server-actions\note.ts                                            | TypeScript     |         74 |          0 |         13 |         87 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\server-actions\product.ts                                         | TypeScript     |        144 |          3 |         35 |        182 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\server-actions\register.ts                                        | TypeScript     |         46 |          0 |         12 |         58 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\server-actions\report.ts                                          | TypeScript     |         63 |          0 |         14 |         77 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\server-actions\reset.ts                                           | TypeScript     |         34 |          0 |         12 |         46 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\server-actions\settings.ts                                        | TypeScript     |         33 |          0 |         10 |         43 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\server-actions\task.ts                                            | TypeScript     |        207 |          0 |         47 |        254 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\server-actions\user.ts                                            | TypeScript     |        103 |          6 |         26 |        135 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\types\file.ts                                                     | TypeScript     |          1 |          0 |          1 |          2 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\types\fileType.ts                                                 | TypeScript     |        119 |          1 |          4 |        124 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\types\menu\_menu.ts                                               | TypeScript     |          5 |          0 |          1 |          6 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\types\menu\mainMenu.ts                                            | TypeScript     |        129 |          0 |          4 |        133 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\types\menu\reportMenu.ts                                          | TypeScript     |         29 |          0 |          2 |         31 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\types\menu\taskMenu.ts                                            | TypeScript     |         29 |          0 |          2 |         31 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\types\tabs\_tab.ts                                                | TypeScript     |          4 |          0 |          1 |          5 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\types\tabs\assetTabs.ts                                           | TypeScript     |          8 |          0 |          2 |         10 |
+| c:\Programming\Asset Management - KP\dewafin_prod\src\types\tabs\taskTabs.ts                                            | TypeScript     |          8 |          0 |          2 |         10 |
+| Total                                                                                                                   |                |     14,479 |        351 |      1,549 |     16,379 |
++-------------------------------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
